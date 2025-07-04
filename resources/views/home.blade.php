@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/loader.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     @stack('head')
+    <!-- Swiper CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <!-- Bootstrap Icons CDN (güncel) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body class="theme-dark-active">
@@ -43,81 +47,9 @@
     <!-- Main Content -->
     <main class="theme-dark-active">
         <!--Fotograflı Kategoriler-->
-        <div class="collection_style__three bg-body section_gap_y_bottom__1 position-relative z-1">
-            <div class="container">
-                <div class="row gy-4 align-items-end">
-                    <div class="col-lg-6"><span class="sub-header-2">En Popüler</span>
-                        <h2 class="section_title__2">Popüler Prompt Koleksiyonları</h2>
-                    </div>
-                    <div class="col-lg-6 d-flex justify-content-lg-end align-items-center">
-                        <div class="slider__nav d-flex mr-3">
-                            <div class="collection__three_prev navigation_btn_2 btn__prev mr-1"><i
-                                    class="bi bi-chevron-left"></i></div>
-                            <div class="collection__three_next navigation_btn_2 btn__next"><i
-                                    class="bi bi-chevron-right"></i>
-                            </div>
-                        </div><a class="btn-rounded-v3" href="/">Tümü <!-- --><svg width="12" height="12"
-                                viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1.25 6H11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path d="M6.25 1L11.25 6L6.25 11" stroke="currentColor" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg></a>
-                    </div>
-                </div>
-
-
-
-
-                <div class="collection_slider__two pt-40">
-                    <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
-                        <div class="swiper-wrapper" id="swiper-wrapper-54d93ece103ad1015d" aria-live="polite">
-
-                        </div>
-                        <!-- Add Swiper navigation -->
-                        <div class="swiper-button-prev swiper-button-disabled swiper-button-lock" tabindex="-1"
-                            role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-54d93ece103ad1015d"
-                            aria-disabled="true">
-                        </div>
-                        <div class="swiper-button-next swiper-button-disabled swiper-button-lock" tabindex="-1"
-                            role="button" aria-label="Next slide" aria-controls="swiper-wrapper-54d93ece103ad1015d"
-                            aria-disabled="true"></div>
-                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                    </div>
-                </div>
-
-
-
-                <!-- Initialize Swiper -->
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        var collectionSwiper = new Swiper('.collection_slider__two .swiper', {
-                            slidesPerView: 4,
-                            spaceBetween: 30,
-                            navigation: {
-                                nextEl: '.collection_slider__two .swiper-button-next',
-                                prevEl: '.collection_slider__two .swiper-button-prev',
-                            },
-                            breakpoints: {
-                                320: {
-                                    slidesPerView: 1,
-                                },
-                                768: {
-                                    slidesPerView: 2,
-                                },
-                                1024: {
-                                    slidesPerView: 3,
-                                },
-                                1200: {
-                                    slidesPerView: 4,
-                                },
-                            }
-                        });
-                    });
-                </script>
-            </div>
-        </div>
+        @include('partials.categories')
+               <!--Fotograflı Kategoriler-->
+        
         <!--Fotograflı Kategoriler-->
 
         <!--En Çok Beğenilenler-->
@@ -360,8 +292,12 @@
             </div>
         </div>
         <!--Bloglar-->
-    </main>
+    
     @include('partials.footer')
+
+</main>
+    <!-- Swiper JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 </body>
 
 </html>

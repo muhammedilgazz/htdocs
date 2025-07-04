@@ -9,6 +9,30 @@
             </div>
 
             <div class="col-xl-10 col-lg-9 d-flex justify-content-between flex-wrap gap-3">
+                <div class="select_style__one varient-4">
+                    <div class="downpdown_selector">
+                        <div class="dds_selected selector_three"><span>Popüler Prompt'lar</span>
+                            <div class="dds_selected_icon"></div>
+                        </div>
+                        <div class="dds_select_lists " style="height:0">
+                            <div class="dds_select_item"><span>Favori Prompt'larım</span>
+                                <div class="dds_list_icon"></div>
+                            </div>
+                            <div class="dds_select_item"><span>Popüler Prompt'lar</span>
+                                <div class="dds_list_icon"></div>
+                            </div>
+                            <div class="dds_select_item"><span>Yeni Prompt'lar</span>
+                                <div class="dds_list_icon"></div>
+                            </div>
+                            <div class="dds_select_item"><span>Tümü</span>
+                                <div class="dds_list_icon"></div>
+                            </div>
+                            <div class="dds_select_item"><span>Klasik Prompt'lar</span>
+                                <div class="dds_list_icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <ul class='nft_nav_pills__two nav nav-pills' id='pills-tab' role='tablist'>
                     <li class='nav-item' role='presentation'>
                         <button class='nav-link active' id='nft_pill_all' data-bs-toggle='pill' data-bs-target='#nft_tab_all' type='button' role='tab'>Tümü</button>
@@ -16,7 +40,7 @@
                     @foreach ($categories as $category)
                         <li class='nav-item' role='presentation'>
                             <button class='nav-link' id='nft_pill_{{ $category->id }}' data-bs-toggle='pill' data-bs-target='#nft_tab_{{ $category->id }}' type='button' role='tab'>
-                                {{ $category->name }}
+                                {{ $category->description }}
                             </button>
                         </li>
                     @endforeach

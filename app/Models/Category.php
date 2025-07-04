@@ -10,6 +10,7 @@ class Category extends Model
         'name',
         'description',
         'cat_picture',
+        'id'
     ];
     public function prompts()
 {
