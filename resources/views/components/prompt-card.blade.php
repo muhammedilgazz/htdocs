@@ -14,6 +14,9 @@
                     <i class='bi bi-three-dots'></i>
                 </button>
                 <div class='avater__group'>
+                    <img src="{{ asset("assets/images/nft/ag-two.png") }}" alt="">
+                    <img src="{{ asset("assets/images/nft/ag-three.png") }}" alt="">
+
                     <img src='{{ asset("assets/images/icons/tick-yellow-x.svg") }}' alt='Verified' class='user__tick'>
                 </div>
             </div>

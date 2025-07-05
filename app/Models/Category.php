@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -10,10 +11,10 @@ class Category extends Model
         'name',
         'description',
         'cat_picture',
-        'id'
     ];
-    public function prompts()
-{
-    return $this->hasMany(Prompt::class, 'main_cat_id');
-}
+
+    public function prompts(): HasMany
+    {
+        return $this->hasMany(Prompt::class, 'main_cat_id');
+    }
 }

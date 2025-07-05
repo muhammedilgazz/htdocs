@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Prompt extends Model
 {
@@ -17,8 +18,19 @@ class Prompt extends Model
         'publisher',
         'keywords',
     ];
-    public function category()
+
+    protected $casts = [
+        'keywords' => 'array',
+        'used_times' => 'integer',
+    ];
+
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'main_cat_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
