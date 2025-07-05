@@ -52,12 +52,12 @@
                     <i class="fl flaticon-plus">+</i>
                     <ul class="sub-menu sub_menu_show" data-height="{{ count($item['submenu']) * 40 }}px">
                         @foreach($item['submenu'] as $subItem)
-                            <li><a href="{{ $subItem['url'] }}">{{ $subItem['title'] }}</a></li>
+                            <li><a href="{{ $subItem['url'] ?? '#' }}">{{ $subItem['title'] }}</a></li>
                         @endforeach
                     </ul>
                 </li>
             @else
-                <li><a href="{{ $item['url'] }}">{{ $item['title'] }}</a></li>
+                <li><a href="{{ $item['url'] ?? '#' }}">{{ $item['title'] }}</a></li>
             @endif
         @endforeach
     </ul>

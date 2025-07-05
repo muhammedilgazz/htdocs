@@ -36,13 +36,15 @@ class TransformerService
 
     public function toBlogData(Blog $blog): array
     {
-        return [
+        return array(
             'id' => $blog->id,
             'title' => $blog->title,
             'image' => $blog->image ?: self::DEFAULT_IMAGES['blog'],
             'tag' => $blog->tag ?: 'General',
             'writer' => $blog->writer ?: 'Admin',
-            'date' => $blog->created_at?->format('M d Y') ?? now()->format('M d Y')
-        ];
+            'date' => $blog->created_at?->format('M d Y') ?? now()->format('M d Y'),
+            'url' => "blog/" . route('blog.show', $blog->slug), // Tam URL'yi ekledik
+            'slug' => "blog/" . $blog->slug
+        );
     }
 }

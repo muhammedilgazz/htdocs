@@ -3,26 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePromptRequest;
-use App\Models\Category;
 use App\Models\Prompt;
+use App\Services\CategoryService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class PromptController extends Controller
 {
+    public function __construct(private CategoryService $categoryService)
+    {
+    }
+
     public function index(): View
     {
-        return view('collection.index', [
-            'prompts' => Prompt::latest()->get(),
-            'categories' => Category::with('prompts')->get()
-        ]);
+        $query = Prompt::with(['category', 'user']);
+
+        // Kategori filtresi
+        if (request('category')) {
+            $query->where('main_cat_id', request('category'));
+        }
+
+        // Sıralama
+        $sort = request('sort', 'newest');
+        switch ($sort) {
+            case 'popular':
+                $query->orderBy('used_times', 'desc');
+                break;
+            case 'liked':
+                $query->orderBy('likes', 'desc');
+                break;
+            case 'used':
+                $query->orderBy('used_times', 'desc');
+                break;
+            default:
+                $query->latest();
+        }
+
+        $prompts = $query->paginate(12);
+        $categories = $this->categoryService->getAllWithPromptCount();
+        $categoryName = request('category') ?
+            $this->categoryService->getCategoryWithPrompts(request('category'))?->description : null;
+
+        return view('collection.index', compact('prompts', 'categories', 'categoryName'));
     }
 
     public function create(): View
     {
         return view('prompts.create', [
-            'categories' => Category::all()
+            'categories' => $this->categoryService->getCategoriesForNavigation()
         ]);
+    }
+
+    public function show(Prompt $prompt): View
+    {
+        $prompt->load(['category', 'user', 'tags']);
+        $prompt->increment('used_times');
+
+        return view('prompts.show', compact('prompt'));
     }
 
     public function store(StorePromptRequest $request): RedirectResponse

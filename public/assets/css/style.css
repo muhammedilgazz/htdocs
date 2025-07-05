@@ -15097,6 +15097,23 @@ fieldset:disabled .btn {
     z-index: 2
 }
 
+.my-button {
+    margin-top: -1px;
+    font-size: 22px;
+    color: var(--text-2);
+    background: var(--bg-11);
+    box-shadow: 0 1px 2px rgba(4, 18, 38, .1);
+    border-radius: 20px;
+    padding: 6px 14px 6px 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .accordion-button:focus {
     z-index: 3;
     border-color: #86b7fe;
@@ -23244,7 +23261,7 @@ h6 {
 
 .theme-dark-active .logo-switch .logo-dark {
     display: block;
-   
+
 }
 
 .theme-dark-active .logo-switch .logo-light,
@@ -23294,7 +23311,7 @@ header .header-defult .nav-search-style-one {
 }
 
 header .header-defult .nav-logo img {
-     
+
     width: 140px;
 }
 
@@ -29933,7 +29950,7 @@ header .header-defult.sticky {
     }
 
     header .header-defult .nav-logo img {
-        
+
         width: 140px;
     }
 
@@ -30632,4 +30649,15 @@ header .header-defult.sticky {
 .footer__logo{
 
     width: 140px;
+}
+
+.prompt-cat {
+    color: #feda03;
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+
+.bttm-zero {
+    bottom: 0px;
 }

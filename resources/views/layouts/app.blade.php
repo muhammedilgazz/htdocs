@@ -10,6 +10,7 @@
 
     <link rel="stylesheet"
           href="{{ asset('assets/css/style.css') }}?v={{ filemtime(public_path('assets/css/style.css')) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fixes.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/loader.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
@@ -24,6 +25,9 @@
 @include('partials.footer')
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="{{ asset('assets/js/dropdown.js') }}"></script>
+<script src="{{ asset('assets/js/navigation.js') }}"></script>
+<script src="{{ asset('assets/js/pagination.js') }}"></script>
 @stack('scripts')
 </body>
 </html>

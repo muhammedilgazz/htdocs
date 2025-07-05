@@ -1,0 +1,113 @@
+/* Dropdown menü düzeltmeleri */
+.downpdown_selector {
+    position: relative;
+    cursor: pointer;
+}
+
+.dds_select_lists {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    height: 0;
+}
+
+.downpdown_selector.active .dds_select_lists {
+    height: auto !important;
+}
+
+.dds_select_item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dds_select_item:hover {
+    background-color: #f5f5f5;
+}
+
+.dds_select_item.active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Kategori başlığı düzeltmesi */
+.sidebar__header .col__name {
+    max-width: 100%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Navigasyon okları */
+.navigation_btn_2 {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.navigation_btn_2:hover {
+    opacity: 0.7;
+}
+
+/* Kategori filtreleme animasyonu */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Liste görünümü */
+.list-view .col-12 {
+    margin-bottom: 1rem;
+}
+
+.list-view .nft_card_style__two {
+    display: flex;
+    align-items: center;
+}
+
+.list-view .nft__thumb {
+    flex: 0 0 200px;
+    margin-right: 1rem;
+}
+
+.list-view .nft__disc {
+    flex: 1;
+}
+
+/* Responsive düzeltmeler */
+@media (max-width: 768px) {
+    .dds_select_lists {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        top: auto;
+    }
+
+    .list-view .nft_card_style__two {
+        flex-direction: column;
+    }
+
+    .list-view .nft__thumb {
+        flex: none;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
