@@ -1,0 +1,111 @@
+/* Dinamik Renk Paleti */
+:root {
+  --bs-primary: #1e3a8a;
+  --bs-primary-rgb: 30, 58, 138;
+  --bs-link-color: #1e3a8a;
+  --bs-link-color-rgb: 30, 58, 138;
+  --bs-link-hover-color: #1d4ed8;
+  --bs-link-hover-color-rgb: 29, 78, 216;
+}
+
+/* Buton renkleri */
+.btn-primary {
+  --bs-btn-bg: #1e3a8a;
+  --bs-btn-border-color: #1e3a8a;
+  --bs-btn-hover-bg: #1d4ed8;
+  --bs-btn-hover-border-color: #1d4ed8;
+  --bs-btn-active-bg: #1e40af;
+  --bs-btn-active-border-color: #1e40af;
+}
+
+/* Nav pills */
+.nav-pills {
+  --bs-nav-pills-link-active-bg: #1e3a8a;
+}
+
+/* Pagination */
+.pagination {
+  --bs-pagination-active-bg: #1e3a8a;
+  --bs-pagination-active-border-color: #1e3a8a;
+}
+
+/* Progress bar */
+.progress {
+  --bs-progress-bar-bg: #1e3a8a;
+}
+
+/* List group */
+.list-group {
+  --bs-list-group-active-bg: #1e3a8a;
+  --bs-list-group-active-border-color: #1e3a8a;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #1e3a8a;
+}
+
+/* Form controls */
+.form-control:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+.form-select:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 0rem rgba(30, 58, 138, 0.25);
+}
+
+/* Form check */
+.form-check-input:checked {
+  background-color: #1e3a8a;
+  border-color: #1e3a8a;
+}
+
+.form-check-input:focus {
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+/* Range */
+.form-range::-webkit-slider-thumb {
+  background-color: #1e3a8a;
+}
+
+.form-range::-moz-range-thumb {
+  background-color: #1e3a8a;
+}
+
+/* Nav link focus */
+.nav-link:focus-visible {
+  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+/* Close button focus */
+.btn-close:focus {
+  box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+/* Accordion */
+.accordion {
+  --bs-accordion-btn-focus-border-color: #93c5fd;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+/* Pagination focus */
+.pagination {
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+.tur-badge {
+font-size: 8px!important;
+  border-radius: 3px!important;
+  text-align: center;
+  position: relative;
+  left: -15px;
+  color: #000!important;
+}
+
+.login-h4 {
+color: #7184ad!important;
+}

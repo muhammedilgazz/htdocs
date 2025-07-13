@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harcama Kategorilerini Güncelle</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .harcama { 
+            border: 1px solid #ddd; 
+            margin: 10px 0; 
+            padding: 15px; 
+            border-radius: 5px;
+            background: #fafafa;
+        }
+        .kategori { 
+            font-weight: bold; 
+            color: #333; 
+            font-size: 16px;
+        }
+        .urun { 
+            color: #666; 
+            margin: 5px 0;
+        }
+        .tutar { 
+            color: #e74c3c; 
+            font-weight: bold; 
+            font-size: 18px;
+        }
+        .form { 
+            margin-top: 10px; 
+        }
+        select { 
+            padding: 8px; 
+            margin-right: 10px; 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button { 
+            padding: 12px 20px; 
+            background: #3498db; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button:hover { 
+            background: #2980b9; 
+        }
+        .success { 
+            color: green; 
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .error { 
+            color: red; 
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .info {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .current-cat {
+            background: #fff3cd;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .suggested-cat {
+            background: #d1ecf1;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Harcama Kategorilerini Güncelle</h1>
+        
+        <div class="info">
+            <h3>Kategori Tanımları:</h3>
+            <ul>
+                <li><strong>Sabit Giderler:</strong> Her ay düzenli olarak yapılan ve tutarı büyük ölçüde değişmeyen harcamalar (kira, elektrik, su, internet, telefon, sigorta, vergi, aidat, abonelik)</li>
+                <li><strong>Değişken Giderler:</strong> Aylık tutarı değişkenlik gösteren ve kontrol edilebilir harcamalar (market, yemek, ulaşım, benzin, giyim, eğlence, spor, sağlık, eğitim)</li>
+                <li><strong>Borç Ödemeleri:</strong> Kredi kartı, kredi ve diğer borç ödemeleri (kredi, borç, taksit, ödeme, kart, faiz, asgari)</li>
+                <li><strong>Ani/Ekstra Harcama:</strong> Plansız ve manuel giriş gerektiren harcamalar (arıza, tamir, bakım, hediye, tatil, seyahat, acil, beklenmedik)</li>
+                <li><strong>Ertelenen Ödemeler:</strong> Gelecek tarihlere ertelenmiş ödemeler</li>
+            </ul>
+        </div>
+
+        <form method="post" action="kategori_guncelle.php">
+            <button type="submit" name="update_categories">Kategorileri Güncelle</button>
+        </form>
+
+        <p><em>Bu sayfayı kullanarak veritabanındaki tüm harcamaları uygun kategorilere sınıflandırabilirsiniz. Her harcama için önerilen kategori gösterilecek ve manuel olarak değiştirebilirsiniz.</em></p>
+    </div>
+</body>
+</html> 
