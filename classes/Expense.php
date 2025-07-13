@@ -16,13 +16,10 @@ class Expense {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO harcama_kalemleri (kategori, kategori_tipi, harcama_donemi, tur, sira, urun, tutar, link, aciklama, durum) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO expense_items (order_number, category_id, item_name, amount, link, description, status_id) VALUES (?, (SELECT id FROM categories WHERE name = ? AND type = 'expense'), ?, ?, ?, ?, (SELECT id FROM status_types WHERE name = ?))";
         $params = [
-            $data['kategori'] ?? null,
-            $data['kategori_tipi'] ?? null,
-            $data['harcama_donemi'] ?? null,
-            $data['tur'] ?? null,
             $data['sira'] ?? null,
+            $data['kategori'] ?? null,
             $data['urun'] ?? null,
             $data['tutar'] ?? null,
             $data['link'] ?? null,
@@ -40,13 +37,10 @@ class Expense {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE harcama_kalemleri SET kategori = ?, kategori_tipi = ?, harcama_donemi = ?, tur = ?, sira = ?, urun = ?, tutar = ?, link = ?, aciklama = ?, durum = ? WHERE id = ?";
+        $sql = "UPDATE expense_items SET order_number = ?, category_id = (SELECT id FROM categories WHERE name = ? AND type = 'expense'), item_name = ?, amount = ?, link = ?, description = ?, status_id = (SELECT id FROM status_types WHERE name = ?) WHERE id = ?";
         $params = [
-            $data['kategori'] ?? null,
-            $data['kategori_tipi'] ?? null,
-            $data['harcama_donemi'] ?? null,
-            $data['tur'] ?? null,
             $data['sira'] ?? null,
+            $data['kategori'] ?? null,
             $data['urun'] ?? null,
             $data['tutar'] ?? null,
             $data['link'] ?? null,
@@ -64,24 +58,24 @@ class Expense {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM harcama_kalemleri WHERE id = ?";
+        $sql = "DELETE FROM expense_items WHERE id = ?";
         return $this->db->execute($sql, [$id]);
     }
 
     /**
      * Tüm harcama kalemlerini veya belirli bir kategori tipine göre harcama kalemlerini getirir.
      *
-     * @param string|null $kategori_tipi Filtrelemek için kategori tipi.
+     * @param string|null $category_name Filtrelemek için kategori adı.
      * @return array Harcama kalemleri listesi.
      */
-    public function getAll(?string $kategori_tipi = null): array {
-        $sql = "SELECT * FROM harcama_kalemleri";
+    public function getAll(?string $category_name = null): array {
+        $sql = "SELECT ei.*, c.name as category_name, st.name as status_name FROM expense_items ei JOIN categories c ON ei.category_id = c.id JOIN status_types st ON ei.status_id = st.id";
         $params = [];
-        if ($kategori_tipi) {
-            $sql .= " WHERE kategori_tipi = ?";
-            $params[] = $kategori_tipi;
+        if ($category_name) {
+            $sql .= " WHERE c.name = ? AND c.type = 'expense'";
+            $params[] = $category_name;
         }
-        $sql .= " ORDER BY id DESC";
+        $sql .= " ORDER BY ei.id DESC";
         return $this->db->fetchAll($sql, $params);
     }
 
@@ -92,7 +86,7 @@ class Expense {
      * @return array|false Harcama kalemi verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM harcama_kalemleri WHERE id = ?";
+        $sql = "SELECT ei.*, c.name as category_name, st.name as status_name FROM expense_items ei JOIN categories c ON ei.category_id = c.id JOIN status_types st ON ei.status_id = st.id WHERE ei.id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 
@@ -104,7 +98,7 @@ class Expense {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function updateStatus(int $id, string $status): bool {
-        $sql = "UPDATE harcama_kalemleri SET durum = ? WHERE id = ?";
+        $sql = "UPDATE expense_items SET status_id = (SELECT id FROM status_types WHERE name = ?) WHERE id = ?";
         return $this->db->execute($sql, [$status, $id]);
     }
 }

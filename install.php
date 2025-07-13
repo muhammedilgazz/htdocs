@@ -48,6 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $pdo->exec($sql);
                     }
                 }
+
+                // Verileri ekle (DatabaseSeeder kullanarak)
+                require_once 'classes/DatabaseSeeder.php';
+                $seeder = new DatabaseSeeder($pdo);
+                $seeder->seed();
                 
                 // Config dosyasını oluştur
                 $config_content = "<?php

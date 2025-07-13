@@ -11,7 +11,7 @@ $db = Database::getInstance();
 $selected_month = getSelectedMonthKey();
 
 // Hayaller ve hedefleri al
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE kategori_tipi='Alınacak Ürünler' AND kategori LIKE '%hayal%' AND harcama_donemi = ? ORDER BY id DESC", [$selected_month]);
+$rows = $db->fetchAll("SELECT * FROM dream_goals ORDER BY id DESC");
 $csrf_token = generate_csrf_token();
 ?>
 <body>
@@ -65,47 +65,25 @@ $csrf_token = generate_csrf_token();
                             <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
                                 <thead style="background:#f5f7fa;">
                                     <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
-                                        <th>Gider Türü</th>
-                                        <th>Hayal/Hedef</th>
+                                        <th style="padding-left:1.5rem;">Hayal/Hedef</th>
                                         <th>Maliyet</th>
                                         <th>Link</th>
                                         <th>Açıklama</th>
-                                        <th>Durum</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
                                     <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['sira'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['kategori']) ?> </td>
-                                        <td>
-                                            <span class="badge" style="background:#96ceb4; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                Hayal
-                                            </span>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['urun']) ?> </td>
-                                        <td> ₺<?= number_format($row['tutar'], 0, ',', '.') ?> </td>
+                                        <td style="padding-left:1.5rem;"> <?= htmlspecialchars($row['goal_name']) ?> </td>
+                                        <td> ₺<?= number_format($row['target_amount'], 0, ',', '.') ?> </td>
                                         <td>
                                             <?php if (!empty($row['link'])): ?>
                                                 <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
                                             <?php else: ?>-
                                             <?php endif; ?>
                                         </td>
-                                        <td> <?= htmlspecialchars($row['aciklama'] ?? '-') ?> </td>
-                                        <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['durum'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Devam Ediyor" <?= $row['durum'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                    <option value="Tamamlandı" <?= $row['durum'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                    <option value="İptal Edildi" <?= $row['durum'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
-                                            </div>
-                                        </td>
+                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
                                         <td>
                                             <div class="d-flex gap-1">
                                                 <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
@@ -131,17 +109,10 @@ $csrf_token = generate_csrf_token();
 
                 $add_dream_goal_modal_body = '';
                 $add_dream_goal_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-                $add_dream_goal_modal_body .= UIHelper::render_input('Başlık', 'baslik');
-                $add_dream_goal_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'aciklama', 'textarea', false);
-                $add_dream_goal_modal_body .= UIHelper::render_input('Hedef Tutar (₺)', 'hedef_tutar', 'number', true, '', '', [], 0.01);
-                $add_dream_goal_modal_body .= UIHelper::render_input('Mevcut Tutar (₺)', 'mevcut_tutar', 'number', false, '0', '', [], 0.01);
-                $add_dream_goal_modal_body .= UIHelper::render_input('Durum', 'durum', 'select', true, 'Beklemede', '', [
-                    ['value' => 'Beklemede', 'text' => 'Beklemede'],
-                    ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
-                    ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],
-                    ['value' => 'İptal Edildi', 'text' => 'İptal Edildi'],
-                ]);
-                $add_dream_goal_modal_body .= UIHelper::render_input('Hedef Tarih (Opsiyonel)', 'hedef_tarih', 'date', false);
+                $add_dream_goal_modal_body .= UIHelper::render_input('Başlık', 'goal_name');
+                $add_dream_goal_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'description', 'textarea', false);
+                $add_dream_goal_modal_body .= UIHelper::render_input('Hedef Tutar (₺)', 'target_amount', 'number', true, '', '', [], 0.01);
+                $add_dream_goal_modal_body .= UIHelper::render_input('Hedef Tarih (Opsiyonel)', 'target_date', 'date', false);
 
                 $add_dream_goal_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>';
                 $add_dream_goal_modal_footer .= '<button type="submit" class="btn btn-primary">Ekle</button>';

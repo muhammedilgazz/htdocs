@@ -16,13 +16,13 @@ class Iban {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO iban_bilgileri (banka_adi, iban, hesap_sahibi, aciklama, hesap_turu) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO iban_details (account_holder_name, iban, easy_address, bank_id, description) VALUES (?, ?, ?, (SELECT id FROM banks WHERE name = ?), ?)";
         $params = [
-            $data['banka_adi'] ?? null,
+            $data['account_holder_name'] ?? null,
             $data['iban'] ?? null,
-            $data['hesap_sahibi'] ?? null,
-            $data['aciklama'] ?? null,
-            $data['hesap_turu'] ?? 'diger' // Varsayılan olarak 'diger'
+            $data['easy_address'] ?? null,
+            $data['bank_name'] ?? null,
+            $data['description'] ?? null
         ];
         return $this->db->execute($sql, $params);
     }
@@ -35,13 +35,13 @@ class Iban {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE iban_bilgileri SET banka_adi = ?, iban = ?, hesap_sahibi = ?, aciklama = ?, hesap_turu = ? WHERE id = ?";
+        $sql = "UPDATE iban_details SET account_holder_name = ?, iban = ?, easy_address = ?, bank_id = (SELECT id FROM banks WHERE name = ?), description = ? WHERE id = ?";
         $params = [
-            $data['banka_adi'] ?? null,
+            $data['account_holder_name'] ?? null,
             $data['iban'] ?? null,
-            $data['hesap_sahibi'] ?? null,
-            $data['aciklama'] ?? null,
-            $data['hesap_turu'] ?? 'diger',
+            $data['easy_address'] ?? null,
+            $data['bank_name'] ?? null,
+            $data['description'] ?? null,
             $id
         ];
         return $this->db->execute($sql, $params);
@@ -54,25 +54,18 @@ class Iban {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM iban_bilgileri WHERE id = ?";
+        $sql = "DELETE FROM iban_details WHERE id = ?";
         return $this->db->execute($sql, [$id]);
     }
 
     /**
-     * Tüm IBAN kayıtlarını veya belirli bir hesap türüne göre IBAN kayıtlarını getirir.
+     * Tüm IBAN kayıtlarını getirir.
      *
-     * @param string|null $hesap_turu Filtrelemek için hesap türü ('kendi' veya 'diger').
      * @return array IBAN kayıtları listesi.
      */
-    public function getAll(?string $hesap_turu = null): array {
-        $sql = "SELECT * FROM iban_bilgileri";
-        $params = [];
-        if ($hesap_turu) {
-            $sql .= " WHERE hesap_turu = ?";
-            $params[] = $hesap_turu;
-        }
-        $sql .= " ORDER BY id DESC";
-        return $this->db->fetchAll($sql, $params);
+    public function getAll(): array {
+        $sql = "SELECT id.*, b.name as bank_name FROM iban_details id JOIN banks b ON id.bank_id = b.id ORDER BY id.created_at DESC";
+        return $this->db->fetchAll($sql);
     }
 
     /**
@@ -82,7 +75,7 @@ class Iban {
      * @return array|false IBAN kaydı verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM iban_bilgileri WHERE id = ?";
+        $sql = "SELECT id.*, b.name as bank_name FROM iban_details id JOIN banks b ON id.bank_id = b.id WHERE id.id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 }

@@ -13,21 +13,21 @@
             <div class="stat-card text-center p-4 h-100" style="background:#fff; border-radius:16px; box-shadow:0 2px 16px 0 rgba(79,140,255,0.06);">
                 <div class="mb-2" style="font-size:2rem; color:#ffb300;"><i class="bi bi-calculator"></i></div>
                 <div style="font-size:1.05rem; color:#222; font-weight:600;">Toplam Harcama</div>
-                <div style="font-size:1.5rem; color:#ffb300; font-weight:700;">₺<?= number_format($db->getDbValue('SELECT SUM(tutar) FROM harcama_kalemleri'), 0, ',', '.') ?></div>
+                <div style="font-size:1.5rem; color:#ffb300; font-weight:700;">₺<?= number_format($db->getDbValue('SELECT SUM(amount) FROM expense_items'), 0, ',', '.') ?></div>
                             </div>
                         </div>
                         <div class="col-md-4">
             <div class="stat-card text-center p-4 h-100" style="background:#fff; border-radius:16px; box-shadow:0 2px 16px 0 rgba(79,140,255,0.06);">
                 <div class="mb-2" style="font-size:2rem; color:#2979ff;"><i class="bi bi-arrow-repeat"></i></div>
                 <div style="font-size:1.05rem; color:#222; font-weight:600;">Aylık Sabit Harcamalar</div>
-                <div style="font-size:1.5rem; color:#2979ff; font-weight:700;">₺<?= number_format($db->getDbValue("SELECT SUM(tutar) FROM harcama_kalemleri WHERE kategori = 'abonelikler'"), 0, ',', '.') ?></div>
+                <div style="font-size:1.5rem; color:#2979ff; font-weight:700;">₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items WHERE category_id = (SELECT id FROM categories WHERE name = 'abonelikler' AND type = 'expense')"), 0, ',', '.') ?></div>
                             </div>
                         </div>
                         <div class="col-md-4">
             <div class="stat-card text-center p-4 h-100" style="background:#fff; border-radius:16px; box-shadow:0 2px 16px 0 rgba(79,140,255,0.06);">
                 <div class="mb-2" style="font-size:2rem; color:#34c759;"><i class="bi bi-cart-check"></i></div>
                 <div style="font-size:1.05rem; color:#222; font-weight:600;">Tek Seferlik Harcamalar</div>
-                <div style="font-size:1.5rem; color:#34c759; font-weight:700;">₺<?= number_format($db->getDbValue("SELECT SUM(tutar) FROM harcama_kalemleri WHERE kategori != 'abonelikler'"), 0, ',', '.') ?></div>
+                <div style="font-size:1.5rem; color:#34c759; font-weight:700;">₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items WHERE category_id != (SELECT id FROM categories WHERE name = 'abonelikler' AND type = 'expense')"), 0, ',', '.') ?></div>
                                 </div>
                             </div>
                         </div>
@@ -40,8 +40,7 @@
                 <table class="table align-middle mb-0" style="min-width:900px;">
                     <thead style="background:#f5f7fa;">
                         <tr style="color:#222; font-weight:600;">
-                            <th style="padding-left:1.5rem;">Sıra No</th>
-                            <th>Kategori</th>
+                            <th style="padding-left:1.5rem;">Kategori</th>
                             <th>Ürün Hizmet</th>
                             <th>Tutar</th>
                             <th>Link</th>
@@ -51,39 +50,35 @@
                                                 </thead>
                                                 <tbody>
                         <?php
-                        $rows = $db->fetchAll("SELECT * FROM harcama_kalemleri ORDER BY id DESC");
+                        $rows = $db->fetchAll("SELECT ei.*, c.name as category_name, st.name as status_name FROM expense_items ei JOIN categories c ON ei.category_id = c.id JOIN status_types st ON ei.status_id = st.id ORDER BY ei.id DESC");
                         foreach ($rows as $row):
                         ?>
                         <tr>
-                            <td style="padding-left:1.5rem;"><?= $row['sira'] ?></td>
-                            <td>
-                                <span class="badge" style="background:<?= $row['kategori']==='ödeme'?'#ffb300':'#e5e9f2'; ?>; color:<?= $row['kategori']==='ödeme'?'#fff':'#222'; ?>; font-weight:600; font-size:0.97rem;">
-                                    <?= ucfirst($row['kategori']) ?>
+                            <td style="padding-left:1.5rem;">
+                                <span class="badge" style="background:<?= $row['category_name']==='ödeme'?'#ffb300':'#e5e9f2'; ?>; color:<?= $row['category_name']==='ödeme'?'#fff':'#222'; ?>; font-weight:600; font-size:0.97rem;">
+                                    <?= ucfirst($row['category_name']) ?>
                                 </span>
-                                                        </td>
-                            <td><?= htmlspecialchars($row['urun']) ?></td>
+                            </td>
+                            <td><?= htmlspecialchars($row['item_name']) ?></td>
                             <td>
                                 <span style="color:#34c759; font-weight:700; font-size:1.1rem;">
-                                    ₺<?= number_format($row['tutar'], 0, ',', '.') ?>
+                                    ₺<?= number_format($row['amount'], 0, ',', '.') ?>
                                 </span>
-                                <div style="font-size:0.85rem; color:#888; font-weight:500;">
-                                    <?= $row['tur'] ?? '' ?>
-                                </div>
-                                                        </td>
-                                                        <td>
+                            </td>
+                            <td>
                                 <?php if (!empty($row['link'])): ?>
                                     <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm">Link</a>
                                 <?php else: ?>
                                     -
                                 <?php endif; ?>
-                                                        </td>
-                            <td><?= htmlspecialchars($row['aciklama'] ?? '-') ?></td>
-                                                        <td>
-                                <span class="badge" style="background:<?= $row['durum']==='Tamamlandı'?'#34c759':'#e5e9f2'; ?>; color:<?= $row['durum']==='Tamamlandı'?'#fff':'#222'; ?>; font-weight:600; font-size:0.97rem;">
-                                    <?= $row['durum'] ?>
+                            </td>
+                            <td><?= htmlspecialchars($row['description'] ?? '-') ?></td>
+                            <td>
+                                <span class="badge" style="background:<?= $row['status_name']==='Tamamlandı'?'#34c759':'#e5e9f2'; ?>; color:<?= $row['status_name']==='Tamamlandı'?'#fff':'#222'; ?>; font-weight:600; font-size:0.97rem;">
+                                    <?= $row['status_name'] ?>
                                 </span>
-                                                        </td>
-                                                    </tr>
+                            </td>
+                        </tr>
                         <?php endforeach; ?>
                                                 </tbody>
                                             </table>

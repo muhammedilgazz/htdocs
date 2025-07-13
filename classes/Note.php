@@ -16,10 +16,10 @@ class Note {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO notlar (baslik, icerik) VALUES (?, ?)";
+        $sql = "INSERT INTO notes (title, content) VALUES (?, ?)";
         $params = [
-            $data['baslik'] ?? null,
-            $data['icerik'] ?? null
+            $data['title'] ?? null,
+            $data['content'] ?? null
         ];
         return $this->db->execute($sql, $params);
     }
@@ -32,10 +32,10 @@ class Note {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE notlar SET baslik = ?, icerik = ? WHERE id = ?";
+        $sql = "UPDATE notes SET title = ?, content = ? WHERE id = ?";
         $params = [
-            $data['baslik'] ?? null,
-            $data['icerik'] ?? null,
+            $data['title'] ?? null,
+            $data['content'] ?? null,
             $id
         ];
         return $this->db->execute($sql, $params);
@@ -48,7 +48,7 @@ class Note {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM notlar WHERE id = ?";
+        $sql = "DELETE FROM notes WHERE id = ?";
         return $this->db->execute($sql, [$id]);
     }
 
@@ -58,7 +58,7 @@ class Note {
      * @return array Notlar listesi.
      */
     public function getAll(): array {
-        $sql = "SELECT * FROM notlar ORDER BY id DESC";
+        $sql = "SELECT * FROM notes ORDER BY id DESC";
         return $this->db->fetchAll($sql);
     }
 
@@ -69,7 +69,7 @@ class Note {
      * @return array|false Not verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM notlar WHERE id = ?";
+        $sql = "SELECT * FROM notes WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 }

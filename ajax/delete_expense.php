@@ -8,7 +8,7 @@ $security = new SecurityManager();
 $security->checkSession();
 
 // CSRF kontrolü
-if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
+if (!isset($_POST['csrf_token']) || !$security->validateCSRF($_POST['csrf_token'])) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'Güvenlik hatası']);
     exit;
@@ -27,8 +27,8 @@ if (!$id) {
 
 try {
     // Harcamayı sil
-    $stmt = $db->getPdo()->prepare("DELETE FROM harcama_kalemleri WHERE id = ? AND user_id = ?");
-    $result = $stmt->execute([$id, $_SESSION['user_id']]);
+    $stmt = $db->getPdo()->prepare("DELETE FROM expense_items WHERE id = ?");
+    $result = $stmt->execute([$id]);
     
     if ($result && $stmt->rowCount() > 0) {
         echo json_encode(['success' => true, 'message' => 'Harcama başarıyla silindi']);

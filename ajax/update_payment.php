@@ -8,41 +8,36 @@ handle_ajax_request(function($data) {
     $db = Database::getInstance();
 
     $id = filter_var($data['id'] ?? '', FILTER_VALIDATE_INT);
-    $durum = $data['durum'] ?? '';
+    $status = $data['status'] ?? '';
 
-    if (!$id || !$durum) {
+    if (!$id || !$status) {
         json_response(['success' => false, 'message' => 'Geçersiz parametreler'], 400);
-    }
-
-    $valid_statuses = ['Ödendi', 'Beklemede', 'Planlandı', 'Gecikmiş'];
-    if (!in_array($durum, $valid_statuses)) {
-        json_response(['success' => false, 'message' => 'Geçersiz durum değeri'], 400);
     }
 
     try {
         $db->beginTransaction();
 
         // Ödeme durumunu güncelle
-        $payment->updateStatus($id, $durum);
+        $payment->updateStatus($id, $status);
 
         // Eğer durum "Ödendi" ise bakiyeden düş
-        if ($durum == 'Ödendi') {
-            $tutar = $db->getDbValue("SELECT tutar FROM odemeler WHERE id = ?", [$id]);
-            if ($tutar) {
-                $db->execute("UPDATE bakiye SET toplam_bakiye = toplam_bakiye - ? WHERE id = 1", [$tutar]);
+        if ($status == 'Ödendi') {
+            $amount = $db->getDbValue("SELECT amount FROM payments WHERE id = ?", [$id]);
+            if ($amount) {
+                $db->execute("UPDATE balances SET total_balance = total_balance - ? WHERE id = 1", [$amount]);
             }
         }
 
         $db->commit();
 
         // Güncel bakiye ve toplam borç bilgilerini getir
-        $bakiye = $db->getDbValue("SELECT toplam_bakiye FROM bakiye WHERE id = 1");
-        $kalan_borc = $db->getDbValue("SELECT SUM(tutar) FROM odemeler WHERE durum != 'Ödendi'") ?? 0;
+        $balance = $db->getDbValue("SELECT total_balance FROM balances WHERE id = 1");
+        $remaining_debt = $db->getDbValue("SELECT SUM(amount) FROM payments WHERE status_id != (SELECT id FROM status_types WHERE name = 'Ödendi')") ?? 0;
 
         json_response([
             'success' => true,
-            'bakiye' => number_format($bakiye, 0, ',', '.'),
-            'kalan_borc' => number_format($kalan_borc, 0, ',', '.')
+            'balance' => number_format($balance, 0, ',', '.'),
+            'remaining_debt' => number_format($remaining_debt, 0, ',', '.')
         ]);
 
     } catch (Exception $e) {

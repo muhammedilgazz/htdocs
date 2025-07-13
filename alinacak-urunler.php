@@ -2,13 +2,13 @@
 require_once 'config/config.php';
 require_once 'classes/Database.php';
 require_once 'classes/SecurityManager.php';
-require_once 'classes/Expense.php';
+require_once 'classes/Wishlist.php';
 $security = new SecurityManager();
 $security->checkSession();
 include 'partials/head.php';
 $db = Database::getInstance();
-$expense_model = new Expense();
-$rows = $expense_model->getAll('Alınacak Ürünler');
+$wishlist_model = new Wishlist();
+$rows = $wishlist_model->getAll();
 $csrf_token = generate_csrf_token();
 ?>
 <body>
@@ -57,24 +57,22 @@ $csrf_token = generate_csrf_token();
                             <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
                                 <thead style="background:#f5f7fa;">
                                     <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
+                                        <th style="padding-left:1.5rem;">Kategori</th>
                                         <th>Ürün/Hizmet</th>
                                         <th>Tutar</th>
                                         <th>Link</th>
                                         <th>Resim</th>
                                         <th>Açıklama</th>
-                                        <th>Durum</th>
+                                        <th>Alındı mı?</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
                                     <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['sira'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['kategori']) ?> </td>
-                                        <td> <?= htmlspecialchars($row['urun']) ?> </td>
-                                        <td> ₺<?= number_format($row['tutar'], 0, ',', '.') ?> </td>
+                                        <td style="padding-left:1.5rem;"> <?= htmlspecialchars($row['category_name']) ?> </td>
+                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
+                                        <td> ₺<?= number_format($row['price'], 0, ',', '.') ?> </td>
                                         <td>
                                             <?php if (!empty($row['link'])): ?>
                                                 <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
@@ -82,40 +80,18 @@ $csrf_token = generate_csrf_token();
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <?php 
-                                            $image_link = '';
-                                            if (!empty($row['aciklama']) && strpos($row['aciklama'], '; Resim: ') !== false) {
-                                                $parts = explode('; Resim: ', $row['aciklama']);
-                                                if (count($parts) > 1) {
-                                                    $image_link = trim($parts[1]);
-                                                }
-                                            }
-                                            ?>
-                                            <?php if (!empty($image_link)): ?>
-                                                <a href="<?= htmlspecialchars($image_link) ?>" target="_blank" class="btn btn-outline-info btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;" title="Resmi Görüntüle">
+                                            <?php if (!empty($row['image_path'])): ?>
+                                                <a href="<?= htmlspecialchars($row['image_path']) ?>" target="_blank" class="btn btn-outline-info btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;" title="Resmi Görüntüle">
                                                     <i class="bi bi-image"></i>
                                                 </a>
                                             <?php else: ?>-
                                             <?php endif; ?>
                                         </td>
-                                        <td> 
-                                            <?php 
-                                            $description = $row['aciklama'] ?? '';
-                                            if (!empty($description) && strpos($description, '; Resim: ') !== false) {
-                                                $description = explode('; Resim: ', $description)[0];
-                                            }
-                                            echo htmlspecialchars($description ?: '-'); 
-                                            ?> 
-                                        </td>
+                                        <td> <?= htmlspecialchars($row['description'] ?: '-') ?> </td>
                                         <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['durum'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Devam Ediyor" <?= $row['durum'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                    <option value="Tamamlandı" <?= $row['durum'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                    <option value="İptal Edildi" <?= $row['durum'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input will-get-switch" type="checkbox" role="switch" id="willGetSwitch_<?= $row['id'] ?>" data-id="<?= $row['id'] ?>" <?= $row['will_get'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="willGetSwitch_<?= $row['id'] ?>"></label>
                                             </div>
                                         </td>
                                         <td>
@@ -142,18 +118,12 @@ $csrf_token = generate_csrf_token();
 
                 $add_modal_body = '';
                 $add_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-                $add_modal_body .= '<input type="hidden" name="kategori_tipi" value="Alınacak Ürünler">';
-                $add_modal_body .= UIHelper::render_input('Kategori', 'kategori');
-                $add_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'urun');
-                $add_modal_body .= UIHelper::render_input('Tutar (₺)', 'tutar', 'number', true, '', '', []);
+                $add_modal_body .= UIHelper::render_input('Kategori', 'category_name');
+                $add_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'item_name');
+                $add_modal_body .= UIHelper::render_input('Tutar (₺)', 'price', 'number', true, '', '', []);
                 $add_modal_body .= UIHelper::render_input('Link (Opsiyonel)', 'link', 'url', false);
-                $add_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'aciklama', 'textarea', false);
-                $add_modal_body .= UIHelper::render_input('Durum', 'durum', 'select', true, 'Beklemede', '', [
-                    ['value' => 'Beklemede', 'text' => 'Beklemede'],
-                    ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
-                    ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],
-                    ['value' => 'İptal Edildi', 'text' => 'İptal Edildi'],
-                ]);
+                $add_modal_body .= UIHelper::render_input('Resim Linki (Opsiyonel)', 'image_path', 'url', false);
+                $add_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'description', 'textarea', false);
 
                 $add_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>';
                 $add_modal_footer .= '<button type="submit" class="btn btn-primary">Ekle</button>';
@@ -166,18 +136,12 @@ $csrf_token = generate_csrf_token();
                 $edit_modal_body = '';
                 $edit_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
                 $edit_modal_body .= '<input type="hidden" name="id" id="edit_id">';
-                $edit_modal_body .= '<input type="hidden" name="kategori_tipi" value="Alınacak Ürünler">';
-                $edit_modal_body .= UIHelper::render_input('Kategori', 'edit_kategori');
-                $edit_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'edit_urun');
-                $edit_modal_body .= UIHelper::render_input('Tutar (₺)', 'edit_tutar', 'number');
+                $edit_modal_body .= UIHelper::render_input('Kategori', 'edit_category_name');
+                $edit_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'edit_item_name');
+                $edit_modal_body .= UIHelper::render_input('Tutar (₺)', 'edit_price', 'number');
                 $edit_modal_body .= UIHelper::render_input('Link (Opsiyonel)', 'edit_link', 'url', false);
-                $edit_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'edit_aciklama', 'textarea', false);
-                $edit_modal_body .= UIHelper::render_input('Durum', 'edit_durum', 'select', true, '', '', [
-                    ['value' => 'Beklemede', 'text' => 'Beklemede'],
-                    ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
-                    ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],
-                    ['value' => 'İptal Edildi', 'text' => 'İptal Edildi'],
-                ]);
+                $edit_modal_body .= UIHelper::render_input('Resim Linki (Opsiyonel)', 'edit_image_path', 'url', false);
+                $edit_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'edit_description', 'textarea', false);
 
                 $edit_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>';
                 $edit_modal_footer .= '<button type="submit" class="btn btn-primary">Güncelle</button>';

@@ -69,15 +69,14 @@ $csrf_token = generate_csrf_token();
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
-                                <tbody>
                                 <?php foreach ($rows as $row): ?>
                                     <tr style="font-size:0.85rem;">
                                         <td style="padding-left:1.5rem;"> <?= $row['id'] ?> </td>
                                         <td> <?= htmlspecialchars($row['platform']) ?> </td>
-                                        <td> <?= htmlspecialchars($row['kullanici_adi']) ?> </td>
+                                        <td> <?= htmlspecialchars($row['username']) ?> </td>
                                         <td>
                                             <div class="input-group" style="max-width: 150px;">
-                                                <input type="password" class="form-control form-control-sm" value="<?= htmlspecialchars($row['sifre'] ?? '') ?>" readonly style="font-size: 0.8rem;">
+                                                <input type="password" class="form-control form-control-sm" value="<?= htmlspecialchars($row['password'] ?? '') ?>" readonly style="font-size: 0.8rem;">
                                                 <button class="btn btn-outline-secondary btn-sm toggle-password" type="button" style="font-size: 0.8rem;">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
@@ -85,12 +84,12 @@ $csrf_token = generate_csrf_token();
                                         </td>
                                         <td>
                                             <span class="badge" style="background:#96ceb4; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                <?= htmlspecialchars($row['hesap_turu']) ?>
+                                                <?= htmlspecialchars($row['account_type_name']) ?>
                                             </span>
                                         </td>
                                         <td>
-                                            <?php if (!empty($row['giris_linki'])): ?>
-                                                <a href="<?= htmlspecialchars($row['giris_linki']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
+                                            <?php if (!empty($row['login_link'])): ?>
+                                                <a href="<?= htmlspecialchars($row['login_link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
                                             <?php else: ?>
                                                 <span class="text-muted">-</span>
                                             <?php endif; ?>
@@ -108,17 +107,121 @@ $csrf_token = generate_csrf_token();
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <?php endif; ?>
+                <!-- Hesap Ekle Modal -->
+                <div class="modal fade" id="hesapEkleModal" tabindex="-1" aria-labelledby="hesapEkleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="hesapEkleModalLabel">Yeni Hesap Ekle</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="hesapEkleForm">
+                                <div class="modal-body">
+                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                                    
+                                    <div class="mb-3">
+                                        <label for="platform" class="form-label">Platform</label>
+                                        <input type="text" class="form-control" id="platform" name="platform" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Kullanıcı Adı</label>
+                                        <input type="text" class="form-control" id="username" name="username" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Şifre</label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="login_link" class="form-label">Giriş Linki (Opsiyonel)</label>
+                                        <input type="url" class="form-control" id="login_link" name="login_link">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="account_type" class="form-label">Hesap Türü</label>
+                                        <select class="form-select" id="account_type" name="account_type" required>
+                                            <option value="İnternet Bankacılığı">İnternet Bankacılığı</option>
+                                            <option value="Mail">Mail</option>
+                                            <option value="Sosyal Medya">Sosyal Medya</option>
+                                            <option value="Bahis Sitesi">Bahis Sitesi</option>
+                                            <option value="E-ticaret">E-ticaret</option>
+                                            <option value="Eğitim">Eğitim</option>
+                                            <option value="İş">İş</option>
+                                            <option value="Diğer">Diğer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                    <button type="submit" class="btn btn-primary">Ekle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 
-                
-                
-                
-            </div>
+                <!-- Düzenle Modalı -->
+                <div class="modal fade" id="duzenleModal" tabindex="-1" aria-labelledby="duzenleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="duzenleModalLabel">Hesap Düzenle</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="duzenleForm">
+                                <div class="modal-body">
+                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                                    <input type="hidden" name="id" id="edit_id">
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_platform" class="form-label">Platform</label>
+                                        <input type="text" class="form-control" id="edit_platform" name="platform" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_username" class="form-label">Kullanıcı Adı</label>
+                                        <input type="text" class="form-control" id="edit_username" name="username" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_password" class="form-label">Şifre</label>
+                                        <input type="password" class="form-control" id="edit_password" name="password" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_login_link" class="form-label">Giriş Linki (Opsiyonel)</label>
+                                        <input type="url" class="form-control" id="edit_login_link" name="login_link">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_account_type" class="form-label">Hesap Türü</label>
+                                        <select class="form-select" id="edit_account_type" name="account_type" required>
+                                            <option value="İnternet Bankacılığı">İnternet Bankacılığı</option>
+                                            <option value="Mail">Mail</option>
+                                            <option value="Sosyal Medya">Sosyal Medya</option>
+                                            <option value="Bahis Sitesi">Bahis Sitesi</option>
+                                            <option value="E-ticaret">E-ticaret</option>
+                                            <option value="Eğitim">Eğitim</option>
+                                            <option value="İş">İş</option>
+                                            <option value="Diğer">Diğer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

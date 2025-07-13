@@ -16,12 +16,12 @@ class Payment {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO odemeler (kisi_adi, iban, tutar, durum) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO payments (person_name, iban, amount, status_id) VALUES (?, ?, ?, (SELECT id FROM status_types WHERE name = ?))";
         $params = [
-            $data['kisi_adi'] ?? null,
+            $data['person_name'] ?? null,
             $data['iban'] ?? null,
-            $data['tutar'] ?? null,
-            $data['durum'] ?? 'Beklemede'
+            $data['amount'] ?? null,
+            $data['status'] ?? 'Beklemede'
         ];
         return $this->db->execute($sql, $params);
     }
@@ -34,12 +34,12 @@ class Payment {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE odemeler SET kisi_adi = ?, iban = ?, tutar = ?, durum = ? WHERE id = ?";
+        $sql = "UPDATE payments SET person_name = ?, iban = ?, amount = ?, status_id = (SELECT id FROM status_types WHERE name = ?) WHERE id = ?";
         $params = [
-            $data['kisi_adi'] ?? null,
+            $data['person_name'] ?? null,
             $data['iban'] ?? null,
-            $data['tutar'] ?? null,
-            $data['durum'] ?? 'Beklemede',
+            $data['amount'] ?? null,
+            $data['status'] ?? 'Beklemede',
             $id
         ];
         return $this->db->execute($sql, $params);
@@ -52,7 +52,7 @@ class Payment {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM odemeler WHERE id = ?";
+        $sql = "DELETE FROM payments WHERE id = ?";
         return $this->db->execute($sql, [$id]);
     }
 
@@ -62,7 +62,7 @@ class Payment {
      * @return array Ödeme kayıtları listesi.
      */
     public function getAll(): array {
-        $sql = "SELECT * FROM odemeler ORDER BY created_at DESC";
+        $sql = "SELECT p.*, st.name as status_name FROM payments p JOIN status_types st ON p.status_id = st.id ORDER BY p.created_at DESC";
         return $this->db->fetchAll($sql);
     }
 
@@ -73,7 +73,7 @@ class Payment {
      * @return array|false Ödeme kaydı verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM odemeler WHERE id = ?";
+        $sql = "SELECT p.*, st.name as status_name FROM payments p JOIN status_types st ON p.status_id = st.id WHERE p.id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 
@@ -85,7 +85,7 @@ class Payment {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function updateStatus(int $id, string $status): bool {
-        $sql = "UPDATE odemeler SET durum = ? WHERE id = ?";
+        $sql = "UPDATE payments SET status_id = (SELECT id FROM status_types WHERE name = ?) WHERE id = ?";
         return $this->db->execute($sql, [$status, $id]);
     }
 }

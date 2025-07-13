@@ -5,20 +5,20 @@ require_once __DIR__ . '/../classes/AjaxHelper.php';
 handle_ajax_request(function($data) {
     $income_model = new Income();
 
-    $kaynak = $data['kaynak'] ?? '';
-    $tutar = filter_var($data['tutar'] ?? '', FILTER_VALIDATE_FLOAT);
-    $tarih = $data['tarih'] ?? date('Y-m-d');
-    $aciklama = $data['aciklama'] ?? '';
+    $source = $data['source'] ?? '';
+    $amount = filter_var($data['amount'] ?? '', FILTER_VALIDATE_FLOAT);
+    $date = $data['date'] ?? date('Y-m-d');
+    $description = $data['description'] ?? '';
 
-    if (empty($kaynak) || $tutar <= 0) {
+    if (empty($source) || $amount <= 0) {
         json_response(['success' => false, 'message' => 'Kaynak ve tutar zorunludur.'], 400);
     }
 
     $result = $income_model->add([
-        'kaynak' => $kaynak,
-        'tutar' => $tutar,
-        'tarih' => $tarih,
-        'aciklama' => $aciklama
+        'source' => $source,
+        'amount' => $amount,
+        'date' => $date,
+        'description' => $description
     ]);
 
     if ($result) {

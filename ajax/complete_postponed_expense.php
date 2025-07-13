@@ -8,7 +8,7 @@ $security = new SecurityManager();
 $security->checkSession();
 
 // CSRF kontrolü
-if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
+if (!isset($_POST['csrf_token']) || !$security->validateCSRF($_POST['csrf_token'])) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'Güvenlik hatası']);
     exit;
@@ -26,10 +26,9 @@ if (!$id) {
 }
 
 try {
-    // Harcamayı tamamla (erteleme tarihini temizle ve durumu güncelle)
-    $updateSql = "UPDATE harcama_kalemleri SET 
-                   erteleme_tarihi = NULL, 
-                   durum = 'Tamamlandı'
+    // Harcamayı tamamla (durumu güncelle)
+    $updateSql = "UPDATE expense_items SET 
+                   status_id = (SELECT id FROM status_types WHERE name = 'Ödendi')
                    WHERE id = ?";
     
     $updateStmt = $db->getPdo()->prepare($updateSql);

@@ -6,7 +6,7 @@ $security = new SecurityManager();
 $security->checkSession();
 include 'partials/head.php';
 $db = Database::getInstance();
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE kategori_tipi='Değişken Giderler' ORDER BY id DESC");
+$rows = $db->fetchAll("SELECT ei.*, c.name as category_name, st.name as status_name FROM expense_items ei JOIN categories c ON ei.category_id = c.id JOIN status_types st ON ei.status_id = st.id WHERE c.name = 'Değişken Giderler' AND c.type = 'expense' ORDER BY ei.id DESC");
 $csrf_token = generate_csrf_token();
 ?>
 <body>
@@ -41,8 +41,7 @@ $csrf_token = generate_csrf_token();
                             <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
                                 <thead style="background:#f5f7fa;">
                                     <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
+                                        <th style="padding-left:1.5rem;">Kategori</th>
                                         <th>Ürün/Hizmet</th>
                                         <th>Tutar</th>
                                         <th>Link</th>
@@ -54,24 +53,23 @@ $csrf_token = generate_csrf_token();
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
                                     <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['sira'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['kategori']) ?> </td>
-                                        <td> <?= htmlspecialchars($row['urun']) ?> </td>
-                                        <td> ₺<?= number_format($row['tutar'], 0, ',', '.') ?> </td>
+                                        <td style="padding-left:1.5rem;"> <?= htmlspecialchars($row['category_name']) ?> </td>
+                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
+                                        <td> ₺<?= number_format($row['amount'], 0, ',', '.') ?> </td>
                                         <td>
                                             <?php if (!empty($row['link'])): ?>
                                                 <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
                                             <?php else: ?>-
                                             <?php endif; ?>
                                         </td>
-                                        <td> <?= htmlspecialchars($row['aciklama'] ?? '-') ?> </td>
+                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
                                         <td>
                                             <div class="position-relative" style="display:inline-block; width:120px;">
                                                 <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['durum'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Devam Ediyor" <?= $row['durum'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                    <option value="Tamamlandı" <?= $row['durum'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                    <option value="İptal Edildi" <?= $row['durum'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
+                                                    <option value="Beklemede" <?= $row['status_name'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
+                                                    <option value="Devam Ediyor" <?= $row['status_name'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
+                                                    <option value="Tamamlandı" <?= $row['status_name'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
+                                                    <option value="İptal Edildi" <?= $row['status_name'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
                                                 </select>
                                                 <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
                                             </div>
@@ -95,25 +93,114 @@ $csrf_token = generate_csrf_token();
                 </div>
                 <!-- Harcama Ekle Modal -->
                 <div class="modal fade" id="harcamaEkleModal" tabindex="-1" aria-labelledby="harcamaEkleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <form id="harcamaEkleForm">
-                        <input type="hidden" name="kategori_tipi" value="Değişken Giderler">
-                        <!-- ... diğer form alanları ... -->
-                      </form>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="harcamaEkleModalLabel">Yeni Değişken Gider Ekle</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="harcamaEkleForm">
+                                <div class="modal-body">
+                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                                    
+                                    <div class="mb-3">
+                                        <label for="category_name" class="form-label">Kategori</label>
+                                        <input type="text" class="form-control" id="category_name" name="category_name" value="Değişken Giderler" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="item_name" class="form-label">Gider Adı</label>
+                                        <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Örn: Elektrik, Su, Doğalgaz" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Tutar (₺)</label>
+                                        <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="link" class="form-label">Link (Opsiyonel)</label>
+                                        <input type="url" class="form-control" id="link" name="link">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Açıklama (Opsiyonel)</label>
+                                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="status_name" class="form-label">Durum</label>
+                                        <select class="form-select" id="status_name" name="status_name" required>
+                                            <option value="Beklemede">Beklemede</option>
+                                            <option value="Devam Ediyor">Devam Ediyor</option>
+                                            <option value="Tamamlandı">Tamamlandı</option>
+                                            <option value="İptal Edildi">İptal Edildi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                    <button type="submit" class="btn btn-primary">Ekle</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <!-- Düzenle Modalı -->
                 <div class="modal fade" id="duzenleModal" tabindex="-1" aria-labelledby="duzenleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <form id="duzenleForm">
-                        <input type="hidden" name="kategori_tipi" value="Değişken Giderler">
-                        <!-- ... diğer form alanları ... -->
-                      </form>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="duzenleModalLabel">Değişken Gider Düzenle</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="duzenleForm">
+                                <div class="modal-body">
+                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                                    <input type="hidden" name="id" id="edit_id">
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_category_name" class="form-label">Kategori</label>
+                                        <input type="text" class="form-control" id="edit_category_name" name="category_name" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_item_name" class="form-label">Gider Adı</label>
+                                        <input type="text" class="form-control" id="edit_item_name" name="item_name" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_amount" class="form-label">Tutar (₺)</label>
+                                        <input type="number" class="form-control" id="edit_amount" name="amount" step="0.01" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_link" class="form-label">Link (Opsiyonel)</label>
+                                        <input type="url" class="form-control" id="edit_link" name="link">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_description" class="form-label">Açıklama (Opsiyonel)</label>
+                                        <textarea class="form-control" id="edit_description" name="description" rows="3"></textarea>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="edit_status_name" class="form-label">Durum</label>
+                                        <select class="form-select" id="edit_status_name" name="status_name" required>
+                                            <option value="Beklemede">Beklemede</option>
+                                            <option value="Devam Ediyor">Devam Ediyor</option>
+                                            <option value="Tamamlandı">Tamamlandı</option>
+                                            <option value="İptal Edildi">İptal Edildi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
                 </div>
             </div>
         </div>

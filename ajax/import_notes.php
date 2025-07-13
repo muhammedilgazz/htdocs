@@ -23,7 +23,6 @@ try {
     }
 
     $notes_text = trim($_POST['notes_text']);
-    $notes_category = trim($_POST['notes_category'] ?? 'Genel');
     $lines = explode("\n", $notes_text);
     $imported_count = 0;
     $errors = [];
@@ -42,16 +41,16 @@ try {
 
         // Veritabanına ekle
         $stmt = $db->getPdo()->prepare("
-            INSERT INTO notlar 
-            (kategori, icerik, onem_derecesi, durum, created_at) 
-            VALUES (?, ?, ?, ?, NOW())
+            INSERT INTO notes 
+            (title, content, created_at) 
+            VALUES (?, ?, NOW())
         ");
 
+        $title = substr($note_content, 0, 50); // İlk 50 karakteri başlık olarak al
+
         $stmt->execute([
-            $notes_category,
-            $note_content,
-            'Orta', // Varsayılan önem derecesi
-            'Aktif'
+            $title,
+            $note_content
         ]);
 
         $imported_count++;

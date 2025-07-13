@@ -25,7 +25,7 @@ try {
     $id = intval($_POST['id']);
 
     // Veriyi getir
-    $stmt = $db->getPdo()->prepare("SELECT * FROM harcama_kalemleri WHERE id = ?");
+    $stmt = $db->getPdo()->prepare("SELECT ei.*, c.name as category_name, st.name as status_name FROM expense_items ei JOIN categories c ON ei.category_id = c.id JOIN status_types st ON ei.status_id = st.id WHERE ei.id = ?");
     $stmt->execute([$id]);
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
 

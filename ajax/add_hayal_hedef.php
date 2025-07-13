@@ -5,24 +5,20 @@ require_once __DIR__ . '/../classes/AjaxHelper.php';
 handle_ajax_request(function($data) {
     $dream_goal_model = new DreamGoal();
 
-    $baslik = $data['baslik'] ?? '';
-    $aciklama = $data['aciklama'] ?? '';
-    $hedef_tutar = filter_var($data['hedef_tutar'] ?? '', FILTER_VALIDATE_FLOAT);
-    $mevcut_tutar = filter_var($data['mevcut_tutar'] ?? 0, FILTER_VALIDATE_FLOAT);
-    $durum = $data['durum'] ?? 'Beklemede';
-    $hedef_tarih = $data['hedef_tarih'] ?? null;
+    $goal_name = $data['goal_name'] ?? '';
+    $description = $data['description'] ?? '';
+    $target_amount = filter_var($data['target_amount'] ?? '', FILTER_VALIDATE_FLOAT);
+    $target_date = $data['target_date'] ?? null;
 
-    if (empty($baslik) || $hedef_tutar <= 0) {
+    if (empty($goal_name) || $target_amount <= 0) {
         json_response(['success' => false, 'message' => 'Başlık ve hedef tutar zorunludur.'], 400);
     }
 
     $result = $dream_goal_model->add([
-        'baslik' => $baslik,
-        'aciklama' => $aciklama,
-        'hedef_tutar' => $hedef_tutar,
-        'mevcut_tutar' => $mevcut_tutar,
-        'durum' => $durum,
-        'hedef_tarih' => $hedef_tarih
+        'goal_name' => $goal_name,
+        'description' => $description,
+        'target_amount' => $target_amount,
+        'target_date' => $target_date
     ]);
 
     if ($result) {

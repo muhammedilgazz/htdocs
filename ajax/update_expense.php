@@ -32,13 +32,12 @@ try {
     }
 
     $id = intval($_POST['id']);
-    $kategori = trim($_POST['kategori'] ?? '');
-    $harcama_donemi = trim($_POST['harcama_donemi'] ?? '');
-    $urun = trim($_POST['urun']);
-    $tutar = floatval($_POST['tutar']);
+    $category_name = trim($_POST['category_name'] ?? '');
+    $item_name = trim($_POST['item_name']);
+    $amount = floatval($_POST['amount']);
     $link = trim($_POST['link'] ?? '');
-    $aciklama = trim($_POST['aciklama'] ?? '');
-    $durum = trim($_POST['durum'] ?? 'Beklemede');
+    $description = trim($_POST['description'] ?? '');
+    $status_name = trim($_POST['status_name'] ?? 'Beklemede');
 
     // Link kontrolü
     if (!empty($link) && !filter_var($link, FILTER_VALIDATE_URL)) {
@@ -46,7 +45,7 @@ try {
     }
 
     // Kaydın var olup olmadığını kontrol et
-    $checkStmt = $db->getPdo()->prepare("SELECT id FROM harcama_kalemleri WHERE id = ?");
+    $checkStmt = $db->getPdo()->prepare("SELECT id FROM expense_items WHERE id = ?");
     $checkStmt->execute([$id]);
     if (!$checkStmt->fetch()) {
         throw new Exception('Kayıt bulunamadı');
@@ -54,19 +53,18 @@ try {
 
     // Veritabanını güncelle
     $stmt = $db->getPdo()->prepare("
-        UPDATE harcama_kalemleri 
-        SET kategori = ?, harcama_donemi = ?, urun = ?, tutar = ?, link = ?, aciklama = ?, durum = ?, updated_at = NOW()
+        UPDATE expense_items 
+        SET category_id = (SELECT id FROM categories WHERE name = ? AND type = 'expense'), item_name = ?, amount = ?, link = ?, description = ?, status_id = (SELECT id FROM status_types WHERE name = ?), updated_at = NOW()
         WHERE id = ?
     ");
 
     $stmt->execute([
-        $kategori,
-        $harcama_donemi,
-        $urun,
-        $tutar,
+        $category_name,
+        $item_name,
+        $amount,
         $link,
-        $aciklama,
-        $durum,
+        $description,
+        $status_name,
         $id
     ]);
 

@@ -11,7 +11,7 @@ $db = Database::getInstance();
 $selected_month = getSelectedMonthKey();
 
 // Favori ürünleri al
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE kategori_tipi='Alınacak Ürünler' AND kategori LIKE '%favori%' AND harcama_donemi = ? ORDER BY id DESC", [$selected_month]);
+$rows = $db->fetchAll("SELECT wi.*, c.name as category_name FROM wishlist_items wi JOIN categories c ON wi.category_id = c.id WHERE c.name = 'Favori' AND c.type = 'wishlist' ORDER BY wi.id DESC");
 $csrf_token = generate_csrf_token();
 ?>
 <body>
@@ -65,30 +65,22 @@ $csrf_token = generate_csrf_token();
                             <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
                                 <thead style="background:#f5f7fa;">
                                     <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
-                                        <th>Gider Türü</th>
+                                        <th style="padding-left:1.5rem;">Kategori</th>
                                         <th>Ürün Adı</th>
                                         <th>Fiyat</th>
                                         <th>Link</th>
                                         <th>Resim</th>
                                         <th>Açıklama</th>
-                                        <th>Durum</th>
+                                        <th>Alındı mı?</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
                                     <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['sira'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['kategori']) ?> </td>
-                                        <td>
-                                            <span class="badge" style="background:#96ceb4; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                Favori
-                                            </span>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['urun']) ?> </td>
-                                        <td> ₺<?= number_format($row['tutar'], 0, ',', '.') ?> </td>
+                                        <td style="padding-left:1.5rem;"> <?= htmlspecialchars($row['category_name']) ?> </td>
+                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
+                                        <td> ₺<?= number_format($row['price'], 0, ',', '.') ?> </td>
                                         <td>
                                             <?php if (!empty($row['link'])): ?>
                                                 <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
@@ -96,40 +88,18 @@ $csrf_token = generate_csrf_token();
                                             <?php endif; ?>
                                         </td>
                                         <td>
-                                            <?php 
-                                            $image_link = '';
-                                            if (!empty($row['aciklama']) && strpos($row['aciklama'], '; Resim: ') !== false) {
-                                                $parts = explode('; Resim: ', $row['aciklama']);
-                                                if (count($parts) > 1) {
-                                                    $image_link = trim($parts[1]);
-                                                }
-                                            }
-                                            ?>
-                                            <?php if (!empty($image_link)): ?>
-                                                <a href="<?= htmlspecialchars($image_link) ?>" target="_blank" class="btn btn-outline-info btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;" title="Resmi Görüntüle">
+                                            <?php if (!empty($row['image_path'])): ?>
+                                                <a href="<?= htmlspecialchars($row['image_path']) ?>" target="_blank" class="btn btn-outline-info btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;" title="Resmi Görüntüle">
                                                     <i class="bi bi-image"></i>
                                                 </a>
                                             <?php else: ?>-
                                             <?php endif; ?>
                                         </td>
-                                        <td> 
-                                            <?php 
-                                            $description = $row['aciklama'] ?? '';
-                                            if (!empty($description) && strpos($description, '; Resim: ') !== false) {
-                                                $description = explode('; Resim: ', $description)[0];
-                                            }
-                                            echo htmlspecialchars($description ?: '-'); 
-                                            ?> 
-                                        </td>
+                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
                                         <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['durum'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Devam Ediyor" <?= $row['durum'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                    <option value="Tamamlandı" <?= $row['durum'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                    <option value="İptal Edildi" <?= $row['durum'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input will-get-switch" type="checkbox" role="switch" id="willGetSwitch_<?= $row['id'] ?>" data-id="<?= $row['id'] ?>" <?= $row['will_get'] ? 'checked' : '' ?>>
+                                                <label class="form-check-label" for="willGetSwitch_<?= $row['id'] ?>"></label>
                                             </div>
                                         </td>
                                         <td>
@@ -162,28 +132,20 @@ $csrf_token = generate_csrf_token();
                             <form id="harcamaEkleForm">
                                 <div class="modal-body">
                                     <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    <input type="hidden" name="kategori_tipi" value="Alınacak Ürünler">
                                     
                                     <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <input type="text" class="form-control" id="kategori" name="kategori" value="Favori" required>
+                                        <label for="category_name" class="form-label">Kategori</label>
+                                        <input type="text" class="form-control" id="category_name" name="category_name" value="Favori" required>
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="harcama_donemi" class="form-label">Harcama Dönemi</label>
-                                        <select class="form-select" id="harcama_donemi" name="harcama_donemi" required>
-                                            <?= generateMonthOptions($selected_month) ?>
-                                        </select>
+                                        <label for="item_name" class="form-label">Ürün Adı</label>
+                                        <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Ürün adını girin" required>
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="urun" class="form-label">Ürün Adı</label>
-                                        <input type="text" class="form-control" id="urun" name="urun" placeholder="Ürün adını girin" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="tutar" class="form-label">Fiyat (₺)</label>
-                                        <input type="number" class="form-control" id="tutar" name="tutar" step="0.01" required>
+                                        <label for="price" class="form-label">Fiyat (₺)</label>
+                                        <input type="number" class="form-control" id="price" name="price" step="0.01" required>
                                     </div>
                                     
                                     <div class="mb-3">
@@ -192,18 +154,13 @@ $csrf_token = generate_csrf_token();
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="aciklama" class="form-label">Açıklama (Opsiyonel)</label>
-                                        <textarea class="form-control" id="aciklama" name="aciklama" rows="3"></textarea>
+                                        <label for="image_path" class="form-label">Resim Linki (Opsiyonel)</label>
+                                        <input type="url" class="form-control" id="image_path" name="image_path">
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="durum" class="form-label">Durum</label>
-                                        <select class="form-select" id="durum" name="durum" required>
-                                            <option value="Beklemede">Beklemede</option>
-                                            <option value="Devam Ediyor">Devam Ediyor</option>
-                                            <option value="Tamamlandı">Tamamlandı</option>
-                                            <option value="İptal Edildi">İptal Edildi</option>
-                                        </select>
+                                        <label for="description" class="form-label">Açıklama (Opsiyonel)</label>
+                                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">

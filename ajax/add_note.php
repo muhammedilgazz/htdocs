@@ -19,39 +19,23 @@ $response = ['success' => false, 'message' => ''];
 
 try {
     // Gerekli alanları kontrol et
-    if (empty($_POST['icerik'])) {
+    if (empty($_POST['content'])) {
         throw new Exception('Not içeriği gereklidir');
     }
 
-    $kategori = trim($_POST['kategori'] ?? 'Genel');
-    $icerik = trim($_POST['icerik']);
-    $onem_derecesi = trim($_POST['onem_derecesi'] ?? 'Orta');
-    $durum = trim($_POST['durum'] ?? 'Aktif');
-
-    // Notlar tablosunu oluştur (eğer yoksa)
-    $db->getPdo()->exec("
-    CREATE TABLE IF NOT EXISTS notlar (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        kategori VARCHAR(50) NOT NULL DEFAULT 'Genel',
-        icerik TEXT NOT NULL,
-        onem_derecesi ENUM('Düşük', 'Orta', 'Yüksek') DEFAULT 'Orta',
-        durum ENUM('Aktif', 'Tamamlandı', 'Arşivlendi') DEFAULT 'Aktif',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )");
+    $content = trim($_POST['content']);
+    $title = trim($_POST['title'] ?? substr($content, 0, 50)); // If title not provided, use first 50 chars of content
 
     // Veritabanına ekle
     $stmt = $db->getPdo()->prepare("
-        INSERT INTO notlar 
-        (kategori, icerik, onem_derecesi, durum, created_at) 
-        VALUES (?, ?, ?, ?, NOW())
+        INSERT INTO notes 
+        (title, content) 
+        VALUES (?, ?)
     ");
 
     $stmt->execute([
-        $kategori,
-        $icerik,
-        $onem_derecesi,
-        $durum
+        $title,
+        $content
     ]);
 
     $response['success'] = true;

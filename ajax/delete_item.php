@@ -8,7 +8,7 @@ $security = new SecurityManager();
 $security->checkSession();
 
 // CSRF kontrolü
-if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
+if (!isset($_POST['csrf_token']) || !$security->validateCSRF($_POST['csrf_token'])) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'Güvenlik hatası']);
     exit;
@@ -28,14 +28,18 @@ if (!$id || !$table) {
 
 // Güvenli tablo adları (whitelist) - user_id sütunu yok, sadece ID kontrolü
 $allowed_tables = [
-    'harcama_kalemleri',
-    'iban_bilgileri',
-    'odemeler',
-    'istek_listesi',
-    'hesaplar_sifreler',
-    'bakiye',
-    'notlar'
-];
+    $allowed_tables = [
+        'expense_items',
+        'iban_details',
+        'payments',
+        'wishlist_items',
+        'account_credentials',
+        'notes',
+        'todos',
+        'dream_goals',
+        'incomes',
+        'budgets'
+    ];
 
 if (!in_array($table, $allowed_tables)) {
     echo json_encode(['success' => false, 'message' => 'Geçersiz tablo']);

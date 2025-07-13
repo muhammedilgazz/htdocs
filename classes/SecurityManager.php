@@ -45,14 +45,14 @@ class SecurityManager {
      */
     public function login($email, $password) {
         try {
-            $user = $this->db->fetch("SELECT id, email, password_hash, name, surname FROM users WHERE email = ? AND is_active = 1", [$email]);
+            $user = $this->db->fetch("SELECT id, email, password_hash, full_name FROM users WHERE email = ? AND status = 'active'", [$email]);
             
             if ($user && password_verify($password, $user['password_hash'])) {
                 // Session başlat
                 session_regenerate_id(true);
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['full_name'] = trim($user['name'] . ' ' . $user['surname']);
+                $_SESSION['full_name'] = $user['full_name'];
                 $_SESSION['login_time'] = time();
                 
                 // Login logu
@@ -109,7 +109,6 @@ class SecurityManager {
      */
     public function checkRateLimit($action, $limit = 5, $window = 300) {
         $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-        $key = "rate_limit_{$action}_{$ip}";
         
         try {
             $result = $this->db->fetch("

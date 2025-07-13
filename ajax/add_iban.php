@@ -5,13 +5,13 @@ require_once __DIR__ . '/../classes/AjaxHelper.php';
 handle_ajax_request(function($data) {
     $iban_model = new Iban();
 
-    $banka_adi = $data['banka_adi'] ?? '';
+    $bank_name = $data['bank_name'] ?? '';
     $iban = $data['iban'] ?? '';
-    $hesap_sahibi = $data['hesap_sahibi'] ?? '';
-    $aciklama = $data['aciklama'] ?? '';
-    $hesap_turu = $data['hesap_turu'] ?? 'diger';
+    $account_holder_name = $data['account_holder_name'] ?? '';
+    $easy_address = $data['easy_address'] ?? '';
+    $description = $data['description'] ?? '';
 
-    if (empty($banka_adi) || empty($iban) || empty($hesap_sahibi)) {
+    if (empty($bank_name) || empty($iban) || empty($account_holder_name)) {
         json_response(['success' => false, 'message' => 'Banka adı, IBAN numarası ve hesap sahibi zorunludur.'], 400);
     }
 
@@ -21,11 +21,11 @@ handle_ajax_request(function($data) {
     }
 
     $result = $iban_model->add([
-        'banka_adi' => $banka_adi,
+        'bank_name' => $bank_name,
         'iban' => $iban,
-        'hesap_sahibi' => $hesap_sahibi,
-        'aciklama' => $aciklama,
-        'hesap_turu' => $hesap_turu
+        'account_holder_name' => $account_holder_name,
+        'easy_address' => $easy_address,
+        'description' => $description
     ]);
 
     if ($result) {

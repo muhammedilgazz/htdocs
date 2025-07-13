@@ -8,7 +8,7 @@ $security = new SecurityManager();
 $security->checkSession();
 
 // CSRF kontrolü
-if (!isset($_POST['csrf_token']) || !verify_csrf_token($_POST['csrf_token'])) {
+if (!isset($_POST['csrf_token']) || !$security->validateCSRF($_POST['csrf_token'])) {
     http_response_code(403);
     echo json_encode(['success' => false, 'message' => 'Güvenlik hatası']);
     exit;
@@ -32,9 +32,6 @@ try {
         case 'import_from_link':
             $result = importFromLink($db, $url, $category);
             break;
-        case 'import_from_favorites':
-            $result = importFromFavorites($db, $url, $category);
-            break;
         default:
             echo json_encode(['success' => false, 'message' => 'Geçersiz işlem türü']);
             exit;
@@ -54,25 +51,25 @@ function importFromLink($db, $url, $category) {
         return ['success' => false, 'message' => 'Ürün bilgileri çekilemedi'];
     }
     
-    // Alınacaklar listesine ekle
+    // İstek listesine ekle
     $stmt = $db->getPdo()->prepare("
-        INSERT INTO alinacak_urunler (user_id, urun_adi, fiyat, link, kategori, oncelik, durum, created_at) 
-        VALUES (?, ?, ?, ?, ?, ?, 'Beklemede', NOW())
+        INSERT INTO wishlist_items (item_name, category_id, price, link, image_path, will_get, description) 
+        VALUES (?, (SELECT id FROM categories WHERE name = ? AND type = 'wishlist'), ?, ?, ?, FALSE, ?)
     ");
     
     $result = $stmt->execute([
-        $_SESSION['user_id'],
         $productInfo['title'],
+        $category,
         $productInfo['price'],
         $url,
-        $category,
-        'Orta'
+        $productInfo['image'],
+        $productInfo['description']
     ]);
     
     if ($result) {
         return [
             'success' => true, 
-            'message' => 'Ürün başarıyla alınacaklar listesine eklendi',
+            'message' => 'Ürün başarıyla istek listesine eklendi',
             'data' => $productInfo
         ];
     } else {
@@ -80,45 +77,7 @@ function importFromLink($db, $url, $category) {
     }
 }
 
-function importFromFavorites($db, $url, $category) {
-    // Favori ürünlerden seçilen ürünü alınacaklar listesine ekle
-    $stmt = $db->getPdo()->prepare("
-        SELECT * FROM favori_urunler 
-        WHERE user_id = ? AND link = ? 
-        LIMIT 1
-    ");
-    $stmt->execute([$_SESSION['user_id'], $url]);
-    $favorite = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if (!$favorite) {
-        return ['success' => false, 'message' => 'Favori ürün bulunamadı'];
-    }
-    
-    // Alınacaklar listesine ekle
-    $stmt = $db->getPdo()->prepare("
-        INSERT INTO alinacak_urunler (user_id, urun_adi, fiyat, link, kategori, oncelik, durum, created_at) 
-        VALUES (?, ?, ?, ?, ?, ?, 'Beklemede', NOW())
-    ");
-    
-    $result = $stmt->execute([
-        $_SESSION['user_id'],
-        $favorite['urun_adi'],
-        $favorite['fiyat'],
-        $favorite['link'],
-        $category,
-        'Orta'
-    ]);
-    
-    if ($result) {
-        return [
-            'success' => true, 
-            'message' => 'Favori ürün başarıyla alınacaklar listesine eklendi',
-            'data' => $favorite
-        ];
-    } else {
-        return ['success' => false, 'message' => 'Veritabanına kaydedilemedi'];
-    }
-}
+
 
 function extractProductInfo($url) {
     // Basit ürün bilgisi çıkarma (gerçek uygulamada daha gelişmiş olmalı)
@@ -140,9 +99,10 @@ function extractProductInfo($url) {
 function extractTrendyolInfo($url) {
     // Trendyol için özel çıkarma (örnek)
     return [
-        'title' => 'Trendyol Ürünü',
+        'item_name' => 'Trendyol Ürünü',
         'price' => 0,
         'image' => '',
+        'link' => $url,
         'description' => 'Trendyol\'dan alınacak ürün'
     ];
 }
@@ -150,9 +110,10 @@ function extractTrendyolInfo($url) {
 function extractHepsiburadaInfo($url) {
     // Hepsiburada için özel çıkarma (örnek)
     return [
-        'title' => 'Hepsiburada Ürünü',
+        'item_name' => 'Hepsiburada Ürünü',
         'price' => 0,
         'image' => '',
+        'link' => $url,
         'description' => 'Hepsiburada\'dan alınacak ürün'
     ];
 }
@@ -160,9 +121,10 @@ function extractHepsiburadaInfo($url) {
 function extractGenericInfo($url) {
     // Genel çıkarma
     return [
-        'title' => 'Link Ürünü',
+        'item_name' => 'Link Ürünü',
         'price' => 0,
         'image' => '',
+        'link' => $url,
         'description' => 'Linkten alınacak ürün'
     ];
 }

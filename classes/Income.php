@@ -16,12 +16,12 @@ class Income {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO gelirler (kaynak, tutar, tarih, aciklama) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO incomes (source, amount, date, description) VALUES (?, ?, ?, ?)";
         $params = [
-            $data['kaynak'] ?? null,
-            $data['tutar'] ?? null,
-            $data['tarih'] ?? date('Y-m-d'),
-            $data['aciklama'] ?? null
+            $data['source'] ?? null,
+            $data['amount'] ?? null,
+            $data['date'] ?? date('Y-m-d'),
+            $data['description'] ?? null
         ];
         return $this->db->execute($sql, $params);
     }
@@ -34,12 +34,12 @@ class Income {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE gelirler SET kaynak = ?, tutar = ?, tarih = ?, aciklama = ? WHERE id = ?";
+        $sql = "UPDATE incomes SET source = ?, amount = ?, date = ?, description = ? WHERE id = ?";
         $params = [
-            $data['kaynak'] ?? null,
-            $data['tutar'] ?? null,
-            $data['tarih'] ?? null,
-            $data['aciklama'] ?? null,
+            $data['source'] ?? null,
+            $data['amount'] ?? null,
+            $data['date'] ?? null,
+            $data['description'] ?? null,
             $id
         ];
         return $this->db->execute($sql, $params);
@@ -52,7 +52,7 @@ class Income {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM gelirler WHERE id = ?";
+        $sql = "DELETE FROM incomes WHERE id = ?";
         return $this->db->execute($sql, [$id]);
     }
 
@@ -62,7 +62,7 @@ class Income {
      * @return array Gelir kayıtları listesi.
      */
     public function getAll(): array {
-        $sql = "SELECT * FROM gelirler ORDER BY id DESC";
+        $sql = "SELECT * FROM incomes ORDER BY id DESC";
         return $this->db->fetchAll($sql);
     }
 
@@ -73,7 +73,7 @@ class Income {
      * @return array|false Gelir kaydı verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM gelirler WHERE id = ?";
+        $sql = "SELECT * FROM incomes WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 }

@@ -6,13 +6,13 @@ handle_ajax_request(function($data) {
     $payment = new Payment();
     
     // Form verilerini al ve temizle
-    $kisi_adi = $data['kisi_adi'] ?? '';
+    $person_name = $data['person_name'] ?? '';
     $iban = $data['iban'] ?? '';
-    $tutar = floatval($data['tutar'] ?? 0);
-    $durum = $data['durum'] ?? 'Beklemede';
+    $amount = floatval($data['amount'] ?? 0);
+    $status = $data['status'] ?? 'Beklemede';
 
     // Validasyon
-    if (empty($kisi_adi) || $tutar <= 0) {
+    if (empty($person_name) || $amount <= 0) {
         json_response(['success' => false, 'message' => 'Lütfen tüm gerekli alanları doldurun'], 400);
     }
     
@@ -21,25 +21,19 @@ handle_ajax_request(function($data) {
         json_response(['success' => false, 'message' => 'Geçersiz IBAN formatı'], 400);
     }
     
-    // Durum kontrolü
-    $allowed_statuses = ['Beklemede', 'Planlandı', 'Ödendi', 'Gecikmiş'];
-    if (!in_array($durum, $allowed_statuses)) {
-        $durum = 'Beklemede';
-    }
-    
     $result = $payment->add([
-        'kisi_adi' => $kisi_adi,
+        'person_name' => $person_name,
         'iban' => $iban,
-        'tutar' => $tutar,
-        'durum' => $durum
+        'amount' => $amount,
+        'status' => $status
     ]);
     
     if ($result) {
         // Güvenlik logu
         log_security_event('payment_added', [
-            'kisi_adi' => $kisi_adi,
-            'tutar' => $tutar,
-            'durum' => $durum,
+            'person_name' => $person_name,
+            'amount' => $amount,
+            'status' => $status,
             'user_id' => $_SESSION['user_id'] ?? 'unknown'
         ]);
         
@@ -47,4 +41,3 @@ handle_ajax_request(function($data) {
     } else {
         json_response(['success' => false, 'message' => 'Veritabanı hatası'], 500);
     }
-});

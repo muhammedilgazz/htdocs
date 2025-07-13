@@ -27,9 +27,6 @@ try {
     $imported_count = 0;
     $errors = [];
 
-    // Seçili ayı al
-    $selected_month = getSelectedMonthKey();
-
     foreach ($lines as $line_number => $line) {
         $line = trim($line);
         if (empty($line)) continue;
@@ -68,17 +65,13 @@ try {
             continue;
         }
 
-        // Sıra numarası al
-        $stmt = $db->getPdo()->prepare("SELECT MAX(sira) as max_sira FROM harcama_kalemleri WHERE kategori_tipi = 'Alınacak Ürünler' AND harcama_donemi = ?");
-        $stmt->execute([$selected_month]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $sira = ($result['max_sira'] ?? 0) + 1;
+        
 
         // Veritabanına ekle
         $stmt = $db->getPdo()->prepare("
-            INSERT INTO harcama_kalemleri 
-            (kategori_tipi, kategori, urun, tutar, link, aciklama, durum, harcama_donemi, sira, created_at) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+            INSERT INTO wishlist_items 
+            (item_name, category_id, price, link, image_path, will_get, description) 
+            VALUES (?, (SELECT id FROM categories WHERE name = ? AND type = 'wishlist'), ?, ?, ?, FALSE, ?)
         ");
 
         $description = 'Favori ürün olarak içe aktarıldı';
@@ -87,15 +80,12 @@ try {
         }
 
         $stmt->execute([
-            'Alınacak Ürünler',
-            'Favori',
             $product_name,
+            $category,
             $price,
             $link,
-            $description,
-            'Beklemede',
-            $selected_month,
-            $sira
+            $image_link,
+            $description
         ]);
 
         $imported_count++;

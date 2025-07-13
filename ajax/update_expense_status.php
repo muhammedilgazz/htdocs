@@ -27,24 +27,18 @@ try {
     }
 
     $id = intval($_POST['id']);
-    $durum = trim($_POST['durum']);
-
-    // Geçerli durumlar
-    $valid_statuses = ['Beklemede', 'Devam Ediyor', 'Tamamlandı', 'İptal Edildi'];
-    if (!in_array($durum, $valid_statuses)) {
-        throw new Exception('Geçersiz durum');
-    }
+    $status_name = trim($_POST['status_name']);
 
     // Kaydın var olup olmadığını kontrol et
-    $checkStmt = $db->getPdo()->prepare("SELECT id FROM harcama_kalemleri WHERE id = ?");
+    $checkStmt = $db->getPdo()->prepare("SELECT id FROM expense_items WHERE id = ?");
     $checkStmt->execute([$id]);
     if (!$checkStmt->fetch()) {
         throw new Exception('Kayıt bulunamadı');
     }
 
     // Durumu güncelle
-    $stmt = $db->getPdo()->prepare("UPDATE harcama_kalemleri SET durum = ?, updated_at = NOW() WHERE id = ?");
-    $stmt->execute([$durum, $id]);
+    $stmt = $db->getPdo()->prepare("UPDATE expense_items SET status_id = (SELECT id FROM status_types WHERE name = ?), updated_at = NOW() WHERE id = ?");
+    $stmt->execute([$status_name, $id]);
 
     $response['success'] = true;
     $response['message'] = 'Durum başarıyla güncellendi';

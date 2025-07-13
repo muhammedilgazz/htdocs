@@ -13,8 +13,18 @@ include 'partials/head.php';
 $db = Database::getInstance();
 $iban_model = new Iban();
 
-$my_ibans = $iban_model->getAll('kendi');
-$other_ibans = $iban_model->getAll('diger');
+$all_ibans = $iban_model->getAll();
+$my_ibans = [];
+$other_ibans = [];
+
+foreach ($all_ibans as $iban) {
+    // Assuming 'Ziraat Bankası' is considered 'my' bank for this logic
+    if ($iban['bank_name'] === 'Ziraat Bankası') {
+        $my_ibans[] = $iban;
+    } else {
+        $other_ibans[] = $iban;
+    }
+}
 
 $csrf_token = generate_csrf_token();
 ?>
@@ -62,6 +72,7 @@ $csrf_token = generate_csrf_token();
                                         <tr style="color:#222; font-weight:600; font-size:0.85rem;">
                                             <th style="padding-left:1.5rem;">Banka Adı</th>
                                             <th>IBAN Numarası</th>
+                                            <th>Kolay Adres</th>
                                             <th>Hesap Sahibi</th>
                                             <th>Açıklama</th>
                                             <th>İşlemler</th>
@@ -70,16 +81,17 @@ $csrf_token = generate_csrf_token();
                                     <tbody>
                                     <?php foreach ($my_ibans as $iban): ?>
                                         <tr style="font-size:0.85rem;">
-                                            <td style="padding-left:1.5rem;"> <?= htmlspecialchars($iban['banka_adi']) ?> </td>
+                                            <td style="padding-left:1.5rem;"> <?= htmlspecialchars($iban['bank_name']) ?> </td>
                                             <td> <?= htmlspecialchars($iban['iban']) ?> </td>
-                                            <td> <?= htmlspecialchars($iban['hesap_sahibi']) ?> </td>
-                                            <td> <?= htmlspecialchars($iban['aciklama'] ?? '-') ?> </td>
+                                            <td> <?= htmlspecialchars($iban['easy_address'] ?? '-') ?> </td>
+                                            <td> <?= htmlspecialchars($iban['account_holder_name']) ?> </td>
+                                            <td> <?= htmlspecialchars($iban['description'] ?? '-') ?> </td>
                                             <td>
                                                 <div class="d-flex gap-1">
                                                     <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $iban['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
-                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $iban['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $iban['id'] ?>, 'iban_bilgileri')">
+                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $iban['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $iban['id'] ?>, 'iban_details')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </div>
@@ -114,6 +126,7 @@ $csrf_token = generate_csrf_token();
                                         <tr style="color:#222; font-weight:600; font-size:0.85rem;">
                                             <th style="padding-left:1.5rem;">Banka Adı</th>
                                             <th>IBAN Numarası</th>
+                                            <th>Kolay Adres</th>
                                             <th>Hesap Sahibi</th>
                                             <th>Açıklama</th>
                                             <th>İşlemler</th>
@@ -122,16 +135,17 @@ $csrf_token = generate_csrf_token();
                                     <tbody>
                                     <?php foreach ($other_ibans as $iban): ?>
                                         <tr style="font-size:0.85rem;">
-                                            <td style="padding-left:1.5rem;"> <?= htmlspecialchars($iban['banka_adi']) ?> </td>
+                                            <td style="padding-left:1.5rem;"> <?= htmlspecialchars($iban['bank_name']) ?> </td>
                                             <td> <?= htmlspecialchars($iban['iban']) ?> </td>
-                                            <td> <?= htmlspecialchars($iban['hesap_sahibi']) ?> </td>
-                                            <td> <?= htmlspecialchars($iban['aciklama'] ?? '-') ?> </td>
+                                            <td> <?= htmlspecialchars($iban['easy_address'] ?? '-') ?> </td>
+                                            <td> <?= htmlspecialchars($iban['account_holder_name']) ?> </td>
+                                            <td> <?= htmlspecialchars($iban['description'] ?? '-') ?> </td>
                                             <td>
                                                 <div class="d-flex gap-1">
                                                     <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $iban['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
-                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $iban['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $iban['id'] ?>, 'iban_bilgileri')">
+                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $iban['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $iban['id'] ?>, 'iban_details')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </div>

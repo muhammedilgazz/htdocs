@@ -16,7 +16,7 @@ $expense_model = new Expense();
 $selected_month = $_SESSION['selected_month'] ?? '07.25';
 
 // Seçili aya göre harcamaları filtrele
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE harcama_donemi = ? ORDER BY id DESC", [$selected_month]);
+$rows = $db->fetchAll("SELECT ei.*, c.name as category_name, st.name as status_name FROM expense_items ei JOIN categories c ON ei.category_id = c.id JOIN status_types st ON ei.status_id = st.id ORDER BY ei.id DESC");
 
 $csrf_token = generate_csrf_token();
 ?>
@@ -59,7 +59,7 @@ $csrf_token = generate_csrf_token();
                     <div class="col-md-3">
                         <div class="card p-4 h-100" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); border-radius:0;">
                             <div style="font-size:1.05rem; color:#6b7a99; font-weight:600;">Toplam Giderler</div>
-                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺37.350</div>
+                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items"), 0, ',', '.') ?></div>
                             <div class="d-flex justify-content-between align-items-center" style="font-size:1rem; color:#7b8ab8;">
                                 <span>Harcama + Ödeme + Alınacak</span>
                                 <span></span>
@@ -69,30 +69,30 @@ $csrf_token = generate_csrf_token();
                     <div class="col-md-3">
                         <div class="card p-4 h-100" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); border-radius:0;">
                             <div style="font-size:1.05rem; color:#6b7a99; font-weight:600;">Harcama Kalemleri</div>
-                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺17.870</div>
+                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items WHERE category_id IS NOT NULL"), 0, ',', '.') ?></div>
                             <div class="d-flex justify-content-between align-items-center" style="font-size:1rem; color:#7b8ab8;">
                                 <span>Toplam Kalem</span>
-                                <span style="color:#2979ff; font-weight:700;">14 Adet</span>
+                                <span style="color:#2979ff; font-weight:700;"><?= $db->getDbValue("SELECT COUNT(*) FROM expense_items WHERE category_id IS NOT NULL") ?> Adet</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card p-4 h-100" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); border-radius:0;">
                             <div style="font-size:1.05rem; color:#6b7a99; font-weight:600;">Borç Ödemeleri</div>
-                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺100</div>
+                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM payments"), 0, ',', '.') ?></div>
                             <div class="d-flex justify-content-between align-items-center" style="font-size:1rem; color:#7b8ab8;">
                                 <span>Kalan Borç</span>
-                                <span style="color:#2979ff; font-weight:700;">3 Kişi</span>
+                                <span style="color:#2979ff; font-weight:700;"><?= $db->getDbValue("SELECT COUNT(*) FROM payments WHERE status_id != (SELECT id FROM status_types WHERE name = 'Ödendi')") ?> Kişi</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card p-4 h-100" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); border-radius:0;">
                             <div style="font-size:1.05rem; color:#6b7a99; font-weight:600;">Alınacaklar</div>
-                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺19.380</div>
+                            <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺<?= number_format($db->getDbValue("SELECT SUM(price) FROM wishlist_items"), 0, ',', '.') ?></div>
                             <div class="d-flex justify-content-between align-items-center" style="font-size:1rem; color:#7b8ab8;">
                                 <span>Onaylanan</span>
-                                <span style="color:#2979ff; font-weight:700;">6 Adet</span>
+                                <span style="color:#2979ff; font-weight:700;"><?= $db->getDbValue("SELECT COUNT(*) FROM wishlist_items WHERE will_get = TRUE") ?> Adet</span>
                             </div>
                         </div>
                     </div>
@@ -102,21 +102,21 @@ $csrf_token = generate_csrf_token();
                     <div class="col-md-4">
                         <div class="stat-card d-flex align-items-center justify-content-center p-3 h-100 w-100" style="background:#fff; box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); min-height:70px; border-radius:0;">
                             <span style="font-size:1rem; color:#ffb300; font-weight:700; display:flex; align-items:center; gap:8px;">
-                                <i class="bi bi-calculator" style="font-size:1.3rem;"></i> Toplam Harcama: ₺17.870
+                                <i class="bi bi-calculator" style="font-size:1.3rem;"></i> Toplam Harcama: ₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items"), 0, ',', '.') ?>
                             </span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="stat-card d-flex align-items-center justify-content-center p-3 h-100 w-100" style="background:#fff; box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); min-height:70px; border-radius:0;">
                             <span style="font-size:1rem; color:#2979ff; font-weight:700; display:flex; align-items:center; gap:8px;">
-                                <i class="bi bi-arrow-repeat" style="font-size:1.3rem;"></i> Aylık Sabit Harcamalar: ₺0
+                                <i class="bi bi-arrow-repeat" style="font-size:1.3rem;"></i> Aylık Sabit Harcamalar: ₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items WHERE category_id = (SELECT id FROM categories WHERE name = 'abonelikler' AND type = 'expense')"), 0, ',', '.') ?>
                             </span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="stat-card d-flex align-items-center justify-content-center p-3 h-100 w-100" style="background:#fff; box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); min-height:70px; border-radius:0;">
                             <span style="font-size:1rem; color:#12A347; font-weight:700; display:flex; align-items:center; gap:8px;">
-                                <i class="bi bi-cart-check" style="font-size:1.3rem;"></i> Tek Seferlik Harcamalar: ₺17.870
+                                <i class="bi bi-cart-check" style="font-size:1.3rem;"></i> Tek Seferlik Harcamalar: ₺<?= number_format($db->getDbValue("SELECT SUM(amount) FROM expense_items WHERE category_id != (SELECT id FROM categories WHERE name = 'abonelikler' AND type = 'expense')"), 0, ',', '.') ?>
                             </span>
                         </div>
                     </div>
@@ -141,9 +141,7 @@ $csrf_token = generate_csrf_token();
                                 <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
                                     <thead style="background:#f5f7fa;">
                                         <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                            <th style="padding-left:1.5rem;">Sıra No</th>
-                                            <th>Kategori</th>
-                                            <th>Gider Türü</th>
+                                            <th style="padding-left:1.5rem;">Kategori</th>
                                             <th>Ürün/Hizmet</th>
                                             <th>Tutar</th>
                                             <th>Link</th>
@@ -155,25 +153,12 @@ $csrf_token = generate_csrf_token();
                                     <tbody>
                                     <?php foreach ($rows as $row): ?>
                                         <tr style="font-size:0.85rem;">
-                                            <td style="padding-left:1.5rem;"><?= $row['sira'] ?></td>
-                                            <td>
-                                                <span class="badge" style="background:<?= $row['kategori']==='ödeme'?'#ffb300':'#e5e9f2'; ?>; color:<?= $row['kategori']==='ödeme'?'#fff':'#222'; ?>; font-weight:600; font-size:0.8rem; padding:0.4rem 0.6rem;">
-                                                    <?= ucfirst($row['kategori']) ?>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span class="badge" style="background:<?= getKategoriTipiColor($row['kategori_tipi'] ?? 'Ani/Ekstra Harcama'); ?>; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                    <?= getKategoriTipiShort($row['kategori_tipi'] ?? 'Ani/Ekstra Harcama') ?>
-                                                </span>
-                                            </td>
-                                            <td><?= htmlspecialchars($row['urun']) ?></td>
+                                            <td style="padding-left:1.5rem;"><?= htmlspecialchars($row['category_name']) ?></td>
+                                            <td><?= htmlspecialchars($row['item_name']) ?></td>
                                             <td>
                                                 <span style="color:#34c759; font-weight:700; font-size:0.95rem;">
-                                                    ₺<?= number_format($row['tutar'], 0, ',', '.') ?>
+                                                    ₺<?= number_format($row['amount'], 0, ',', '.') ?>
                                                 </span>
-                                                <div style="font-size:0.75rem; color:#888; font-weight:500;">
-                                                    <?= $row['tur'] ?? '' ?>
-                                                </div>
                                             </td>
                                             <td>
                                                 <?php if (!empty($row['link'])): ?>
@@ -182,17 +167,17 @@ $csrf_token = generate_csrf_token();
                                                     -
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?= htmlspecialchars($row['aciklama'] ?? '-') ?></td>
+                                            <td><?= htmlspecialchars($row['description'] ?? '-') ?></td>
                                             <td>
                                                 <div class="position-relative" style="display:inline-block; width:120px;">
                                                     <select class="form-select form-select-sm status-dropdown" 
                                                             data-id="<?= $row['id'] ?>" 
                                                             style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                        <option value="Beklemede" <?= $row['durum'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                        <option value="Devam Ediyor" <?= $row['durum'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                        <option value="Tamamlandı" <?= $row['durum'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                        <option value="İptal Edildi" <?= $row['durum'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                        <option value="Ertelendi" <?= $row['durum'] == 'Ertelendi' ? 'selected' : '' ?>>Ertelendi</option>
+                                                        <option value="Beklemede" <?= $row['status_name'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
+                                                        <option value="Devam Ediyor" <?= $row['status_name'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
+                                                        <option value="Tamamlandı" <?= $row['status_name'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
+                                                        <option value="İptal Edildi" <?= $row['status_name'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
+                                                        <option value="Ertelendi" <?= $row['status_name'] == 'Ertelendi' ? 'selected' : '' ?>>Ertelendi</option>
                                                     </select>
                                                     <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
                                                 </div>
@@ -206,7 +191,7 @@ $csrf_token = generate_csrf_token();
                                                             title="Düzenle" type="button">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
-                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $row['id'] ?>, 'harcama_kalemleri')">
+                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $row['id'] ?>, 'expense_items')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                     <div class="dropdown">
@@ -245,34 +230,16 @@ $csrf_token = generate_csrf_token();
 <?php
 $add_harcama_modal_body = '';
 $add_harcama_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-$add_harcama_modal_body .= UIHelper::render_input('Kategori', 'kategori', 'text', true, '', '', [
+$add_harcama_modal_body .= UIHelper::render_input('Kategori', 'category_name', 'text', true, '', '', [
     ['value' => 'ödeme', 'text' => 'ödeme'],
     ['value' => 'abonelikler', 'text' => 'abonelikler'],
     ['value' => 'diğer', 'text' => 'diğer'],
 ]);
-$add_harcama_modal_body .= UIHelper::render_input('Kategori Tipi', 'kategori_tipi', 'select', true, 'Sabit Giderler', '', [
-    ['value' => 'Sabit Giderler', 'text' => 'Sabit Giderler'],
-    ['value' => 'Değişken Giderler', 'text' => 'Değişken Giderler'],
-    ['value' => 'Borç Ödemeleri', 'text' => 'Borç Ödemeleri'],
-    ['value' => 'Alınacak Ürünler', 'text' => 'Alınacak Ürünler'],
-    ['value' => 'Ani/Ekstra Harcama', 'text' => 'Ani/Ekstra Harcama'],
-    ['value' => 'Ertelenen Ödemeler', 'text' => 'Ertelenen Ödemeler'],
-]);
-$add_harcama_modal_body .= UIHelper::render_input('Harcama Dönemi', 'harcama_donemi', 'select', true, $selected_month, '', [
-    ['value' => '07.25', 'text' => 'Temmuz 2025'],
-    ['value' => '08.25', 'text' => 'Ağustos 2025'],
-    ['value' => '09.25', 'text' => 'Eylül 2025'],
-]);
-$add_harcama_modal_body .= UIHelper::render_input('Aylık / Tek Seferlik', 'tur', 'select', true, 'Aylık', '', [
-    ['value' => 'Aylık', 'text' => 'Aylık'],
-    ['value' => 'Tek Seferlik', 'text' => 'Tek Seferlik'],
-]);
-$add_harcama_modal_body .= UIHelper::render_input('Sıra No (Öncelik)', 'sira', 'number', true, '', '', [], 1);
-$add_harcama_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'urun');
-$add_harcama_modal_body .= UIHelper::render_input('Tutar', 'tutar', 'number');
+$add_harcama_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'item_name');
+$add_harcama_modal_body .= UIHelper::render_input('Tutar', 'amount', 'number');
 $add_harcama_modal_body .= UIHelper::render_input('Link', 'link', 'url', false);
-$add_harcama_modal_body .= UIHelper::render_input('Açıklama', 'aciklama', 'textarea', false);
-$add_harcama_modal_body .= UIHelper::render_input('Durum', 'durum', 'select', true, 'Beklemede', '', [
+$add_harcama_modal_body .= UIHelper::render_input('Açıklama', 'description', 'textarea', false);
+$add_harcama_modal_body .= UIHelper::render_input('Durum', 'status_name', 'select', true, 'Beklemede', '', [
     ['value' => 'Beklemede', 'text' => 'Beklemede'],
     ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
     ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],
@@ -289,34 +256,16 @@ echo UIHelper::render_modal('harcamaEkleModal', 'Harcama Ekle', 'harcamaEkleForm
 $edit_harcama_modal_body = '';
 $edit_harcama_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
 $edit_harcama_modal_body .= '<input type="hidden" name="id" id="duzenle-id">';
-$edit_harcama_modal_body .= UIHelper::render_input('Kategori', 'duzenle-kategori', 'text', true, '', '', [
+$edit_harcama_modal_body .= UIHelper::render_input('Kategori', 'edit_category_name', 'text', true, '', '', [
     ['value' => 'ödeme', 'text' => 'ödeme'],
     ['value' => 'abonelikler', 'text' => 'abonelikler'],
     ['value' => 'diğer', 'text' => 'diğer'],
 ]);
-$edit_harcama_modal_body .= UIHelper::render_input('Kategori Tipi', 'duzenle-kategori-tipi', 'select', true, '', '', [
-    ['value' => 'Sabit Giderler', 'text' => 'Sabit Giderler'],
-    ['value' => 'Değişken Giderler', 'text' => 'Değişken Giderler'],
-    ['value' => 'Borç Ödemeleri', 'text' => 'Borç Ödemeleri'],
-    ['value' => 'Alınacak Ürünler', 'text' => 'Alınacak Ürünler'],
-    ['value' => 'Ani/Ekstra Harcama', 'text' => 'Ani/Ekstra Harcama'],
-    ['value' => 'Ertelenen Ödemeler', 'text' => 'Ertelenen Ödemeler'],
-]);
-$edit_harcama_modal_body .= UIHelper::render_input('Harcama Dönemi', 'duzenle-harcama-donemi', 'select', true, '', '', [
-    ['value' => '07.25', 'text' => 'Temmuz 2025'],
-    ['value' => '08.25', 'text' => 'Ağustos 2025'],
-    ['value' => '09.25', 'text' => 'Eylül 2025'],
-]);
-$edit_harcama_modal_body .= UIHelper::render_input('Aylık / Tek Seferlik', 'duzenle-tur', 'select', true, '', '', [
-    ['value' => 'Aylık', 'text' => 'Aylık'],
-    ['value' => 'Tek Seferlik', 'text' => 'Tek Seferlik'],
-]);
-$edit_harcama_modal_body .= UIHelper::render_input('Sıra No (Öncelik)', 'duzenle-sira', 'number', true, '', '', [], 1);
-$edit_harcama_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'duzenle-urun');
-$edit_harcama_modal_body .= UIHelper::render_input('Tutar', 'duzenle-tutar', 'number');
-$edit_harcama_modal_body .= UIHelper::render_input('Link', 'duzenle-link', 'url', false);
-$edit_harcama_modal_body .= UIHelper::render_input('Açıklama', 'duzenle-aciklama', 'textarea', false);
-$edit_harcama_modal_body .= UIHelper::render_input('Durum', 'duzenle-durum', 'select', true, '', '', [
+$edit_harcama_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'edit_item_name');
+$edit_harcama_modal_body .= UIHelper::render_input('Tutar', 'edit_amount', 'number');
+$edit_harcama_modal_body .= UIHelper::render_input('Link', 'edit_link', 'url', false);
+$edit_harcama_modal_body .= UIHelper::render_input('Açıklama', 'edit_description', 'textarea', false);
+$edit_harcama_modal_body .= UIHelper::render_input('Durum', 'edit_status_name', 'select', true, '', '', [
     ['value' => 'Beklemede', 'text' => 'Beklemede'],
     ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
     ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],

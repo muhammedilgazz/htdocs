@@ -12,12 +12,6 @@ handle_ajax_request(function($data) {
         json_response(['success' => false, 'message' => 'Geçersiz parametreler'], 400);
     }
     
-    // Geçerli durum değerlerini kontrol et
-    $valid_statuses = ['Beklemede', 'Devam Ediyor', 'Tamamlandı', 'İptal Edildi'];
-    if (!in_array($status, $valid_statuses)) {
-        json_response(['success' => false, 'message' => 'Geçersiz durum değeri'], 400);
-    }
-    
     $result = $expense->updateStatus($id, $status);
     
     if ($result) {

@@ -31,7 +31,6 @@ try {
     $product_price = floatval($_POST['product_price']);
     $product_link = trim($_POST['product_link'] ?? '');
     $product_category = trim($_POST['product_category'] ?? 'Diğer');
-    $product_notes = trim($_POST['product_notes'] ?? '');
     $product_image = trim($_POST['product_image'] ?? '');
 
     // Link kontrolü
@@ -44,38 +43,20 @@ try {
         throw new Exception('Geçersiz resim linki formatı');
     }
 
-    // Seçili ayı al
-    $selected_month = getSelectedMonthKey();
-
-    // Sıra numarası al
-    $stmt = $db->getPdo()->prepare("SELECT MAX(sira) as max_sira FROM harcama_kalemleri WHERE kategori_tipi = 'Alınacak Ürünler' AND harcama_donemi = ?");
-    $stmt->execute([$selected_month]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $sira = ($result['max_sira'] ?? 0) + 1;
-
     // Veritabanına ekle
     $stmt = $db->getPdo()->prepare("
-        INSERT INTO harcama_kalemleri 
-        (kategori_tipi, kategori, urun, tutar, link, aciklama, durum, harcama_donemi, sira, created_at) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+        INSERT INTO wishlist_items 
+        (item_name, category_id, price, image_path, link, will_get) 
+        VALUES (?, (SELECT id FROM categories WHERE name = ? AND type = 'wishlist'), ?, ?, ?, FALSE)
     ");
 
-            $description = $product_notes ?: 'Linkten eklenen ürün';
-        if (!empty($product_image)) {
-            $description .= '; Resim: ' . $product_image;
-        }
-
-        $stmt->execute([
-            'Alınacak Ürünler',
-            $product_category,
-            $product_name,
-            $product_price,
-            $product_link,
-            $description,
-            'Beklemede',
-            $selected_month,
-            $sira
-        ]);
+    $stmt->execute([
+        $product_name,
+        $product_category,
+        $product_price,
+        $product_image,
+        $product_link
+    ]);
 
     $response['success'] = true;
     $response['message'] = 'Ürün başarıyla eklendi';

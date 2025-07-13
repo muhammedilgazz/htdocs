@@ -7,26 +7,17 @@ handle_ajax_request(function($data) {
 
     $id = intval($data['id'] ?? 0);
     $platform = $data['platform'] ?? '';
-    $kullanici_adi = $data['kullanici_adi'] ?? '';
-    $sifre = $data['sifre'] ?? '';
-    $giris_linki = $data['giris_linki'] ?? '';
-    $hesap_turu = $data['hesap_turu'] ?? '';
+    $username = $data['username'] ?? '';
+    $password = $data['password'] ?? '';
+    $login_link = $data['login_link'] ?? '';
+    $account_type = $data['account_type'] ?? '';
 
     if ($id <= 0) {
         json_response(['success' => false, 'message' => 'Geçersiz hesap ID'], 400);
     }
 
-    if (empty($platform) || empty($kullanici_adi) || empty($sifre) || empty($hesap_turu)) {
+    if (empty($platform) || empty($username) || empty($password) || empty($account_type)) {
         json_response(['success' => false, 'message' => 'Platform, kullanıcı adı, şifre ve hesap türü zorunludur.'], 400);
-    }
-
-    $valid_hesap_turleri = [
-        'İnternet Bankacılığı', 'Mail', 'Sosyal Medya', 'Bahis Sitesi',
-        'E-ticaret', 'Eğitim', 'İş', 'Diğer'
-    ];
-
-    if (!in_array($hesap_turu, $valid_hesap_turleri)) {
-        json_response(['success' => false, 'message' => 'Geçersiz hesap türü.'], 400);
     }
 
     // Hesabın var olup olmadığını kontrol et
@@ -38,10 +29,10 @@ handle_ajax_request(function($data) {
 
     $result = $account->update($id, [
         'platform' => $platform,
-        'kullanici_adi' => $kullanici_adi,
-        'sifre' => $sifre,
-        'giris_linki' => $giris_linki,
-        'hesap_turu' => $hesap_turu
+        'username' => $username,
+        'password' => $password,
+        'login_link' => $login_link,
+        'account_type' => $account_type
     ]);
     
     if ($result) {
