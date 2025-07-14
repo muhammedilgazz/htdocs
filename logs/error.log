@@ -1,0 +1,697 @@
+
+[14-Jul-2025 02:30:10 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' in C:\xampp\htdocs\index.php:20
+Stack trace:
+#0 C:\xampp\htdocs\index.php(20): PDO->prepare('SELECT name, mi...')
+#1 {main}
+  thrown in C:\xampp\htdocs\index.php on line 20
+[14-Jul-2025 02:30:44 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' in C:\xampp\htdocs\index.php:20
+Stack trace:
+#0 C:\xampp\htdocs\index.php(20): PDO->prepare('SELECT name, mi...')
+#1 {main}
+  thrown in C:\xampp\htdocs\index.php on line 20
+[14-Jul-2025 02:30:45 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' in C:\xampp\htdocs\index.php:20
+Stack trace:
+#0 C:\xampp\htdocs\index.php(20): PDO->prepare('SELECT name, mi...')
+#1 {main}
+  thrown in C:\xampp\htdocs\index.php on line 20
+[14-Jul-2025 02:31:32 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' in C:\xampp\htdocs\index.php:20
+Stack trace:
+#0 C:\xampp\htdocs\index.php(20): PDO->prepare('SELECT name, mi...')
+#1 {main}
+  thrown in C:\xampp\htdocs\index.php on line 20
+[14-Jul-2025 02:31:48 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'name' in 'field list' in C:\xampp\htdocs\index.php:20
+Stack trace:
+#0 C:\xampp\htdocs\index.php(20): PDO->prepare('SELECT name, mi...')
+#1 {main}
+  thrown in C:\xampp\htdocs\index.php on line 20
+[14-Jul-2025 02:32:07 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:32:07 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:32:07 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:32:07 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:32:19 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:32:45 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:32:47 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:33:56 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:33:57 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:33:58 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:33:58 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:33:58 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:34:44 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:35:00 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\sabit-giderler.php(9): Database->fetchAll('SELECT * FROM h...')
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:35:03 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:35:03 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:35:03 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:35:03 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:35:12 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:35:17 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:35:17 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:35:17 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:35:17 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:35:52 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:35:52 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:35:52 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:35:52 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:36:02 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:36:02 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:36:02 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:36:02 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:37:01 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:37:01 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:37:01 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:37:01 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:37:03 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:37:05 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:37:05 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:37:05 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:37:05 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:37:59 Europe/Berlin] PHP Warning:  include(../partials/global_modals.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:37:59 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/global_modals.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 10
+[14-Jul-2025 02:37:59 Europe/Berlin] PHP Warning:  include(../partials/script.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:37:59 Europe/Berlin] PHP Warning:  include(): Failed opening '../partials/script.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\layouts\layoutBottom.php on line 11
+[14-Jul-2025 02:38:05 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:39:07 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:39:08 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:39:09 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:40:48 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:40:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:40:54 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:40:54 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:40:59 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:40:59 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:41:00 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.harcama_kalemleri' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT * FROM h...')
+#1 C:\xampp\htdocs\xtreme-ai.php(14): Database->fetchAll('SELECT * FROM h...', Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:41:02 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:41:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:41:03 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.iban_details' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT id.*, b....')
+#1 C:\xampp\htdocs\classes\Iban.php(68): Database->fetchAll('SELECT id.*, b....')
+#2 C:\xampp\htdocs\iban_tablosu.php(16): Iban->getAll()
+#3 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:41:05 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'budget.iban_details' doesn't exist in C:\xampp\htdocs\classes\Database.php:48
+Stack trace:
+#0 C:\xampp\htdocs\classes\Database.php(48): PDO->prepare('SELECT id.*, b....')
+#1 C:\xampp\htdocs\classes\Iban.php(68): Database->fetchAll('SELECT id.*, b....')
+#2 C:\xampp\htdocs\iban_tablosu.php(16): Iban->getAll()
+#3 {main}
+  thrown in C:\xampp\htdocs\classes\Database.php on line 48
+[14-Jul-2025 02:41:06 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:41:06 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:45:47 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:45:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:47:11 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:47:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:49:03 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:49:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:49:05 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:49:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:43 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:49:45 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:50:01 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:50:01 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:50:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:31 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:33 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:37 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:40 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:42 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:47 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:51:52 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:00 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:01 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:05 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:06 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:07 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:09 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:12 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:16 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:52:24 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:54:17 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:54:46 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:50 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:54 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:54 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:54 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:54:54 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:10 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:20 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:21 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:22 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:57:23 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 85
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 87
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "iban" in C:\xampp\htdocs\iban_tablosu.php on line 139
+[14-Jul-2025 02:59:19 Europe/Berlin] PHP Warning:  Undefined array key "account_holder_name" in C:\xampp\htdocs\iban_tablosu.php on line 141
+[14-Jul-2025 02:59:20 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:59:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:59:24 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 02:59:24 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:03:28 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:03:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\test_index_simple.php(56): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:29 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:29 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:31 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:31 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:46 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:46 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:06:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:07:03 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:07:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:07:03 Europe/Berlin] PHP Warning:  require_once(C:\xampp\htdocs\partials/UIHelper.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\partials\global_modals.php on line 3
+[14-Jul-2025 03:07:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\xampp\htdocs\partials/UIHelper.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\partials\global_modals.php:3
+Stack trace:
+#0 C:\xampp\htdocs\layouts\layoutBottom.php(10): include()
+#1 C:\xampp\htdocs\index.php(432): include('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\partials\global_modals.php on line 3

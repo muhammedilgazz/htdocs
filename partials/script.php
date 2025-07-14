@@ -1,5 +1,5 @@
-<!-- jQuery -->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
+<!-- jQuery (CDN) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -8,10 +8,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
 <!-- Perfect Scrollbar -->
-<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js'"></script>
 
 <!-- Toastr -->
-<script src="assets/vendor/toastr/toastr.min.js"></script>
+<script src="assets/vendor/toastr/toastr.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js'"></script>
 
 <!-- Ekash Modular Scripts - New Architecture -->
 <script src="assets/js/modules/core.js"></script>

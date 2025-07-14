@@ -7,8 +7,8 @@
         </div>
     </div>
 
-    <?php include '../partials/global_modals.php'; ?>
-    <?php include '../partials/script.php'; ?>
+    <?php include 'partials/global_modals.php'; ?>
+    <?php include 'partials/script.php'; ?>
 
 </body>
 

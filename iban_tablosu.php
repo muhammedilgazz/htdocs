@@ -18,8 +18,8 @@ $my_ibans = [];
 $other_ibans = [];
 
 foreach ($all_ibans as $iban) {
-    // Assuming 'Ziraat Bankası' is considered 'my' bank for this logic
-    if ($iban['bank_name'] === 'Ziraat Bankası') {
+    // Check account_type field to separate own vs other accounts
+    if ($iban['account_type'] === 'own') {
         $my_ibans[] = $iban;
     } else {
         $other_ibans[] = $iban;

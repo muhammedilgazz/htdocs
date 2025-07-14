@@ -16,10 +16,10 @@ class Iban {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO iban_details (account_holder_name, iban, easy_address, bank_id, description) VALUES (?, ?, ?, (SELECT id FROM banks WHERE name = ?), ?)";
+        $sql = "INSERT INTO iban_details (account_holder, iban_number, easy_address, bank_id, description) VALUES (?, ?, ?, (SELECT id FROM banks WHERE name = ?), ?)";
         $params = [
-            $data['account_holder_name'] ?? null,
-            $data['iban'] ?? null,
+            $data['account_holder'] ?? null,
+            $data['iban_number'] ?? null,
             $data['easy_address'] ?? null,
             $data['bank_name'] ?? null,
             $data['description'] ?? null
@@ -35,10 +35,10 @@ class Iban {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE iban_details SET account_holder_name = ?, iban = ?, easy_address = ?, bank_id = (SELECT id FROM banks WHERE name = ?), description = ? WHERE id = ?";
+        $sql = "UPDATE iban_details SET account_holder = ?, iban_number = ?, easy_address = ?, bank_id = (SELECT id FROM banks WHERE name = ?), description = ? WHERE id = ?";
         $params = [
-            $data['account_holder_name'] ?? null,
-            $data['iban'] ?? null,
+            $data['account_holder'] ?? null,
+            $data['iban_number'] ?? null,
             $data['easy_address'] ?? null,
             $data['bank_name'] ?? null,
             $data['description'] ?? null,

@@ -6,7 +6,7 @@ $security = new SecurityManager();
 $security->checkSession();
 include 'partials/head.php';
 $db = Database::getInstance();
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE kategori_tipi='Sabit Giderler' ORDER BY id DESC");
+$rows = $db->fetchAll("SELECT e.*, c.name as kategori_adi FROM expense_items e LEFT JOIN categories c ON e.category_id = c.id WHERE c.name='Sabit Giderler' ORDER BY e.id DESC");
 $csrf_token = generate_csrf_token();
 ?>
 <body>

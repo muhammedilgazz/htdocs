@@ -11,7 +11,7 @@ $db = Database::getInstance();
 $selected_month = getSelectedMonthKey();
 
 // İstek listesini al
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE kategori_tipi='Alınacak Ürünler' AND kategori LIKE '%istek%' AND harcama_donemi = ? ORDER BY id DESC", [$selected_month]);
+$rows = $db->fetchAll("SELECT * FROM wishlist_items ORDER BY id DESC");
 $csrf_token = generate_csrf_token();
 ?>
 <body>

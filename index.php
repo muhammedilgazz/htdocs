@@ -30,24 +30,27 @@ if ($user_id) {
 // Dashboard verileri
 $stats = $db->fetch("
     SELECT 
-        (SELECT SUM(tutar) FROM harcama_kalemleri WHERE durum = 'Ödendi') as toplam_harcama,
-        (SELECT SUM(tutar) FROM harcama_kalemleri WHERE durum = 'Beklemede') as bekleyen_harcama,
-        (SELECT SUM(tutar) FROM odemeler WHERE durum = 'Ödendi') as toplam_odeme,
-        (SELECT SUM(tutar) FROM odemeler WHERE durum = 'Beklemede') as bekleyen_odeme,
-        (SELECT toplam_bakiye FROM bakiye ORDER BY id DESC LIMIT 1) as mevcut_bakiye
+        (SELECT SUM(e.amount) FROM expense_items e JOIN status_types s ON e.status_id = s.id WHERE s.name = 'Tamamlandı') as toplam_harcama,
+        (SELECT SUM(e.amount) FROM expense_items e JOIN status_types s ON e.status_id = s.id WHERE s.name = 'Beklemede') as bekleyen_harcama,
+        (SELECT SUM(p.amount) FROM payments p JOIN status_types s ON p.status_id = s.id WHERE s.name = 'Tamamlandı') as toplam_odeme,
+        (SELECT SUM(p.amount) FROM payments p JOIN status_types s ON p.status_id = s.id WHERE s.name = 'Beklemede') as bekleyen_odeme,
+        (SELECT total_balance FROM balances ORDER BY id DESC LIMIT 1) as mevcut_bakiye
 ");
 
 // Son işlemler
 $recent_transactions = $db->fetchAll("
-    SELECT 'harcama' as tip, kategori, urun as aciklama, tutar, durum, created_at 
-    FROM harcama_kalemleri 
-    ORDER BY created_at DESC LIMIT 5
+    SELECT 'harcama' as tip, c.name as kategori, e.item_name as aciklama, e.amount as tutar, s.name as durum, e.created_at 
+    FROM expense_items e 
+    JOIN categories c ON e.category_id = c.id 
+    JOIN status_types s ON e.status_id = s.id 
+    ORDER BY e.created_at DESC LIMIT 5
 ");
 
 $recent_payments = $db->fetchAll("
-    SELECT 'odeme' as tip, kisi_adi as aciklama, tutar, durum, created_at 
-    FROM odemeler 
-    ORDER BY created_at DESC LIMIT 5
+    SELECT 'odeme' as tip, p.person_name as aciklama, p.amount as tutar, s.name as durum, p.created_at 
+    FROM payments p 
+    JOIN status_types s ON p.status_id = s.id 
+    ORDER BY p.created_at DESC LIMIT 5
 ");
 
 $all_transactions = array_merge($recent_transactions, $recent_payments);
@@ -59,10 +62,12 @@ $all_transactions = array_slice($all_transactions, 0, 10);
 
 // Kategori bazlı harcama analizi
 $category_expenses = $db->fetchAll("
-    SELECT kategori, SUM(tutar) as toplam_tutar, COUNT(*) as islem_sayisi
-    FROM harcama_kalemleri 
-    WHERE durum = 'Ödendi'
-    GROUP BY kategori 
+    SELECT c.name as kategori, SUM(e.amount) as toplam_tutar, COUNT(*) as islem_sayisi
+    FROM expense_items e 
+    JOIN categories c ON e.category_id = c.id 
+    JOIN status_types s ON e.status_id = s.id 
+    WHERE s.name = 'Tamamlandı'
+    GROUP BY c.name 
     ORDER BY toplam_tutar DESC
 ");
 
@@ -426,21 +431,13 @@ Kitap Seti - 150 TL - Kitap - https://example.com/kitap.jpg"></textarea>
 
     <?php include 'layouts/layoutBottom.php'; ?>
     
-    <!-- Direct script include for debugging -->
+    <!-- Page-specific scripts after main scripts load -->
     <script>
-        console.log('=== INDEX.PHP DIRECT SCRIPT TEST ===');
-        console.log('Before script.php include');
-    </script>
-    
-    <?php include 'partials/script.php'; ?>
-    
-    <script>
-        console.log('After script.php include');
+        console.log('=== INDEX.PHP PAGE SCRIPT ===');
         console.log('jQuery available:', typeof $ !== 'undefined');
         console.log('Bootstrap available:', typeof bootstrap !== 'undefined');
         console.log('Chart.js available:', typeof Chart !== 'undefined');
         console.log('Toastr available:', typeof toastr !== 'undefined');
-        console.log('Global functions available:', typeof showSuccess !== 'undefined');
     </script>
 
     <!-- Enhanced FAB JavaScript -->

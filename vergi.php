@@ -11,7 +11,7 @@ $db = Database::getInstance();
 $selected_month = $_SESSION['selected_month'] ?? '07.25';
 
 // Vergi borçlarını al
-$rows = $db->fetchAll("SELECT * FROM harcama_kalemleri WHERE kategori_tipi='Borç Ödemeleri' AND kategori LIKE '%vergi%' AND harcama_donemi = ? ORDER BY id DESC", [$selected_month]);
+$rows = $db->fetchAll("SELECT e.*, c.name as kategori_adi FROM expense_items e LEFT JOIN categories c ON e.category_id = c.id WHERE c.name LIKE '%Vergi%' ORDER BY e.id DESC");
 $csrf_token = generate_csrf_token();
 ?>
 <body>
