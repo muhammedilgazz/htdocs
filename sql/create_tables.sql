@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
-    type ENUM('expense', 'wishlist') NOT NULL, -- To differentiate between expense categories and wishlist categories
+    type ENUM('sabit_gider', 'degisken_gider', 'borc_odemesi', 'ani_ekstra', 'ertelenmis', 'wishlist') NOT NULL, -- To differentiate between expense categories and wishlist categories
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -153,11 +153,33 @@ CREATE TABLE IF NOT EXISTS rate_limits (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS incomes (
+CREATE TABLE IF NOT EXISTS debts (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    source VARCHAR(255) NOT NULL,
-    amount DECIMAL(15,2) NOT NULL,
-    date DATE NOT NULL,
+    creditor_name VARCHAR(100), 
+    debt_type ENUM('vergi', 'sgk', 'banka', 'icra', 'sahis') NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    due_date DATE,
+    status_id INT DEFAULT 1, 
     description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (status_id) REFERENCES status_types(id)
 );
+
+CREATE TABLE IF NOT EXISTS projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    status_id INT DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (status_id) REFERENCES status_types(id)
+);
+
+ALTER TABLE wishlist_items ADD COLUMN wishlist_type ENUM('ihtiyac', 'istek', 'favori') DEFAULT 'istek';
+ALTER TABLE todos ADD COLUMN project_id INT NULL;
+ALTER TABLE todos ADD FOREIGN KEY (project_id) REFERENCES projects(id);
+
+-- Insert default status types
+INSERT INTO status_types (name, description) VALUES
+('Beklemede', 'Henüz yapılmadı ya da ödenmedi'),
+('Tamamlandı', 'İşlem tamamlandı'),
+('İptal Edildi', 'İptal edildi');

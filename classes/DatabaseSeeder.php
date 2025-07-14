@@ -13,7 +13,9 @@ class DatabaseSeeder {
             (2, 'Gecikmiş'),
             (3, 'Planlandı'),
             (4, 'Ödendi'),
-            (5, 'Ertelendi')
+            (5, 'Ertelendi'),
+            (6, 'Devam Ediyor'),
+            (7, 'İptal Edildi')
         ");
 
         // Seed Categories
