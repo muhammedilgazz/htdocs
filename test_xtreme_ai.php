@@ -1,7 +1,7 @@
 <?php
 require_once 'config/config.php';
-require_once 'classes/Database.php';
-require_once 'includes/month_helper.php';
+require_once 'models/Database.php';
+require_once 'models/UIHelper.php';
 
 $db = Database::getInstance();
 
@@ -41,10 +41,10 @@ try {
 }
 
 // Test month helper
-$selected_month = getSelectedMonthKey();
+$selected_month = UIHelper::getSelectedMonthKey();
 echo "<h3>Selected Month: " . $selected_month . "</h3>";
 
 // Test month options generation
 echo "<h3>Month Options:</h3>";
-echo generateMonthOptions($selected_month);
+echo UIHelper::generateMonthOptions($selected_month);
 ?> 

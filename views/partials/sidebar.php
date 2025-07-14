@@ -10,7 +10,7 @@
     <nav class="sidebar-nav">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="index.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">
+                <a href="/" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">
                     <i class="bi bi-house-door"></i>
                     <span>Dashboard</span>
                 </a>
@@ -28,43 +28,43 @@
                 <div class="collapse" id="harcamalarSubmenu">
                     <ul class="nav flex-column ms-3">
                         <li class="nav-item">
-                            <a href="harcamalar.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'harcamalar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/expense" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'harcamalar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-list-ul"></i>
                                 <span>Tüm Harcamalar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="sabit-giderler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'sabit-giderler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/fixedexpense" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'sabit-giderler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-calendar2-week"></i>
                                 <span>Sabit Giderler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="degisken-giderler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'degisken-giderler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/variableexpense" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'degisken-giderler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-bar-chart-line"></i>
                                 <span>Değişken Giderler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="borc-odemeleri.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'borc-odemeleri.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/debtpayment" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'borc-odemeleri.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-cash-coin"></i>
                                 <span>Borç Ödemeleri</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="ekstra-harcamalar.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ekstra-harcamalar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/extraexpense" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ekstra-harcamalar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-lightning-charge"></i>
                                 <span>Ani/Ekstra Harcamalar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="ertelenen-odemeler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ertelenen-odemeler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/postponedpayment" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ertelenen-odemeler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-clock-history"></i>
                                 <span>Ertelenen Ödemeler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="alinacak-urunler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'alinacak-urunler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/acquiredproduct" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'alinacak-urunler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-cart-plus"></i>
                                 <span>Alınacak Ürünler</span>
                             </a>
@@ -85,31 +85,31 @@
                 <div class="collapse" id="borclarSubmenu">
                     <ul class="nav flex-column ms-3">
                         <li class="nav-item">
-                            <a href="vergi.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'vergi.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/tax" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'vergi.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-receipt"></i>
                                 <span>Vergi</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="sgk.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'sgk.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/sgk" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'sgk.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-shield-check"></i>
                                 <span>SGK</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="banka.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'banka.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/bank" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'banka.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-bank"></i>
                                 <span>Banka</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="icralar.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'icralar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/execution" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'icralar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-exclamation-triangle"></i>
                                 <span>İcralar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="sahislara-borclar.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'sahislara-borclar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/individualdebt" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'sahislara-borclar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-people"></i>
                                 <span>Şahıslara Borçlar</span>
                             </a>
@@ -130,25 +130,25 @@
                 <div class="collapse" id="alinacaklarSubmenu">
                     <ul class="nav flex-column ms-3">
                         <li class="nav-item">
-                            <a href="ihtiyaclar.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ihtiyaclar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/need" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'ihtiyaclar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-box-seam"></i>
                                 <span>İhtiyaçlar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="istek-listesi.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'istek-listesi.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/wishlist" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'istek-listesi.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-list-check"></i>
                                 <span>İstek Listesi</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="favori-urunler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'favori-urunler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/favoriteproduct" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'favori-urunler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-heart"></i>
                                 <span>Favori Ürünler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="hayaller-ve-hedefler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'hayaller-ve-hedefler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/dreamgoal" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'hayaller-ve-hedefler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-stars"></i>
                                 <span>Hayaller ve Hedefler</span>
                             </a>
@@ -169,25 +169,25 @@
                 <div class="collapse" id="yapilacaklarSubmenu">
                     <ul class="nav flex-column ms-3">
                         <li class="nav-item">
-                            <a href="projeler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'projeler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/project" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'projeler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-kanban"></i>
                                 <span>Projeler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="gorevler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'gorevler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/task" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'gorevler.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-check-circle"></i>
                                 <span>Görevler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="notlar.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'notlar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/note" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'notlar.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-journal-text"></i>
                                 <span>Notlar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="todo-list.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'todo-list.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/todolist" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'todo-list.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-check2-square"></i>
                                 <span>To-Do List</span>
                             </a>
@@ -198,21 +198,21 @@
             
             <!-- Güvenlik ve Bilgiler -->
             <li class="nav-item">
-                <a href="hesaplar_sifreler.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'hesaplar_sifreler.php' ? 'active' : '' ?>">
+                <a href="/accountpassword" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'hesaplar_sifreler.php' ? 'active' : '' ?>">
                     <i class="bi bi-lock"></i>
                     <span>Hesaplar & Şifreler</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="iban_tablosu.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'iban_tablosu.php' ? 'active' : '' ?>">
+                <a href="/ibantable" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'iban_tablosu.php' ? 'active' : '' ?>">
                     <i class="bi bi-bank"></i>
                     <span>IBAN Tablosu</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="xtreme-ai.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'xtreme-ai.php' ? 'active' : '' ?>">
+                <a href="/xtremeai" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'xtreme-ai.php' ? 'active' : '' ?>">
                     <i class="bi bi-robot"></i>
                     <span>Xtreme AI</span>
                 </a>
@@ -224,28 +224,28 @@
         
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="settings.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
+                <a href="/settings" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : '' ?>">
                     <i class="material-icons-round">settings</i>
                     <span>Ayarlar</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="profile.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'profile.php' ? 'active' : '' ?>">
+                <a href="/profile" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'profile.php' ? 'active' : '' ?>">
                     <i class="material-icons-round">person</i>
                     <span>Profil</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="support.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'support.php' ? 'active' : '' ?>">
+                <a href="/support" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'support.php' ? 'active' : '' ?>">
                     <i class="material-icons-round">support_agent</i>
                     <span>Destek</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a href="affiliates.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'affiliates.php' ? 'active' : '' ?>">
+                <a href="/affiliate" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'affiliates.php' ? 'active' : '' ?>">
                     <i class="material-icons-round">share</i>
                     <span>Referans Programı</span>
                 </a>

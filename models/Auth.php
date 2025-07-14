@@ -116,4 +116,3 @@ class Auth {
         return $_SESSION['user_id'] ?? null;
     }
 }
-?>

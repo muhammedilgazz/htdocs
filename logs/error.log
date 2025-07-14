@@ -1462,3 +1462,252 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:28:45 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:28:45 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:29:51 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:29:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:30:26 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:30:26 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:30:31 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:30:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:11 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:14 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:42 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:42 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:48 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:35:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:36:58 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:36:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:36:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "public", expecting end of file in C:\xampp\htdocs\models\Expense.php on line 190
+[14-Jul-2025 05:37:02 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:07 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "public", expecting end of file in C:\xampp\htdocs\models\Expense.php on line 190
+[14-Jul-2025 05:37:23 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:23 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:24 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:24 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:31 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:31 Europe/Berlin] PHP Warning:  require_once(classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ihtiyaclar.php on line 3
+[14-Jul-2025 05:37:31 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ihtiyaclar.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ihtiyaclar.php on line 3
+[14-Jul-2025 05:37:34 Europe/Berlin] PHP Warning:  require_once(classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ihtiyaclar.php on line 3
+[14-Jul-2025 05:37:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ihtiyaclar.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ihtiyaclar.php on line 3
+[14-Jul-2025 05:37:41 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:37:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:40:22 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:40:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:40:53 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:40:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:00 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:05 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:25 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:32 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:50 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:55 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:41:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:28 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:32 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:34 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:36 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "public", expecting end of file in C:\xampp\htdocs\models\Expense.php on line 190
+[14-Jul-2025 05:42:39 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:42:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:42 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:42 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:47 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "public", expecting end of file in C:\xampp\htdocs\models\Expense.php on line 190
+[14-Jul-2025 05:43:49 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:49 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:50 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:57 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:58 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:43:58 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:44:13 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:44:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:44:40 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:44:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:44:55 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:44:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:00 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:00 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:03 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:38 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:38 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:44 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:45:44 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:17 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:29 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:32 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:34 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:37 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:37 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:38 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:38 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:40 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:46:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:47:16 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:47:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:47:22 Europe/Berlin] PHP Warning:  require_once(../classes/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[14-Jul-2025 05:47:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../classes/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3

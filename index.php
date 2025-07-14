@@ -1,9 +1,11 @@
 <?php
 require_once 'config/config.php';
-require_once 'models/AuthManager.php';
+require_once 'models/Auth.php';
+require_once 'models/Database.php';
 
-$auth = new AuthManager();
-$auth->checkSession();
+$db = Database::getInstance();
+$auth = new Auth($db->getPdo());
+$auth->requireAuth();
 
 // Autoload controllers
 spl_autoload_register(function ($class_name) {

@@ -1,7 +1,7 @@
 <?php
 require_once 'config/config.php';
-require_once 'classes/Database.php';
-require_once 'includes/month_helper.php';
+require_once 'models/Database.php';
+require_once 'models/UIHelper.php';
 
 $db = Database::getInstance();
 
@@ -35,7 +35,7 @@ print_r($categories);
 echo "</pre>";
 
 // Test the current query logic
-$selected_month = getSelectedMonthKey();
+$selected_month = UIHelper::getSelectedMonthKey();
 echo "<h3>Selected Month: " . $selected_month . "</h3>";
 
 // Try to find AI-related items

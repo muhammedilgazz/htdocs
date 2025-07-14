@@ -95,5 +95,5 @@ function json_response($data, $status = 200) {
 }
 
 // Ay yardımcı fonksiyonlarını dahil et
-require_once __DIR__ . '/../includes/month_helper.php';
+
 ?>
