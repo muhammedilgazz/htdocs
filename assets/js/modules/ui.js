@@ -16,7 +16,10 @@ const EkashUI = (function() {
         loadingButtons: '.btn[data-loading]',
         submenuToggle: '[data-bs-target="#harcamalarSubmenu"]',
         submenu: '#harcamalarSubmenu',
-        smoothScrollLinks: 'a[href^="#"]:not([data-bs-toggle])'
+        smoothScrollLinks: 'a[href^="#"]:not([data-bs-toggle])',
+        fabContainer: '.fab-container',
+        fabMain: '#fabMain',
+        fabOptions: '.fab-option'
     };
 
     const config = {
@@ -52,6 +55,7 @@ const EkashUI = (function() {
             initLoadingButtons();
             initSubmenu();
             initSmoothScroll();
+            initFloatingActionButton();
             initGlobalUIEvents();
         });
 
@@ -387,6 +391,76 @@ const EkashUI = (function() {
     }
 
     /**
+     * Initialize Floating Action Button
+     */
+    function initFloatingActionButton() {
+        const fabContainer = document.querySelector(selectors.fabContainer);
+        const fabMain = document.querySelector(selectors.fabMain);
+        const fabOptions = document.querySelectorAll(selectors.fabOptions);
+
+        if (!fabContainer || !fabMain) {
+            console.warn('FAB elements not found');
+            return;
+        }
+
+        // FAB Toggle
+        fabMain.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fabContainer.classList.toggle('active');
+        });
+
+        // Close FAB when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!fabContainer.contains(e.target)) {
+                fabContainer.classList.remove('active');
+            }
+        });
+
+        // FAB Option Click Handlers
+        fabOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const action = option.getAttribute('data-action');
+                fabContainer.classList.remove('active');
+                
+                // Trigger custom event for FAB action
+                EkashCore.triggerEvent('fabAction', { action });
+                
+                // Handle specific actions
+                switch(action) {
+                    case 'import-favorites':
+                        if (typeof bootstrap !== 'undefined') {
+                            const modal = new bootstrap.Modal(document.getElementById('importFavoritesModal'));
+                            modal.show();
+                        }
+                        break;
+                    case 'add-from-link':
+                        if (typeof bootstrap !== 'undefined') {
+                            const modal = new bootstrap.Modal(document.getElementById('addFromLinkModal'));
+                            modal.show();
+                        }
+                        break;
+                    case 'bulk-add':
+                        if (typeof bootstrap !== 'undefined') {
+                            const modal = new bootstrap.Modal(document.getElementById('bulkAddModal'));
+                            modal.show();
+                        }
+                        break;
+                    case 'import-notes':
+                        if (typeof bootstrap !== 'undefined') {
+                            const modal = new bootstrap.Modal(document.getElementById('importNotesModal'));
+                            modal.show();
+                        }
+                        break;
+                }
+            });
+        });
+
+        console.log('✅ Floating Action Button initialized');
+    }
+
+    /**
      * Initialize global UI event listeners
      */
     function initGlobalUIEvents() {
@@ -469,6 +543,9 @@ const EkashUI = (function() {
         // Ripple effect
         createRipple,
         addRippleToElement,
+        
+        // FAB controls
+        initFloatingActionButton,
         
         // Config access
         config

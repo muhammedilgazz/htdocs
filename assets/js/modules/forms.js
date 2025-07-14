@@ -439,6 +439,11 @@ const EkashForms = (function() {
         // Modal form handlers
         initModalHandlers();
         
+        // Listen for FAB actions from UI module
+        EkashCore.on('fabAction', (e) => {
+            console.log('FAB action triggered:', e.detail.action);
+        });
+        
         console.log('✅ Special form handlers initialized');
     }
 

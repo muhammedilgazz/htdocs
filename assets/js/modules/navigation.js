@@ -249,6 +249,29 @@ const EkashNavigation = (function() {
      * Navigate to a specific page
      */
     function navigateTo(href, options = {}) {
+        const defaultOptions = {
+            replace: false,
+            reload: false,
+            scrollToTop: true
+        };
+        
+        const finalOptions = { ...defaultOptions, ...options };
+        
+        if (finalOptions.reload) {
+            window.location.href = href;
+        } else if (finalOptions.replace) {
+            window.location.replace(href);
+        } else {
+            window.location.href = href;
+        }
+        
+        if (finalOptions.scrollToTop) {
+            window.scrollTo(0, 0);
+        }
+        
+        EkashCore.triggerEvent('navigationStarted', { href, options: finalOptions });
+    }
+    function navigateTo(href, options = {}) {
         const { replace = false, newTab = false } = options;
         
         if (newTab) {
