@@ -198,7 +198,7 @@
         </div>
         
         <!-- Xtreme AI Button -->
-        <a href="xtreme-ai.php" class="btn btn-text ripple me-2" title="Xtreme AI">
+        <a href="/xtremeai" class="btn btn-text ripple me-2" title="Xtreme AI">
             <i class="material-icons-round" style="color: #6366F1;">smart_toy</i>
             
         </a>
