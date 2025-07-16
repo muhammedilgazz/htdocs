@@ -1,745 +1,720 @@
 /**
- * Ekash Forms Module - Form handling, validation and AJAX operations
- * @version 1.0.0
- * @requires EkashCore, EkashUI
+ * Ekash Forms Module - Enhanced Modern Version
+ * @version 3.0.0
+ * @description Enhanced form handling, validation, and AJAX submissions
  */
 
-const EkashForms = (function() {
+(function() {
     'use strict';
 
-    // Private variables
-    let isInitialized = false;
+    // Wait for core to be ready
+    if (!window.EkashCore) {
+        console.error('EkashForms requires EkashCore to be loaded first');
+        return;
+    }
+
+    // Forms configuration
     const config = {
-        csrf: {
-            tokenName: 'csrf_token',
-            headerName: 'X-CSRF-Token'
-        },
+        debug: true,
         validation: {
-            showErrors: true,
-            realTimeValidation: true
+            showErrorsOnInput: true,
+            showErrorsOnSubmit: true,
+            clearErrorsOnFocus: true
         },
         ajax: {
             timeout: 30000,
-            retryAttempts: 3
+            retries: 3,
+            retryDelay: 1000
+        },
+        autosave: {
+            enabled: true,
+            interval: 30000,
+            storagePrefix: 'ekash_autosave_'
         }
     };
 
-    const selectors = {
-        forms: 'form[data-ajax]',
-        inputs: 'input, textarea, select',
-        submitButtons: 'button[type="submit"], input[type="submit"]',
-        errorContainers: '.form-error',
-        successContainers: '.form-success'
+    // Form state
+    const state = {
+        forms: new Map(),
+        validators: new Map(),
+        autosaveTimers: new Map(),
+        submitInProgress: new Set()
     };
 
-    /**
-     * Initialize forms module
-     */
-    function init() {
-        if (isInitialized) {
-            console.warn('EkashForms already initialized');
-            return;
+    // Enhanced validation rules
+    const validationRules = {
+        required: {
+            test: (value) => value !== null && value !== undefined && value.toString().trim() !== '',
+            message: 'Bu alan zorunludur'
+        },
+        email: {
+            test: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+            message: 'Geçerli bir e-posta adresi giriniz'
+        },
+        phone: {
+            test: (value) => /^(\+90|0)?[0-9]{10}$/.test(value.replace(/\s/g, '')),
+            message: 'Geçerli bir telefon numarası giriniz'
+        },
+        url: {
+            test: (value) => /^https?:\/\/.+/.test(value),
+            message: 'Geçerli bir URL giriniz'
+        },
+        number: {
+            test: (value) => !isNaN(value) && isFinite(value),
+            message: 'Geçerli bir sayı giriniz'
+        },
+        min: {
+            test: (value, min) => parseFloat(value) >= parseFloat(min),
+            message: (min) => `Minimum değer: ${min}`
+        },
+        max: {
+            test: (value, max) => parseFloat(value) <= parseFloat(max),
+            message: (max) => `Maksimum değer: ${max}`
+        },
+        minLength: {
+            test: (value, length) => value.toString().length >= parseInt(length),
+            message: (length) => `Minimum ${length} karakter olmalıdır`
+        },
+        maxLength: {
+            test: (value, length) => value.toString().length <= parseInt(length),
+            message: (length) => `Maksimum ${length} karakter olmalıdır`
+        },
+        pattern: {
+            test: (value, pattern) => new RegExp(pattern).test(value),
+            message: 'Geçerli format giriniz'
+        },
+        currency: {
+            test: (value) => /^\d+(\.\d{2})?$/.test(value),
+            message: 'Geçerli bir tutar giriniz (örn: 100.50)'
+        },
+        iban: {
+            test: (value) => /^TR\d{2}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{4}\s?\d{2}$/.test(value),
+            message: 'Geçerli bir IBAN giriniz'
+        },
+        tc: {
+            test: (value) => {
+                if (!/^\d{11}$/.test(value)) return false;
+                const digits = value.split('').map(Number);
+                const sum1 = digits[0] + digits[2] + digits[4] + digits[6] + digits[8];
+                const sum2 = digits[1] + digits[3] + digits[5] + digits[7];
+                return (sum1 * 7 - sum2) % 10 === digits[9] && 
+                       (sum1 + sum2 + digits[9]) % 10 === digits[10];
+            },
+            message: 'Geçerli bir TC kimlik numarası giriniz'
+        }
+    };
+
+    // Enhanced validator class
+    class FormValidator {
+        constructor(form, options = {}) {
+            this.form = form;
+            this.options = { ...config.validation, ...options };
+            this.errors = new Map();
+            this.rules = new Map();
+            
+            this.init();
         }
 
-        console.log('📋 Ekash Forms initializing...');
+        init() {
+            // Parse validation rules from HTML attributes
+            this.parseRules();
+            
+            // Setup event listeners
+            this.setupEventListeners();
+        }
 
-        EkashCore.ready(() => {
-            initAjaxForms();
-            initValidation();
-            initSpecialHandlers();
-        });
+        parseRules() {
+            const inputs = this.form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                const rules = [];
+                
+                // Required
+                if (input.hasAttribute('required')) {
+                    rules.push({ type: 'required' });
+                }
+                
+                // Type-based validation
+                if (input.type === 'email') {
+                    rules.push({ type: 'email' });
+                } else if (input.type === 'url') {
+                    rules.push({ type: 'url' });
+                } else if (input.type === 'number') {
+                    rules.push({ type: 'number' });
+                }
+                
+                // Min/Max for numbers
+                if (input.hasAttribute('min')) {
+                    rules.push({ type: 'min', value: input.getAttribute('min') });
+                }
+                if (input.hasAttribute('max')) {
+                    rules.push({ type: 'max', value: input.getAttribute('max') });
+                }
+                
+                // Length validation
+                if (input.hasAttribute('minlength')) {
+                    rules.push({ type: 'minLength', value: input.getAttribute('minlength') });
+                }
+                if (input.hasAttribute('maxlength')) {
+                    rules.push({ type: 'maxLength', value: input.getAttribute('maxlength') });
+                }
+                
+                // Pattern validation
+                if (input.hasAttribute('pattern')) {
+                    rules.push({ type: 'pattern', value: input.getAttribute('pattern') });
+                }
+                
+                // Custom validation attributes
+                if (input.hasAttribute('data-validate')) {
+                    const customRules = input.getAttribute('data-validate').split(',');
+                    customRules.forEach(rule => {
+                        const [type, value] = rule.split(':');
+                        rules.push({ type: type.trim(), value: value ? value.trim() : null });
+                    });
+                }
+                
+                if (rules.length > 0) {
+                    this.rules.set(input, rules);
+                }
+            });
+        }
 
-        isInitialized = true;
-        console.log('✅ Ekash Forms initialized successfully');
+        setupEventListeners() {
+            // Validate on input
+            if (this.options.showErrorsOnInput) {
+                this.form.addEventListener('input', (event) => {
+                    if (this.rules.has(event.target)) {
+                        this.validateField(event.target);
+                    }
+                });
+            }
+            
+            // Clear errors on focus
+            if (this.options.clearErrorsOnFocus) {
+                this.form.addEventListener('focus', (event) => {
+                    if (this.rules.has(event.target)) {
+                        this.clearFieldError(event.target);
+                    }
+                }, true);
+            }
+            
+            // Validate on submit
+            this.form.addEventListener('submit', (event) => {
+                if (!this.validate()) {
+                    event.preventDefault();
+                }
+            });
+        }
+
+        validateField(field) {
+            const rules = this.rules.get(field);
+            if (!rules) return true;
+            
+            const value = field.value;
+            
+            for (const rule of rules) {
+                const validator = validationRules[rule.type];
+                if (!validator) continue;
+                
+                if (!validator.test(value, rule.value)) {
+                    const message = typeof validator.message === 'function' ? 
+                        validator.message(rule.value) : validator.message;
+                    
+                    this.setFieldError(field, message);
+                    return false;
+                }
+            }
+            
+            this.clearFieldError(field);
+            return true;
+        }
+
+        validate() {
+            let isValid = true;
+            
+            this.rules.forEach((rules, field) => {
+                if (!this.validateField(field)) {
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        setFieldError(field, message) {
+            this.errors.set(field, message);
+            
+            // Add error class
+            field.classList.add('is-invalid');
+            
+            // Show error message
+            let errorElement = field.parentNode.querySelector('.invalid-feedback');
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.className = 'invalid-feedback';
+                field.parentNode.appendChild(errorElement);
+            }
+            
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            
+            // Animate error
+            if (window.EkashCore) {
+                EkashCore.animate.slideIn(errorElement, 'up', { duration: 200 });
+            }
+        }
+
+        clearFieldError(field) {
+            this.errors.delete(field);
+            
+            // Remove error class
+            field.classList.remove('is-invalid');
+            
+            // Hide error message
+            const errorElement = field.parentNode.querySelector('.invalid-feedback');
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        getErrors() {
+            return Array.from(this.errors.entries());
+        }
+
+        hasErrors() {
+            return this.errors.size > 0;
+        }
     }
 
-    /**
-     * Initialize AJAX form handling
-     */
-    function initAjaxForms() {
-        const forms = document.querySelectorAll(selectors.forms);
+    // Enhanced AJAX system
+    const ajax = {
+        // Submit form via AJAX
+        submitForm: function(form, options = {}) {
+            return new Promise((resolve, reject) => {
+                const formData = new FormData(form);
+                const url = form.action || window.location.href;
+                
+                this.submitAjaxRequest(url, formData, options)
+                    .then(resolve)
+                    .catch(reject);
+            });
+        },
+
+        // Submit AJAX request
+        submitAjaxRequest: function(url, data, options = {}) {
+            return new Promise((resolve, reject) => {
+                const requestOptions = {
+                    method: 'POST',
+                    timeout: config.ajax.timeout,
+                    retries: config.ajax.retries,
+                    ...options
+                };
+
+                // Convert data to FormData if needed
+                let requestData = data;
+                if (!(data instanceof FormData) && typeof data === 'object') {
+                    requestData = new FormData();
+                    Object.entries(data).forEach(([key, value]) => {
+                        requestData.append(key, value);
+                    });
+                }
+
+                // Add CSRF token if available
+                if (window.csrfToken) {
+                    requestData.append('csrf_token', window.csrfToken);
+                }
+
+                this.makeRequest(url, requestData, requestOptions)
+                    .then(resolve)
+                    .catch(reject);
+            });
+        },
+
+        // Make HTTP request with retry logic
+        makeRequest: function(url, data, options, attempt = 1) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                
+                // Setup timeout
+                xhr.timeout = options.timeout;
+                
+                // Setup response handlers
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            resolve(response);
+                        } catch (e) {
+                            resolve({ success: true, data: xhr.responseText });
+                        }
+                    } else {
+                        reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    if (attempt < options.retries) {
+                        setTimeout(() => {
+                            this.makeRequest(url, data, options, attempt + 1)
+                                .then(resolve)
+                                .catch(reject);
+                        }, config.ajax.retryDelay * attempt);
+                    } else {
+                        reject(new Error('Network error'));
+                    }
+                };
+                
+                xhr.ontimeout = function() {
+                    if (attempt < options.retries) {
+                        setTimeout(() => {
+                            this.makeRequest(url, data, options, attempt + 1)
+                                .then(resolve)
+                                .catch(reject);
+                        }, config.ajax.retryDelay * attempt);
+                    } else {
+                        reject(new Error('Request timeout'));
+                    }
+                };
+                
+                // Send request
+                xhr.open(options.method, url);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                
+                if (window.csrfToken) {
+                    xhr.setRequestHeader('X-CSRF-Token', window.csrfToken);
+                }
+                
+                xhr.send(data);
+            });
+        }
+    };
+
+    // Enhanced autosave system
+    const autosave = {
+        // Enable autosave for form
+        enable: function(form) {
+            if (!config.autosave.enabled) return;
+            
+            const formId = form.id || `form_${Date.now()}`;
+            const storageKey = config.autosave.storagePrefix + formId;
+            
+            // Load saved data
+            this.loadSavedData(form, storageKey);
+            
+            // Setup autosave timer
+            const timer = setInterval(() => {
+                this.saveFormData(form, storageKey);
+            }, config.autosave.interval);
+            
+            state.autosaveTimers.set(form, timer);
+            
+            // Save on input with debounce
+            const debouncedSave = EkashCore.utils.debounce(() => {
+                this.saveFormData(form, storageKey);
+            }, 1000);
+            
+            form.addEventListener('input', debouncedSave);
+            
+            // Clear on submit
+            form.addEventListener('submit', () => {
+                this.clearSavedData(storageKey);
+                this.disable(form);
+            });
+        },
+
+        // Disable autosave for form
+        disable: function(form) {
+            const timer = state.autosaveTimers.get(form);
+            if (timer) {
+                clearInterval(timer);
+                state.autosaveTimers.delete(form);
+            }
+        },
+
+        // Save form data
+        saveFormData: function(form, storageKey) {
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (const [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            try {
+                EkashCore.utils.storage.set(storageKey, {
+                    data: data,
+                    timestamp: Date.now()
+                });
+                
+                // Show subtle notification
+                if (window.EkashUI) {
+                    EkashUI.showNotification('Form otomatik kaydedildi', 'info', { 
+                        duration: 2000,
+                        position: 'bottom-right'
+                    });
+                }
+            } catch (e) {
+                console.warn('Autosave failed:', e);
+            }
+        },
+
+        // Load saved data
+        loadSavedData: function(form, storageKey) {
+            const savedData = EkashCore.utils.storage.get(storageKey);
+            if (!savedData) return;
+            
+            const { data, timestamp } = savedData;
+            
+            // Check if data is not too old (24 hours)
+            if (Date.now() - timestamp > 24 * 60 * 60 * 1000) {
+                this.clearSavedData(storageKey);
+                return;
+            }
+            
+            // Populate form
+            Object.entries(data).forEach(([key, value]) => {
+                const field = form.querySelector(`[name="${key}"]`);
+                if (field) {
+                    field.value = value;
+                }
+            });
+            
+            // Show notification
+            if (window.EkashUI) {
+                EkashUI.showNotification('Kaydedilmiş form verileri yüklendi', 'success', { 
+                    duration: 3000 
+                });
+            }
+        },
+
+        // Clear saved data
+        clearSavedData: function(storageKey) {
+            EkashCore.utils.storage.remove(storageKey);
+        }
+    };
+
+    // Enhanced form utilities
+    const utils = {
+        // Get form data as object
+        getFormData: function(form) {
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (const [key, value] of formData.entries()) {
+                if (data[key]) {
+                    // Handle multiple values (checkboxes, multi-select)
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            return data;
+        },
+
+        // Populate form with data
+        populateForm: function(form, data) {
+            Object.entries(data).forEach(([key, value]) => {
+                const field = form.querySelector(`[name="${key}"]`);
+                if (field) {
+                    if (field.type === 'checkbox' || field.type === 'radio') {
+                        field.checked = value;
+                    } else {
+                        field.value = value;
+                    }
+                }
+            });
+        },
+
+        // Reset form with animation
+        resetForm: function(form) {
+            const fields = form.querySelectorAll('input, select, textarea');
+            
+            fields.forEach(field => {
+                if (window.EkashCore) {
+                    EkashCore.animate.fadeOut(field, { duration: 200 }).then(() => {
+                        field.value = '';
+                        field.checked = false;
+                        field.classList.remove('is-invalid');
+                        EkashCore.animate.fadeIn(field, { duration: 200 });
+                    });
+                } else {
+                    field.value = '';
+                    field.checked = false;
+                    field.classList.remove('is-invalid');
+                }
+            });
+        },
+
+        // Validate single field
+        validateField: function(field) {
+            const form = field.closest('form');
+            if (!form) return true;
+            
+            const validator = state.validators.get(form);
+            if (!validator) return true;
+            
+            return validator.validateField(field);
+        }
+    };
+
+    // Form initialization
+    function initializeForms() {
+        const forms = document.querySelectorAll('form');
         
         forms.forEach(form => {
-            form.addEventListener('submit', handleFormSubmit);
-        });
-
-        console.log(`✅ AJAX forms initialized for ${forms.length} forms`);
-    }
-
-    /**
-     * Handle form submission
-     */
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        
-        const form = event.target;
-        const submitButton = form.querySelector(selectors.submitButtons);
-        
-        // Validate form before submission
-        if (!validateForm(form)) {
-            return false;
-        }
-
-        // Prepare form data
-        const formData = new FormData(form);
-        
-        // Add CSRF token if not present
-        if (!formData.has(config.csrf.tokenName)) {
-            const csrfToken = getCSRFToken();
-            if (csrfToken) {
-                formData.append(config.csrf.tokenName, csrfToken);
-            }
-        }
-
-        // Get form configuration
-        const url = form.getAttribute('action') || window.location.href;
-        const method = form.getAttribute('method') || 'POST';
-        
-        // Set button loading state
-        if (submitButton) {
-            EkashUI.setButtonLoading(submitButton);
-        }
-
-        // Submit form via AJAX
-        submitFormAjax(url, method, formData, form)
-            .then(response => handleFormSuccess(response, form))
-            .catch(error => handleFormError(error, form))
-            .finally(() => {
-                if (submitButton) {
-                    EkashUI.resetButton(submitButton);
-                }
-            });
-    }
-
-    /**
-     * Submit form via AJAX
-     */
-    function submitFormAjax(url, method, formData, form) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
+            // Skip if already initialized
+            if (state.forms.has(form)) return;
             
-            xhr.timeout = config.ajax.timeout;
+            // Create validator
+            const validator = new FormValidator(form);
+            state.validators.set(form, validator);
             
-            xhr.onload = function() {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        resolve(response);
-                    } catch (e) {
-                        // If not JSON, treat as success with text response
-                        resolve({ success: true, message: xhr.responseText });
-                    }
-                } else {
-                    reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
-                }
-            };
-            
-            xhr.onerror = function() {
-                reject(new Error('Network error occurred'));
-            };
-            
-            xhr.ontimeout = function() {
-                reject(new Error('Request timed out'));
-            };
-            
-            xhr.open(method.toUpperCase(), url);
-            
-            // Set CSRF header if available
-            const csrfToken = getCSRFToken();
-            if (csrfToken) {
-                xhr.setRequestHeader(config.csrf.headerName, csrfToken);
+            // Enable autosave if attribute is present
+            if (form.hasAttribute('data-autosave')) {
+                autosave.enable(form);
             }
             
-            xhr.send(formData);
-            
-            // Trigger form submit event
-            EkashCore.triggerEvent('formSubmitted', { form, url, method });
-        });
-    }
-
-    /**
-     * Handle successful form submission
-     */
-    function handleFormSuccess(response, form) {
-        console.log('Form submitted successfully:', response);
-        
-        // Show success message
-        if (response.message) {
-            EkashUI.showSnackbar(response.message, 'success');
-        }
-        
-        // Reset form if specified
-        if (response.resetForm !== false) {
-            resetForm(form);
-        }
-        
-        // Redirect if specified
-        if (response.redirect) {
-            setTimeout(() => {
-                window.location.href = response.redirect;
-            }, 1500);
-        }
-        
-        // Reload page if specified
-        if (response.reload) {
-            setTimeout(() => {
-                window.location.reload();
-            }, 1500);
-        }
-        
-        // Trigger success event
-        EkashCore.triggerEvent('formSuccess', { form, response });
-    }
-
-    /**
-     * Handle form submission error
-     */
-    function handleFormError(error, form) {
-        console.error('Form submission error:', error);
-        
-        let errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
-        
-        if (error.message) {
-            errorMessage = error.message;
-        }
-        
-        // Show error message
-        EkashUI.showSnackbar(errorMessage, 'error');
-        
-        // Trigger error event
-        EkashCore.triggerEvent('formError', { form, error });
-    }
-
-    /**
-     * Form validation
-     */
-    function validateForm(form) {
-        const inputs = form.querySelectorAll(selectors.inputs);
-        let isValid = true;
-        
-        // Clear previous errors
-        clearFormErrors(form);
-        
-        inputs.forEach(input => {
-            if (!validateInput(input)) {
-                isValid = false;
-            }
-        });
-        
-        return isValid;
-    }
-
-    /**
-     * Validate individual input
-     */
-    function validateInput(input) {
-        const value = input.value.trim();
-        const type = input.type;
-        const required = input.hasAttribute('required');
-        let isValid = true;
-        let errorMessage = '';
-
-        // Required field validation
-        if (required && !value) {
-            isValid = false;
-            errorMessage = 'Bu alan zorunludur';
-        }
-        
-        // Type-specific validation
-        if (value && isValid) {
-            switch (type) {
-                case 'email':
-                    if (!EkashCore.isValidEmail(value)) {
-                        isValid = false;
-                        errorMessage = 'Geçerli bir e-posta adresi girin';
-                    }
-                    break;
+            // Setup AJAX submission if attribute is present
+            if (form.hasAttribute('data-ajax')) {
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
                     
-                case 'number':
-                    if (isNaN(value) || value < 0) {
-                        isValid = false;
-                        errorMessage = 'Geçerli bir sayı girin';
-                    }
-                    break;
+                    // Check if already submitting
+                    if (state.submitInProgress.has(form)) return;
                     
-                case 'tel':
-                    if (!/^\+?[\d\s\-\(\)]+$/.test(value)) {
-                        isValid = false;
-                        errorMessage = 'Geçerli bir telefon numarası girin';
-                    }
-                    break;
+                    const submitButton = form.querySelector('button[type="submit"]');
                     
-                case 'url':
-                    if (!/^https?:\/\/.+/.test(value)) {
-                        isValid = false;
-                        errorMessage = 'Geçerli bir URL girin (http:// veya https://)';
+                    // Set loading state
+                    if (submitButton && window.EkashUI) {
+                        EkashUI.setButtonLoading(submitButton);
                     }
-                    break;
-            }
-        }
-        
-        // Custom validation attributes
-        if (value && isValid) {
-            const minLength = input.getAttribute('minlength');
-            if (minLength && value.length < parseInt(minLength)) {
-                isValid = false;
-                errorMessage = `En az ${minLength} karakter olmalıdır`;
-            }
-            
-            const maxLength = input.getAttribute('maxlength');
-            if (maxLength && value.length > parseInt(maxLength)) {
-                isValid = false;
-                errorMessage = `En fazla ${maxLength} karakter olmalıdır`;
-            }
-            
-            const min = input.getAttribute('min');
-            if (min && parseFloat(value) < parseFloat(min)) {
-                isValid = false;
-                errorMessage = `Minimum değer ${min} olmalıdır`;
-            }
-            
-            const max = input.getAttribute('max');
-            if (max && parseFloat(value) > parseFloat(max)) {
-                isValid = false;
-                errorMessage = `Maximum değer ${max} olmalıdır`;
-            }
-        }
-
-        // Show/hide error
-        if (!isValid) {
-            showFieldError(input, errorMessage);
-        } else {
-            hideFieldError(input);
-        }
-        
-        return isValid;
-    }
-
-    /**
-     * Initialize real-time validation
-     */
-    function initValidation() {
-        if (!config.validation.realTimeValidation) return;
-        
-        const inputs = document.querySelectorAll(selectors.inputs);
-        
-        inputs.forEach(input => {
-            // Validate on blur
-            input.addEventListener('blur', () => {
-                validateInput(input);
-            });
-            
-            // Clear error on input
-            input.addEventListener('input', () => {
-                if (input.classList.contains('is-invalid')) {
-                    hideFieldError(input);
-                }
-            });
-        });
-
-        console.log(`✅ Real-time validation initialized for ${inputs.length} inputs`);
-    }
-
-    /**
-     * Show field error
-     */
-    function showFieldError(input, message) {
-        input.classList.add('is-invalid');
-        input.classList.remove('is-valid');
-        
-        // Create or update error element
-        let errorElement = input.parentNode.querySelector('.invalid-feedback');
-        if (!errorElement) {
-            errorElement = EkashCore.createElement('div', {
-                className: 'invalid-feedback'
-            });
-            input.parentNode.appendChild(errorElement);
-        }
-        
-        errorElement.textContent = message;
-        errorElement.style.display = 'block';
-    }
-
-    /**
-     * Hide field error
-     */
-    function hideFieldError(input) {
-        input.classList.remove('is-invalid');
-        input.classList.add('is-valid');
-        
-        const errorElement = input.parentNode.querySelector('.invalid-feedback');
-        if (errorElement) {
-            errorElement.style.display = 'none';
-        }
-    }
-
-    /**
-     * Clear all form errors
-     */
-    function clearFormErrors(form) {
-        const invalidInputs = form.querySelectorAll('.is-invalid');
-        invalidInputs.forEach(input => {
-            input.classList.remove('is-invalid');
-        });
-        
-        const errorElements = form.querySelectorAll('.invalid-feedback');
-        errorElements.forEach(element => {
-            element.style.display = 'none';
-        });
-    }
-
-    /**
-     * Reset form to initial state
-     */
-    function resetForm(form) {
-        form.reset();
-        clearFormErrors(form);
-        
-        // Reset all input states
-        const inputs = form.querySelectorAll(selectors.inputs);
-        inputs.forEach(input => {
-            input.classList.remove('is-valid', 'is-invalid');
-        });
-        
-        // Trigger reset event
-        EkashCore.triggerEvent('formReset', { form });
-    }
-
-    /**
-     * Get CSRF token from meta tag or form
-     */
-    function getCSRFToken() {
-        // Try to get from meta tag first
-        const metaToken = document.querySelector('meta[name="csrf-token"]');
-        if (metaToken) {
-            return metaToken.getAttribute('content');
-        }
-        
-        // Try to get from existing form input
-        const inputToken = document.querySelector(`input[name="${config.csrf.tokenName}"]`);
-        if (inputToken) {
-            return inputToken.value;
-        }
-        
-        // Try to get from global variable (PHP generated)
-        if (typeof window.csrfToken !== 'undefined') {
-            return window.csrfToken;
-        }
-        
-        return null;
-    }
-
-    /**
-     * Initialize special form handlers (FAB forms, modals, etc.)
-     */
-    function initSpecialHandlers() {
-        // FAB form handlers from index.php
-        initFABHandlers();
-        
-        // Modal form handlers
-        initModalHandlers();
-        
-        // Listen for FAB actions from UI module
-        EkashCore.on('fabAction', (e) => {
-            console.log('FAB action triggered:', e.detail.action);
-        });
-        
-        console.log('✅ Special form handlers initialized');
-    }
-
-    /**
-     * Initialize FAB (Floating Action Button) handlers
-     */
-    function initFABHandlers() {
-        // Import Favorites
-        const importFavoritesBtn = document.getElementById('importFavoritesBtn');
-        if (importFavoritesBtn) {
-            importFavoritesBtn.addEventListener('click', handleImportFavorites);
-        }
-
-        // Add from Link
-        const addFromLinkBtn = document.getElementById('addFromLinkBtn');
-        if (addFromLinkBtn) {
-            addFromLinkBtn.addEventListener('click', handleAddFromLink);
-        }
-
-        // Bulk Add
-        const bulkAddBtn = document.getElementById('bulkAddBtn');
-        if (bulkAddBtn) {
-            bulkAddBtn.addEventListener('click', handleBulkAdd);
-        }
-
-        // Import Notes
-        const importNotesBtn = document.getElementById('importNotesBtn');
-        if (importNotesBtn) {
-            importNotesBtn.addEventListener('click', handleImportNotes);
-        }
-    }
-
-    /**
-     * Handle import favorites
-     */
-    function handleImportFavorites() {
-        const favoritesText = document.getElementById('favoritesText')?.value.trim();
-        
-        if (!favoritesText) {
-            EkashUI.showSnackbar('Lütfen favori ürünlerinizi girin', 'error');
-            return;
-        }
-
-        const button = document.getElementById('importFavoritesBtn');
-        EkashUI.setButtonLoading(button, 'İçe Aktarılıyor...');
-
-        submitAjaxRequest('ajax/import_favorites.php', {
-            favorites_text: favoritesText,
-            [config.csrf.tokenName]: getCSRFToken()
-        })
-        .then(response => {
-            if (response.success) {
-                EkashUI.showSnackbar(response.message, 'success');
-                const modal = document.getElementById('importFavoritesModal');
-                if (modal) {
-                    bootstrap.Modal.getInstance(modal)?.hide();
-                }
-                document.getElementById('favoritesText').value = '';
-                
-                setTimeout(() => location.reload(), 1500);
-            } else {
-                EkashUI.showSnackbar(response.message, 'error');
-            }
-        })
-        .catch(error => {
-            EkashUI.showSnackbar('Bir hata oluştu', 'error');
-        })
-        .finally(() => {
-            EkashUI.resetButton(button);
-        });
-    }
-
-    /**
-     * Handle add from link
-     */
-    function handleAddFromLink() {
-        const formData = {
-            product_name: document.getElementById('productName')?.value.trim(),
-            product_price: document.getElementById('productPrice')?.value.trim(),
-            product_link: document.getElementById('productLink')?.value.trim(),
-            product_category: document.getElementById('productCategory')?.value,
-            product_image: document.getElementById('productImage')?.value.trim(),
-            product_notes: document.getElementById('productNotes')?.value.trim()
-        };
-
-        if (!formData.product_name || !formData.product_price) {
-            EkashUI.showSnackbar('Ürün adı ve fiyat gereklidir', 'error');
-            return;
-        }
-
-        const button = document.getElementById('addFromLinkBtn');
-        EkashUI.setButtonLoading(button, 'Ekleniyor...');
-
-        formData[config.csrf.tokenName] = getCSRFToken();
-
-        submitAjaxRequest('ajax/add_from_link.php', formData)
-        .then(response => {
-            if (response.success) {
-                EkashUI.showSnackbar(response.message, 'success');
-                const modal = document.getElementById('addFromLinkModal');
-                if (modal) {
-                    bootstrap.Modal.getInstance(modal)?.hide();
-                }
-                
-                // Clear form
-                ['productName', 'productPrice', 'productLink', 'productImage', 'productNotes'].forEach(id => {
-                    const element = document.getElementById(id);
-                    if (element) element.value = '';
+                    
+                    state.submitInProgress.add(form);
+                    
+                    ajax.submitForm(form)
+                        .then(response => {
+                            if (response.success) {
+                                if (window.EkashUI) {
+                                    EkashUI.showNotification(response.message || 'İşlem başarılı', 'success');
+                                }
+                                
+                                // Reset form if specified
+                                if (form.hasAttribute('data-reset-on-success')) {
+                                    utils.resetForm(form);
+                                }
+                                
+                                // Redirect if specified
+                                if (response.redirect) {
+                                    setTimeout(() => {
+                                        window.location.href = response.redirect;
+                                    }, 1000);
+                                }
+                            } else {
+                                if (window.EkashUI) {
+                                    EkashUI.showNotification(response.message || 'İşlem başarısız', 'error');
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            if (window.EkashUI) {
+                                EkashUI.showNotification('Bağlantı hatası: ' + error.message, 'error');
+                            }
+                        })
+                        .finally(() => {
+                            // Reset loading state
+                            if (submitButton && window.EkashUI) {
+                                EkashUI.resetButton(submitButton);
+                            }
+                            
+                            state.submitInProgress.delete(form);
+                        });
                 });
-                
-                setTimeout(() => location.reload(), 1500);
-            } else {
-                EkashUI.showSnackbar(response.message, 'error');
             }
-        })
-        .catch(error => {
-            EkashUI.showSnackbar('Bir hata oluştu', 'error');
-        })
-        .finally(() => {
-            EkashUI.resetButton(button);
+            
+            // Mark as initialized
+            state.forms.set(form, {
+                validator: validator,
+                initialized: Date.now()
+            });
         });
     }
 
-    /**
-     * Handle bulk add
-     */
-    function handleBulkAdd() {
-        const bulkItemsText = document.getElementById('bulkItemsText')?.value.trim();
+    // Initialize forms system
+    function init() {
+        EkashCore.performance.mark('forms-init-start');
         
-        if (!bulkItemsText) {
-            EkashUI.showSnackbar('Lütfen ürün listesini girin', 'error');
-            return;
-        }
-
-        const button = document.getElementById('bulkAddBtn');
-        EkashUI.setButtonLoading(button, 'Ekleniyor...');
-
-        submitAjaxRequest('ajax/bulk_add_products.php', {
-            bulk_items_text: bulkItemsText,
-            [config.csrf.tokenName]: getCSRFToken()
-        })
-        .then(response => {
-            if (response.success) {
-                EkashUI.showSnackbar(response.message, 'success');
-                const modal = document.getElementById('bulkAddModal');
-                if (modal) {
-                    bootstrap.Modal.getInstance(modal)?.hide();
-                }
-                document.getElementById('bulkItemsText').value = '';
-                
-                setTimeout(() => location.reload(), 1500);
-            } else {
-                EkashUI.showSnackbar(response.message, 'error');
-            }
-        })
-        .catch(error => {
-            EkashUI.showSnackbar('Bir hata oluştu', 'error');
-        })
-        .finally(() => {
-            EkashUI.resetButton(button);
-        });
-    }
-
-    /**
-     * Handle import notes
-     */
-    function handleImportNotes() {
-        const notesText = document.getElementById('notesText')?.value.trim();
+        // Initialize existing forms
+        initializeForms();
         
-        if (!notesText) {
-            EkashUI.showSnackbar('Lütfen notlarınızı girin', 'error');
-            return;
-        }
-
-        const button = document.getElementById('importNotesBtn');
-        EkashUI.setButtonLoading(button, 'İçe Aktarılıyor...');
-
-        submitAjaxRequest('ajax/import_notes.php', {
-            notes_text: notesText,
-            notes_category: document.getElementById('notesCategory')?.value,
-            [config.csrf.tokenName]: getCSRFToken()
-        })
-        .then(response => {
-            if (response.success) {
-                EkashUI.showSnackbar(response.message, 'success');
-                const modal = document.getElementById('importNotesModal');
-                if (modal) {
-                    bootstrap.Modal.getInstance(modal)?.hide();
-                }
-                document.getElementById('notesText').value = '';
-                
-                setTimeout(() => location.reload(), 1500);
-            } else {
-                EkashUI.showSnackbar(response.message, 'error');
-            }
-        })
-        .catch(error => {
-            EkashUI.showSnackbar('Bir hata oluştu', 'error');
-        })
-        .finally(() => {
-            EkashUI.resetButton(button);
-        });
-    }
-
-    /**
-     * Initialize modal form handlers
-     */
-    function initModalHandlers() {
-        // Clean forms when modals are hidden
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            modal.addEventListener('hidden.bs.modal', () => {
-                const forms = modal.querySelectorAll('form');
-                forms.forEach(resetForm);
-                
-                // Reset buttons
-                const buttons = modal.querySelectorAll('button[type="submit"]');
-                buttons.forEach(button => {
-                    EkashUI.resetButton(button);
+        // Watch for new forms
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) { // Element node
+                        if (node.tagName === 'FORM') {
+                            initializeForms();
+                        } else if (node.querySelector) {
+                            const forms = node.querySelectorAll('form');
+                            if (forms.length > 0) {
+                                initializeForms();
+                            }
+                        }
+                    }
                 });
             });
         });
-    }
-
-    /**
-     * Generic AJAX request helper
-     */
-    function submitAjaxRequest(url, data) {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            const formData = new FormData();
-            
-            // Add data to FormData
-            Object.entries(data).forEach(([key, value]) => {
-                formData.append(key, value);
-            });
-            
-            xhr.timeout = config.ajax.timeout;
-            
-            xhr.onload = function() {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        resolve(response);
-                    } catch (e) {
-                        resolve({ success: true, message: xhr.responseText });
-                    }
-                } else {
-                    reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`));
-                }
-            };
-            
-            xhr.onerror = () => reject(new Error('Network error'));
-            xhr.ontimeout = () => reject(new Error('Request timeout'));
-            
-            xhr.open('POST', url);
-            xhr.send(formData);
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
         });
+        
+        // Debug info
+        if (config.debug) {
+            console.log('📝 Ekash Forms initialized');
+        }
+        
+        EkashCore.performance.mark('forms-init-end');
+        EkashCore.performance.measure('forms-init', 'forms-init-start', 'forms-init-end');
+        
+        // Trigger ready event
+        EkashCore.trigger('formsReady');
     }
 
-    /**
-     * Public API
-     */
-    return {
-        // Initialization
-        init,
+    // Public API
+    window.EkashForms = {
+        // Configuration
+        config: config,
         
-        // Form handling
-        validateForm,
-        validateInput,
-        resetForm,
-        submitFormAjax,
+        // Classes
+        FormValidator: FormValidator,
         
-        // Error handling
-        showFieldError,
-        hideFieldError,
-        clearFormErrors,
+        // Systems
+        ajax: ajax,
+        autosave: autosave,
+        utils: utils,
         
-        // Utilities
-        getCSRFToken,
-        submitAjaxRequest,
+        // Validation rules
+        validationRules: validationRules,
         
-        // Config access
-        config
+        // Convenience methods
+        submitAjaxRequest: ajax.submitAjaxRequest.bind(ajax),
+        submitForm: ajax.submitForm.bind(ajax),
+        validateField: utils.validateField.bind(utils),
+        getFormData: utils.getFormData.bind(utils),
+        populateForm: utils.populateForm.bind(utils),
+        resetForm: utils.resetForm.bind(utils),
+        
+        // Initialize
+        init: init
     };
+
+    // Auto-initialize when core is ready
+    EkashCore.on('coreReady', init);
+
 })();
-
-// Auto-initialize when core is ready
-EkashCore.ready(() => {
-    EkashForms.init();
-});
-
-// Export for module systems
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = EkashForms;
-}
-
-// Global namespace
-window.EkashForms = EkashForms;
