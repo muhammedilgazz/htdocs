@@ -33,6 +33,6 @@
     
     <!-- Toastr -->
     <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
-    
+    <link href="assets/css/modern-enhanced.css" rel="stylesheet">
 
 </head>
