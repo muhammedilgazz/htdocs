@@ -1,8 +1,7 @@
 <?php
-require_once __DIR__ . '/config/config.php';
-require_once __DIR__ . '/models/Auth.php';
+require_once __DIR__ . '/bootstrap.php';
 
-$auth = new Auth();
+$auth = new \App\Models\Auth();
 
 // Çıkış işlemi
 if (isset($_GET['logout'])) {

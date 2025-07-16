@@ -475,7 +475,7 @@ require_once __DIR__ . '/partials/head.php';
 
     .modern-card {
         border: none;
-        border-radius: 12px;
+        border-radius: 0px;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     }
