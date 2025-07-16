@@ -1,7 +1,10 @@
 <?php
 require_once 'config/config.php';
-require_once 'classes/Database.php';
-require_once 'classes/BackupManager.php';
+require_once 'models/Database.php';
+
+if (file_exists(__DIR__ . '/models/BackupManager.php')) {
+    require_once __DIR__ . '/models/BackupManager.php';
+}
 
 try {
     $db = Database::getInstance();

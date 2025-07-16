@@ -1,12 +1,15 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Expense.php';
+namespace App\Controllers;
+
+use App\Models\Todo;
 
 class TodoListController {
     public function index() {
-        $expense_model = new Expense();
-        $selected_month = $_SESSION['selected_month'] ?? '07.25';
-        $rows = $expense_model->getTodoList($selected_month);
+        $todo_model = new Todo();
+        $rows = $todo_model->getAll();
+
+        $csrf_token = generate_csrf_token();
 
         require_once 'C:/xampp/htdocs/views/todo_list/index.php';
     }

@@ -1,51 +1,23 @@
 <?php
-require_once '../config/config.php';
-require_once '../classes/Database.php';
-require_once '../classes/SecurityManager.php';
+require_once 'C:/xampp/htdocs/config/config.php';
+require_once 'C:/xampp/htdocs/models/Note.php';
 
-// Güvenlik kontrolü
-$security = new SecurityManager();
-$security->checkSession();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
+    $note_model = new Note();
+    
+    $data = [
+        'title' => sanitize_input($_POST['title']),
+        'content' => sanitize_input($_POST['content']),
+        'category' => sanitize_input($_POST['category']) ?? 'Genel',
+        'priority' => sanitize_input($_POST['priority']) ?? 'medium',
+        'status' => sanitize_input($_POST['status']) ?? 'active'
+    ];
 
-// CSRF kontrolü
-if (!isset($_POST['csrf_token']) || !$security->validateCSRF($_POST['csrf_token'])) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Güvenlik hatası']);
-    exit;
-}
-
-$db = Database::getInstance();
-$response = ['success' => false, 'message' => ''];
-
-try {
-    // Gerekli alanları kontrol et
-    if (empty($_POST['content'])) {
-        throw new Exception('Not içeriği gereklidir');
+    if ($note_model->add($data)) {
+        json_response(['success' => true, 'message' => 'Not başarıyla eklendi.']);
+    } else {
+        json_response(['success' => false, 'message' => 'Not eklenirken bir hata oluştu.'], 500);
     }
-
-    $content = trim($_POST['content']);
-    $title = trim($_POST['title'] ?? substr($content, 0, 50)); // If title not provided, use first 50 chars of content
-
-    // Veritabanına ekle
-    $stmt = $db->getPdo()->prepare("
-        INSERT INTO notes 
-        (title, content) 
-        VALUES (?, ?)
-    ");
-
-    $stmt->execute([
-        $title,
-        $content
-    ]);
-
-    $response['success'] = true;
-    $response['message'] = 'Not başarıyla eklendi';
-    $response['note_id'] = $db->getPdo()->lastInsertId();
-
-} catch (Exception $e) {
-    $response['message'] = 'Hata: ' . $e->getMessage();
+} else {
+    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
 }
-
-header('Content-Type: application/json');
-echo json_encode($response);
-?>

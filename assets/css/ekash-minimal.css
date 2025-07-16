@@ -4,10 +4,10 @@
 
 :root {
     /* Modern Color Palette */
-    --primary: #4F8CFF;
+    --primary: #112250;
     --primary-dark: #2563EB;
     --primary-light: #E5E9F2;
-    --primary-gradient: linear-gradient(135deg, #4F8CFF 0%, #2563EB 100%);
+    --primary-gradient: #112250;
     
     --success: #34C759;
     --success-dark: #28A745;
@@ -229,6 +229,8 @@ body {
     flex-direction: column;
     transition: margin-left var(--transition-normal);
     min-height: 100vh;
+    box-sizing: border-box; /* Added */
+    width: calc(100% - 280px); /* Added */
 }
 
 .app-content {
@@ -236,6 +238,7 @@ body {
     padding: var(--spacing-6);
     background: transparent;
     padding-bottom: var(--spacing-8);
+    box-sizing: border-box; /* Added */
 }
 
 /* Minimal Header */
@@ -1051,7 +1054,7 @@ body {
 }
 
 .quick-action-icon.primary {
-    background: linear-gradient(135deg, #4F8CFF 0%, #2563EB 100%);
+    background: linear-gradient(135deg, #112250 0%, #2563EB 100%);
     color: var(--white);
 }
 
@@ -1641,3 +1644,9 @@ body {
     color: var(--success-dark);
     border-color: var(--success-dark);
 } 
+ul.nav.flex-column.ms-3 li.nav-item.active a {
+background-color: #112e4b!important;
+}  
+.sidebar-header{
+background: #6386ac!important;   
+}

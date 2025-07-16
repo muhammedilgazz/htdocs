@@ -6,25 +6,24 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
     <div class="app-main">
         <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
-        <!-- Breadcrumb ve Başlık -->
-        <div class="container-fluid py-1" style="background:#f7f9fb;">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h2 class="mb-1" style="font-weight:700; color:#1f2e4e; font-size:1.5rem;">Banka Borçları</h2>
-                    <div style="color:#7b8ab8; font-size:1rem;">Banka kredileri ve borçları takibi.</div>
-                </div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0" style="background:transparent;">
-                        <li class="breadcrumb-item"><a href="/" style="color:#7b8ab8; text-decoration:none;">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a href="#" style="color:#7b8ab8; text-decoration:none;">Tüm Borçlar</a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#7b8ab8;">Banka</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <div class="app-content harcamalar-kucuk-font">
+        <div class="app-content">
             <div class="container py-3">
-                <!-- Boş Durum Kontrolü -->
+                <div class="card mb-3">
+                    <div class="card-body d-flex align-items-center justify-content-between p-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div>
+                                <h2 class="mb-0">Banka Borçları</h2>
+                                <div>Banka kredileri ve borçları takibi.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBankDebtModal">
+                                <i class="bi bi-plus-circle me-2"></i>Yeni Banka Borcu Ekle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <?php if (empty($rows)): ?>
                 <div class="text-center py-5">
                     <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
@@ -32,65 +31,45 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                     <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz banka borcu kaydı yok</h4>
                     <p style="color: #a0a8c0; margin-bottom: 2rem;">Banka borçlarınızı ekleyerek takip etmeye başlayın.</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 500;">
-                        <i class="bi bi-plus-circle me-2"></i>İlk Banka Borcu Ekle
-                    </button>
                 </div>
                 <?php else: ?>
-                <!-- Tablo Başlangıcı -->
-                <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                    <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">Banka Borçları</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
-                                <i class="bi bi-plus-circle me-1"></i>Yeni Banka Borcu Ekle
-                            </button>
-                        </div>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Banka Borçları Listesi</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
-                                <thead style="background:#f5f7fa;">
-                                    <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Kategori</th>
-                                        <th>Ürün/Hizmet</th>
-                                        <th>Tutar</th>
-                                        <th>Link</th>
-                                        <th>Açıklama</th>
-                                        <th>Durum</th>
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Banka Adı</th>
+                                        <th>Kredi Tipi</th>
+                                        <th>Anapara</th>
+                                        <th>Toplam Borç</th>
+                                        <th>Yasal Süreçte Mi?</th>
+                                        <th>Varlık Şirketi</th>
+                                        <th>Taksitli Mi?</th>
+                                        <th>Planlanan Ödeme Tarihi</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
-                                    <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= htmlspecialchars($row['category_name']) ?> </td>
-                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
-                                        <td> ₺<?= number_format($row['amount'], 0, ',', '.') ?> </td>
-                                        <td>
-                                            <?php if (!empty($row['link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
-                                            <?php else: ?>-
-                                            <?php endif; ?>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
-                                        <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede">Beklemede</option>
-                                                    <option value="Devam Ediyor">Devam Ediyor</option>
-                                                    <option value="Tamamlandı">Tamamlandı</option>
-                                                    <option value="İptal Edildi">İptal Edildi</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
-                                            </div>
-                                        </td>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['bank_name']) ?></td>
+                                        <td><?= htmlspecialchars($row['loan_type']) ?></td>
+                                        <td>₺<?= number_format($row['principal'], 2, ',', '.') ?></td>
+                                        <td>₺<?= number_format($row['total'], 2, ',', '.') ?></td>
+                                        <td><?= $row['is_legal_process'] ? 'Evet' : 'Hayır' ?></td>
+                                        <td><?= htmlspecialchars($row['asset_company'] ?? '-') ?></td>
+                                        <td><?= $row['is_installment'] ? 'Evet' : 'Hayır' ?></td>
+                                        <td><?= date('d.m.Y', strtotime($row['planned_payment_date'])) ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
+                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editBankDebtModal">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button">
+                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>
@@ -103,118 +82,201 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                 </div>
                 <?php endif; ?>
-                
-                <!-- Harcama Ekle Modal -->
-                <div class="modal fade" id="harcamaEkleModal" tabindex="-1" aria-labelledby="harcamaEkleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="harcamaEkleModalLabel">Yeni Banka Borcu Ekle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="harcamaEkleForm">
-                                <div class="modal-body">
-                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    
-                                    <div class="mb-3">
-                                        <label for="category_name" class="form-label">Kategori</label>
-                                        <input type="text" class="form-control" id="category_name" name="category_name" value="Banka" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="item_name" class="form-label">Kredi Türü</label>
-                                        <input type="text" class="form-control" id="item_name" name="item_name" placeholder="Örn: Konut Kredisi, İhtiyaç Kredisi, Kredi Kartı" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="amount" class="form-label">Tutar (₺)</label>
-                                        <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="link" class="form-label">Link (Opsiyonel)</label>
-                                        <input type="url" class="form-control" id="link" name="link">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label">Açıklama (Opsiyonel)</label>
-                                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="status_name" class="form-label">Durum</label>
-                                        <select class="form-select" id="status_name" name="status_name" required>
-                                            <option value="Beklemede">Beklemede</option>
-                                            <option value="Devam Ediyor">Devam Ediyor</option>
-                                            <option value="Tamamlandı">Tamamlandı</option>
-                                            <option value="İptal Edildi">İptal Edildi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                    <button type="submit" class="btn btn-primary">Ekle</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<!-- Add Bank Debt Modal -->
+<div class="modal fade" id="addBankDebtModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Banka Borcu Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="bank_name" class="form-label">Banka Adı</label>
+                        <input type="text" class="form-control" id="bank_name" name="bank_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loan_type" class="form-label">Kredi Tipi</label>
+                        <input type="text" class="form-control" id="loan_type" name="loan_type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="principal" class="form-label">Anapara</label>
+                        <input type="number" class="form-control" id="principal" name="principal" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="total" class="form-label">Toplam Borç</label>
+                        <input type="number" class="form-control" id="total" name="total" step="0.01">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="is_legal_process" name="is_legal_process" value="1">
+                        <label class="form-check-label" for="is_legal_process">Yasal Süreçte Mi?</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="asset_company" class="form-label">Varlık Şirketi</label>
+                        <input type="text" class="form-control" id="asset_company" name="asset_company">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="is_installment" name="is_installment" value="1">
+                        <label class="form-check-label" for="is_installment">Taksitli Mi?</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="planned_payment_date" class="form-label">Planlanan Ödeme Tarihi</label>
+                        <input type="date" class="form-control" id="planned_payment_date" name="planned_payment_date">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Bank Debt Modal -->
+<div class="modal fade" id="editBankDebtModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Banka Borcunu Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="edit_id" name="id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_bank_name" class="form-label">Banka Adı</label>
+                        <input type="text" class="form-control" id="edit_bank_name" name="bank_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_loan_type" class="form-label">Kredi Tipi</label>
+                        <input type="text" class="form-control" id="edit_loan_type" name="loan_type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_principal" class="form-label">Anapara</label>
+                        <input type="number" class="form-control" id="edit_principal" name="principal" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_total" class="form-label">Toplam Borç</label>
+                        <input type="number" class="form-control" id="edit_total" name="total" step="0.01">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="edit_is_legal_process" name="is_legal_process" value="1">
+                        <label class="form-check-label" for="edit_is_legal_process">Yasal Süreçte Mi?</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_asset_company" class="form-label">Varlık Şirketi</label>
+                        <input type="text" class="form-control" id="edit_asset_company" name="asset_company">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="edit_is_installment" name="is_installment" value="1">
+                        <label class="form-check-label" for="edit_is_installment">Taksitli Mi?</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_planned_payment_date" class="form-label">Planlanan Ödeme Tarihi</label>
+                        <input type="date" class="form-control" id="edit_planned_payment_date" name="planned_payment_date">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {
-    // Durum değişikliği
-    $('.status-dropdown').change(function() {
-        var id = $(this).data('id');
-        var status = $(this).val();
-        
+    // Add Form
+    $('#addForm').submit(function(e) {
+        e.preventDefault();
         $.ajax({
-            url: 'ajax/update_expense_status.php',
+            url: 'ajax/add_bank_debt.php',
             type: 'POST',
-            data: {
-                id: id,
-                status_name: status,
-                csrf_token: '<?= $csrf_token ?>'
-            },
+            data: $(this).serialize(),
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('Durum güncellendi');
+                    location.reload();
                 } else {
-                    toastr.error(response.message || 'Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
             }
         });
     });
-    
-    // Yeni harcama ekleme
-    $('#harcamaEkleForm').submit(function(e) {
-        e.preventDefault();
-        
+
+    // Edit Button
+    $('.edit-btn').click(function() {
+        const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/add_expense.php',
+            url: 'ajax/get_bank_debt.php',
             type: 'POST',
-            data: $(this).serialize(),
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('Banka borcu başarıyla eklendi');
-                    $('#harcamaEkleModal').modal('hide');
+                    const debt = response.data;
+                    $('#edit_id').val(debt.id);
+                    $('#edit_bank_name').val(debt.bank_name);
+                    $('#edit_loan_type').val(debt.loan_type);
+                    $('#edit_principal').val(debt.principal);
+                    $('#edit_total').val(debt.total);
+                    $('#edit_is_legal_process').prop('checked', debt.is_legal_process == 1);
+                    $('#edit_asset_company').val(debt.asset_company);
+                    $('#edit_is_installment').prop('checked', debt.is_installment == 1);
+                    $('#edit_planned_payment_date').val(debt.planned_payment_date);
+                    $('#editBankDebtModal').modal('show');
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            }
+        });
+    });
+
+    // Edit Form
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/update_bank_debt.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
                     location.reload();
                 } else {
-                    toastr.error(response.message || 'Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
+            }
+        });
+    });
+
+    // Delete Button
+    $('.delete-btn').click(function() {
+        if (!confirm('Bu banka borcunu silmek istediğinizden emin misiniz?')) return;
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/delete_bank_debt.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
             }
         });
     });
@@ -222,3 +284,4 @@ $(document).ready(function() {
 </script>
 
 </body>
+</html>

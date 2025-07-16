@@ -1,17 +1,28 @@
 <?php
+
+namespace App\Models;
+
+use PDO;
+use PDOException;
+use Exception;
+
 class Database {
     private static $instance = null;
     private $pdo;
     private $cache = [];
     
     private function __construct() {
-        $host = $_ENV['DB_HOST'] ?? 'localhost';
-        $dbname = $_ENV['DB_NAME'] ?? 'budget';
-        $username = $_ENV['DB_USER'] ?? 'root';
-        $password = $_ENV['DB_PASS'] ?? '';
+        // Ensure config.php is loaded to access DB constants
+        if (!defined('DB_HOST')) {
+            require_once __DIR__ . '/../config/config.php';
+        }
+
+        $host = DB_HOST;
+        $dbname = DB_NAME;
+        $username = DB_USER;
+        $password = DB_PASS;
         
         try {
-            // amazonq-ignore-next-line
             $this->pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -45,9 +56,16 @@ class Database {
             return $this->cache[$cache_key];
         }
         
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-        $result = $stmt->fetchAll();
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            if (strpos($e->getMessage(), 'Base table or view not found') !== false) {
+                return false;
+            }
+            throw $e;
+        }
         
         if ($cache_key) {
             $this->cache[$cache_key] = $result;
@@ -66,6 +84,10 @@ class Database {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         return $stmt->fetchColumn();
+    }
+    
+    public function fetchColumn($sql, $params = []) {
+        return $this->getDbValue($sql, $params);
     }
     
     public function execute($sql, $params = []) {

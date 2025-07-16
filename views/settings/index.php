@@ -110,48 +110,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-12">
-                            <div class="card">
-                                <div class="card-header flex-row">
-                                    <h4 class="card-title">Information </h4>
-                                    <a class="btn btn-primary" href="settings-profile.php">Edit</a>
-                                </div>
-                                <div class="card-body">
-                                    <form class="row">
-                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                                            <div class="user-info">
-                                                <span>USER ID</span>
-                                                <h4>818778</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                                            <div class="user-info">
-                                                <span>EMAIL ADDRESS</span>
-                                                <h4>email@example.com</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                                            <div class="user-info">
-                                                <span>COUNTRY OF RESIDENCE</span>
-                                                <h4>Bangladesh</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                                            <div class="user-info">
-                                                <span>JOINED SINCE</span>
-                                                <h4>20/10/2020</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-                                            <div class="user-info">
-                                                <span>TYPE</span>
-                                                <h4>Personal</h4>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -1,35 +1,23 @@
 <?php
-require_once __DIR__ . '/../classes/Account.php';
-require_once __DIR__ . '/../classes/AjaxHelper.php';
+require_once 'C:/xampp/htdocs/config/config.php';
+require_once 'C:/xampp/htdocs/models/AccountCredential.php';
 
-handle_ajax_request(function($data) {
-    $account = new Account();
-
-    $platform = $data['platform'] ?? '';
-    $username = $data['username'] ?? '';
-    $password = $data['password'] ?? '';
-    $login_link = $data['login_link'] ?? '';
-    $account_type = $data['account_type'] ?? '';
-
-    if (empty($platform) || empty($username) || empty($password) || empty($account_type)) {
-        json_response(['success' => false, 'message' => 'Platform, kullanıcı adı, şifre ve hesap türü zorunludur.'], 400);
-    }
-
-    $result = $account->add([
-        'platform' => $platform,
-        'username' => $username,
-        'password' => $password,
-        'login_link' => $login_link,
-        'account_type' => $account_type
-    ]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
+    $account_credential_model = new AccountCredential();
     
-    if ($result) {
-        json_response([
-            'success' => true, 
-            'message' => 'Hesap başarıyla eklendi',
-            'id' => $account->lastInsertId()
-        ]);
+    $data = [
+        'platform_name' => sanitize_input($_POST['platform_name']),
+        'username' => sanitize_input($_POST['username']),
+        'password_hash' => password_hash(sanitize_input($_POST['password_hash']), PASSWORD_DEFAULT),
+        'login_url' => sanitize_input($_POST['login_url']) ?? null,
+        'account_type_id' => (int)$_POST['account_type_id']
+    ];
+
+    if ($account_credential_model->add($data)) {
+        json_response(['success' => true, 'message' => 'Hesap bilgisi başarıyla eklendi.']);
     } else {
-        json_response(['success' => false, 'message' => 'Hesap eklenirken hata oluştu'], 500);
+        json_response(['success' => false, 'message' => 'Hesap bilgisi eklenirken bir hata oluştu.'], 500);
     }
-});
+} else {
+    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+}

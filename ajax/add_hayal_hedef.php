@@ -1,29 +1,23 @@
 <?php
-require_once __DIR__ . '/../classes/DreamGoal.php';
-require_once __DIR__ . '/../classes/AjaxHelper.php';
+require_once 'C:/xampp/htdocs/config/config.php';
+require_once 'C:/xampp/htdocs/models/DreamGoal.php';
 
-handle_ajax_request(function($data) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
     $dream_goal_model = new DreamGoal();
+    
+    $data = [
+        'goal_name' => sanitize_input($_POST['goal_name']),
+        'target_amount' => (float)$_POST['target_amount'] ?? 0,
+        'product_link' => sanitize_input($_POST['product_link']) ?? null,
+        'priority' => (int)$_POST['priority'] ?? null,
+        'progress' => (int)$_POST['progress'] ?? 0
+    ];
 
-    $goal_name = $data['goal_name'] ?? '';
-    $description = $data['description'] ?? '';
-    $target_amount = filter_var($data['target_amount'] ?? '', FILTER_VALIDATE_FLOAT);
-    $target_date = $data['target_date'] ?? null;
-
-    if (empty($goal_name) || $target_amount <= 0) {
-        json_response(['success' => false, 'message' => 'Başlık ve hedef tutar zorunludur.'], 400);
-    }
-
-    $result = $dream_goal_model->add([
-        'goal_name' => $goal_name,
-        'description' => $description,
-        'target_amount' => $target_amount,
-        'target_date' => $target_date
-    ]);
-
-    if ($result) {
-        json_response(['success' => true, 'message' => 'Hayal/Hedef başarıyla eklendi']);
+    if ($dream_goal_model->add($data)) {
+        json_response(['success' => true, 'message' => 'Hayal/Hedef başarıyla eklendi.']);
     } else {
-        json_response(['success' => false, 'message' => 'Hayal/Hedef eklenirken hata oluştu'], 500);
+        json_response(['success' => false, 'message' => 'Hayal/Hedef eklenirken bir hata oluştu.'], 500);
     }
-});
+} else {
+    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+}

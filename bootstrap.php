@@ -3,45 +3,39 @@
  * Bootstrap dosyası - Tüm sayfalarda yüklenecek
  */
 
+// Composer autoloader
+require_once __DIR__ . '/vendor/autoload.php';
+
 // Session başlat
 if (session_status() === PHP_SESSION_NONE) {
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) ? 1 : 0);
+    ini_set('session.use_strict_mode', 1);
+    ini_set('session.cookie_samesite', 'Strict');
     session_start();
 }
 
-// Autoloader
-spl_autoload_register(function ($class) {
-    $file = __DIR__ . '/classes/' . $class . '.php';
-    if (file_exists($file)) {
-        require_once $file;
-    }
-});
-
-// Config yükle
+// Config yükle (içinde sanitize_input ve generate_csrf_token var)
 require_once __DIR__ . '/config/config.php';
 
-// Güvenlik kontrolleri
-$security = SecurityManager::getInstance();
-
-// Rate limiting (sadece POST istekleri için)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $security->rateLimit($_SERVER['REMOTE_ADDR']);
-}
+// Auth sınıfını dahil et
+// Auth sınıfı artık Composer autoloader tarafından yüklenecek, doğrudan require_once gerekmez.
+// require_once __DIR__ . '/models/Auth.php';
 
 // CSRF token kontrolü (POST/PUT/DELETE için)
 if (in_array($_SERVER['REQUEST_METHOD'], ['POST', 'PUT', 'DELETE'])) {
-    if (!isset($_POST['csrf_token'])) {
+    if (!isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
         http_response_code(403);
-        die('CSRF token missing');
+        die('CSRF token missing or invalid');
     }
-    $security->validateCSRF($_POST['csrf_token']);
 }
 
 // Input sanitization
 if (!empty($_POST)) {
-    $_POST = $security->sanitizeInput($_POST);
+    $_POST = sanitize_input($_POST);
 }
 if (!empty($_GET)) {
-    $_GET = $security->sanitizeInput($_GET);
+    $_GET = sanitize_input($_GET);
 }
 
 // Error handling
@@ -75,4 +69,3 @@ set_exception_handler(function($exception) {
     header('Location: 500.php');
     exit;
 });
-?>

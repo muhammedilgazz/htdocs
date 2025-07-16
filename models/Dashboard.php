@@ -1,6 +1,9 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\Models;
+
+use App\Models\Database;
+use Exception;
 
 class Dashboard {
     private $db;
@@ -9,50 +12,79 @@ class Dashboard {
         $this->db = Database::getInstance();
     }
 
+    /**
+     * Ana sayfa için temel istatistikleri toplar.
+     */
     public function getDashboardStats() {
-        return $this->db->fetch("
-            SELECT 
-                (SELECT SUM(e.amount) FROM expense_items e JOIN status_types s ON e.status_id = s.id WHERE s.name = 'Tamamlandı') as toplam_harcama,
-                (SELECT SUM(e.amount) FROM expense_items e JOIN status_types s ON e.status_id = s.id WHERE s.name = 'Beklemede') as bekleyen_harcama,
-                (SELECT SUM(p.amount) FROM payments p JOIN status_types s ON p.status_id = s.id WHERE s.name = 'Tamamlandı') as toplam_odeme,
-                (SELECT SUM(p.amount) FROM payments p JOIN status_types s ON p.status_id = s.id WHERE s.name = 'Beklemede') as bekleyen_odeme,
-                (SELECT total_balance FROM balances ORDER BY id DESC LIMIT 1) as mevcut_bakiye
-        ");
+        $current_month = date('Y-m');
+
+        // Aylık Giderler
+        $sql_expenses = "SELECT SUM(amount) FROM expenses WHERE DATE_FORMAT(date, '%Y-%m') = ?";
+        $total_expenses = (float) $this->db->getDbValue($sql_expenses, [$current_month]);
+
+        // Aylık Alınacaklar (Tüm alınacaklar, created_at sütunu olmadığı için aylık filtreleme yapılamıyor)
+        $sql_wishlist = "SELECT SUM(price) FROM wishlist_items WHERE wishlist_type IN ('ihtiyac', 'alinacak', 'istek', 'hayal', 'favori')";
+        $total_wishlist = (float) $this->db->getDbValue($sql_wishlist);
+
+        // Aylık Borç Ödemeleri (Tabloların varlığını kontrol ederek)
+        $total_debt_payments = 0;
+        try {
+            // Borç tablolarını kontrol et ve topla
+            $debt_tables = [
+                'tax_debts' => ['amount_field' => 'this_month_payment', 'date_field' => 'payment_due'],
+                'sgk_debts' => ['amount_field' => 'this_month_payment', 'date_field' => 'payment_due'],
+                'execution_debts' => ['amount_field' => 'this_month_payment', 'date_field' => 'start_date'],
+                'personal_debts' => ['amount_field' => 'amount', 'date_field' => 'planned_payment_date'], // Corrected from planned_payment
+                'bank_debts' => ['amount_field' => 'total', 'date_field' => 'planned_payment_date'] // Corrected from planned_payment
+            ];
+            
+            foreach ($debt_tables as $table => $config) {
+                try {
+                    $sql = "SELECT SUM({$config['amount_field']}) FROM $table WHERE DATE_FORMAT({$config['date_field']}, '%Y-%m') = ?";
+                    $amount = (float) $this->db->getDbValue($sql, [$current_month]);
+                    $total_debt_payments += $amount;
+                } catch (Exception $e) {
+                    // Tablo yoksa veya sütun hatası varsa devam et
+                    continue;
+                }
+            }
+        } catch (Exception $e) {
+            $total_debt_payments = 0;
+        }
+
+        // Toplam Bakiye (Bu kısım için bir balances tablosu veya mantığına ihtiyaç var, şimdilik 0 varsayalım)
+        $total_balance = 0; // Bu mantığın ayrıca implemente edilmesi gerekir.
+
+        return [
+            'total_expenses' => $total_expenses,
+            'total_wishlist' => $total_wishlist,
+            'total_debt_payments' => $total_debt_payments,
+            'total_balance' => $total_balance
+        ];
     }
 
+    /**
+     * Son işlemleri (giderler ve alınacaklar) getirir.
+     */
     public function getRecentTransactions() {
-        $recent_transactions = $this->db->fetchAll("
-            SELECT 'harcama' as tip, c.name as kategori, e.item_name as aciklama, e.amount as tutar, s.name as durum, e.created_at 
-            FROM expense_items e 
-            JOIN categories c ON e.category_id = c.id 
-            JOIN status_types s ON e.status_id = s.id 
-            ORDER BY e.created_at DESC LIMIT 5
-        ");
-
-        $recent_payments = $this->db->fetchAll("
-            SELECT 'odeme' as tip, p.person_name as aciklama, p.amount as tutar, s.name as durum, p.created_at 
-            FROM payments p 
-            JOIN status_types s ON p.status_id = s.id 
-            ORDER BY p.created_at DESC LIMIT 5
-        ");
-
-        $all_transactions = array_merge($recent_transactions, $recent_payments);
-        usort($all_transactions, function($a, $b) {
-            return strtotime($b['created_at']) - strtotime($a['created_at']);
-        });
-
-        return array_slice($all_transactions, 0, 10);
+        $sql = "
+            (SELECT 'expense' as type, description, amount, date FROM expenses ORDER BY date DESC LIMIT 5)
+            UNION ALL
+            (SELECT 'wishlist' as type, item_name as description, price as amount, created_at as date FROM wishlist_items ORDER BY created_at DESC LIMIT 5)
+            ORDER BY date DESC
+            LIMIT 10
+        ";
+        return $this->db->fetchAll($sql);
     }
 
+    /**
+     * Giderleri kategoriye göre gruplandırarak getirir.
+     */
     public function getCategoryExpenses() {
-        return $this->db->fetchAll("
-            SELECT c.name as kategori, SUM(e.amount) as toplam_tutar, COUNT(*) as islem_sayisi
-            FROM expense_items e 
-            JOIN categories c ON e.category_id = c.id 
-            JOIN status_types s ON e.status_id = s.id 
-            WHERE s.name = 'Tamamlandı'
-            GROUP BY c.name 
-            ORDER BY toplam_tutar DESC
-        ");
+        $sql = "SELECT category_type, SUM(amount) as total_amount, COUNT(*) as transaction_count 
+                FROM expenses 
+                GROUP BY category_type 
+                ORDER BY total_amount DESC";
+        return $this->db->fetchAll($sql);
     }
 }

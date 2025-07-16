@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../classes/Income.php';
-require_once __DIR__ . '/../classes/AjaxHelper.php';
+require_once __DIR__ . '/../models/Income.php';
+require_once __DIR__ . '/../models/AjaxHelper.php';
 
 handle_ajax_request(function($data) {
     $income_model = new Income();

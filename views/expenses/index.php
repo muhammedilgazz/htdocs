@@ -1,22 +1,25 @@
-<?php include 'C:/xampp/htdocs/views/partials/head.php'; ?>
+<?php
+if (!isset($total_expenses)) $total_expenses = 0;
+if (!isset($rows)) $rows = [];
+if (!isset($csrf_token)) $csrf_token = '';
+
+// Ensure other stats variables are defined
+if (!isset($expense_items_count)) $expense_items_count = 0;
+if (!isset($total_debt_payments)) $total_debt_payments = 0;
+if (!isset($remaining_debt_count)) $remaining_debt_count = 0;
+if (!isset($total_wishlist_price)) $total_wishlist_price = 0;
+if (!isset($approved_wishlist_count)) $approved_wishlist_count = 0;
+if (!isset($monthly_fixed_expenses)) $monthly_fixed_expenses = 0;
+if (!isset($one_time_expenses)) $one_time_expenses = 0;
+
+include __DIR__ . '/../partials/head.php'; ?>
 
 <body>
 <div class="app-container">
-    <?php include 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php include __DIR__ . '/../partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php include 'C:/xampp/htdocs/views/partials/header.php'; ?>
-        <?php 
-        require_once 'C:/xampp/htdocs/views/partials/page_header.php';
-        generate_page_header(
-            'Harcamalar',
-            'Tüm harcamalarınızı burada görüntüleyebilirsiniz.',
-            [
-                ['link' => 'index.php', 'text' => 'Anasayfa'],
-                ['text' => 'Harcamalar', 'active' => true]
-            ]
-        );
-        ?>
-        <div class="app-content harcamalar-kucuk-font">
+        <?php include __DIR__ . '/../partials/header.php'; ?>
+        <div class="app-content">
             <div class="container py-3">
                 <div class="card mb-3" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); margin-top:1rem;">
                     <div class="card-body d-flex align-items-center justify-content-between p-3">
@@ -28,7 +31,7 @@
                             </div>
                         </div>
                         <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background:#1f2e4e; border:none; font-size:0.9rem; padding:0.5rem 1rem;">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExpenseModal" style="background:#1f2e4e; border:none; font-size:0.9rem; padding:0.5rem 1rem;">
                                 <i class="bi bi-plus-circle me-2"></i>Harcama Ekle
                             </button>
                         </div>
@@ -41,7 +44,7 @@
                             <div style="font-size:1.05rem; color:#6b7a99; font-weight:600;">Toplam Giderler</div>
                             <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺<?= number_format($total_expenses, 0, ',', '.') ?></div>
                             <div class="d-flex justify-content-between align-items-center" style="font-size:1rem; color:#7b8ab8;">
-                                <span>Harcama + Ödeme + Alınacak</span>
+                                <span>Harcama + Borç + Alınacak</span>
                                 <span></span>
                             </div>
                         </div>
@@ -62,7 +65,7 @@
                             <div style="font-size:1.5rem; color:#1a2550; font-weight:700; margin:8px 0;">₺<?= number_format($total_debt_payments, 0, ',', '.') ?></div>
                             <div class="d-flex justify-content-between align-items-center" style="font-size:1rem; color:#7b8ab8;">
                                 <span>Kalan Borç</span>
-                                <span style="color:#2979ff; font-weight:700;"><?= $remaining_debt_count ?> Kişi</span>
+                                <span style="color:#2979ff; font-weight:700;"><?= $remaining_debt_count ?> Adet</span>
                             </div>
                         </div>
                     </div>
@@ -101,92 +104,55 @@
                         </div>
                     </div>
                 </div>
-                <!-- Harcama Tablosu -->
+                <!-- Gider Tablosu -->
                 <?php if (empty($rows)): ?>
-                    <?php 
-                require_once 'C:/xampp/htdocs/views/partials/empty_state.php';
-                generate_empty_state(
-                    'bi bi-emoji-frown',
-                    'Henüz harcama kaydı yok.',
-                    ''
-                );
-                ?>
+                    <div class="text-center py-5">
+                        <p>Henüz gider kaydı yok.</p>
+                    </div>
                 <?php else: ?>
-                    <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                        <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">Harcama Kalemleri</h5>
+                    <div class="card p-0">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Gider Listesi</h5>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
-                                    <thead style="background:#f5f7fa;">
-                                        <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                            <th style="padding-left:1.5rem;">Kategori</th>
-                                            <th>Ürün/Hizmet</th>
-                                            <th>Tutar</th>
-                                            <th>Link</th>
+                                <table class="table align-middle mb-0">
+                                    <thead>
+                                        <tr>
                                             <th>Açıklama</th>
-                                            <th>Durum</th>
+                                            <th>Kategori</th>
+                                            <th>Tutar</th>
+                                            <th>Tarih</th>
                                             <th>İşlemler</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php foreach ($rows as $row): ?>
-                                        <tr style="font-size:0.85rem;">
-                                            <td style="padding-left:1.5rem;"><?= htmlspecialchars($row['category_name']) ?></td>
-                                            <td><?= htmlspecialchars($row['item_name']) ?></td>
-                                            <td>
-                                                <span style="color:#34c759; font-weight:700; font-size:0.95rem;">
-                                                    ₺<?= number_format($row['amount'], 0, ',', '.') ?>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <?php if (!empty($row['link'])): ?>
-                                                    <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
-                                                <?php else: ?>
-                                                    -
-                                                <?php endif; ?>
-                                            </td>
-                                            <td><?= htmlspecialchars($row['description'] ?? '-') ?></td>
-                                            <td>
-                                                <div class="position-relative" style="display:inline-block; width:120px;">
-                                                    <select class="form-select form-select-sm status-dropdown" 
-                                                            data-id="<?= $row['id'] ?>" 
-                                                            style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                        <option value="Beklemede" <?= $row['status_name'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                        <option value="Devam Ediyor" <?= $row['status_name'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                        <option value="Tamamlandı" <?= $row['status_name'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                        <option value="İptal Edildi" <?= $row['status_name'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                        <option value="Ertelendi" <?= $row['status_name'] == 'Ertelendi' ? 'selected' : '' ?>>Ertelendi</option>
-                                                    </select>
-                                                    <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
-                                                </div>
-                                            </td>
-
-
+                                        <tr>
+                                            <td><?= htmlspecialchars($row['description']) ?></td>
+                                            <td><?= htmlspecialchars($row['category_type']) ?></td>
+                                            <td>₺<?= number_format($row['amount'], 2, ',', '.') ?></td>
+                                            <td><?= date('d.m.Y', strtotime($row['date'])) ?></td>
                                             <td>
                                                 <div class="d-flex gap-1">
-                                                    <button class="btn btn-outline-primary btn-sm" 
-                                                            style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" 
-                                                            title="Düzenle" type="button">
+                                                    <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editExpenseModal">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
-                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button" onclick="deleteItem(<?= $row['id'] ?>, 'expense_items')">
+                                                    <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                     <div class="dropdown">
                                                         <button class="btn btn-outline-warning btn-sm dropdown-toggle" 
-                                                                style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" 
-                                                                title="Ertele" type="button" 
+                                                                type="button" 
                                                                 data-bs-toggle="dropdown" 
                                                                 aria-expanded="false">
                                                             <i class="bi bi-clock"></i>
                                                         </button>
                                                         <ul class="dropdown-menu dropdown-menu-end" style="font-size:0.8rem;">
-                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, '1')">1 Ay</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, '3')">3 Ay</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, '6')">6 Ay</a></li>
-                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, '12')">1 Yıl</a></li>
+                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, 1)">1 Ay</a></li>
+                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, 3)">3 Ay</a></li>
+                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, 6)">6 Ay</a></li>
+                                                            <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, 12)">1 Yıl</a></li>
                                                             <li><hr class="dropdown-divider"></li>
                                                             <li><a class="dropdown-item" href="#" onclick="postponeExpense(<?= $row['id'] ?>, 'later')">Daha Sonra</a></li>
                                                         </ul>
@@ -206,58 +172,203 @@
     </div>
 </div>
 
-<!-- Harcama Ekle Modal -->
-<?php
-$add_harcama_modal_body = '';
-$add_harcama_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-$add_harcama_modal_body .= UIHelper::render_input('Kategori', 'category_name', 'text', true, '', '', [
-    ['value' => 'ödeme', 'text' => 'ödeme'],
-    ['value' => 'abonelikler', 'text' => 'abonelikler'],
-    ['value' => 'diğer', 'text' => 'diğer'],
-]);
-$add_harcama_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'item_name');
-$add_harcama_modal_body .= UIHelper::render_input('Tutar', 'amount', 'number');
-$add_harcama_modal_body .= UIHelper::render_input('Link', 'link', 'url', false);
-$add_harcama_modal_body .= UIHelper::render_input('Açıklama', 'description', 'textarea', false);
-$add_harcama_modal_body .= UIHelper::render_input('Durum', 'status_name', 'select', true, 'Beklemede', '', [
-    ['value' => 'Beklemede', 'text' => 'Beklemede'],
-    ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
-    ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],
-    ['value' => 'İptal Edildi', 'text' => 'İptal Edildi'],
-]);
+<!-- Add Expense Modal -->
+<div class="modal fade" id="addExpenseModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Gider Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıklama</label>
+                        <input type="text" class="form-control" id="description" name="description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Tutar</label>
+                        <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category_type" class="form-label">Kategori</label>
+                        <select class="form-select" id="category_type" name="category_type">
+                            <option value="sabit_gider">Sabit Gider</option>
+                            <option value="degisken_gider">Değişken Gider</option>
+                            <option value="ani_ekstra">Ani/Ekstra</option>
+                            <option value="ertelenmis">Ertelenmiş</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Tarih</label>
+                        <input type="date" class="form-control" id="date" name="date" value="<?= date('Y-m-d') ?>">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-$add_harcama_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>';
-$add_harcama_modal_footer .= '<button type="submit" class="btn btn-primary">Kaydet</button>';
+<!-- Edit Expense Modal -->
+<div class="modal fade" id="editExpenseModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Gideri Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="edit_id" name="id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_description" class="form-label">Açıklama</label>
+                        <input type="text" class="form-control" id="edit_description" name="description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_amount" class="form-label">Tutar</label>
+                        <input type="number" class="form-control" id="edit_amount" name="amount" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_category_type" class="form-label">Kategori</label>
+                        <select class="form-select" id="edit_category_type" name="category_type">
+                            <option value="sabit_gider">Sabit Gider</option>
+                            <option value="degisken_gider">Değişken Gider</option>
+                            <option value="ani_ekstra">Ani/Ekstra</option>
+                            <option value="ertelenmis">Ertelenmiş</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_date" class="form-label">Tarih</label>
+                        <input type="date" class="form-control" id="edit_date" name="date">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-echo UIHelper::render_modal('harcamaEkleModal', 'Harcama Ekle', 'harcamaEkleForm', $add_harcama_modal_body, $add_harcama_modal_footer);
-?>
-<!-- Düzenle Modalı -->
-<?php
-$edit_harcama_modal_body = '';
-$edit_harcama_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-$edit_harcama_modal_body .= '<input type="hidden" name="id" id="duzenle-id">';
-$edit_harcama_modal_body .= UIHelper::render_input('Kategori', 'edit_category_name', 'text', true, '', '', [
-    ['value' => 'ödeme', 'text' => 'ödeme'],
-    ['value' => 'abonelikler', 'text' => 'abonelikler'],
-    ['value' => 'diğer', 'text' => 'diğer'],
-]);
-$edit_harcama_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'edit_item_name');
-$edit_harcama_modal_body .= UIHelper::render_input('Tutar', 'edit_amount', 'number');
-$edit_harcama_modal_body .= UIHelper::render_input('Link', 'edit_link', 'url', false);
-$edit_harcama_modal_body .= UIHelper::render_input('Açıklama', 'edit_description', 'textarea', false);
-$edit_harcama_modal_body .= UIHelper::render_input('Durum', 'edit_status_name', 'select', true, '', '', [
-    ['value' => 'Beklemede', 'text' => 'Beklemede'],
-    ['value' => 'Devam Ediyor', 'text' => 'Devam Ediyor'],
-    ['value' => 'Tamamlandı', 'text' => 'Tamamlandı'],
-    ['value' => 'İptal Edildi', 'text' => 'İptal Edildi'],
-]);
+<?php include __DIR__ . '/../partials/script.php'; ?>
 
-$edit_harcama_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>';
-$edit_harcama_modal_footer .= '<button type="submit" class="btn btn-primary">Kaydet</button>';
+<script>
+$(document).ready(function() {
+    // Add Form
+    $('#addForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/add_expense.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
 
-echo UIHelper::render_modal('duzenleModal', 'Harcama Düzenle', 'duzenleForm', $edit_harcama_modal_body, $edit_harcama_modal_footer);
-?>
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+    // Edit Button
+    $('.edit-btn').click(function() {
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/get_expense.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    const expense = response.data;
+                    $('#edit_id').val(expense.id);
+                    $('#edit_description').val(expense.description);
+                    $('#edit_amount').val(expense.amount);
+                    $('#edit_category_type').val(expense.category_type);
+                    $('#edit_date').val(expense.date);
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            }
+        });
+    });
+
+    // Edit Form
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/update_expense.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
+
+    // Delete Button
+    $('.delete-btn').click(function() {
+        if (!confirm('Bu gideri silmek istediğinizden emin misiniz?')) return;
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/delete_expense.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
+
+    // Postpone Expense Function
+    window.postponeExpense = function(id, months) {
+        if (!confirm('Bu harcamayı ertelemek istediğinizden emin misiniz?')) {
+            return;
+        }
+        
+        $.ajax({
+            url: 'ajax/postpone_expense.php',
+            type: 'POST',
+            data: {
+                id: id,
+                months: months,
+                csrf_token: '<?= $csrf_token ?>'
+            },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu!');
+                }
+            },
+            error: function() {
+                alert('Erteleme işleminde bir hata oluştu!');
+            }
+        });
+    };
+});
+</script>
 
 </body>
 </html>

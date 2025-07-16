@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\Models;
+
+use App\Models\Database;
 
 class Income {
     private $db;

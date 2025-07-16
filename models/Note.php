@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\Models;
+
+use App\Models\Database;
 
 class Note {
     private $db;
@@ -16,10 +18,14 @@ class Note {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO notes (title, content) VALUES (?, ?)";
+        $sql = "INSERT INTO notes (user_id, title, content, category, priority, status) VALUES (?, ?, ?, ?, ?, ?)";
         $params = [
+            $data['user_id'] ?? 1, // Varsayılan kullanıcı ID'si
             $data['title'] ?? null,
-            $data['content'] ?? null
+            $data['content'] ?? null,
+            $data['category'] ?? 'Genel',
+            $data['priority'] ?? 'medium',
+            $data['status'] ?? 'active'
         ];
         return $this->db->execute($sql, $params);
     }
@@ -32,10 +38,13 @@ class Note {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE notes SET title = ?, content = ? WHERE id = ?";
+        $sql = "UPDATE notes SET title = ?, content = ?, category = ?, priority = ?, status = ? WHERE id = ?";
         $params = [
             $data['title'] ?? null,
             $data['content'] ?? null,
+            $data['category'] ?? 'Genel',
+            $data['priority'] ?? 'medium',
+            $data['status'] ?? 'active',
             $id
         ];
         return $this->db->execute($sql, $params);
@@ -58,7 +67,7 @@ class Note {
      * @return array Notlar listesi.
      */
     public function getAll(): array {
-        $sql = "SELECT * FROM notes ORDER BY id DESC";
+        $sql = "SELECT * FROM notes ORDER BY created_at DESC";
         return $this->db->fetchAll($sql);
     }
 

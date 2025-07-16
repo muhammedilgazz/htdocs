@@ -1,21 +1,18 @@
 <?php
-require_once 'config/config.php';
-require_once 'classes/Database.php';
-require_once 'classes/SecurityManager.php';
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/models/Auth.php';
 
-// Güvenlik başlıkları
-$security = new SecurityManager();
-$security->setSecurityHeaders();
+$auth = new Auth();
 
 // Çıkış işlemi
 if (isset($_GET['logout'])) {
-    $security->logout();
+    $auth->logout();
     header('Location: signin.php');
     exit;
 }
 
 // Zaten giriş yapmışsa dashboard'a yönlendir
-if (isset($_SESSION['user_id'])) {
+if ($auth->isLoggedIn()) {
     header('Location: index.php');
     exit;
 }
@@ -25,69 +22,25 @@ $success_message = '';
 
 // Login form submit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = sanitize_input($_POST['email'] ?? '');
+    $username = sanitize_input($_POST['username'] ?? ''); // Kullanıcı adı olarak email kullanılıyor
     $password = $_POST['password'] ?? '';
-    $remember = isset($_POST['remember']);
-    
-    // Rate limiting kontrolü
-    if (!$security->checkRateLimit('login', 5, 300)) {
-        $error_message = 'Çok fazla deneme yaptınız. Lütfen 5 dakika bekleyin.';
+    $csrf_token = $_POST['csrf_token'] ?? '';
+
+    if (!validate_csrf_token($csrf_token)) {
+        $error_message = 'CSRF hatası. Lütfen sayfayı yenileyin ve tekrar deneyin.';
+    } elseif (empty($username) || empty($password)) {
+        $error_message = 'Lütfen tüm alanları doldurun.';
     } else {
-        // Validasyon
-        if (empty($email) || empty($password)) {
-            $error_message = 'Lütfen tüm alanları doldurun.';
-        } else {
-            $result = $security->login($email, $password);
-            
-            if ($result['success']) {
-                // Remember me
-                if ($remember) {
-                    $token = bin2hex(random_bytes(32));
-                    setcookie('remember_token', $token, time() + (30 * 24 * 60 * 60), '/', '', true, true);
-                    
-                    // Token'ı veritabanına kaydet
-                    try {
-                        $db = Database::getInstance();
-                        $stmt = $db->prepare("INSERT INTO remember_tokens (user_id, token, expires_at) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 30 DAY))");
-                        $stmt->execute([$result['user']['id'], $token]);
-                    } catch (Exception $e) {
-                        error_log('Remember token error: ' . $e->getMessage());
-                    }
-                }
-                
+        try {
+            if ($auth->login($username, $password)) {
                 header('Location: index.php');
                 exit;
             } else {
-                $error_message = $result['message'];
+                $error_message = 'Geçersiz kullanıcı adı veya şifre.';
             }
+        } catch (Exception $e) {
+            $error_message = $e->getMessage();
         }
-    }
-}
-
-// Remember me token kontrolü
-if (isset($_COOKIE['remember_token']) && empty($error_message)) {
-    try {
-        $db = Database::getInstance();
-        $stmt = $db->prepare("
-            SELECT u.id, u.email, u.full_name 
-            FROM users u 
-            JOIN remember_tokens rt ON u.id = rt.user_id 
-            WHERE rt.token = ? AND rt.expires_at > NOW() AND u.status = 'active'
-        ");
-        $stmt->execute([$_COOKIE['remember_token']]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if ($user) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['full_name'] = $user['full_name'];
-            $_SESSION['login_time'] = time();
-            
-            header('Location: index.php');
-            exit;
-        }
-    } catch (Exception $e) {
-        error_log('Remember token check error: ' . $e->getMessage());
     }
 }
 ?>
@@ -371,14 +324,14 @@ if (isset($_COOKIE['remember_token']) && empty($error_message)) {
             <form method="POST" id="loginForm">
                 <input type="hidden" name="csrf_token" value="<?= generate_csrf_token() ?>">
                 <div class="mb-3">
-                            <label for="email" class="form-label">E-posta</label>
+                            <label for="username" class="form-label">Kullanıcı Adı</label>
                     <div class="input-group">
                         <span class="input-group-text">
-                            <i class="bi bi-envelope"></i>
+                            <i class="bi bi-person"></i>
                         </span>
-                        <input type="email" class="form-control" id="email" name="email" 
-                               value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" 
-                               placeholder="ornek@email.com" required>
+                        <input type="text" class="form-control" id="username" name="username" 
+                               value="<?= htmlspecialchars($_POST['username'] ?? '') ?>" 
+                               placeholder="Kullanıcı adınızı girin" required>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -454,8 +407,8 @@ if (isset($_COOKIE['remember_token']) && empty($error_message)) {
             }
         });
         
-        // Auto focus email field
-        document.getElementById('email').focus();
+        // Auto focus username field
+        document.getElementById('username').focus();
     </script>
 </body>
 </html>

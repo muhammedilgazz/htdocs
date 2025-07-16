@@ -1,21 +1,22 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Iban.php';
-require_once 'C:/xampp/htdocs/models/UIHelper.php';
-require_once 'C:/xampp/htdocs/config/config.php';
+namespace App\Controllers;
+
+use App\Models\BankAccount;
+use App\Models\UIHelper;
 
 class IbanTableController {
     public function index() {
-        $iban_model = new Iban();
-        $all_ibans = $iban_model->getAll();
-        $my_ibans = [];
-        $other_ibans = [];
+        $bank_account_model = new BankAccount();
+        $all_accounts = $bank_account_model->getAll();
+        $my_accounts = [];
+        $other_accounts = [];
 
-        foreach ($all_ibans as $iban) {
-            if ($iban['account_type'] === 'own') {
-                $my_ibans[] = $iban;
+        foreach ($all_accounts as $account) {
+            if ($account['account_type'] === 'own') {
+                $my_accounts[] = $account;
             } else {
-                $other_ibans[] = $iban;
+                $other_accounts[] = $account;
             }
         }
         $csrf_token = generate_csrf_token();

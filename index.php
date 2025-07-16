@@ -1,19 +1,12 @@
 <?php
-require_once 'config/config.php';
-require_once 'models/Auth.php';
-require_once 'models/Database.php';
 
-$db = Database::getInstance();
-$auth = new Auth($db->getPdo());
+require_once __DIR__ . '/bootstrap.php';
+
+// Auth sınıfını bootstrap.php içinde başlattığımız için burada tekrar yapmıyoruz.
+// Ancak Auth objesine ihtiyacımız varsa, global olarak erişilebilir olmalı veya yeniden oluşturulmalı.
+// Şimdilik basitlik adına burada yeniden oluşturuyorum, ancak daha iyi bir yaklaşım dependency injection olabilir.
+$auth = new \App\Models\Auth();
 $auth->requireAuth();
-
-// Autoload controllers
-spl_autoload_register(function ($class_name) {
-    $controller_path = 'controllers/' . $class_name . '.php';
-    if (file_exists($controller_path)) {
-        require_once $controller_path;
-    }
-});
 
 // Basic Routing
 $base_path = parse_url(BASE_URL, PHP_URL_PATH);
@@ -25,7 +18,8 @@ if (substr($request_uri, 0, strlen($base_path)) == $base_path) {
 } else {
     $request_path = $request_uri;
 }
-
+// Query string'i ayıkla
+$request_path = explode('?', $request_path, 2)[0];
 $request_path = trim($request_path, '/');
 $segments = explode('/', $request_path);
 
@@ -34,25 +28,79 @@ if (isset($segments[0]) && strtolower($segments[0]) === 'index.php') {
     $segments[0] = '';
 }
 
-$controller_name = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'DashboardController';
-$method_name = isset($segments[1]) && !empty($segments[1]) ? $segments[1] : 'index';
+// Handle special routes
+$route_mappings = [
+    'accountpassword' => 'AccountPasswordController',
+    'account-password' => 'AccountPasswordController',
+    'hesap-sifre' => 'AccountPasswordController',
+    'need' => 'NeedController',
+    'needs' => 'NeedController',
+    'ihtiyac' => 'NeedController',
+    'ihtiyaclar' => 'NeedController',
+    // Gider ve harcama controller mappingleri:
+    'expenses' => 'ExpenseController',
+    'fixedexpense' => 'FixedExpenseController',
+    'variableexpense' => 'VariableExpenseController',
+    'extraexpense' => 'ExtraExpenseController',
+    'postponedpayment' => 'PostponedPaymentController',
+    'giderler' => 'GiderlerController',
+    'tax' => 'TaxController',
+    'sgk' => 'SgkController',
+    'bank' => 'BankController',
+    'execution' => 'ExecutionController',
+    'individualdebt' => 'IndividualDebtController',
+    'wishlist' => 'WishlistController',
+    'project' => 'ProjectController',
+    'task' => 'TaskController',
+    'note' => 'NoteController',
+    'todolist' => 'TodoListController',
+    'bankaccount' => 'BankAccountController',
+    'profile' => 'ProfileController',
+    'settings' => 'SettingsController',
+    'support' => 'SupportController',
+    'affiliate' => 'AffiliateController',
+    'privacy' => 'PrivacyController',
+    'dreamgoal' => 'DreamGoalController',
+    'favoriteproduct' => 'FavoriteProductController'
+];
 
-// Debugging output
-// echo "Base Path: $base_path <br>";
-// echo "Request URI: $request_uri <br>";
-// echo "Request Path: $request_path <br>";
-// echo "Controller: $controller_name <br>";
-// echo "Method: $method_name <br>";
+$controller_name_segment = $segments[0] ?? '';
+$controller_class_name = null;
+$method_name = 'index';
 
-if (class_exists($controller_name)) {
-    $controller = new $controller_name();
-    if (method_exists($controller, $method_name)) {
-        $controller->$method_name();
-    } else {
-        // Handle 404 - Method not found
-        echo "404 - Method not found";
+if (isset($route_mappings[$controller_name_segment])) {
+    $controller_class_name = $route_mappings[$controller_name_segment];
+    if (isset($segments[1]) && !empty($segments[1])) {
+        $method_name = $segments[1];
     }
 } else {
-    // Handle 404 - Controller not found
-    echo "404 - Controller not found: $controller_name";
+    // Handle camelCase controllers (e.g., fixedExpense -> FixedExpenseController)
+    $controller_class_name = ucfirst($controller_name_segment) . 'Controller';
+    if (isset($segments[1]) && !empty($segments[1])) {
+        $method_name = $segments[1];
+    }
 }
+
+// Default to DashboardController if no segment or mapping found
+if (empty($controller_class_name) || !class_exists('\\App\\Controllers\\' . $controller_class_name)) {
+    $controller_class_name = 'DashboardController';
+}
+
+$full_controller_class = '\\App\\Controllers\\' . $controller_class_name;
+
+if (!class_exists($full_controller_class)) {
+    // Handle 404 - Controller not found
+    http_response_code(404);
+    echo "404 - Controller not found: " . $full_controller_class;
+    exit;
+}
+
+$controller = new $full_controller_class();
+if (!method_exists($controller, $method_name)) {
+    // Handle 404 - Method not found
+    http_response_code(404);
+    echo "404 - Method not found in controller: " . $controller_class_name . "::" . $method_name;
+    exit;
+}
+
+$controller->$method_name();

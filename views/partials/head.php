@@ -25,6 +25,9 @@
     <!-- Ekash Minimal Design CSS -->
     <link href="assets/css/ekash-minimal.css" rel="stylesheet">
     
+    <!-- Custom Color Palette -->
+    <link href="assets/css/custom-colors.css" rel="stylesheet">
+    
     <!-- Perfect Scrollbar -->
     <link href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.css'">
     

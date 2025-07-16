@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\Models;
+
+use App\Models\Database;
 
 class Profile {
     private $db;
@@ -10,32 +12,39 @@ class Profile {
     }
 
     public function getUserProfileData($user_id) {
-        // In a real application, this would fetch user data from the database
-        // For now, we'll return some dummy data or rely on session data
-        return [
-            'full_name' => $_SESSION['full_name'] ?? 'John Doe',
-            'email' => $_SESSION['email'] ?? 'john.doe@example.com',
-            'registered_date' => '25 June 2024',
-            'referral_count' => '05'
-        ];
+        $sql = "SELECT full_name, email, created_at FROM users WHERE id = ?";
+        $user_data = $this->db->fetch($sql, [$user_id]);
+
+        if ($user_data) {
+            return [
+                'full_name' => $user_data['full_name'] ?? 'N/A',
+                'email' => $user_data['email'] ?? 'N/A',
+                'registered_date' => date('d F Y', strtotime($user_data['created_at'])) ?? 'N/A',
+                'referral_count' => '05' // Placeholder, as no referral table exists
+            ];
+        } else {
+            return [
+                'full_name' => 'Misafir Kullanıcı',
+                'email' => 'misafir@example.com',
+                'registered_date' => 'N/A',
+                'referral_count' => '00'
+            ];
+        }
     }
 
+    // Wallet ve Chart verileri için placeholder metodlar (yeni şemada karşılıkları yok)
     public function getWalletData($wallet_type) {
-        // In a real application, this would fetch wallet data from the database
-        // For now, return dummy data
         return [
-            'spend' => '1458.30',
-            'budget' => '1458.30',
-            'progress' => '25'
+            'spend' => '0.00',
+            'budget' => '0.00',
+            'progress' => '0'
         ];
     }
 
     public function getChartData($chart_type) {
-        // In a real application, this would fetch chart data from the database
-        // For now, return dummy data
         return [
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            'data' => [12000, 19000, 15000, 25000, 22000, 30000]
+            'labels' => ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz'],
+            'data' => [0, 0, 0, 0, 0, 0]
         ];
     }
 }

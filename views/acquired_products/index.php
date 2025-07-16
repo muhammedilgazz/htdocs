@@ -102,41 +102,7 @@
                 </div>
                 <?php endif; ?>
                 
-                <?php
-                require_once 'C:/xampp/htdocs/models/UIHelper.php';
-
-                $add_modal_body = '';
-                $add_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-                $add_modal_body .= UIHelper::render_input('Kategori', 'category_name');
-                $add_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'item_name');
-                $add_modal_body .= UIHelper::render_input('Tutar (₺)', 'price', 'number', true, '', '', []);
-                $add_modal_body .= UIHelper::render_input('Link (Opsiyonel)', 'link', 'url', false);
-                $add_modal_body .= UIHelper::render_input('Resim Linki (Opsiyonel)', 'image_path', 'url', false);
-                $add_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'description', 'textarea', false);
-
-                $add_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>';
-                $add_modal_footer .= '<button type="submit" class="btn btn-primary">Ekle</button>';
-
-                echo UIHelper::render_modal('harcamaEkleModal', 'Yeni Ürün Ekle', 'harcamaEkleForm', $add_modal_body, $add_modal_footer);
-                ?>
                 
-                <!-- Düzenle Modalı -->
-                <?php
-                $edit_modal_body = '';
-                $edit_modal_body .= '<input type="hidden" name="csrf_token" value="' . $csrf_token . '">';
-                $edit_modal_body .= '<input type="hidden" name="id" id="edit_id">';
-                $edit_modal_body .= UIHelper::render_input('Kategori', 'edit_category_name');
-                $edit_modal_body .= UIHelper::render_input('Ürün/Hizmet', 'edit_item_name');
-                $edit_modal_body .= UIHelper::render_input('Tutar (₺)', 'edit_price', 'number');
-                $edit_modal_body .= UIHelper::render_input('Link (Opsiyonel)', 'edit_link', 'url', false);
-                $edit_modal_body .= UIHelper::render_input('Resim Linki (Opsiyonel)', 'edit_image_path', 'url', false);
-                $edit_modal_body .= UIHelper::render_input('Açıklama (Opsiyonel)', 'edit_description', 'textarea', false);
-
-                $edit_modal_footer = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>';
-                $edit_modal_footer .= '<button type="submit" class="btn btn-primary">Güncelle</button>';
-
-                echo UIHelper::render_modal('duzenleModal', 'Ürün Düzenle', 'duzenleForm', $edit_modal_body, $edit_modal_footer);
-                ?>
             </div>
         </div>
     </div>

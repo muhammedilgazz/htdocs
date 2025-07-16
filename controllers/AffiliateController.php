@@ -1,6 +1,6 @@
 <?php
 
-require_once 'C:/xampp/htdocs/config/config.php';
+namespace App\Controllers;
 
 class AffiliateController {
     public function index() {

@@ -1,6 +1,6 @@
 <?php
 http_response_code(500);
-require_once 'partials/head.php';
+require_once __DIR__ . '/views/partials/head.php';
 ?>
 <!DOCTYPE html>
 <html lang="tr">

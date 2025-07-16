@@ -1,42 +1,16 @@
 <?php
-require_once '../config/config.php';
-require_once '../classes/Database.php';
-require_once '../classes/SecurityManager.php';
+require_once 'C:/xampp/htdocs/config/config.php';
+require_once 'C:/xampp/htdocs/models/BankAccount.php';
 
-// Güvenlik kontrolü
-$security = new SecurityManager();
-$security->checkSession();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
+    $bank_account_model = new BankAccount();
+    $id = (int)$_POST['id'];
 
-// CSRF kontrolü
-if (!isset($_POST['csrf_token']) || !$security->validateCSRF($_POST['csrf_token'])) {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'message' => 'Güvenlik hatası']);
-    exit;
-}
-
-// Veritabanı bağlantısı
-$db = Database::getInstance();
-
-// POST verilerini al
-$id = $_POST['id'] ?? null;
-
-if (!$id) {
-    echo json_encode(['success' => false, 'message' => 'ID gerekli']);
-    exit;
-}
-
-try {
-    // IBAN'ı sil
-    $stmt = $db->getPdo()->prepare("DELETE FROM iban_details WHERE id = ?");
-    $result = $stmt->execute([$id]);
-    
-    if ($result && $stmt->rowCount() > 0) {
-        echo json_encode(['success' => true, 'message' => 'IBAN başarıyla silindi']);
+    if ($bank_account_model->delete($id)) {
+        json_response(['success' => true, 'message' => 'Banka hesabı başarıyla silindi.']);
     } else {
-        echo json_encode(['success' => false, 'message' => 'IBAN bulunamadı veya silinemedi']);
+        json_response(['success' => false, 'message' => 'Banka hesabı silinirken bir hata oluştu.'], 500);
     }
-} catch (Exception $e) {
-    error_log('Delete IBAN error: ' . $e->getMessage());
-    echo json_encode(['success' => false, 'message' => 'Veritabanı hatası']);
+} else {
+    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
 }
-?>

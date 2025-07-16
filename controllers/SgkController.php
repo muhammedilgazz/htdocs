@@ -1,12 +1,15 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Expense.php';
+namespace App\Controllers;
+
+use App\Models\SgkDebt;
 
 class SgkController {
     public function index() {
-        $expense_model = new Expense();
-        $selected_month = $_SESSION['selected_month'] ?? '07.25';
-        $rows = $expense_model->getSgkExpenses($selected_month);
+        $sgk_debt_model = new SgkDebt();
+        $rows = $sgk_debt_model->getAll();
+
+        $csrf_token = generate_csrf_token();
 
         require_once 'C:/xampp/htdocs/views/sgk/index.php';
     }

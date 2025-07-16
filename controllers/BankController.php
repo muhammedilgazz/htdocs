@@ -1,11 +1,15 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Expense.php';
+namespace App\Controllers;
+
+use App\Models\BankDebt;
 
 class BankController {
     public function index() {
-        $expense_model = new Expense();
-        $rows = $expense_model->getBankExpenses();
+        $bank_debt_model = new BankDebt();
+        $rows = $bank_debt_model->getAll();
+
+        $csrf_token = generate_csrf_token();
 
         require_once 'C:/xampp/htdocs/views/bank/index.php';
     }

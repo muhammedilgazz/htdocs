@@ -6,25 +6,24 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
     <div class="app-main">
         <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
-        <!-- Breadcrumb ve Başlık -->
-        <div class="container-fluid py-1" style="background:#f7f9fb;">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h2 class="mb-1" style="font-weight:700; color:#1f2e4e; font-size:1.5rem;">Projeler</h2>
-                    <div style="color:#7b8ab8; font-size:1rem;">Proje yönetimi ve takibi.</div>
-                </div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0" style="background:transparent;">
-                        <li class="breadcrumb-item"><a href="/" style="color:#7b8ab8; text-decoration:none;">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a href="#" style="color:#7b8ab8; text-decoration:none;">Yapılacaklar</a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#7b8ab8;">Projeler</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <div class="app-content harcamalar-kucuk-font">
+        <div class="app-content">
             <div class="container py-3">
-                <!-- Boş Durum Kontrolü -->
+                <div class="card mb-3">
+                    <div class="card-body d-flex align-items-center justify-content-between p-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div>
+                                <h2 class="mb-0">Projeler</h2>
+                                <div>Proje yönetimi ve takibi.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+                                <i class="bi bi-plus-circle me-2"></i>Yeni Proje Ekle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <?php if (empty($rows)): ?>
                 <div class="text-center py-5">
                     <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
@@ -32,79 +31,35 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                     <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz proje kaydı yok</h4>
                     <p style="color: #a0a8c0; margin-bottom: 2rem;">Projelerinizi ekleyerek takip etmeye başlayın.</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 500;">
-                        <i class="bi bi-plus-circle me-2"></i>İlk Proje Ekle
-                    </button>
                 </div>
                 <?php else: ?>
-                <!-- Tablo Başlangıcı -->
-                <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                    <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">Projeler</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
-                                <i class="bi bi-plus-circle me-1"></i>Yeni Proje Ekle
-                            </button>
-                        </div>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Projeler Listesi</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
-                                <thead style="background:#f5f7fa;">
-                                    <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
-                                        <th>Gider Türü</th>
-                                        <th>Harcama Dönemi</th>
-                                        <th>Proje Adı</th>
-                                        <th>Bütçe</th>
-                                        <th>Link</th>
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
                                         <th>Açıklama</th>
-                                        <th>Durum</th>
+                                        <th>Tutar</th>
+                                        <th>Tarih</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
-                                    <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['sira'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['category_name']) ?> </td>
-                                        <td>
-                                            <span class="badge" style="background:#96ceb4; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                Proje
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge" style="background:#6c757d; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                <?= htmlspecialchars($row['harcama_donemi'] ?? '07.25') ?>
-                                            </span>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
-                                        <td> ₺<?= number_format($row['amount'], 0, ',', '.') ?> </td>
-                                        <td>
-                                            <?php if (!empty($row['link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
-                                            <?php else: ?>-
-                                            <?php endif; ?>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
-                                        <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['status_name'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Devam Ediyor" <?= $row['status_name'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                    <option value="Tamamlandı" <?= $row['status_name'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                    <option value="İptal Edildi" <?= $row['status_name'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
-                                            </div>
-                                        </td>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['description']) ?></td>
+                                        <td>₺<?= number_format($row['amount'], 2, ',', '.') ?></td>
+                                        <td><?= date('d.m.Y', strtotime($row['date'])) ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
+                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editProjectModal">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button">
+                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>
@@ -117,124 +72,158 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                 </div>
                 <?php endif; ?>
-                
-                <!-- Harcama Ekle Modal -->
-                <div class="modal fade" id="harcamaEkleModal" tabindex="-1" aria-labelledby="harcamaEkleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="harcamaEkleModalLabel">Yeni Proje Ekle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="harcamaEkleForm">
-                                <div class="modal-body">
-                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    <input type="hidden" name="kategori_tipi" value="Alınacak Ürünler">
-                                    
-                                    <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <input type="text" class="form-control" id="kategori" name="kategori" value="Proje" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="harcama_donemi" class="form-label">Harcama Dönemi</label>
-                                        <select class="form-select" id="harcama_donemi" name="harcama_donemi" required>
-                                            <?= generateMonthOptions($selected_month) ?>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="urun" class="form-label">Proje Adı</label>
-                                        <input type="text" class="form-control" id="urun" name="urun" placeholder="Proje adını girin" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="tutar" class="form-label">Proje Bütçesi (₺)</label>
-                                        <input type="number" class="form-control" id="tutar" name="tutar" step="0.01" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="link" class="form-label">Proje Linki (Opsiyonel)</label>
-                                        <input type="url" class="form-control" id="link" name="link">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="aciklama" class="form-label">Proje Açıklaması (Opsiyonel)</label>
-                                        <textarea class="form-control" id="aciklama" name="aciklama" rows="3"></textarea>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="durum" class="form-label">Durum</label>
-                                        <select class="form-select" id="durum" name="durum" required>
-                                            <option value="Beklemede">Beklemede</option>
-                                            <option value="Devam Ediyor">Devam Ediyor</option>
-                                            <option value="Tamamlandı">Tamamlandı</option>
-                                            <option value="İptal Edildi">İptal Edildi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                    <button type="submit" class="btn btn-primary">Ekle</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<!-- Add Project Modal -->
+<div class="modal fade" id="addProjectModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Proje Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Açıklama</label>
+                        <input type="text" class="form-control" id="description" name="description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Tutar</label>
+                        <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Tarih</label>
+                        <input type="date" class="form-control" id="date" name="date" value="<?= date('Y-m-d') ?>">
+                    </div>
+                    <input type="hidden" name="category_type" value="proje">
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Project Modal -->
+<div class="modal fade" id="editProjectModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Projeyi Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="edit_id" name="id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_description" class="form-label">Açıklama</label>
+                        <input type="text" class="form-control" id="edit_description" name="description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_amount" class="form-label">Tutar</label>
+                        <input type="number" class="form-control" id="edit_amount" name="amount" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_date" class="form-label">Tarih</label>
+                        <input type="date" class="form-control" id="edit_date" name="date">
+                    </div>
+                    <input type="hidden" name="category_type" value="proje">
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {
-    // Durum değişikliği
-    $('.status-dropdown').change(function() {
-        var id = $(this).data('id');
-        var status = $(this).val();
-        
+    // Add Form
+    $('#addForm').submit(function(e) {
+        e.preventDefault();
         $.ajax({
-            url: 'ajax/update_payment.php',
+            url: 'ajax/add_project.php',
             type: 'POST',
-            data: {
-                id: id,
-                durum: status,
-                csrf_token: '<?= $csrf_token ?>'
-            },
+            data: $(this).serialize(),
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('Durum güncellendi');
+                    location.reload();
                 } else {
-                    toastr.error('Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
             }
         });
     });
-    
-    // Yeni harcama ekleme
-    $('#harcamaEkleForm').submit(function(e) {
-        e.preventDefault();
-        
+
+    // Edit Button
+    $('.edit-btn').click(function() {
+        const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/add_expense.php',
+            url: 'ajax/get_project.php',
             type: 'POST',
-            data: $(this).serialize(),
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('Proje başarıyla eklendi');
-                    $('#harcamaEkleModal').modal('hide');
+                    const project = response.data;
+                    $('#edit_id').val(project.id);
+                    $('#edit_description').val(project.description);
+                    $('#edit_amount').val(project.amount);
+                    $('#edit_date').val(project.date);
+                    $('#editProjectModal').modal('show');
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            }
+        });
+    });
+
+    // Edit Form
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/update_project.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
                     location.reload();
                 } else {
-                    toastr.error(response.message || 'Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
+            }
+        });
+    });
+
+    // Delete Button
+    $('.delete-btn').click(function() {
+        if (!confirm('Bu projeyi silmek istediğinizden emin misiniz?')) return;
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/delete_project.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
             }
         });
     });
@@ -242,3 +231,4 @@ $(document).ready(function() {
 </script>
 
 </body>
+</html>

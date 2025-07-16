@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\Models;
+
+use App\Models\Database;
 
 class Todo {
     private $db;
@@ -16,7 +18,7 @@ class Todo {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO todos (task, status_id, due_date) VALUES (?, (SELECT id FROM status_types WHERE name = ?), ?)";
+        $sql = "INSERT INTO todos (task, status, due_date) VALUES (?, ?, ?)";
         $params = [
             $data['task'] ?? null,
             $data['status'] ?? 'Beklemede',
@@ -33,7 +35,7 @@ class Todo {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE todos SET task = ?, status_id = (SELECT id FROM status_types WHERE name = ?), due_date = ? WHERE id = ?";
+        $sql = "UPDATE todos SET task = ?, status = ?, due_date = ? WHERE id = ?";
         $params = [
             $data['task'] ?? null,
             $data['status'] ?? null,
@@ -60,7 +62,7 @@ class Todo {
      * @return array To-Do listesi.
      */
     public function getAll(): array {
-        $sql = "SELECT t.*, st.name as status_name FROM todos t JOIN status_types st ON t.status_id = st.id ORDER BY t.id DESC";
+        $sql = "SELECT * FROM todos ORDER BY created_at DESC";
         return $this->db->fetchAll($sql);
     }
 
@@ -71,7 +73,7 @@ class Todo {
      * @return array|false To-Do verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT t.*, st.name as status_name FROM todos t JOIN status_types st ON t.status_id = st.id WHERE t.id = ?";
+        $sql = "SELECT * FROM todos WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 }

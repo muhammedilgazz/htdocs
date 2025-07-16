@@ -1,11 +1,13 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Expense.php';
+namespace App\Controllers;
+
+use App\Models\Wishlist;
 
 class NeedController {
     public function index() {
-        $expense_model = new Expense();
-        $rows = $expense_model->getNeeds();
+        $wishlist_model = new Wishlist();
+        $rows = $wishlist_model->getNeeds();
 
         require_once 'C:/xampp/htdocs/views/needs/index.php';
     }

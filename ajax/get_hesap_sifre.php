@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../classes/Account.php';
-require_once __DIR__ . '/../classes/AjaxHelper.php';
+require_once __DIR__ . '/../models/Account.php';
+require_once __DIR__ . '/../models/AjaxHelper.php';
 
 handle_get_request(function($data) {
     $account = new Account();

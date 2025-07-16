@@ -1,7 +1,7 @@
 <?php
 require_once '../config/config.php';
-require_once '../classes/Database.php';
-require_once '../classes/SecurityManager.php';
+require_once '../models/Database.php';
+require_once '../models/SecurityManager.php';
 
 // Güvenlik kontrolü
 $security = new SecurityManager();

@@ -1,12 +1,15 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Expense.php';
+namespace App\Controllers;
+
+use App\Models\PersonalDebt;
 
 class IndividualDebtController {
     public function index() {
-        $expense_model = new Expense();
-        $selected_month = $_SESSION['selected_month'] ?? '07.25';
-        $rows = $expense_model->getIndividualDebts($selected_month);
+        $personal_debt_model = new PersonalDebt();
+        $rows = $personal_debt_model->getAll();
+
+        $csrf_token = generate_csrf_token();
 
         require_once 'C:/xampp/htdocs/views/individual_debts/index.php';
     }

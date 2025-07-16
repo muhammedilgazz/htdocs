@@ -1,4 +1,9 @@
 <?php
+
+namespace App\Models;
+
+use Exception;
+
 class FileUpload {
     private $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
     private $maxSize = 5242880; // 5MB

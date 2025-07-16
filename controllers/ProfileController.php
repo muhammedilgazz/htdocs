@@ -1,6 +1,8 @@
 <?php
 
-require_once 'C:/xampp/htdocs/models/Profile.php';
+namespace App\Controllers;
+
+use App\Models\Profile;
 
 class ProfileController {
     public function index() {
@@ -8,15 +10,10 @@ class ProfileController {
         $user_id = $_SESSION['user_id'] ?? null; // Assuming user_id is in session
 
         $user_profile = $profile_model->getUserProfileData($user_id);
-        $city_bank_wallet = $profile_model->getWalletData('city_bank');
-        $debit_card_wallet = $profile_model->getWalletData('debit_card');
-        $visa_card_wallet = $profile_model->getWalletData('visa_card');
-        $cash_wallet = $profile_model->getWalletData('cash');
+        // Wallet data is no longer directly fetched here as Wallet model is removed
+        // You might need to adjust views/profile/index.php accordingly
 
-        $city_bank_chart = $profile_model->getChartData('city_bank');
-        $debit_card_chart = $profile_model->getChartData('debit_card');
-        $visa_card_chart = $profile_model->getChartData('visa_card');
-        $cash_chart = $profile_model->getChartData('cash');
+        $csrf_token = generate_csrf_token();
 
         require_once 'C:/xampp/htdocs/views/profile/index.php';
     }

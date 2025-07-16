@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\Models;
+
+use App\Models\Database;
 
 class DreamGoal {
     private $db;
@@ -16,12 +18,13 @@ class DreamGoal {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO dream_goals (goal_name, description, target_amount, target_date) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO wishlist_items (item_name, wishlist_type, price, product_link, priority, progress) VALUES (?, 'hayal', ?, ?, ?, ?)";
         $params = [
             $data['goal_name'] ?? null,
-            $data['description'] ?? null,
-            $data['target_amount'] ?? null,
-            $data['target_date'] ?? null
+            $data['target_amount'] ?? 0,
+            $data['product_link'] ?? null,
+            $data['priority'] ?? null,
+            $data['progress'] ?? 0
         ];
         return $this->db->execute($sql, $params);
     }
@@ -34,12 +37,13 @@ class DreamGoal {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE dream_goals SET goal_name = ?, description = ?, target_amount = ?, target_date = ? WHERE id = ?";
+        $sql = "UPDATE wishlist_items SET item_name = ?, price = ?, product_link = ?, priority = ?, progress = ? WHERE id = ? AND wishlist_type = 'hayal'";
         $params = [
             $data['goal_name'] ?? null,
-            $data['description'] ?? null,
-            $data['target_amount'] ?? null,
-            $data['target_date'] ?? null,
+            $data['target_amount'] ?? 0,
+            $data['product_link'] ?? null,
+            $data['priority'] ?? null,
+            $data['progress'] ?? 0,
             $id
         ];
         return $this->db->execute($sql, $params);
@@ -52,7 +56,7 @@ class DreamGoal {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM dream_goals WHERE id = ?";
+        $sql = "DELETE FROM wishlist_items WHERE id = ? AND wishlist_type = 'hayal'";
         return $this->db->execute($sql, [$id]);
     }
 
@@ -62,7 +66,7 @@ class DreamGoal {
      * @return array Hayal/hedef kayıtları listesi.
      */
     public function getAll(): array {
-        $sql = "SELECT * FROM dream_goals ORDER BY id DESC";
+        $sql = "SELECT id, item_name as goal_name, price as target_amount, product_link, priority, progress, created_at FROM wishlist_items WHERE wishlist_type = 'hayal' ORDER BY created_at DESC";
         return $this->db->fetchAll($sql);
     }
 
@@ -73,7 +77,7 @@ class DreamGoal {
      * @return array|false Hayal/hedef verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM dream_goals WHERE id = ?";
+        $sql = "SELECT id, item_name as goal_name, price as target_amount, product_link, priority, progress, created_at FROM wishlist_items WHERE id = ? AND wishlist_type = 'hayal'";
         return $this->db->fetch($sql, [$id]);
     }
 }

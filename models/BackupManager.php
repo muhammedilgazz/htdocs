@@ -1,4 +1,10 @@
 <?php
+
+namespace App\Models;
+
+use PDO;
+use Exception;
+
 class BackupManager {
     private $pdo;
     private $backupDir;
@@ -115,4 +121,3 @@ class BackupManager {
         return $backups;
     }
 }
-?>

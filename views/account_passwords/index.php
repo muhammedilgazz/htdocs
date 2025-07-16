@@ -6,48 +6,42 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
     <div class="app-main">
         <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
-        <?php 
-        require_once 'C:/xampp/htdocs/views/partials/page_header.php';
-        generate_page_header(
-            'Hesaplar & Şifreler',
-            'Hesap ve şifre yönetimi.',
-            [
-                ['link' => '/', 'text' => 'Anasayfa'],
-                ['text' => 'Hesaplar & Şifreler', 'active' => true]
-            ]
-        );
-        ?>
-        <div class="app-content harcamalar-kucuk-font">
+        <div class="app-content">
             <div class="container py-3">
-                <!-- Boş Durum Kontrolü -->
-                <?php if (empty($rows)): ?>
-                <?php 
-                require_once 'C:/xampp/htdocs/views/partials/empty_state.php';
-                generate_empty_state(
-                    'bi bi-lock',
-                    'Henüz hesap/şifre kaydı yok',
-                    'Hesap ve şifrelerinizi ekleyerek güvenli bir şekilde saklayın.',
-                    'İlk Hesap Ekle',
-                    '#hesapEkleModal'
-                );
-                ?>
-                <?php else: ?>
-                <!-- Tablo Başlangıcı -->
-                <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                    <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">Hesap ve Şifreler</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#hesapEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
-                                <i class="bi bi-plus-circle me-1"></i>Yeni Hesap Ekle
+                <div class="card mb-3">
+                    <div class="card-body d-flex align-items-center justify-content-between p-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div>
+                                <h2 class="mb-0">Hesaplar & Şifreler</h2>
+                                <div>Hesap ve şifre yönetimi.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAccountCredentialModal">
+                                <i class="bi bi-plus-circle me-2"></i>Yeni Hesap Ekle
                             </button>
                         </div>
                     </div>
+                </div>
+
+                <?php if (empty($rows)): ?>
+                <div class="text-center py-5">
+                    <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
+                        <i class="bi bi-lock"></i>
+                    </div>
+                    <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz hesap/şifre kaydı yok</h4>
+                    <p style="color: #a0a8c0; margin-bottom: 2rem;">Hesap ve şifrelerinizi ekleyerek güvenli bir şekilde saklayın.</p>
+                </div>
+                <?php else: ?>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Hesap ve Şifreler Listesi</h5>
+                    </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
-                                <thead style="background:#f5f7fa;">
-                                    <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">ID</th>
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
                                         <th>Platform</th>
                                         <th>Kullanıcı Adı</th>
                                         <th>Şifre</th>
@@ -57,165 +51,247 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
+                                <tbody>
                                 <?php foreach ($rows as $row): ?>
-                                    <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['id'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['platform']) ?> </td>
-                                        <td> <?= htmlspecialchars($row['username']) ?> </td>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['platform_name']) ?></td>
+                                        <td><?= htmlspecialchars($row['username']) ?></td>
                                         <td>
                                             <div class="input-group" style="max-width: 150px;">
-                                                <input type="password" class="form-control form-control-sm" value="<?= htmlspecialchars($row['password'] ?? '') ?>" readonly style="font-size: 0.8rem;">
-                                                <button class="btn btn-outline-secondary btn-sm toggle-password" type="button" style="font-size: 0.8rem;">
+                                                <input type="password" class="form-control form-control-sm" value="<?= htmlspecialchars($row['password_hash'] ?? '') ?>" readonly>
+                                                <button class="btn btn-outline-secondary btn-sm toggle-password" type="button">
                                                     <i class="bi bi-eye"></i>
                                                 </button>
                                             </div>
                                         </td>
+                                        <td><?= htmlspecialchars($row['account_type_name']) ?></td>
                                         <td>
-                                            <span class="badge" style="background:#96ceb4; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                <?= htmlspecialchars($row['account_type_name']) ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <?php if (!empty($row['login_link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['login_link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
+                                            <?php if (!empty($row['login_url'])): ?>
+                                                <a href="<?= htmlspecialchars($row['login_url']) ?>" target="_blank" class="btn btn-outline-dark btn-sm">Link</a>
                                             <?php else: ?>
                                                 <span class="text-muted">-</span>
                                             <?php endif; ?>
                                         </td>
-                                        <td> <?= date('d.m.Y H:i', strtotime($row['created_at'])) ?> </td>
+                                        <td><?= date('d.m.Y H:i', strtotime($row['created_at'])) ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
+                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editAccountCredentialModal">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button">
+                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <?php endif; ?>
-                <!-- Hesap Ekle Modal -->
-                <div class="modal fade" id="hesapEkleModal" tabindex="-1" aria-labelledby="hesapEkleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="hesapEkleModalLabel">Yeni Hesap Ekle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="hesapEkleForm">
-                                <div class="modal-body">
-                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    
-                                    <div class="mb-3">
-                                        <label for="platform" class="form-label">Platform</label>
-                                        <input type="text" class="form-control" id="platform" name="platform" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">Kullanıcı Adı</label>
-                                        <input type="text" class="form-control" id="username" name="username" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Şifre</label>
-                                        <input type="password" class="form-control" id="password" name="password" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="login_link" class="form-label">Giriş Linki (Opsiyonel)</label>
-                                        <input type="url" class="form-control" id="login_link" name="login_link">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="account_type" class="form-label">Hesap Türü</label>
-                                        <select class="form-select" id="account_type" name="account_type" required>
-                                            <option value="İnternet Bankacılığı">İnternet Bankacılığı</option>
-                                            <option value="Mail">Mail</option>
-                                            <option value="Sosyal Medya">Sosyal Medya</option>
-                                            <option value="Bahis Sitesi">Bahis Sitesi</option>
-                                            <option value="E-ticaret">E-ticaret</option>
-                                            <option value="Eğitim">Eğitim</option>
-                                            <option value="İş">İş</option>
-                                            <option value="Diğer">Diğer</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                    <button type="submit" class="btn btn-primary">Ekle</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Düzenle Modalı -->
-                <div class="modal fade" id="duzenleModal" tabindex="-1" aria-labelledby="duzenleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="duzenleModalLabel">Hesap Düzenle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="duzenleForm">
-                                <div class="modal-body">
-                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    <input type="hidden" name="id" id="edit_id">
-                                    
-                                    <div class="mb-3">
-                                        <label for="edit_platform" class="form-label">Platform</label>
-                                        <input type="text" class="form-control" id="edit_platform" name="platform" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="edit_username" class="form-label">Kullanıcı Adı</label>
-                                        <input type="text" class="form-control" id="edit_username" name="username" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="edit_password" class="form-label">Şifre</label>
-                                        <input type="password" class="form-control" id="edit_password" name="password" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="edit_login_link" class="form-label">Giriş Linki (Opsiyonel)</label>
-                                        <input type="url" class="form-control" id="edit_login_link" name="login_link">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="edit_account_type" class="form-label">Hesap Türü</label>
-                                        <select class="form-select" id="edit_account_type" name="account_type" required>
-                                            <option value="İnternet Bankacılığı">İnternet Bankacılığı</option>
-                                            <option value="Mail">Mail</option>
-                                            <option value="Sosyal Medya">Sosyal Medya</option>
-                                            <option value="Bahis Sitesi">Bahis Sitesi</option>
-                                            <option value="E-ticaret">E-ticaret</option>
-                                            <option value="Eğitim">Eğitim</option>
-                                            <option value="İş">İş</option>
-                                            <option value="Diğer">Diğer</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                    <button type="submit" class="btn btn-primary">Güncelle</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<!-- Add Account Credential Modal -->
+<div class="modal fade" id="addAccountCredentialModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Hesap Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="platform_name" class="form-label">Platform</label>
+                        <input type="text" class="form-control" id="platform_name" name="platform_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password_hash" class="form-label">Şifre</label>
+                        <input type="password" class="form-control" id="password_hash" name="password_hash" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="login_url" class="form-label">Giriş Linki (Opsiyonel)</label>
+                        <input type="url" class="form-control" id="login_url" name="login_url">
+                    </div>
+                    <div class="mb-3">
+                        <label for="account_type_id" class="form-label">Hesap Türü</label>
+                        <select class="form-select" id="account_type_id" name="account_type_id">
+                            <option value="1">İnternet Bankacılığı</option>
+                            <option value="2">Mail</option>
+                            <option value="3">Sosyal Medya</option>
+                            <option value="4">Bahis Sitesi</option>
+                            <option value="5">Abonelik Servisi</option>
+                            <option value="6">E-Ticaret</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<!-- Edit Account Credential Modal -->
+<div class="modal fade" id="editAccountCredentialModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hesap Bilgisini Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="edit_id" name="id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_platform_name" class="form-label">Platform</label>
+                        <input type="text" class="form-control" id="edit_platform_name" name="platform_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_username" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" class="form-control" id="edit_username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_password_hash" class="form-label">Şifre</label>
+                        <input type="password" class="form-control" id="edit_password_hash" name="password_hash" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_login_url" class="form-label">Giriş Linki (Opsiyonel)</label>
+                        <input type="url" class="form-control" id="edit_login_url" name="login_url">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_account_type_id" class="form-label">Hesap Türü</label>
+                        <select class="form-select" id="edit_account_type_id" name="account_type_id">
+                            <option value="1">İnternet Bankacılığı</option>
+                            <option value="2">Mail</option>
+                            <option value="3">Sosyal Medya</option>
+                            <option value="4">Bahis Sitesi</option>
+                            <option value="5">Abonelik Servisi</option>
+                            <option value="6">E-Ticaret</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+
+<script>
+$(document).ready(function() {
+    // Şifre göster/gizle toggle
+    $('.toggle-password').click(function() {
+        const input = $(this).siblings('input');
+        const icon = $(this).find('i');
+        
+        if (input.attr('type') === 'password') {
+            input.attr('type', 'text');
+            icon.removeClass('bi-eye').addClass('bi-eye-slash');
+        } else {
+            input.attr('type', 'password');
+            icon.removeClass('bi-eye-slash').addClass('bi-eye');
+        }
+    });
+
+    // Add Form
+    $('#addForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/add_account_credential.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
+
+    // Edit Button
+    $('.edit-btn').click(function() {
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/get_account_credential.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    const credential = response.data;
+                    $('#edit_id').val(credential.id);
+                    $('#edit_platform_name').val(credential.platform_name);
+                    $('#edit_username').val(credential.username);
+                    $('#edit_password_hash').val(credential.password_hash);
+                    $('#edit_login_url').val(credential.login_url);
+                    $('#edit_account_type_id').val(credential.account_type_id);
+                    $('#editAccountCredentialModal').modal('show');
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            }
+        });
+    });
+
+    // Edit Form
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/update_account_credential.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
+
+    // Delete Button
+    $('.delete-btn').click(function() {
+        if (!confirm('Bu hesap bilgisini silmek istediğinizden emin misiniz?')) return;
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/delete_account_credential.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
+});
+</script>
 
 </body>
+</html>

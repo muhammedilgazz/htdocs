@@ -6,25 +6,24 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
     <div class="app-main">
         <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
-        <!-- Breadcrumb ve Başlık -->
-        <div class="container-fluid py-1" style="background:#f7f9fb;">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h2 class="mb-1" style="font-weight:700; color:#1f2e4e; font-size:1.5rem;">İstek Listesi</h2>
-                    <div style="color:#7b8ab8; font-size:1rem;">İstek listesi yönetimi ve takibi.</div>
-                </div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0" style="background:transparent;">
-                        <li class="breadcrumb-item"><a href="/" style="color:#7b8ab8; text-decoration:none;">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a href="#" style="color:#7b8ab8; text-decoration:none;">Tüm Alınacaklar</a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#7b8ab8;">İstek Listesi</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <div class="app-content harcamalar-kucuk-font">
+        <div class="app-content">
             <div class="container py-3">
-                <!-- Boş Durum Kontrolü -->
+                <div class="card mb-3">
+                    <div class="card-body d-flex align-items-center justify-content-between p-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div>
+                                <h2 class="mb-0">İstek Listesi</h2>
+                                <div>İstek listesi yönetimi ve takibi.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWishlistItemModal">
+                                <i class="bi bi-plus-circle me-2"></i>Yeni İstek Ekle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <?php if (empty($rows)): ?>
                 <div class="text-center py-5">
                     <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
@@ -32,71 +31,46 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                     <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz istek listesi kaydı yok</h4>
                     <p style="color: #a0a8c0; margin-bottom: 2rem;">İstek listenizi ekleyerek takip etmeye başlayın.</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 500;">
-                        <i class="bi bi-plus-circle me-2"></i>İlk İstek Ekle
-                    </button>
                 </div>
                 <?php else: ?>
-                <!-- Tablo Başlangıcı -->
-                <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                    <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">İstek Listesi</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
-                                <i class="bi bi-plus-circle me-1"></i>Yeni İstek Ekle
-                            </button>
-                        </div>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">İstek Listesi</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
-                                <thead style="background:#f5f7fa;">
-                                    <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
-                                        <th>Gider Türü</th>
-                                        <th>İstek Adı</th>
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Ürün Adı</th>
+                                        <th>Tip</th>
                                         <th>Fiyat</th>
                                         <th>Link</th>
-                                        <th>Açıklama</th>
-                                        <th>Durum</th>
+                                        <th>Öncelik</th>
+                                        <th>İlerleme (%)</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
-                                    <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['id'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['category_name']) ?> </td>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['item_name']) ?></td>
+                                        <td><?= htmlspecialchars($row['wishlist_type']) ?></td>
+                                        <td>₺<?= number_format($row['price'], 2, ',', '.') ?></td>
                                         <td>
-                                            <span class="badge" style="background:#96ceb4; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                İstek
-                                            </span>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
-                                        <td> ₺<?= number_format($row['price'], 0, ',', '.') ?> </td>
-                                        <td>
-                                            <?php if (!empty($row['link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
+                                            <?php if (!empty($row['product_link'])): ?>
+                                                <a href="<?= htmlspecialchars($row['product_link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm">Link</a>
                                             <?php else: ?>-
                                             <?php endif; ?>
                                         </td>
-                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
-                                        <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['will_get'] == 0 ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Tamamlandı" <?= $row['will_get'] == 1 ? 'selected' : '' ?>>Tamamlandı</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
-                                            </div>
-                                        </td>
+                                        <td><?= htmlspecialchars($row['priority'] ?? '-') ?></td>
+                                        <td><?= htmlspecialchars($row['progress'] ?? '0') ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
+                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editWishlistItemModal">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button">
+                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>
@@ -109,124 +83,204 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                 </div>
                 <?php endif; ?>
-                
-                <!-- Harcama Ekle Modal -->
-                <div class="modal fade" id="harcamaEkleModal" tabindex="-1" aria-labelledby="harcamaEkleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="harcamaEkleModalLabel">Yeni İstek Ekle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="harcamaEkleForm">
-                                <div class="modal-body">
-                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    <input type="hidden" name="kategori_tipi" value="Alınacak Ürünler">
-                                    
-                                    <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <input type="text" class="form-control" id="kategori" name="kategori" value="İstek" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="harcama_donemi" class="form-label">Harcama Dönemi</label>
-                                        <select class="form-select" id="harcama_donemi" name="harcama_donemi" required>
-                                            <?php // generateMonthOptions($selected_month) ?>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="urun" class="form-label">İstek Adı</label>
-                                        <input type="text" class="form-control" id="urun" name="urun" placeholder="İstek adını girin" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="tutar" class="form-label">Fiyat (₺)</label>
-                                        <input type="number" class="form-control" id="tutar" name="tutar" step="0.01" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="link" class="form-label">Ürün Linki (Opsiyonel)</label>
-                                        <input type="url" class="form-control" id="link" name="link">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="aciklama" class="form-label">Açıklama (Opsiyonel)</label>
-                                        <textarea class="form-control" id="aciklama" name="aciklama" rows="3"></textarea>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="durum" class="form-label">Durum</label>
-                                        <select class="form-select" id="durum" name="durum" required>
-                                            <option value="Beklemede">Beklemede</option>
-                                            <option value="Devam Ediyor">Devam Ediyor</option>
-                                            <option value="Tamamlandı">Tamamlandı</option>
-                                            <option value="İptal Edildi">İptal Edildi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                    <button type="submit" class="btn btn-primary">Ekle</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<!-- Add Wishlist Item Modal -->
+<div class="modal fade" id="addWishlistItemModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni İstek Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="item_name" class="form-label">Ürün Adı</label>
+                        <input type="text" class="form-control" id="item_name" name="item_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="wishlist_type" class="form-label">Tip</label>
+                        <select class="form-select" id="wishlist_type" name="wishlist_type">
+                            <option value="istek">İstek</option>
+                            <option value="alinacak">Alınacak</option>
+                            <option value="ihtiyac">İhtiyaç</option>
+                            <option value="hayal">Hayal</option>
+                            <option value="favori">Favori</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Fiyat</label>
+                        <input type="number" class="form-control" id="price" name="price" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="product_link" class="form-label">Ürün Linki</label>
+                        <input type="url" class="form-control" id="product_link" name="product_link">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image_url" class="form-label">Resim URL</label>
+                        <input type="url" class="form-control" id="image_url" name="image_url">
+                    </div>
+                    <div class="mb-3">
+                        <label for="priority" class="form-label">Öncelik</label>
+                        <input type="number" class="form-control" id="priority" name="priority" min="1" max="10">
+                    </div>
+                    <div class="mb-3">
+                        <label for="progress" class="form-label">İlerleme (%)</label>
+                        <input type="number" class="form-control" id="progress" name="progress" min="0" max="100">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Wishlist Item Modal -->
+<div class="modal fade" id="editWishlistItemModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">İstek Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="edit_id" name="id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_item_name" class="form-label">Ürün Adı</label>
+                        <input type="text" class="form-control" id="edit_item_name" name="item_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_wishlist_type" class="form-label">Tip</label>
+                        <select class="form-select" id="edit_wishlist_type" name="wishlist_type">
+                            <option value="istek">İstek</option>
+                            <option value="alinacak">Alınacak</option>
+                            <option value="ihtiyac">İhtiyaç</option>
+                            <option value="hayal">Hayal</option>
+                            <option value="favori">Favori</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_price" class="form-label">Fiyat</label>
+                        <input type="number" class="form-control" id="edit_price" name="price" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_product_link" class="form-label">Ürün Linki</label>
+                        <input type="url" class="form-control" id="edit_product_link" name="product_link">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_image_url" class="form-label">Resim URL</label>
+                        <input type="url" class="form-control" id="edit_image_url" name="image_url">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_priority" class="form-label">Öncelik</label>
+                        <input type="number" class="form-control" id="edit_priority" name="priority" min="1" max="10">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_progress" class="form-label">İlerleme (%)</label>
+                        <input type="number" class="form-control" id="edit_progress" name="progress" min="0" max="100">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {
-    // Durum değişikliği
-    $('.status-dropdown').change(function() {
-        var id = $(this).data('id');
-        var status = $(this).val();
-        
-        $.ajax({
-            url: 'ajax/update_wishlist_status.php',
-            type: 'POST',
-            data: {
-                id: id,
-                status: status,
-                csrf_token: '<?= $csrf_token ?>'
-            },
-            success: function(response) {
-                if (response.success) {
-                    toastr.success('Durum güncellendi');
-                } else {
-                    toastr.error('Hata oluştu');
-                }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
-            }
-        });
-    });
-    
-    // Yeni istek ekleme
-    $('#harcamaEkleForm').submit(function(e) {
+    // Add Form
+    $('#addForm').submit(function(e) {
         e.preventDefault();
-        
         $.ajax({
             url: 'ajax/add_wishlist_item.php',
             type: 'POST',
             data: $(this).serialize(),
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('İstek başarıyla eklendi');
-                    $('#harcamaEkleModal').modal('hide');
                     location.reload();
                 } else {
-                    toastr.error(response.message || 'Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
+            }
+        });
+    });
+
+    // Edit Button
+    $('.edit-btn').click(function() {
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/get_wishlist_item.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    const item = response.data;
+                    $('#edit_id').val(item.id);
+                    $('#edit_item_name').val(item.item_name);
+                    $('#edit_wishlist_type').val(item.wishlist_type);
+                    $('#edit_price').val(item.price);
+                    $('#edit_product_link').val(item.product_link);
+                    $('#edit_image_url').val(item.image_url);
+                    $('#edit_priority').val(item.priority);
+                    $('#edit_progress').val(item.progress);
+                    $('#editWishlistItemModal').modal('show');
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            }
+        });
+    });
+
+    // Edit Form
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/update_wishlist_item.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
+            }
+        });
+    });
+
+    // Delete Button
+    $('.delete-btn').click(function() {
+        if (!confirm('Bu öğeyi silmek istediğinizden emin misiniz?')) return;
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/delete_wishlist_item.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
             }
         });
     });
@@ -234,3 +288,4 @@ $(document).ready(function() {
 </script>
 
 </body>
+</html>

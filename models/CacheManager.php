@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Models;
+
 class CacheManager {
     private static $instance = null;
     private $cacheDir;
@@ -53,4 +56,3 @@ class CacheManager {
         }
     }
 }
-?>

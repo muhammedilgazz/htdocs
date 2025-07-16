@@ -1,11 +1,14 @@
 <?php
 // Session güvenliği - session başlamadan önce ayarla
 if (session_status() == PHP_SESSION_NONE) {
-    ini_set('session.cookie_httponly', 1);
-    ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) ? 1 : 0);
-    ini_set('session.use_strict_mode', 1);
-    ini_set('session.cookie_samesite', 'Strict');
-    session_start();
+    // Session ayarlarını yalnızca headers gönderilmemişse ayarla
+    if (!headers_sent()) {
+        ini_set('session.cookie_httponly', 1);
+        ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) ? 1 : 0);
+        ini_set('session.use_strict_mode', 1);
+        ini_set('session.cookie_samesite', 'Strict');
+        session_start();
+    }
 }
 
 // Güvenlik ayarları
@@ -21,7 +24,7 @@ if (!isset($_SESSION['csrf_token'])) {
 // Uygulama ayarları
 define('APP_NAME', 'Bütçe Yönetim Sistemi');
 define('APP_VERSION', '1.0.0');
-define('BASE_URL', 'http://localhost/Budget/');
+define('BASE_URL', 'http://localhost/');
 
 // Load environment variables
 if (file_exists(__DIR__ . '/../.env')) {
@@ -36,7 +39,7 @@ if (file_exists(__DIR__ . '/../.env')) {
 
 // Veritabanı ayarları
 define('DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');
-define('DB_NAME', $_ENV['DB_NAME'] ?? 'budget');
+define('DB_NAME', $_ENV['DB_NAME'] ?? 'budget_db');
 define('DB_USER', $_ENV['DB_USER'] ?? 'root');
 define('DB_PASS', $_ENV['DB_PASS'] ?? '');
 
@@ -46,6 +49,9 @@ define('CACHE_DURATION', 300); // 5 dakika
 
 // Güvenlik fonksiyonları
 function sanitize_input($data) {
+    if (is_array($data)) {
+        return array_map('sanitize_input', $data);
+    }
     return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
 }
 

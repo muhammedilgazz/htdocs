@@ -1,27 +1,21 @@
 <?php
-require_once __DIR__ . '/../classes/Todo.php';
-require_once __DIR__ . '/../classes/AjaxHelper.php';
+require_once 'C:/xampp/htdocs/config/config.php';
+require_once 'C:/xampp/htdocs/models/Todo.php';
 
-handle_ajax_request(function($data) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
     $todo_model = new Todo();
+    
+    $data = [
+        'task' => sanitize_input($_POST['task']),
+        'status' => sanitize_input($_POST['status']) ?? 'Beklemede',
+        'due_date' => sanitize_input($_POST['due_date']) ?? null
+    ];
 
-    $task = $data['task'] ?? '';
-    $status = $data['status'] ?? 'Beklemede';
-    $due_date = $data['due_date'] ?? null;
-
-    if (empty($task)) {
-        json_response(['success' => false, 'message' => 'Görev alanı zorunludur.'], 400);
-    }
-
-    $result = $todo_model->add([
-        'task' => $task,
-        'status' => $status,
-        'due_date' => $due_date
-    ]);
-
-    if ($result) {
-        json_response(['success' => true, 'message' => 'To-Do başarıyla eklendi']);
+    if ($todo_model->add($data)) {
+        json_response(['success' => true, 'message' => 'To-Do başarıyla eklendi.']);
     } else {
-        json_response(['success' => false, 'message' => 'To-Do eklenirken hata oluştu'], 500);
+        json_response(['success' => false, 'message' => 'To-Do eklenirken bir hata oluştu.'], 500);
     }
-});
+} else {
+    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+}

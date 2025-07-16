@@ -6,25 +6,24 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
     <div class="app-main">
         <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
-        <!-- Breadcrumb ve Başlık -->
-        <div class="container-fluid py-1" style="background:#f7f9fb;">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h2 class="mb-1" style="font-weight:700; color:#1f2e4e; font-size:1.5rem;">Vergi Borçları</h2>
-                    <div style="color:#7b8ab8; font-size:1rem;">Vergi ödemeleri ve borçları takibi.</div>
-                </div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0" style="background:transparent;">
-                        <li class="breadcrumb-item"><a href="/" style="color:#7b8ab8; text-decoration:none;">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a href="#" style="color:#7b8ab8; text-decoration:none;">Tüm Borçlar</a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#7b8ab8;">Vergi</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-        <div class="app-content harcamalar-kucuk-font">
+        <div class="app-content">
             <div class="container py-3">
-                <!-- Boş Durum Kontrolü -->
+                <div class="card mb-3">
+                    <div class="card-body d-flex align-items-center justify-content-between p-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div>
+                                <h2 class="mb-0">Vergi Borçları</h2>
+                                <div>Vergi ödemeleri ve borçları takibi.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaxDebtModal">
+                                <i class="bi bi-plus-circle me-2"></i>Yeni Vergi Borcu Ekle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <?php if (empty($rows)): ?>
                 <div class="text-center py-5">
                     <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
@@ -32,79 +31,49 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                     <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz vergi borcu kaydı yok</h4>
                     <p style="color: #a0a8c0; margin-bottom: 2rem;">Vergi borçlarınızı ekleyerek takip etmeye başlayın.</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 500;">
-                        <i class="bi bi-plus-circle me-2"></i>İlk Vergi Borcu Ekle
-                    </button>
                 </div>
                 <?php else: ?>
-                <!-- Tablo Başlangıcı -->
-                <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                    <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">Vergi Borçları</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
-                                <i class="bi bi-plus-circle me-1"></i>Yeni Vergi Borcu Ekle
-                            </button>
-                        </div>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Vergi Borçları Listesi</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
-                                <thead style="background:#f5f7fa;">
-                                    <tr style="color:#222; font-weight:600; font-size:0.85rem;">
-                                        <th style="padding-left:1.5rem;">Sıra No</th>
-                                        <th>Kategori</th>
-                                        <th>Gider Türü</th>
-                                        <th>Harcama Dönemi</th>
-                                        <th>Ürün/Hizmet</th>
-                                        <th>Tutar</th>
-                                        <th>Link</th>
-                                        <th>Açıklama</th>
-                                        <th>Durum</th>
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Sahibi</th>
+                                        <th>Dönem</th>
+                                        <th>Anapara</th>
+                                        <th>Faiz</th>
+                                        <th>Toplam</th>
+                                        <th>Ödeme Vadesi</th>
+                                        <th>Planlanan Ödeme</th>
+                                        <th>Ödenen</th>
+                                        <th>Kalan</th>
+                                        <th>Bu Ay Ödeme</th>
                                         <th>İşlemler</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
-                                    <tr style="font-size:0.85rem;">
-                                        <td style="padding-left:1.5rem;"> <?= $row['sira'] ?> </td>
-                                        <td> <?= htmlspecialchars($row['kategori_adi']) ?> </td>
-                                        <td>
-                                            <span class="badge" style="background:#45b7d1; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                Borç
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge" style="background:#6c757d; color:#fff; font-weight:600; font-size:0.6rem; padding:0.2rem 0.4rem;">
-                                                <?= htmlspecialchars($row['harcama_donemi'] ?? '07.25') ?>
-                                            </span>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['item_name']) ?> </td>
-                                        <td> ₺<?= number_format($row['amount'], 0, ',', '.') ?> </td>
-                                        <td>
-                                            <?php if (!empty($row['link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm" style="font-size:0.8rem; padding:0.3rem 0.6rem;">Link</a>
-                                            <?php else: ?>-
-                                            <?php endif; ?>
-                                        </td>
-                                        <td> <?= htmlspecialchars($row['description'] ?? '-') ?> </td>
-                                        <td>
-                                            <div class="position-relative" style="display:inline-block; width:120px;">
-                                                <select class="form-select form-select-sm status-dropdown" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 2rem 0.3rem 0.5rem; min-width:100px; border:1px solid #e5e9f2; appearance:none;">
-                                                    <option value="Beklemede" <?= $row['status_name'] == 'Beklemede' ? 'selected' : '' ?>>Beklemede</option>
-                                                    <option value="Devam Ediyor" <?= $row['status_name'] == 'Devam Ediyor' ? 'selected' : '' ?>>Devam Ediyor</option>
-                                                    <option value="Tamamlandı" <?= $row['status_name'] == 'Tamamlandı' ? 'selected' : '' ?>>Tamamlandı</option>
-                                                    <option value="İptal Edildi" <?= $row['status_name'] == 'İptal Edildi' ? 'selected' : '' ?>>İptal Edildi</option>
-                                                </select>
-                                                <i class="bi bi-caret-down-fill" style="position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none; color:#b0b8c9; font-size:1rem;"></i>
-                                            </div>
-                                        </td>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['owner']) ?></td>
+                                        <td><?= htmlspecialchars($row['period']) ?></td>
+                                        <td>₺<?= number_format($row['principal'], 2, ',', '.') ?></td>
+                                        <td>₺<?= number_format($row['interest'], 2, ',', '.') ?></td>
+                                        <td>₺<?= number_format($row['total'], 2, ',', '.') ?></td>
+                                        <td><?= date('d.m.Y', strtotime($row['payment_due'])) ?></td>
+                                        <td>₺<?= number_format($row['planned_payment'], 2, ',', '.') ?></td>
+                                        <td>₺<?= number_format($row['paid'], 2, ',', '.') ?></td>
+                                        <td>₺<?= number_format($row['remaining'], 2, ',', '.') ?></td>
+                                        <td>₺<?= number_format($row['this_month_payment'], 2, ',', '.') ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
-                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Düzenle" type="button">
+                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editTaxDebtModal">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>" style="font-size:0.8rem; padding:0.3rem 0.5rem; min-width:32px;" title="Sil" type="button">
+                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>
@@ -117,126 +86,219 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                     </div>
                 </div>
                 <?php endif; ?>
-                
-                <!-- Harcama Ekle Modal -->
-                <div class="modal fade" id="harcamaEkleModal" tabindex="-1" aria-labelledby="harcamaEkleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="harcamaEkleModalLabel">Yeni Vergi Borcu Ekle</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="harcamaEkleForm">
-                                <div class="modal-body">
-                                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
-                                    <input type="hidden" name="kategori_tipi" value="Borç Ödemeleri">
-                                    
-                                    <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <input type="text" class="form-control" id="kategori" name="kategori" value="Vergi" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="harcama_donemi" class="form-label">Harcama Dönemi</label>
-                                        <select class="form-select" id="harcama_donemi" name="harcama_donemi" required>
-                                            <option value="07.25" <?= ($selected_month == '07.25') ? 'selected' : '' ?>>Temmuz 2025</option>
-                                            <option value="08.25" <?= ($selected_month == '08.25') ? 'selected' : '' ?>>Ağustos 2025</option>
-                                            <option value="09.25" <?= ($selected_month == '09.25') ? 'selected' : '' ?>>Eylül 2025</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="urun" class="form-label">Vergi Türü</label>
-                                        <input type="text" class="form-control" id="urun" name="urun" placeholder="Örn: Gelir Vergisi, KDV, MTV" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="tutar" class="form-label">Tutar (₺)</label>
-                                        <input type="number" class="form-control" id="tutar" name="tutar" step="0.01" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="link" class="form-label">Link (Opsiyonel)</label>
-                                        <input type="url" class="form-control" id="link" name="link">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="aciklama" class="form-label">Açıklama (Opsiyonel)</label>
-                                        <textarea class="form-control" id="aciklama" name="aciklama" rows="3"></textarea>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="durum" class="form-label">Durum</label>
-                                        <select class="form-select" id="durum" name="durum" required>
-                                            <option value="Beklemede">Beklemede</option>
-                                            <option value="Devam Ediyor">Devam Ediyor</option>
-                                            <option value="Tamamlandı">Tamamlandı</option>
-                                            <option value="İptal Edildi">İptal Edildi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
-                                    <button type="submit" class="btn btn-primary">Ekle</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<!-- Add Tax Debt Modal -->
+<div class="modal fade" id="addTaxDebtModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Yeni Vergi Borcu Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="owner" class="form-label">Sahibi</label>
+                        <input type="text" class="form-control" id="owner" name="owner" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="period" class="form-label">Dönem</label>
+                        <input type="text" class="form-control" id="period" name="period">
+                    </div>
+                    <div class="mb-3">
+                        <label for="principal" class="form-label">Anapara</label>
+                        <input type="number" class="form-control" id="principal" name="principal" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="interest" class="form-label">Faiz</label>
+                        <input type="number" class="form-control" id="interest" name="interest" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="total" class="form-label">Toplam</label>
+                        <input type="number" class="form-control" id="total" name="total" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="payment_due" class="form-label">Ödeme Vadesi</label>
+                        <input type="date" class="form-control" id="payment_due" name="payment_due">
+                    </div>
+                    <div class="mb-3">
+                        <label for="planned_payment" class="form-label">Planlanan Ödeme</label>
+                        <input type="number" class="form-control" id="planned_payment" name="planned_payment" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="paid" class="form-label">Ödenen</label>
+                        <input type="number" class="form-control" id="paid" name="paid" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="remaining" class="form-label">Kalan</label>
+                        <input type="number" class="form-control" id="remaining" name="remaining" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="this_month_payment" class="form-label">Bu Ay Ödeme</label>
+                        <input type="number" class="form-control" id="this_month_payment" name="this_month_payment" step="0.01">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Tax Debt Modal -->
+<div class="modal fade" id="editTaxDebtModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Vergi Borcunu Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="edit_id" name="id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_owner" class="form-label">Sahibi</label>
+                        <input type="text" class="form-control" id="edit_owner" name="owner" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_period" class="form-label">Dönem</label>
+                        <input type="text" class="form-control" id="edit_period" name="period">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_principal" class="form-label">Anapara</label>
+                        <input type="number" class="form-control" id="edit_principal" name="principal" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_interest" class="form-label">Faiz</label>
+                        <input type="number" class="form-control" id="edit_interest" name="interest" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_total" class="form-label">Toplam</label>
+                        <input type="number" class="form-control" id="edit_total" name="total" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_payment_due" class="form-label">Ödeme Vadesi</label>
+                        <input type="date" class="form-control" id="edit_payment_due" name="payment_due">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_planned_payment" class="form-label">Planlanan Ödeme</label>
+                        <input type="number" class="form-control" id="edit_planned_payment" name="planned_payment" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_paid" class="form-label">Ödenen</label>
+                        <input type="number" class="form-control" id="edit_paid" name="paid" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_remaining" class="form-label">Kalan</label>
+                        <input type="number" class="form-control" id="edit_remaining" name="remaining" step="0.01">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_this_month_payment" class="form-label">Bu Ay Ödeme</label>
+                        <input type="number" class="form-control" id="edit_this_month_payment" name="this_month_payment" step="0.01">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {
-    // Durum değişikliği
-    $('.status-dropdown').change(function() {
-        var id = $(this).data('id');
-        var status = $(this).val();
-        
+    // Add Form
+    $('#addForm').submit(function(e) {
+        e.preventDefault();
         $.ajax({
-            url: 'ajax/update_payment.php',
+            url: 'ajax/add_tax_debt.php',
             type: 'POST',
-            data: {
-                id: id,
-                durum: status,
-                csrf_token: '<?= $csrf_token ?>'
-            },
+            data: $(this).serialize(),
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('Durum güncellendi');
+                    location.reload();
                 } else {
-                    toastr.error('Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
             }
         });
     });
-    
-    // Yeni harcama ekleme
-    $('#harcamaEkleForm').submit(function(e) {
-        e.preventDefault();
-        
+
+    // Edit Button
+    $('.edit-btn').click(function() {
+        const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/add_expense.php',
+            url: 'ajax/get_tax_debt.php',
             type: 'POST',
-            data: $(this).serialize(),
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    toastr.success('Vergi borcu başarıyla eklendi');
-                    $('#harcamaEkleModal').modal('hide');
+                    const debt = response.data;
+                    $('#edit_id').val(debt.id);
+                    $('#edit_owner').val(debt.owner);
+                    $('#edit_period').val(debt.period);
+                    $('#edit_principal').val(debt.principal);
+                    $('#edit_interest').val(debt.interest);
+                    $('#edit_total').val(debt.total);
+                    $('#edit_payment_due').val(debt.payment_due);
+                    $('#edit_planned_payment').val(debt.planned_payment);
+                    $('#edit_paid').val(debt.paid);
+                    $('#edit_remaining').val(debt.remaining);
+                    $('#edit_this_month_payment').val(debt.this_month_payment);
+                    $('#editTaxDebtModal').modal('show');
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            }
+        });
+    });
+
+    // Edit Form
+    $('#editForm').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'ajax/update_tax_debt.php',
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
                     location.reload();
                 } else {
-                    toastr.error(response.message || 'Hata oluştu');
+                    alert(response.message || 'Bir hata oluştu.');
                 }
-            },
-            error: function() {
-                toastr.error('Bağlantı hatası');
+            }
+        });
+    });
+
+    // Delete Button
+    $('.delete-btn').click(function() {
+        if (!confirm('Bu vergi borcunu silmek istediğinizden emin misiniz?')) return;
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/delete_tax_debt.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    location.reload();
+                } else {
+                    alert(response.message || 'Bir hata oluştu.');
+                }
             }
         });
     });
@@ -244,3 +306,4 @@ $(document).ready(function() {
 </script>
 
 </body>
+</html>
