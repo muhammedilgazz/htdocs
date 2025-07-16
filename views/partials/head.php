@@ -28,6 +28,9 @@
     <!-- Modern Enhanced CSS -->
     <link href="assets/css/modern-enhanced.css" rel="stylesheet">
     
+    <!-- Enhanced Components CSS -->
+    <link href="assets/css/components-enhanced.css" rel="stylesheet">
+    
     <!-- Custom Color Palette -->
     <link href="assets/css/custom-colors.css" rel="stylesheet">
     
