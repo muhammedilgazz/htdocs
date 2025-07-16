@@ -276,7 +276,7 @@
             </li>
             
             <li class="nav-item">
-                <a href="signin.php?logout=1" class="nav-link" style="color: var(--md-error);">
+                <a href="/signin?logout=1" class="nav-link" style="color: var(--md-error);">
                     <i class="material-icons-round">logout</i>
                     <span>Çıkış Yap</span>
                 </a>
