@@ -265,7 +265,7 @@
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-center" href="notifications.php">Tüm Bildirimleri Gör</a></li>
+                <li><a class="dropdown-item text-center" href="/notifications">Tüm Bildirimleri Gör</a></li>
             </ul>
         </div>
         
