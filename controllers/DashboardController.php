@@ -18,6 +18,7 @@ class DashboardController {
         $total_debt_payments = $stats['total_debt_payments'];
         $total_balance = $stats['total_balance'];
 
-        require_once 'C:/xampp/htdocs/views/dashboard.php';
+        // Fixed: Use absolute path instead of hard-coded Windows path
+        require_once __DIR__ . '/../views/dashboard.php';
     }
 }
