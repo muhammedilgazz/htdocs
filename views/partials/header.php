@@ -198,7 +198,7 @@
         </div>
         
         <!-- Xtreme AI Button -->
-        <a href="xtreme-ai.php" class="btn btn-text ripple me-2" title="Xtreme AI">
+        <a href="/xtremeai" class="btn btn-text ripple me-2" title="Xtreme AI">
             <i class="material-icons-round" style="color: #6366F1;">smart_toy</i>
             
         </a>
@@ -265,7 +265,7 @@
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-center" href="notifications.php">Tüm Bildirimleri Gör</a></li>
+                <li><a class="dropdown-item text-center" href="/notifications">Tüm Bildirimleri Gör</a></li>
             </ul>
         </div>
         
@@ -281,13 +281,13 @@
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><h6 class="dropdown-header">Hesap</h6></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="profile.php"><i class="material-icons-round me-2">person</i>Profil</a></li>
-                <li><a class="dropdown-item" href="settings.php"><i class="material-icons-round me-2">settings</i>Ayarlar</a></li>
-                <li><a class="dropdown-item" href="privacy.php"><i class="material-icons-round me-2">security</i>Gizlilik</a></li>
+                <li><a class="dropdown-item" href="/profile"><i class="material-icons-round me-2">person</i>Profil</a></li>
+                <li><a class="dropdown-item" href="/settings"><i class="material-icons-round me-2">settings</i>Ayarlar</a></li>
+                <li><a class="dropdown-item" href="/privacy"><i class="material-icons-round me-2">security</i>Gizlilik</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="support.php"><i class="material-icons-round me-2">support_agent</i>Destek</a></li>
+                <li><a class="dropdown-item" href="/support"><i class="material-icons-round me-2">support_agent</i>Destek</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="signin.php?logout=1"><i class="material-icons-round me-2">logout</i>Çıkış Yap</a></li>
+                <li><a class="dropdown-item text-danger" href="/signin?logout=1"><i class="material-icons-round me-2">logout</i>Çıkış Yap</a></li>
             </ul>
         </div>
     </div>
