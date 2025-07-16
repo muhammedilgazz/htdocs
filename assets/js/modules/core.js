@@ -1,350 +1,563 @@
 /**
- * Ekash Core Module - Temel fonksiyonlar ve yardımcı işlevler
- * @version 1.0.0
+ * Ekash Core Module - Enhanced Modern Version
+ * @version 3.0.0
+ * @description Core utilities, theme management, and event handling
  */
 
-const EkashCore = (function() {
+(function() {
     'use strict';
 
-    // Private variables
-    let isInitialized = false;
+    // Core configuration
     const config = {
+        debug: true,
+        version: '3.0.0',
         theme: {
             default: 'light',
-            storageKey: 'theme'
+            storageKey: 'ekash-theme'
         },
-        animation: {
+        animations: {
             duration: 300,
-            easing: 'ease-in-out'
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        },
+        breakpoints: {
+            xs: 576,
+            sm: 768,
+            md: 992,
+            lg: 1200,
+            xl: 1400
         }
     };
 
-    /**
-     * Initialize core functionality
-     */
-    function init() {
-        if (isInitialized) {
-            console.warn('EkashCore already initialized');
-            return;
-        }
+    // Event system
+    const events = {};
+    const eventListeners = new Map();
 
-        console.log('🚀 Ekash Core initializing...');
-        
-        // Initialize theme system
-        initTheme();
-        
-        // Initialize global event listeners
-        initGlobalEvents();
-        
-        // Set content body min height
-        setContentMinHeight();
-        
-        isInitialized = true;
-        console.log('✅ Ekash Core initialized successfully');
-    }
+    // Performance monitoring
+    const performance = {
+        marks: new Map(),
+        measures: new Map()
+    };
 
-    /**
-     * Theme management system
-     */
-    function initTheme() {
-        const savedTheme = getStoredTheme();
-        const bodyElement = document.body;
-        
-        if (savedTheme) {
-            bodyElement.classList.add(savedTheme);
-        }
-        
-        updateThemeIndicator(savedTheme || config.theme.default);
-    }
+    // Theme system
+    const theme = {
+        current: localStorage.getItem(config.theme.storageKey) || config.theme.default,
+        observers: new Set()
+    };
 
-    /**
-     * Get theme from localStorage
-     */
-    function getStoredTheme() {
-        return localStorage.getItem(config.theme.storageKey) || config.theme.default;
-    }
-
-    /**
-     * Save theme to localStorage
-     */
-    function saveTheme(theme) {
-        localStorage.setItem(config.theme.storageKey, theme);
-    }
-
-    /**
-     * Toggle between light and dark theme
-     */
-    function toggleTheme() {
-        const bodyElement = document.body;
-        const currentTheme = getStoredTheme();
-        
-        bodyElement.classList.toggle('dark-theme');
-        
-        const newTheme = currentTheme === 'dark-theme' ? 'light' : 'dark-theme';
-        saveTheme(newTheme);
-        updateThemeIndicator(newTheme);
-        
-        // Trigger theme change event
-        triggerEvent('themeChanged', { theme: newTheme });
-    }
-
-    /**
-     * Update theme indicator in UI
-     */
-    function updateThemeIndicator(theme) {
-        const themeElement = document.getElementById('theme');
-        if (themeElement) {
-            themeElement.textContent = theme;
-        }
-    }
-
-    /**
-     * Set content body minimum height
-     */
-    function setContentMinHeight() {
-        const contentBody = document.querySelector('.content-body');
-        if (contentBody) {
-            const minHeight = window.innerHeight + 50;
-            contentBody.style.minHeight = `${minHeight}px`;
-        }
-    }
-
-    /**
-     * Initialize global event listeners
-     */
-    function initGlobalEvents() {
-        // Window resize handler
-        window.addEventListener('resize', debounce(() => {
-            setContentMinHeight();
-            triggerEvent('windowResized', { 
-                width: window.innerWidth, 
-                height: window.innerHeight 
-            });
-        }, 250));
-
-        // Page visibility change
-        document.addEventListener('visibilitychange', () => {
-            triggerEvent('visibilityChanged', { 
-                hidden: document.hidden 
-            });
-        });
-    }
-
-    /**
-     * Utility function to debounce function calls
-     */
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
+    // Utility functions
+    const utils = {
+        // Enhanced debounce with immediate option
+        debounce: function(func, wait, immediate = false) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    timeout = null;
+                    if (!immediate) func(...args);
+                };
+                const callNow = immediate && !timeout;
                 clearTimeout(timeout);
-                func(...args);
+                timeout = setTimeout(later, wait);
+                if (callNow) func(...args);
             };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
+        },
 
-    /**
-     * Utility function to throttle function calls
-     */
-    function throttle(func, limit) {
-        let inThrottle;
-        return function executedFunction(...args) {
-            if (!inThrottle) {
-                func.apply(this, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
+        // Enhanced throttle
+        throttle: function(func, limit) {
+            let inThrottle;
+            return function(...args) {
+                if (!inThrottle) {
+                    func.apply(this, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        },
+
+        // Deep merge objects
+        deepMerge: function(target, ...sources) {
+            if (!sources.length) return target;
+            const source = sources.shift();
+
+            if (this.isObject(target) && this.isObject(source)) {
+                for (const key in source) {
+                    if (this.isObject(source[key])) {
+                        if (!target[key]) Object.assign(target, { [key]: {} });
+                        this.deepMerge(target[key], source[key]);
+                    } else {
+                        Object.assign(target, { [key]: source[key] });
+                    }
+                }
             }
-        };
-    }
 
-    /**
-     * Custom event system
-     */
-    function triggerEvent(eventName, data = {}) {
-        const event = new CustomEvent(`ekash:${eventName}`, {
-            detail: data,
-            bubbles: true,
-            cancelable: true
-        });
-        document.dispatchEvent(event);
-    }
+            return this.deepMerge(target, ...sources);
+        },
 
-    /**
-     * Add event listener for custom events
-     */
-    function on(eventName, callback) {
-        document.addEventListener(`ekash:${eventName}`, callback);
-    }
+        // Check if value is object
+        isObject: function(item) {
+            return item && typeof item === 'object' && !Array.isArray(item);
+        },
 
-    /**
-     * Remove event listener for custom events
-     */
-    function off(eventName, callback) {
-        document.removeEventListener(`ekash:${eventName}`, callback);
-    }
+        // Enhanced currency formatting
+        formatCurrency: function(amount, currency = 'TRY') {
+            const formatter = new Intl.NumberFormat('tr-TR', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            return formatter.format(amount);
+        },
 
-    /**
-     * Wait for DOM to be ready
-     */
-    function ready(callback) {
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', callback);
-        } else {
-            callback();
-        }
-    }
+        // Enhanced date formatting
+        formatDate: function(date, options = {}) {
+            const defaultOptions = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            const formatter = new Intl.DateTimeFormat('tr-TR', { ...defaultOptions, ...options });
+            return formatter.format(new Date(date));
+        },
 
-    /**
-     * Create element with attributes and content
-     */
-    function createElement(tag, attributes = {}, content = '') {
-        const element = document.createElement(tag);
-        
-        // Set attributes
-        Object.entries(attributes).forEach(([key, value]) => {
-            if (key === 'className') {
-                element.className = value;
-            } else if (key === 'innerHTML') {
-                element.innerHTML = value;
-            } else {
-                element.setAttribute(key, value);
+        // Relative time formatting
+        formatRelativeTime: function(date) {
+            const now = new Date();
+            const diff = now - new Date(date);
+            const seconds = Math.floor(diff / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            const days = Math.floor(hours / 24);
+
+            if (days > 0) return `${days} gün önce`;
+            if (hours > 0) return `${hours} saat önce`;
+            if (minutes > 0) return `${minutes} dakika önce`;
+            return 'Az önce';
+        },
+
+        // Generate UUID
+        generateUUID: function() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        },
+
+        // Enhanced element selector
+        $: function(selector, context = document) {
+            return context.querySelector(selector);
+        },
+
+        // Enhanced element selector (all)
+        $$: function(selector, context = document) {
+            return Array.from(context.querySelectorAll(selector));
+        },
+
+        // Check if element is in viewport
+        isInViewport: function(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        },
+
+        // Get device info
+        getDeviceInfo: function() {
+            return {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                isMobile: window.innerWidth < config.breakpoints.md,
+                isTablet: window.innerWidth >= config.breakpoints.md && window.innerWidth < config.breakpoints.lg,
+                isDesktop: window.innerWidth >= config.breakpoints.lg,
+                userAgent: navigator.userAgent,
+                platform: navigator.platform
+            };
+        },
+
+        // Storage utilities
+        storage: {
+            set: function(key, value, expiry = null) {
+                const item = {
+                    value: value,
+                    expiry: expiry ? Date.now() + expiry : null
+                };
+                localStorage.setItem(key, JSON.stringify(item));
+            },
+
+            get: function(key) {
+                const item = localStorage.getItem(key);
+                if (!item) return null;
+
+                try {
+                    const parsed = JSON.parse(item);
+                    if (parsed.expiry && Date.now() > parsed.expiry) {
+                        localStorage.removeItem(key);
+                        return null;
+                    }
+                    return parsed.value;
+                } catch (e) {
+                    return null;
+                }
+            },
+
+            remove: function(key) {
+                localStorage.removeItem(key);
+            },
+
+            clear: function() {
+                localStorage.clear();
             }
+        }
+    };
+
+    // Enhanced event system
+    const eventSystem = {
+        // Subscribe to event
+        on: function(event, callback, options = {}) {
+            if (!events[event]) events[event] = [];
+            
+            const listener = {
+                callback: callback,
+                once: options.once || false,
+                id: utils.generateUUID()
+            };
+            
+            events[event].push(listener);
+            
+            // Store reference for cleanup
+            if (!eventListeners.has(event)) {
+                eventListeners.set(event, new Set());
+            }
+            eventListeners.get(event).add(listener);
+            
+            return listener.id;
+        },
+
+        // Unsubscribe from event
+        off: function(event, id) {
+            if (!events[event]) return;
+            
+            events[event] = events[event].filter(listener => listener.id !== id);
+            
+            if (eventListeners.has(event)) {
+                const listeners = eventListeners.get(event);
+                listeners.forEach(listener => {
+                    if (listener.id === id) {
+                        listeners.delete(listener);
+                    }
+                });
+            }
+        },
+
+        // Trigger event
+        trigger: function(event, data = {}) {
+            if (!events[event]) return;
+            
+            const eventData = {
+                type: event,
+                data: data,
+                timestamp: Date.now()
+            };
+            
+            events[event].forEach(listener => {
+                try {
+                    listener.callback(eventData);
+                    
+                    // Remove once listeners
+                    if (listener.once) {
+                        this.off(event, listener.id);
+                    }
+                } catch (error) {
+                    console.error(`Error in event listener for ${event}:`, error);
+                }
+            });
+        },
+
+        // Clear all listeners for event
+        clear: function(event) {
+            if (events[event]) {
+                delete events[event];
+                eventListeners.delete(event);
+            }
+        }
+    };
+
+    // Enhanced theme system
+    const themeSystem = {
+        // Get current theme
+        get: function() {
+            return theme.current;
+        },
+
+        // Set theme
+        set: function(newTheme) {
+            if (newTheme === theme.current) return;
+            
+            const oldTheme = theme.current;
+            theme.current = newTheme;
+            
+            // Update DOM
+            document.documentElement.setAttribute('data-bs-theme', newTheme);
+            
+            // Save to storage
+            utils.storage.set(config.theme.storageKey, newTheme);
+            
+            // Notify observers
+            theme.observers.forEach(observer => {
+                try {
+                    observer({ oldTheme, newTheme });
+                } catch (error) {
+                    console.error('Error in theme observer:', error);
+                }
+            });
+            
+            // Trigger event
+            eventSystem.trigger('themeChanged', { oldTheme, newTheme });
+        },
+
+        // Toggle theme
+        toggle: function() {
+            const newTheme = theme.current === 'light' ? 'dark' : 'light';
+            this.set(newTheme);
+        },
+
+        // Add theme observer
+        observe: function(callback) {
+            theme.observers.add(callback);
+            return () => theme.observers.delete(callback);
+        }
+    };
+
+    // Enhanced performance monitoring
+    const performanceMonitor = {
+        // Mark performance point
+        mark: function(name) {
+            const mark = {
+                name: name,
+                time: Date.now(),
+                memory: performance.memory ? performance.memory.usedJSHeapSize : null
+            };
+            performance.marks.set(name, mark);
+            
+            if (config.debug) {
+                console.log(`⏱️ Performance mark: ${name}`, mark);
+            }
+        },
+
+        // Measure performance between marks
+        measure: function(name, startMark, endMark) {
+            const start = performance.marks.get(startMark);
+            const end = performance.marks.get(endMark);
+            
+            if (!start || !end) {
+                console.warn(`Cannot measure ${name}: missing marks`);
+                return null;
+            }
+            
+            const measure = {
+                name: name,
+                duration: end.time - start.time,
+                memoryDiff: end.memory && start.memory ? end.memory - start.memory : null
+            };
+            
+            performance.measures.set(name, measure);
+            
+            if (config.debug) {
+                console.log(`📊 Performance measure: ${name}`, measure);
+            }
+            
+            return measure;
+        },
+
+        // Get all performance data
+        getAll: function() {
+            return {
+                marks: Array.from(performance.marks.entries()),
+                measures: Array.from(performance.measures.entries())
+            };
+        },
+
+        // Clear performance data
+        clear: function() {
+            performance.marks.clear();
+            performance.measures.clear();
+        }
+    };
+
+    // Enhanced animation system
+    const animationSystem = {
+        // Animate element
+        animate: function(element, keyframes, options = {}) {
+            const defaultOptions = {
+                duration: config.animations.duration,
+                easing: config.animations.easing,
+                fill: 'both'
+            };
+            
+            const animation = element.animate(keyframes, { ...defaultOptions, ...options });
+            
+            return new Promise((resolve, reject) => {
+                animation.addEventListener('finish', () => resolve(animation));
+                animation.addEventListener('cancel', () => reject(new Error('Animation cancelled')));
+            });
+        },
+
+        // Fade in element
+        fadeIn: function(element, options = {}) {
+            return this.animate(element, [
+                { opacity: 0 },
+                { opacity: 1 }
+            ], options);
+        },
+
+        // Fade out element
+        fadeOut: function(element, options = {}) {
+            return this.animate(element, [
+                { opacity: 1 },
+                { opacity: 0 }
+            ], options);
+        },
+
+        // Slide in element
+        slideIn: function(element, direction = 'up', options = {}) {
+            const transforms = {
+                up: [{ transform: 'translateY(30px)' }, { transform: 'translateY(0)' }],
+                down: [{ transform: 'translateY(-30px)' }, { transform: 'translateY(0)' }],
+                left: [{ transform: 'translateX(-30px)' }, { transform: 'translateX(0)' }],
+                right: [{ transform: 'translateX(30px)' }, { transform: 'translateX(0)' }]
+            };
+            
+            return this.animate(element, [
+                { opacity: 0, ...transforms[direction][0] },
+                { opacity: 1, ...transforms[direction][1] }
+            ], options);
+        },
+
+        // Scale element
+        scale: function(element, from = 0.9, to = 1, options = {}) {
+            return this.animate(element, [
+                { transform: `scale(${from})`, opacity: 0 },
+                { transform: `scale(${to})`, opacity: 1 }
+            ], options);
+        }
+    };
+
+    // Enhanced error handling
+    const errorHandler = {
+        // Handle error
+        handle: function(error, context = 'Unknown') {
+            const errorInfo = {
+                message: error.message,
+                stack: error.stack,
+                context: context,
+                timestamp: Date.now(),
+                url: window.location.href,
+                userAgent: navigator.userAgent
+            };
+            
+            // Log to console
+            console.error(`[${context}] Error:`, errorInfo);
+            
+            // Trigger error event
+            eventSystem.trigger('error', errorInfo);
+            
+            // Store in session storage for debugging
+            if (config.debug) {
+                const errors = JSON.parse(sessionStorage.getItem('ekash-errors') || '[]');
+                errors.push(errorInfo);
+                sessionStorage.setItem('ekash-errors', JSON.stringify(errors.slice(-10))); // Keep last 10
+            }
+        },
+
+        // Get stored errors
+        getErrors: function() {
+            return JSON.parse(sessionStorage.getItem('ekash-errors') || '[]');
+        },
+
+        // Clear stored errors
+        clearErrors: function() {
+            sessionStorage.removeItem('ekash-errors');
+        }
+    };
+
+    // Initialize core
+    function init() {
+        performanceMonitor.mark('core-init-start');
+        
+        // Set initial theme
+        document.documentElement.setAttribute('data-bs-theme', theme.current);
+        
+        // Setup global error handling
+        window.addEventListener('error', (event) => {
+            errorHandler.handle(event.error, 'Global');
         });
         
-        // Set content
-        if (content) {
-            element.textContent = content;
+        window.addEventListener('unhandledrejection', (event) => {
+            errorHandler.handle(new Error(event.reason), 'Unhandled Promise');
+        });
+        
+        // Debug info
+        if (config.debug) {
+            console.log('🚀 Ekash Core initialized', {
+                version: config.version,
+                theme: theme.current,
+                device: utils.getDeviceInfo()
+            });
         }
         
-        return element;
-    }
-
-    /**
-     * Check if device is mobile
-     */
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
-
-    /**
-     * Check if device is tablet
-     */
-    function isTablet() {
-        return window.innerWidth > 768 && window.innerWidth <= 1024;
-    }
-
-    /**
-     * Check if device is desktop
-     */
-    function isDesktop() {
-        return window.innerWidth > 1024;
-    }
-
-    /**
-     * Format currency
-     */
-    function formatCurrency(amount, currency = 'TRY') {
-        return new Intl.NumberFormat('tr-TR', {
-            style: 'currency',
-            currency: currency,
-            minimumFractionDigits: 2
-        }).format(amount);
-    }
-
-    /**
-     * Format date
-     */
-    function formatDate(date, format = 'tr-TR') {
-        return new Intl.DateTimeFormat(format).format(new Date(date));
-    }
-
-    /**
-     * Validate email
-     */
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    /**
-     * Generate random ID
-     */
-    function generateId(length = 8) {
-        return Math.random().toString(36).substring(2, 2 + length);
-    }
-
-    /**
-     * Deep clone object
-     */
-    function deepClone(obj) {
-        return JSON.parse(JSON.stringify(obj));
-    }
-
-    /**
-     * Check if object is empty
-     */
-    function isEmpty(obj) {
-        return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
-    }
-
-    /**
-     * Public API
-     */
-    return {
-        // Initialization
-        init,
+        performanceMonitor.mark('core-init-end');
+        performanceMonitor.measure('core-init', 'core-init-start', 'core-init-end');
         
-        // Theme management
-        toggleTheme,
-        getStoredTheme,
+        // Trigger ready event
+        eventSystem.trigger('coreReady', { version: config.version });
+    }
+
+    // Public API
+    window.EkashCore = {
+        // Config
+        config: config,
+        
+        // Utilities
+        utils: utils,
+        $: utils.$,
+        $$: utils.$$,
         
         // Event system
-        on,
-        off,
-        triggerEvent,
+        on: eventSystem.on.bind(eventSystem),
+        off: eventSystem.off.bind(eventSystem),
+        trigger: eventSystem.trigger.bind(eventSystem),
+        triggerEvent: eventSystem.trigger.bind(eventSystem), // Legacy alias
         
-        // DOM utilities
-        ready,
-        createElement,
+        // Theme system
+        theme: themeSystem,
+        toggleTheme: themeSystem.toggle.bind(themeSystem),
         
-        // Device detection
-        isMobile,
-        isTablet,
-        isDesktop,
+        // Performance monitoring
+        performance: performanceMonitor,
         
-        // Formatting utilities
-        formatCurrency,
-        formatDate,
+        // Animation system
+        animate: animationSystem,
         
-        // Validation utilities
-        isValidEmail,
+        // Error handling
+        error: errorHandler,
         
-        // General utilities
-        debounce,
-        throttle,
-        generateId,
-        deepClone,
-        isEmpty,
+        // Currency formatting
+        formatCurrency: utils.formatCurrency,
+        formatDate: utils.formatDate,
+        formatRelativeTime: utils.formatRelativeTime,
         
-        // Config access
-        config
+        // Initialize
+        init: init
     };
+
+    // Auto-initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
 })();
-
-// Auto-initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    EkashCore.init();
-});
-
-// Make theme toggle globally available
-window.themeToggle = () => EkashCore.toggleTheme();
-
-// Export for module systems
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = EkashCore;
-}
-
-// Global namespace
-window.EkashCore = EkashCore;

@@ -1,569 +1,669 @@
 /**
- * Ekash UI Module - User Interface components and interactions
- * @version 1.0.0
- * @requires EkashCore
+ * Ekash UI Module - Enhanced Modern Version
+ * @version 3.0.0
+ * @description Enhanced UI components, animations, and user interactions
  */
 
-const EkashUI = (function() {
+(function() {
     'use strict';
 
-    // Private variables
-    let isInitialized = false;
-    const selectors = {
-        sidebar: '.sidebar',
-        sidebarToggle: '#sidebarToggle',
-        rippleElements: '.ripple',
-        loadingButtons: '.btn[data-loading]',
-        submenuToggle: '[data-bs-target="#harcamalarSubmenu"]',
-        submenu: '#harcamalarSubmenu',
-        smoothScrollLinks: 'a[href^="#"]:not([data-bs-toggle])',
-        fabContainer: '.fab-container',
-        fabMain: '#fabMain',
-        fabOptions: '.fab-option'
-    };
+    // Wait for core to be ready
+    if (!window.EkashCore) {
+        console.error('EkashUI requires EkashCore to be loaded first');
+        return;
+    }
 
+    // UI configuration
     const config = {
-        mobile: {
-            breakpoint: 1024
-        },
-        animation: {
+        debug: true,
+        animations: {
             duration: 300,
-            rippleDuration: 600
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
         },
-        snackbar: {
-            duration: 3000,
-            fadeIn: 100,
-            fadeOut: 300
+        notifications: {
+            position: 'top-right',
+            duration: 5000,
+            maxVisible: 5
+        },
+        components: {
+            tooltip: {
+                delay: 500,
+                placement: 'top'
+            },
+            modal: {
+                backdrop: true,
+                keyboard: true
+            },
+            ripple: {
+                duration: 600,
+                color: 'rgba(255, 255, 255, 0.3)'
+            }
         }
     };
 
-    /**
-     * Initialize UI module
-     */
-    function init() {
-        if (isInitialized) {
-            console.warn('EkashUI already initialized');
-            return;
-        }
+    // UI state
+    const state = {
+        notifications: [],
+        modals: new Map(),
+        tooltips: new Map(),
+        sidebar: {
+            collapsed: false,
+            mobile: false
+        },
+        loading: new Set(),
+        ripples: new Map()
+    };
 
-        console.log('🎨 Ekash UI initializing...');
+    // Enhanced notification system
+    const notifications = {
+        // Show notification
+        show: function(message, type = 'info', options = {}) {
+            const id = EkashCore.utils.generateUUID();
+            const notification = {
+                id: id,
+                message: message,
+                type: type,
+                timestamp: Date.now(),
+                options: { ...config.notifications, ...options }
+            };
 
-        // Wait for DOM to be ready
-        EkashCore.ready(() => {
-            initSidebar();
-            initRippleEffect();
-            initLoadingButtons();
-            initSubmenu();
-            initSmoothScroll();
-            initFloatingActionButton();
-            initGlobalUIEvents();
-        });
+            // Add to state
+            state.notifications.push(notification);
 
-        isInitialized = true;
-        console.log('✅ Ekash UI initialized successfully');
-    }
+            // Create DOM element
+            const element = this.createElement(notification);
+            
+            // Add to container
+            const container = this.getContainer();
+            container.appendChild(element);
 
-    /**
-     * Initialize sidebar functionality
-     */
-    function initSidebar() {
-        const sidebar = document.querySelector(selectors.sidebar);
-        const sidebarToggle = document.querySelector(selectors.sidebarToggle);
+            // Animate in
+            EkashCore.animate.slideIn(element, 'right');
 
-        if (!sidebar || !sidebarToggle) {
-            console.warn('Sidebar elements not found');
-            return;
-        }
-
-        // Toggle sidebar
-        sidebarToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleSidebar();
-        });
-
-        // Close sidebar when clicking outside (mobile only)
-        document.addEventListener('click', (e) => {
-            if (EkashCore.isMobile()) {
-                if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-                    closeSidebar();
-                }
+            // Auto-hide if duration is set
+            if (notification.options.duration > 0) {
+                setTimeout(() => {
+                    this.hide(id);
+                }, notification.options.duration);
             }
-        });
 
-        // Handle window resize
-        EkashCore.on('windowResized', (e) => {
-            if (e.detail.width > config.mobile.breakpoint) {
-                closeSidebar();
+            // Clean up old notifications
+            this.cleanup();
+
+            // Trigger event
+            EkashCore.trigger('notificationShown', notification);
+
+            return id;
+        },
+
+        // Hide notification
+        hide: function(id) {
+            const notification = state.notifications.find(n => n.id === id);
+            if (!notification) return;
+
+            const element = document.querySelector(`[data-notification-id="${id}"]`);
+            if (element) {
+                EkashCore.animate.fadeOut(element).then(() => {
+                    element.remove();
+                });
             }
-        });
 
-        console.log('✅ Sidebar initialized');
-    }
+            // Remove from state
+            state.notifications = state.notifications.filter(n => n.id !== id);
 
-    /**
-     * Toggle sidebar visibility
-     */
-    function toggleSidebar() {
-        const sidebar = document.querySelector(selectors.sidebar);
-        if (sidebar) {
-            sidebar.classList.toggle('show');
-            
             // Trigger event
-            EkashCore.triggerEvent('sidebarToggled', {
-                isOpen: sidebar.classList.contains('show')
-            });
-        }
-    }
+            EkashCore.trigger('notificationHidden', { id });
+        },
 
-    /**
-     * Close sidebar
-     */
-    function closeSidebar() {
-        const sidebar = document.querySelector(selectors.sidebar);
-        if (sidebar) {
-            sidebar.classList.remove('show');
+        // Create notification element
+        createElement: function(notification) {
+            const element = document.createElement('div');
+            element.className = `notification notification-${notification.type}`;
+            element.setAttribute('data-notification-id', notification.id);
             
-            // Trigger event
-            EkashCore.triggerEvent('sidebarClosed');
-        }
-    }
+            const iconMap = {
+                success: 'check_circle',
+                error: 'error',
+                warning: 'warning',
+                info: 'info'
+            };
 
-    /**
-     * Open sidebar
-     */
-    function openSidebar() {
-        const sidebar = document.querySelector(selectors.sidebar);
-        if (sidebar) {
-            sidebar.classList.add('show');
-            
-            // Trigger event
-            EkashCore.triggerEvent('sidebarOpened');
-        }
-    }
+            element.innerHTML = `
+                <div class="notification-content">
+                    <div class="notification-icon">
+                        <i class="material-icons-round">${iconMap[notification.type] || 'info'}</i>
+                    </div>
+                    <div class="notification-message">
+                        ${notification.message}
+                    </div>
+                    <button class="notification-close" onclick="EkashUI.notifications.hide('${notification.id}')">
+                        <i class="material-icons-round">close</i>
+                    </button>
+                </div>
+                <div class="notification-progress"></div>
+            `;
 
-    /**
-     * Initialize Material Design ripple effect
-     */
-    function initRippleEffect() {
-        const rippleElements = document.querySelectorAll(selectors.rippleElements);
-        
-        rippleElements.forEach(element => {
-            element.addEventListener('click', createRipple);
-        });
-
-        console.log(`✅ Ripple effect initialized for ${rippleElements.length} elements`);
-    }
-
-    /**
-     * Create ripple effect on element
-     */
-    function createRipple(event) {
-        const button = event.currentTarget;
-        
-        // Remove existing ripple
-        const existingRipple = button.querySelector('.ripple-effect');
-        if (existingRipple) {
-            existingRipple.remove();
-        }
-        
-        // Create new ripple element
-        const ripple = EkashCore.createElement('span', {
-            className: 'ripple-effect'
-        });
-        
-        // Calculate ripple size and position
-        const rect = button.getBoundingClientRect();
-        const diameter = Math.max(button.clientWidth, button.clientHeight);
-        const radius = diameter / 2;
-        
-        // Set ripple styles
-        ripple.style.width = ripple.style.height = `${diameter}px`;
-        ripple.style.left = `${event.clientX - rect.left - radius}px`;
-        ripple.style.top = `${event.clientY - rect.top - radius}px`;
-        
-        // Add ripple to button
-        button.appendChild(ripple);
-        
-        // Remove ripple after animation
-        setTimeout(() => {
-            if (ripple.parentNode) {
-                ripple.remove();
+            // Add progress bar animation
+            if (notification.options.duration > 0) {
+                const progressBar = element.querySelector('.notification-progress');
+                progressBar.style.animation = `notification-progress ${notification.options.duration}ms linear`;
             }
-        }, config.animation.rippleDuration);
-    }
 
-    /**
-     * Initialize loading button states
-     */
-    function initLoadingButtons() {
-        const loadingButtons = document.querySelectorAll(selectors.loadingButtons);
-        
-        loadingButtons.forEach(button => {
-            // Store original text
-            button.setAttribute('data-original-text', button.innerHTML);
+            return element;
+        },
+
+        // Get or create notification container
+        getContainer: function() {
+            let container = document.getElementById('notification-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'notification-container';
+                container.className = `notification-container position-${config.notifications.position}`;
+                document.body.appendChild(container);
+            }
+            return container;
+        },
+
+        // Clean up old notifications
+        cleanup: function() {
+            if (state.notifications.length > config.notifications.maxVisible) {
+                const oldestId = state.notifications[0].id;
+                this.hide(oldestId);
+            }
+        },
+
+        // Clear all notifications
+        clear: function() {
+            state.notifications.forEach(notification => {
+                this.hide(notification.id);
+            });
+        }
+    };
+
+    // Enhanced modal system
+    const modals = {
+        // Show modal
+        show: function(modalId, options = {}) {
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                console.error(`Modal ${modalId} not found`);
+                return;
+            }
+
+            const modalOptions = { ...config.components.modal, ...options };
             
-            button.addEventListener('click', function() {
-                if (!this.classList.contains('btn-loading')) {
-                    setButtonLoading(this);
-                    
-                    // Auto-remove loading state after demo period
-                    setTimeout(() => {
-                        setButtonComplete(this);
-                    }, 2000);
-                }
+            // Store modal state
+            state.modals.set(modalId, {
+                element: modal,
+                options: modalOptions,
+                backdrop: null
             });
-        });
 
-        console.log(`✅ Loading buttons initialized for ${loadingButtons.length} elements`);
-    }
+            // Create backdrop
+            if (modalOptions.backdrop) {
+                this.createBackdrop(modalId);
+            }
 
-    /**
-     * Set button to loading state
-     */
-    function setButtonLoading(button, text = 'Yükleniyor...') {
-        button.classList.add('btn-loading');
-        button.disabled = true;
-        button.innerHTML = `<span class="loading"></span> ${text}`;
-        
-        // Trigger event
-        EkashCore.triggerEvent('buttonLoading', { button });
-    }
+            // Show modal
+            modal.style.display = 'block';
+            modal.classList.add('show');
+            
+            // Animate in
+            EkashCore.animate.scale(modal, 0.9, 1);
 
-    /**
-     * Set button to complete state
-     */
-    function setButtonComplete(button, text = null) {
-        button.classList.remove('btn-loading');
-        button.disabled = false;
-        
-        const completeText = text || button.getAttribute('data-original-text') || 'Tamamlandı';
-        button.innerHTML = completeText;
-        
-        // Trigger event
-        EkashCore.triggerEvent('buttonComplete', { button });
-    }
+            // Focus management
+            this.manageFocus(modal);
 
-    /**
-     * Reset button to original state
-     */
-    function resetButton(button) {
-        button.classList.remove('btn-loading');
-        button.disabled = false;
-        
-        const originalText = button.getAttribute('data-original-text');
-        if (originalText) {
-            button.innerHTML = originalText;
-        }
-        
-        // Trigger event
-        EkashCore.triggerEvent('buttonReset', { button });
-    }
+            // Trigger event
+            EkashCore.trigger('modalShown', { id: modalId, options: modalOptions });
+        },
 
-    /**
-     * Initialize submenu functionality
-     */
-    function initSubmenu() {
-        const submenuToggle = document.querySelector(selectors.submenuToggle);
-        const submenu = document.querySelector(selectors.submenu);
-        
-        if (!submenuToggle || !submenu) {
-            console.warn('Submenu elements not found');
-            return;
-        }
+        // Hide modal
+        hide: function(modalId) {
+            const modalState = state.modals.get(modalId);
+            if (!modalState) return;
 
-        // Check if submenu should be open on page load
-        const activeSubmenuItem = submenu.querySelector('.nav-link.active');
-        if (activeSubmenuItem) {
-            submenu.classList.add('show');
-            submenuToggle.setAttribute('aria-expanded', 'true');
-        }
+            const modal = modalState.element;
 
-        // Toggle submenu
-        submenuToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleSubmenu();
-        });
-
-        // Close sidebar on submenu item click (mobile)
-        const submenuItems = submenu.querySelectorAll('.nav-link');
-        submenuItems.forEach(item => {
-            item.addEventListener('click', () => {
-                if (EkashCore.isMobile()) {
-                    closeSidebar();
-                }
+            // Animate out
+            EkashCore.animate.scale(modal, 1, 0.9).then(() => {
+                modal.style.display = 'none';
+                modal.classList.remove('show');
             });
-        });
 
-        console.log('✅ Submenu initialized');
-    }
+            // Remove backdrop
+            if (modalState.backdrop) {
+                modalState.backdrop.remove();
+            }
 
-    /**
-     * Toggle submenu visibility
-     */
-    function toggleSubmenu() {
-        const submenuToggle = document.querySelector(selectors.submenuToggle);
-        const submenu = document.querySelector(selectors.submenu);
-        
-        if (!submenuToggle || !submenu) return;
+            // Clean up state
+            state.modals.delete(modalId);
 
-        const isExpanded = submenuToggle.getAttribute('aria-expanded') === 'true';
-        
-        if (isExpanded) {
-            submenu.classList.remove('show');
-            submenuToggle.setAttribute('aria-expanded', 'false');
-        } else {
-            submenu.classList.add('show');
-            submenuToggle.setAttribute('aria-expanded', 'true');
-        }
+            // Trigger event
+            EkashCore.trigger('modalHidden', { id: modalId });
+        },
 
-        // Trigger event
-        EkashCore.triggerEvent('submenuToggled', {
-            isOpen: !isExpanded
-        });
-    }
-
-    /**
-     * Initialize smooth scrolling
-     */
-    function initSmoothScroll() {
-        const smoothScrollLinks = document.querySelectorAll(selectors.smoothScrollLinks);
-        
-        smoothScrollLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const targetId = link.getAttribute('href');
-                const target = document.querySelector(targetId);
-                
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Create backdrop
+        createBackdrop: function(modalId) {
+            const backdrop = document.createElement('div');
+            backdrop.className = 'modal-backdrop';
+            backdrop.addEventListener('click', () => {
+                this.hide(modalId);
             });
-        });
+            
+            document.body.appendChild(backdrop);
+            
+            // Store reference
+            const modalState = state.modals.get(modalId);
+            modalState.backdrop = backdrop;
+            
+            // Animate in
+            EkashCore.animate.fadeIn(backdrop);
+        },
 
-        console.log(`✅ Smooth scroll initialized for ${smoothScrollLinks.length} links`);
-    }
+        // Manage focus
+        manageFocus: function(modal) {
+            const focusableElements = modal.querySelectorAll(
+                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            
+            if (focusableElements.length > 0) {
+                focusableElements[0].focus();
+            }
+        }
+    };
 
-    /**
-     * Material Design Snackbar
-     */
-    function showSnackbar(message, type = 'info', duration = config.snackbar.duration) {
-        const snackbar = EkashCore.createElement('div', {
-            className: 'snackbar'
-        }, message);
-
-        // Set snackbar color based on type
-        const colors = {
-            success: '#4caf50',
-            error: '#f44336',
-            warning: '#ff9800',
-            info: '#2196f3'
-        };
-
-        snackbar.style.background = colors[type] || colors.info;
-        
-        // Add to DOM
-        document.body.appendChild(snackbar);
-        
-        // Show snackbar
-        setTimeout(() => {
-            snackbar.classList.add('show');
-        }, config.snackbar.fadeIn);
-        
-        // Hide and remove snackbar
-        setTimeout(() => {
-            snackbar.classList.remove('show');
+    // Enhanced ripple effect system
+    const ripples = {
+        // Add ripple effect
+        add: function(element, event) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple-effect';
+            
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.background = config.components.ripple.color;
+            
+            element.appendChild(ripple);
+            
+            // Remove after animation
             setTimeout(() => {
-                if (snackbar.parentNode) {
-                    snackbar.remove();
-                }
-            }, config.snackbar.fadeOut);
-        }, duration);
+                ripple.remove();
+            }, config.components.ripple.duration);
+        },
 
-        // Trigger event
-        EkashCore.triggerEvent('snackbarShown', { message, type });
-        
-        return snackbar;
-    }
-
-    /**
-     * Initialize Floating Action Button
-     */
-    function initFloatingActionButton() {
-        const fabContainer = document.querySelector(selectors.fabContainer);
-        const fabMain = document.querySelector(selectors.fabMain);
-        const fabOptions = document.querySelectorAll(selectors.fabOptions);
-
-        if (!fabContainer || !fabMain) {
-            console.warn('FAB elements not found');
-            return;
-        }
-
-        // FAB Toggle
-        fabMain.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            fabContainer.classList.toggle('active');
-        });
-
-        // Close FAB when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!fabContainer.contains(e.target)) {
-                fabContainer.classList.remove('active');
-            }
-        });
-
-        // FAB Option Click Handlers
-        fabOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.preventDefault();
-                const action = option.getAttribute('data-action');
-                fabContainer.classList.remove('active');
-                
-                // Trigger custom event for FAB action
-                EkashCore.triggerEvent('fabAction', { action });
-                
-                // Handle specific actions
-                switch(action) {
-                    case 'import-favorites':
-                        if (typeof bootstrap !== 'undefined') {
-                            const modal = new bootstrap.Modal(document.getElementById('importFavoritesModal'));
-                            modal.show();
-                        }
-                        break;
-                    case 'add-from-link':
-                        if (typeof bootstrap !== 'undefined') {
-                            const modal = new bootstrap.Modal(document.getElementById('addFromLinkModal'));
-                            modal.show();
-                        }
-                        break;
-                    case 'bulk-add':
-                        if (typeof bootstrap !== 'undefined') {
-                            const modal = new bootstrap.Modal(document.getElementById('bulkAddModal'));
-                            modal.show();
-                        }
-                        break;
-                    case 'import-notes':
-                        if (typeof bootstrap !== 'undefined') {
-                            const modal = new bootstrap.Modal(document.getElementById('importNotesModal'));
-                            modal.show();
-                        }
-                        break;
+        // Initialize ripple effects
+        init: function() {
+            document.addEventListener('click', (event) => {
+                const element = event.target.closest('.ripple, .btn');
+                if (element && !element.classList.contains('no-ripple')) {
+                    this.add(element, event);
                 }
             });
-        });
-
-        console.log('✅ Floating Action Button initialized');
-    }
-
-    /**
-     * Initialize global UI event listeners
-     */
-    function initGlobalUIEvents() {
-        // Escape key to close modals/sidebars
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeSidebar();
-                EkashCore.triggerEvent('escapePressed');
-            }
-        });
-
-        // Focus management for accessibility
-        document.addEventListener('focusin', (e) => {
-            if (e.target.matches('input, textarea, select')) {
-                EkashCore.triggerEvent('formFieldFocused', { element: e.target });
-            }
-        });
-
-        console.log('✅ Global UI events initialized');
-    }
-
-    /**
-     * Add ripple effect to new elements
-     */
-    function addRippleToElement(element) {
-        if (element && !element.hasAttribute('data-ripple-initialized')) {
-            element.addEventListener('click', createRipple);
-            element.setAttribute('data-ripple-initialized', 'true');
         }
-    }
-
-    /**
-     * Initialize UI for dynamically added content
-     */
-    function initDynamicContent(container) {
-        if (!container) return;
-
-        // Add ripple effects to new elements
-        const newRippleElements = container.querySelectorAll(selectors.rippleElements);
-        newRippleElements.forEach(addRippleToElement);
-
-        // Initialize loading buttons
-        const newLoadingButtons = container.querySelectorAll(selectors.loadingButtons);
-        newLoadingButtons.forEach(button => {
-            button.setAttribute('data-original-text', button.innerHTML);
-            button.addEventListener('click', function() {
-                if (!this.classList.contains('btn-loading')) {
-                    setButtonLoading(this);
-                }
-            });
-        });
-
-        console.log('✅ Dynamic content initialized');
-    }
-
-    /**
-     * Public API
-     */
-    return {
-        // Initialization
-        init,
-        initDynamicContent,
-        
-        // Sidebar controls
-        toggleSidebar,
-        openSidebar,
-        closeSidebar,
-        
-        // Button states
-        setButtonLoading,
-        setButtonComplete,
-        resetButton,
-        
-        // Submenu controls
-        toggleSubmenu,
-        
-        // Notifications
-        showSnackbar,
-        
-        // Ripple effect
-        createRipple,
-        addRippleToElement,
-        
-        // FAB controls
-        initFloatingActionButton,
-        
-        // Config access
-        config
     };
+
+    // Enhanced sidebar system
+    const sidebar = {
+        // Toggle sidebar
+        toggle: function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+
+            state.sidebar.collapsed = !state.sidebar.collapsed;
+            
+            if (state.sidebar.collapsed) {
+                sidebar.classList.add('collapsed');
+            } else {
+                sidebar.classList.remove('collapsed');
+            }
+
+            // Trigger event
+            EkashCore.trigger('sidebarToggled', { collapsed: state.sidebar.collapsed });
+        },
+
+        // Initialize sidebar
+        init: function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (!sidebar) return;
+
+            // Mobile detection
+            const checkMobile = () => {
+                const isMobile = window.innerWidth < 768;
+                if (isMobile !== state.sidebar.mobile) {
+                    state.sidebar.mobile = isMobile;
+                    
+                    if (isMobile) {
+                        sidebar.classList.add('mobile');
+                    } else {
+                        sidebar.classList.remove('mobile');
+                    }
+                }
+            };
+
+            checkMobile();
+            window.addEventListener('resize', EkashCore.utils.debounce(checkMobile, 200));
+
+            // Auto-hide on mobile after navigation
+            if (state.sidebar.mobile) {
+                sidebar.addEventListener('click', (event) => {
+                    if (event.target.closest('.nav-link')) {
+                        this.toggle();
+                    }
+                });
+            }
+        }
+    };
+
+    // Enhanced button system
+    const buttons = {
+        // Set button loading state
+        setLoading: function(button, loading = true) {
+            if (loading) {
+                button.disabled = true;
+                button.setAttribute('data-original-text', button.textContent);
+                button.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Yükleniyor...';
+                button.classList.add('loading');
+            } else {
+                button.disabled = false;
+                button.textContent = button.getAttribute('data-original-text') || 'Kaydet';
+                button.classList.remove('loading');
+            }
+        },
+
+        // Reset button
+        reset: function(button) {
+            this.setLoading(button, false);
+        },
+
+        // Initialize button enhancements
+        init: function() {
+            // Add loading state to form submissions
+            document.addEventListener('submit', (event) => {
+                const form = event.target;
+                const submitButton = form.querySelector('button[type="submit"]');
+                
+                if (submitButton) {
+                    this.setLoading(submitButton);
+                }
+            });
+
+            // Add hover effects
+            document.addEventListener('mouseenter', (event) => {
+                const button = event.target.closest('.btn');
+                if (button) {
+                    button.classList.add('hover');
+                }
+            }, true);
+
+            document.addEventListener('mouseleave', (event) => {
+                const button = event.target.closest('.btn');
+                if (button) {
+                    button.classList.remove('hover');
+                }
+            }, true);
+        }
+    };
+
+    // Enhanced tooltip system
+    const tooltips = {
+        // Show tooltip
+        show: function(element, text, options = {}) {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip-enhanced';
+            tooltip.textContent = text;
+            
+            const tooltipOptions = { ...config.components.tooltip, ...options };
+            
+            // Position tooltip
+            this.position(tooltip, element, tooltipOptions.placement);
+            
+            document.body.appendChild(tooltip);
+            
+            // Animate in
+            EkashCore.animate.fadeIn(tooltip);
+            
+            // Store reference
+            state.tooltips.set(element, tooltip);
+            
+            return tooltip;
+        },
+
+        // Hide tooltip
+        hide: function(element) {
+            const tooltip = state.tooltips.get(element);
+            if (tooltip) {
+                EkashCore.animate.fadeOut(tooltip).then(() => {
+                    tooltip.remove();
+                });
+                state.tooltips.delete(element);
+            }
+        },
+
+        // Position tooltip
+        position: function(tooltip, element, placement) {
+            const rect = element.getBoundingClientRect();
+            const tooltipRect = tooltip.getBoundingClientRect();
+            
+            let top, left;
+            
+            switch (placement) {
+                case 'top':
+                    top = rect.top - tooltipRect.height - 8;
+                    left = rect.left + (rect.width - tooltipRect.width) / 2;
+                    break;
+                case 'bottom':
+                    top = rect.bottom + 8;
+                    left = rect.left + (rect.width - tooltipRect.width) / 2;
+                    break;
+                case 'left':
+                    top = rect.top + (rect.height - tooltipRect.height) / 2;
+                    left = rect.left - tooltipRect.width - 8;
+                    break;
+                case 'right':
+                    top = rect.top + (rect.height - tooltipRect.height) / 2;
+                    left = rect.right + 8;
+                    break;
+            }
+            
+            tooltip.style.top = top + 'px';
+            tooltip.style.left = left + 'px';
+        },
+
+        // Initialize tooltips
+        init: function() {
+            let timeout;
+            
+            document.addEventListener('mouseenter', (event) => {
+                const element = event.target.closest('[data-tooltip]');
+                if (element) {
+                    timeout = setTimeout(() => {
+                        const text = element.getAttribute('data-tooltip');
+                        const placement = element.getAttribute('data-tooltip-placement') || 'top';
+                        this.show(element, text, { placement });
+                    }, config.components.tooltip.delay);
+                }
+            });
+
+            document.addEventListener('mouseleave', (event) => {
+                const element = event.target.closest('[data-tooltip]');
+                if (element) {
+                    clearTimeout(timeout);
+                    this.hide(element);
+                }
+            });
+        }
+    };
+
+    // Enhanced loading system
+    const loading = {
+        // Show loading
+        show: function(element) {
+            element.classList.add('loading');
+            state.loading.add(element);
+            
+            // Create loading overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'loading-overlay';
+            overlay.innerHTML = `
+                <div class="loading-spinner">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Yükleniyor...</span>
+                    </div>
+                </div>
+            `;
+            
+            element.appendChild(overlay);
+            
+            // Animate in
+            EkashCore.animate.fadeIn(overlay);
+        },
+
+        // Hide loading
+        hide: function(element) {
+            element.classList.remove('loading');
+            state.loading.delete(element);
+            
+            const overlay = element.querySelector('.loading-overlay');
+            if (overlay) {
+                EkashCore.animate.fadeOut(overlay).then(() => {
+                    overlay.remove();
+                });
+            }
+        },
+
+        // Toggle loading
+        toggle: function(element) {
+            if (state.loading.has(element)) {
+                this.hide(element);
+            } else {
+                this.show(element);
+            }
+        }
+    };
+
+    // Enhanced scroll system
+    const scroll = {
+        // Smooth scroll to element
+        to: function(element, options = {}) {
+            const targetElement = typeof element === 'string' ? document.querySelector(element) : element;
+            if (!targetElement) return;
+
+            const defaultOptions = {
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+            };
+
+            targetElement.scrollIntoView({ ...defaultOptions, ...options });
+        },
+
+        // Get scroll position
+        getPosition: function() {
+            return {
+                x: window.pageXOffset || document.documentElement.scrollLeft,
+                y: window.pageYOffset || document.documentElement.scrollTop
+            };
+        },
+
+        // Initialize scroll enhancements
+        init: function() {
+            // Smooth scroll for anchor links
+            document.addEventListener('click', (event) => {
+                const link = event.target.closest('a[href^="#"]');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    if (href !== '#') {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            event.preventDefault();
+                            this.to(target);
+                        }
+                    }
+                }
+            });
+
+            // Scroll to top button
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            if (scrollTopBtn) {
+                window.addEventListener('scroll', EkashCore.utils.throttle(() => {
+                    if (window.pageYOffset > 300) {
+                        scrollTopBtn.classList.add('visible');
+                    } else {
+                        scrollTopBtn.classList.remove('visible');
+                    }
+                }, 100));
+
+                scrollTopBtn.addEventListener('click', () => {
+                    this.to(document.body);
+                });
+            }
+        }
+    };
+
+    // Initialize UI system
+    function init() {
+        EkashCore.performance.mark('ui-init-start');
+        
+        // Initialize components
+        ripples.init();
+        sidebar.init();
+        buttons.init();
+        tooltips.init();
+        scroll.init();
+        
+        // Setup responsive handling
+        window.addEventListener('resize', EkashCore.utils.debounce(() => {
+            EkashCore.trigger('windowResized', EkashCore.utils.getDeviceInfo());
+        }, 250));
+        
+        // Debug info
+        if (config.debug) {
+            console.log('🎨 Ekash UI initialized');
+        }
+        
+        EkashCore.performance.mark('ui-init-end');
+        EkashCore.performance.measure('ui-init', 'ui-init-start', 'ui-init-end');
+        
+        // Trigger ready event
+        EkashCore.trigger('uiReady');
+    }
+
+    // Public API
+    window.EkashUI = {
+        // Configuration
+        config: config,
+        
+        // Components
+        notifications: notifications,
+        modals: modals,
+        ripples: ripples,
+        sidebar: sidebar,
+        buttons: buttons,
+        tooltips: tooltips,
+        loading: loading,
+        scroll: scroll,
+        
+        // Convenience methods
+        showSnackbar: notifications.show.bind(notifications),
+        showNotification: notifications.show.bind(notifications),
+        showModal: modals.show.bind(modals),
+        hideModal: modals.hide.bind(modals),
+        toggleSidebar: sidebar.toggle.bind(sidebar),
+        setButtonLoading: buttons.setLoading.bind(buttons),
+        resetButton: buttons.reset.bind(buttons),
+        
+        // Initialize
+        init: init
+    };
+
+    // Auto-initialize when core is ready
+    EkashCore.on('coreReady', init);
+
 })();
-
-// Auto-initialize when core is ready
-EkashCore.ready(() => {
-    EkashUI.init();
-});
-
-// Make snackbar globally available
-window.showSnackbar = EkashUI.showSnackbar;
-
-// Export for module systems
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = EkashUI;
-}
-
-// Global namespace
-window.EkashUI = EkashUI;
