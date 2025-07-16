@@ -25,6 +25,9 @@
     <!-- Ekash Minimal Design CSS -->
     <link href="assets/css/ekash-minimal.css" rel="stylesheet">
     
+    <!-- Modern Enhanced CSS -->
+    <link href="assets/css/modern-enhanced.css" rel="stylesheet">
+    
     <!-- Custom Color Palette -->
     <link href="assets/css/custom-colors.css" rel="stylesheet">
     
