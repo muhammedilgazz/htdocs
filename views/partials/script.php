@@ -399,4 +399,123 @@
     });
     
     console.log('🎉 Ekash modular scripts initialization complete');
+    
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('✅ Service Worker registered successfully:', registration.scope);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New content is available
+                                if (window.EkashUI) {
+                                    EkashUI.showNotification('Yeni güncelleme mevcut! Sayfayı yenileyin.', 'info', {
+                                        duration: 0,
+                                        onclick: () => window.location.reload()
+                                    });
+                                }
+                            }
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.error('❌ Service Worker registration failed:', error);
+                });
+        });
+    }
+    
+    // PWA Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('💡 PWA install prompt available');
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show install button/banner
+        const installBtn = document.getElementById('pwa-install-btn');
+        if (installBtn) {
+            installBtn.style.display = 'block';
+            installBtn.addEventListener('click', () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('✅ User accepted PWA install');
+                    } else {
+                        console.log('❌ User declined PWA install');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        }
+    });
+    
+    // PWA Install Success
+    window.addEventListener('appinstalled', (evt) => {
+        console.log('🎉 PWA installed successfully');
+        if (window.EkashUI) {
+            EkashUI.showNotification('Uygulama başarıyla yüklendi!', 'success');
+        }
+    });
+    
+    // Online/Offline Detection
+    window.addEventListener('online', () => {
+        console.log('🌐 Connection restored');
+        if (window.EkashUI) {
+            EkashUI.showNotification('İnternet bağlantısı yeniden kuruldu', 'success');
+        }
+    });
+    
+    window.addEventListener('offline', () => {
+        console.log('📴 Connection lost');
+        if (window.EkashUI) {
+            EkashUI.showNotification('İnternet bağlantısı kesildi. Çevrimdışı modda çalışıyor.', 'warning');
+        }
+    });
+    
+    // Background Sync Support
+    if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
+        console.log('🔄 Background sync supported');
+        
+        // Register sync events when offline actions occur
+        window.addEventListener('expense-added-offline', () => {
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.sync.register('sync-expenses');
+            });
+        });
+        
+        window.addEventListener('wishlist-added-offline', () => {
+            navigator.serviceWorker.ready.then((registration) => {
+                registration.sync.register('sync-wishlist');
+            });
+        });
+    }
+    
+    // Performance Monitoring
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData && window.EkashCore) {
+                    EkashCore.performance.mark('page-load-complete');
+                    
+                    // Send to service worker for logging
+                    if (navigator.serviceWorker.controller) {
+                        navigator.serviceWorker.controller.postMessage({
+                            type: 'PERFORMANCE_MEASURE',
+                            data: {
+                                loadTime: perfData.loadEventEnd - perfData.loadEventStart,
+                                domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+                                totalTime: perfData.loadEventEnd - perfData.fetchStart
+                            }
+                        });
+                    }
+                }
+            }, 1000);
+        });
+    }
 </script>
