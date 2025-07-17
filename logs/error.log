@@ -59,3 +59,10 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6
+[16-Jul-2025 18:55:25 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Expense" not found in C:\xampp\htdocs\ajax\get_expense.php:6
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6
+[16-Jul-2025 19:21:44 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":177,"timestamp":"2025-07-16 19:21:44","ip":"::1"}
+[16-Jul-2025 19:21:44 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:177
+[16-Jul-2025 19:21:44 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":69,"timestamp":"2025-07-16 19:21:44","ip":"::1"}
