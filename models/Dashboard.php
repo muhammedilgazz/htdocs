@@ -72,7 +72,7 @@ class Dashboard {
             UNION ALL
             (SELECT 'wishlist' as type, item_name as description, price as amount, created_at as date FROM wishlist_items ORDER BY created_at DESC LIMIT 5)
             ORDER BY date DESC
-            LIMIT 10
+            LIMIT 5
         ";
         return $this->db->fetchAll($sql);
     }

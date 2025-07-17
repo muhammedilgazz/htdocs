@@ -47,22 +47,22 @@
     
     
     <!-- Ekash Minimal Design CSS -->
-    <link href="assets/css/ekash-minimal.css" rel="stylesheet">
+    <link href="assets/css/ekash-minimal.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Modern Enhanced CSS -->
-    <link href="assets/css/modern-enhanced.css" rel="stylesheet">
+    <link href="assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Enhanced Components CSS -->
-    <link href="assets/css/components-enhanced.css" rel="stylesheet">
+    <link href="assets/css/components-enhanced.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Custom Color Palette -->
-    <link href="assets/css/custom-colors.css" rel="stylesheet">
+    <link href="assets/css/custom-colors.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Perfect Scrollbar -->
     <link href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.css'">
     
     <!-- Toastr -->
     <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
-    <link href="assets/css/modern-enhanced.css" rel="stylesheet">
+    <link href="assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
 
 </head>

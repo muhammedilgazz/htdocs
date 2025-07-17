@@ -1,0 +1,4 @@
+[17-Jul-2025 16:00:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Expense" not found in C:\xampp\htdocs\ajax\get_expense.php:6
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6

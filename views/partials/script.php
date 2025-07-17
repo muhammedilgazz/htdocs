@@ -8,19 +8,19 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
 <!-- Perfect Scrollbar -->
-<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js'"></script>
+<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js'"></script>
 
 <!-- Toastr -->
-<script src="assets/vendor/toastr/toastr.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js'"></script>
+<script src="assets/vendor/toastr/toastr.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js'"></script>
 
 <!-- Ekash Modular Scripts - New Architecture -->
-<script src="assets/js/modules/core.js"></script>
-<script src="assets/js/modules/ui.js"></script>
-<script src="assets/js/modules/forms.js"></script>
-<script src="assets/js/modules/navigation.js"></script>
+<script src="assets/js/modules/core.js?v=<?= time() ?>"></script>
+<script src="assets/js/modules/ui.js?v=<?= time() ?>"></script>
+<script src="assets/js/modules/forms.js?v=<?= time() ?>"></script>
+<script src="assets/js/modules/navigation.js?v=<?= time() ?>"></script>
 
 <!-- Main Application Script -->
-<script src="assets/js/scripts.js"></script>
+<script src="assets/js/scripts.js?v=<?= time() ?>"></script>
 
 <script>
     // Debug information
