@@ -293,7 +293,7 @@ $(document).ready(function() {
                     $('#edit_id').val(expense.id);
                     $('#edit_description').val(expense.description);
                     $('#edit_amount').val(expense.amount);
-                    $('#edit_category_type').val(expense.category_type);
+                    $('#edit_category_type').val(expense.category_type); 
                     $('#edit_date').val(expense.date);
                 } else {
                     alert(response.message || 'Veri getirilemedi.');

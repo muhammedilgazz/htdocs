@@ -5,8 +5,11 @@ require_once __DIR__ . '/bootstrap.php';
 // Auth sınıfını bootstrap.php içinde başlattığımız için burada tekrar yapmıyoruz.
 // Ancak Auth objesine ihtiyacımız varsa, global olarak erişilebilir olmalı veya yeniden oluşturulmalı.
 // Şimdilik basitlik adına burada yeniden oluşturuyorum, ancak daha iyi bir yaklaşım dependency injection olabilir.
-$auth = new \App\Models\Auth();
-$auth->requireAuth();
+// Test betiği çalışırken kimlik doğrulama adımını atla
+if (!defined('RUNNING_TESTS')) {
+    $auth = new \App\Models\Auth();
+    $auth->requireAuth();
+}
 
 // Basic Routing
 $base_path = parse_url(BASE_URL, PHP_URL_PATH);

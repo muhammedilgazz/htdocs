@@ -2,3 +2,18 @@
 Stack trace:
 #0 {main}
   thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6
+[17-Jul-2025 16:06:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Expense" not found in C:\xampp\htdocs\ajax\get_expense.php:6
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6
+[17-Jul-2025 23:28:03 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:10
+[17-Jul-2025 23:29:00 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:10
+[17-Jul-2025 23:29:53 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 11
+[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 12
+[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 13
+[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 26
+[17-Jul-2025 23:30:45 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[17-Jul-2025 23:30:45 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":69,"timestamp":"2025-07-17 23:30:45","ip":"unknown"}
