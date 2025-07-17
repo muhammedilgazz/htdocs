@@ -10,6 +10,7 @@ if (file_exists(__DIR__ . '/../../bootstrap.php')) {
         </div>
     </div>
 
+    <?php include __DIR__ . '/../partials/footer.php'; ?>
     <?php include __DIR__ . '/../partials/global_modals.php'; ?>
     <?php include __DIR__ . '/../partials/script.php'; ?>
 

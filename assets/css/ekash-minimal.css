@@ -263,7 +263,7 @@ body {
 .header-left {
     display: flex;
     align-items: center;
-    gap: var(--spacing-3);
+    gap: 0 !important;
     position: relative;
     height: 100%;
 }
@@ -278,8 +278,38 @@ body {
 .header-right {
     display: flex;
     align-items: center;
-    gap: var(--spacing-3);
+    gap: 0 !important;
     margin-left: auto;
+}
+
+.sidebar-nav .nav-link.active {
+    background: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary);
+}
+
+.sidebar-nav .nav-link.active span {
+    white-space: nowrap !important;
+}
+
+/* Alt menu (submenu) aktif linkler için beyaz yazı ve ikon */
+.sidebar-nav .dropdown-menu .nav-link.active,
+.sidebar-nav .collapse .nav-link.active {
+    color: white !important;
+}
+
+.sidebar-nav .dropdown-menu .nav-link.active span,
+.sidebar-nav .collapse .nav-link.active span {
+    color: white !important;
+    white-space: nowrap !important;
+}
+
+.sidebar-nav .dropdown-menu .nav-link.active i,
+.sidebar-nav .collapse .nav-link.active i {
+    color: white !important;
+}
+
+.sidebar-nav .nav-link {
+    font-size: 14px;
 }
 
 /* Minimal Stat Cards - Compact & Elegant */

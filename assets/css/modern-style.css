@@ -143,11 +143,16 @@ body {
 .app-header {
     background: white;
     border-bottom: 1px solid var(--gray-200);
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     box-shadow: var(--shadow-sm);
+    flex-wrap: nowrap;
+    min-height: auto;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header-left h4 {
@@ -156,10 +161,110 @@ body {
     margin-bottom: var(--spacing-xs);
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0 !important;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+}
+
 .header-right {
     display: flex;
     align-items: center;
-    gap: var(--spacing);
+    gap: 0 !important;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+
+.sidebar-nav .nav-link.active {
+    background: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary);
+}
+
+.sidebar-nav .nav-link.active span {
+    white-space: nowrap !important;
+}
+
+/* Alt menu (submenu) aktif linkler için beyaz yazı ve ikon */
+.sidebar-nav .dropdown-menu .nav-link.active,
+.sidebar-nav .collapse .nav-link.active {
+    color: white !important;
+}
+
+.sidebar-nav .dropdown-menu .nav-link.active span,
+.sidebar-nav .collapse .nav-link.active span {
+    color: white !important;
+    white-space: nowrap !important;
+}
+
+.sidebar-nav .dropdown-menu .nav-link.active i,
+.sidebar-nav .collapse .nav-link.active i {
+    color: white !important;
+}
+
+.sidebar-nav .nav-link {
+    font-size: 14px;
+}
+
+/* Footer */
+.footer {
+    background: var(--bs-body-bg);
+    border-top: 1px solid var(--bs-border-color);
+    padding: 1rem 1.5rem;
+    margin-top: auto;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    color: var(--bs-secondary-color);
+    font-size: 0.875rem;
+}
+
+.footer-left a {
+    color: var(--bs-primary);
+    text-decoration: none;
+}
+
+.footer-right {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--bs-secondary-bg);
+    border-radius: 50%;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-social-btn:hover {
+    background: var(--bs-primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
 }
 
 /* Cards */

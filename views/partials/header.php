@@ -1,8 +1,8 @@
 <header class="app-header">
     <div class="header-left">
         <!-- Month Selector -->
-        <div class="dropdown me-3">
-            <button class="btn btn-outline-primary ripple" data-bs-toggle="dropdown" style="min-width: 140px;">
+        <div class="dropdown me-2">
+            <button class="btn btn-outline-primary ripple" data-bs-toggle="dropdown" style="min-width: 120px; white-space: nowrap; font-size: 0.875rem;">
                 <i class="material-icons-round me-2">calendar_month</i>
                 <span id="selectedMonth">Temmuz 2025</span>
                 <i class="material-icons-round ms-1">expand_more</i>
@@ -30,16 +30,16 @@
         </div>
         
         <!-- Ekle Dropdown -->
-        <div class="dropdown me-2">
-            <button class="btn btn-text ripple" data-bs-toggle="dropdown">
+        <div class="dropdown me-1">
+            <button class="btn btn-text ripple" data-bs-toggle="dropdown" style="font-size: 0.875rem;">
                 <i class="material-icons-round">add</i>
-                <span class="d-none d-md-inline ms-1">Ekle</span>
+                <span class="d-none d-lg-inline ms-1">Ekle</span>
             </button>
             <ul class="dropdown-menu quick-actions-menu">
                 <li><h6 class="dropdown-header">Yeni Kayıt Ekle</h6></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal">
+                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addIhtiyacModal">
                         <i class="material-icons-round me-3">list_alt</i>
                         <div>
                             <h6 class="mb-1">İhtiyaç Ekle</h6>
@@ -78,10 +78,10 @@
         </div>
         
         <!-- Quick Actions -->
-        <div class="dropdown me-2">
-            <button class="btn btn-text ripple" data-bs-toggle="dropdown">
+        <div class="dropdown me-1">
+            <button class="btn btn-text ripple" data-bs-toggle="dropdown" style="white-space: nowrap; font-size: 0.875rem;">
                 <i class="material-icons-round">add_circle</i>
-                <span class="d-none d-md-inline ms-1">Hızlı İşlemler</span>
+                <span class="d-none d-lg-inline ms-1">Hızlı İşlemler</span>
             </button>
             <ul class="dropdown-menu quick-actions-menu">
                 <li><h6 class="dropdown-header">Hızlı İşlemler</h6></li>
@@ -137,9 +137,9 @@
         
         <!-- Rapor Oluştur Dropdown -->
         <div class="dropdown">
-            <button class="btn btn-text ripple" data-bs-toggle="dropdown">
+            <button class="btn btn-text ripple" data-bs-toggle="dropdown" style="white-space: nowrap; font-size: 0.875rem;">
                 <i class="material-icons-round">description</i>
-                <span class="d-none d-md-inline ms-1">Rapor Oluştur</span>
+                <span class="d-none d-lg-inline ms-1">Rapor Oluştur</span>
             </button>
             <ul class="dropdown-menu quick-actions-menu">
                 <li><h6 class="dropdown-header">Rapor Oluştur</h6></li>
@@ -186,7 +186,7 @@
     
     <div class="header-right">
         <!-- Döviz Kuru Widget -->
-        <div class="exchange-rate-widget me-3" style="display: flex; align-items: center; background: rgba(255,255,255,0.1); padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); max-width: 80px; min-width:60px;">
+        <div class="exchange-rate-widget me-2" style="display: flex; align-items: center; background: rgba(255,255,255,0.1); padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); max-width: 80px; min-width:60px;">
             <div style="display: flex; align-items: center; gap: 0.3rem;">
                 <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #12A347; border-radius: 50%;"><i class="material-icons-round" style="font-size: 1rem; color: #fff;">attach_money</i></span>
                 <div style="text-align: right;">
@@ -198,7 +198,7 @@
         </div>
         
         <!-- Xtreme AI Button -->
-        <a href="/xtremeai" class="btn btn-text ripple me-2" title="Xtreme AI">
+        <a href="/xtremeai" class="btn btn-text ripple me-1" title="Xtreme AI">
             <i class="material-icons-round" style="color: #6366F1;">smart_toy</i>
             
         </a>
@@ -271,11 +271,11 @@
         
         <!-- User Menu -->
         <div class="dropdown user-menu">
-            <button class="btn btn-text d-flex align-items-center ripple" data-bs-toggle="dropdown">
+            <button class="btn btn-text d-flex align-items-center ripple" data-bs-toggle="dropdown" style="white-space: nowrap;">
                 <div class="user-avatar me-2">
                     <?= strtoupper(substr($_SESSION['full_name'] ?? 'U', 0, 1)) ?>
                 </div>
-                <span class="d-none d-md-block"><?= $_SESSION['full_name'] ?? 'Kullanıcı' ?></span>
+                <span class="d-none d-lg-block" style="font-size: 0.875rem;"><?= $_SESSION['full_name'] ?? 'Kullanıcı' ?></span>
                 <i class="material-icons-round ms-1">expand_more</i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -287,7 +287,7 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/support"><i class="material-icons-round me-2">support_agent</i>Destek</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="/signin?logout=1"><i class="material-icons-round me-2">logout</i>Çıkış Yap</a></li>
+                <li><a class="dropdown-item text-danger" href="signin.php?logout=1"><i class="material-icons-round me-2">logout</i>Çıkış Yap</a></li>
             </ul>
         </div>
     </div>

@@ -698,4 +698,32 @@ h1, h2, h3, h4, h5, h6 {
     .app-header {
         display: none !important;
     }
+}.sidebar-nav .nav-link.active {
+    background: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary);
+}
+
+.sidebar-nav .nav-link.active span {
+    white-space: nowrap !important;
+}
+
+/* Alt menu (submenu) aktif linkler için beyaz yazı ve ikon */
+.sidebar-nav .dropdown-menu .nav-link.active,
+.sidebar-nav .collapse .nav-link.active {
+    color: white !important;
+}
+
+.sidebar-nav .dropdown-menu .nav-link.active span,
+.sidebar-nav .collapse .nav-link.active span {
+    color: white !important;
+    white-space: nowrap !important;
+}
+
+.sidebar-nav .dropdown-menu .nav-link.active i,
+.sidebar-nav .collapse .nav-link.active i {
+    color: white !important;
+}
+
+.sidebar-nav .nav-link {
+    font-size: 14px;
 }
