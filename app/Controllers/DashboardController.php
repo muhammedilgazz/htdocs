@@ -19,6 +19,6 @@ class DashboardController {
         $total_balance = $stats['total_balance'];
 
         // Fixed: Use absolute path instead of hard-coded Windows path
-        require_once __DIR__ . '/../views/dashboard.php';
+        require_once __DIR__ . '/../../views/dashboard.php';
     }
 }

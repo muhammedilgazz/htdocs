@@ -6,6 +6,9 @@
 // Composer autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
+// Dependency Injection Container'ı başlat
+$container = require_once __DIR__ . '/app/container_bindings.php';
+
 // Session başlat
 if (session_status() === PHP_SESSION_NONE) {
     ini_set('session.cookie_httponly', 1);

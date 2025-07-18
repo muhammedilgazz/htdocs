@@ -98,7 +98,9 @@ if (!class_exists($full_controller_class)) {
     exit;
 }
 
-$controller = new $full_controller_class();
+// Use the container to create the controller instance, injecting dependencies
+$controller = $container->get($full_controller_class);
+
 if (!method_exists($controller, $method_name)) {
     // Handle 404 - Method not found
     http_response_code(404);

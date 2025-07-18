@@ -8,7 +8,6 @@ use App\Interfaces\ExpenseRepositoryInterface;
 use App\Interfaces\ExpenseServiceInterface;
 use App\Repositories\ExpenseRepository;
 use App\Services\ExpenseService;
-use PDO;
 
 // Get the container instance
 $container = Container::getInstance();

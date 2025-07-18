@@ -18,9 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\Models\\": "models/",
-            "App\\Controllers\\": "controllers/",
-            "App\\Config\\": "config/"
+            "App\\": "app/"
         },
         "files": [
             "config/config.php"

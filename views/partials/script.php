@@ -13,6 +13,9 @@
 <!-- Toastr -->
 <script src="assets/vendor/toastr/toastr.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js'"></script>
 
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <!-- Ekash Modular Scripts - New Architecture -->
 <script src="assets/js/modules/core.js?v=<?= time() ?>"></script>
 <script src="assets/js/modules/ui.js?v=<?= time() ?>"></script>

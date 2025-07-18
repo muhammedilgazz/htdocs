@@ -1,9 +1,11 @@
 <?php
-require_once 'C:/xampp/htdocs/config/config.php';
-require_once 'C:/xampp/htdocs/models/Expense.php';
+require_once __DIR__ . '/../bootstrap.php';
+
+use App\Interfaces\ExpenseServiceInterface;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
-    $expense_model = new Expense();
+    /** @var ExpenseServiceInterface $expenseService */
+    $expenseService = $container->get(ExpenseServiceInterface::class);
     
     $id = (int)$_POST['id'];
     $data = [
@@ -13,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_to
         'date' => sanitize_input($_POST['date'])
     ];
 
-    if ($expense_model->update($id, $data)) {
+    if ($expenseService->updateExistingExpense($id, $data)) {
         json_response(['success' => true, 'message' => 'Gider başarıyla güncellendi.']);
     } else {
         json_response(['success' => false, 'message' => 'Gider güncellenirken bir hata oluştu.'], 500);

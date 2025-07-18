@@ -271,9 +271,19 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı!',
+                        text: response.message,
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => location.reload());
                 } else {
-                    alert(response.message || 'Bir hata oluştu.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata!',
+                        text: response.message || 'Bir hata oluştu.'
+                    });
                 }
             }
         });
@@ -312,9 +322,19 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı!',
+                        text: response.message,
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => location.reload());
                 } else {
-                    alert(response.message || 'Bir hata oluştu.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata!',
+                        text: response.message || 'Bir hata oluştu.'
+                    });
                 }
             }
         });
@@ -322,19 +342,39 @@ $(document).ready(function() {
 
     // Delete Button
     $('.delete-btn').click(function() {
-        if (!confirm('Bu gideri silmek istediğinizden emin misiniz?')) return;
-        const id = $(this).data('id');
-        $.ajax({
-            url: 'ajax/delete_expense.php',
-            type: 'POST',
-            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                } else {
-                    alert(response.message || 'Bir hata oluştu.');
-                }
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu gideri silmek istediğinizden emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const id = $(this).data('id');
+                $.ajax({
+                    url: 'ajax/delete_expense.php',
+                    type: 'POST',
+                    data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Silindi!',
+                                'Gider başarıyla silindi.',
+                                'success'
+                            ).then(() => location.reload());
+                        } else {
+                            Swal.fire(
+                                'Hata!',
+                                response.message || 'Bir hata oluştu.',
+                                'error'
+                            );
+                        }
+                    }
+                });
             }
         });
     });
@@ -356,10 +396,19 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    alert(response.message);
-                    location.reload();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı!',
+                        text: response.message,
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => location.reload());
                 } else {
-                    alert(response.message || 'Bir hata oluştu!');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata!',
+                        text: response.message || 'Bir hata oluştu.'
+                    });
                 }
             },
             error: function() {

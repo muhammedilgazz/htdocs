@@ -2,16 +2,23 @@
 
 namespace App\Controllers;
 
-use App\Models\Expense;
-use App\Models\Database;
+use App\Interfaces\ExpenseServiceInterface;
+use App\Models\Database; // Keep for now for stats queries
 
 class ExpenseController {
+    private $expenseService;
+
+    // Inject the service via the constructor
+    public function __construct(ExpenseServiceInterface $expenseService) {
+        $this->expenseService = $expenseService;
+    }
+
     public function index() {
-        $expense_model = new Expense();
-        $db = Database::getInstance();
+        // The service is already available via $this->expenseService
+        $db = Database::getInstance(); // TODO: Refactor stats queries into their own services/repositories
 
         $category_type = isset($_GET['category']) ? sanitize_input($_GET['category']) : null;
-        $rows = $expense_model->getAll($category_type);
+        $rows = $this->expenseService->listAllExpenses($category_type);
 
         // Harcama İstatistikleri
         $total_expenses = 0;
@@ -67,6 +74,6 @@ class ExpenseController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/expenses/index.php';
+        require_once __DIR__ . '/../../views/expenses/index.php';
     }
 }

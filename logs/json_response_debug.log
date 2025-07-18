@@ -115,3 +115,17 @@
 {"success":true,"rate":40.28,"last_update":"2025-07-17","cached":false}
 ---2025-07-17 15:37:06---
 {"success":true,"rate":40.28,"last_update":"2025-07-17","cached":false}
+---2025-07-18 00:03:35---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"7"}
+---2025-07-18 00:03:50---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-18 00:05:10---
+{"success":true,"data":{"id":4,"amount":"150.75","category_type":"degisken_gider","description":"Test Gideri - Servis","date":"2025-07-17"}}
+---2025-07-18 00:05:16---
+{"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}
+---2025-07-18 00:17:09---
+{"success":true,"message":"Gider ba\u015far\u0131yla ertelendi."}
+---2025-07-18 00:17:24---
+{"success":true,"data":{"id":4,"amount":"150.76","category_type":"ertelenmis","description":"Test Gideri - Servis","date":"2025-08-17"}}
+---2025-07-18 00:17:26---
+{"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}

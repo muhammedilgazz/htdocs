@@ -17,3 +17,99 @@ Stack trace:
 [17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 26
 [17-Jul-2025 23:30:45 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
 [17-Jul-2025 23:30:45 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":69,"timestamp":"2025-07-17 23:30:45","ip":"unknown"}
+[17-Jul-2025 23:33:14 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:33:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Core\Container" not found in C:\xampp\htdocs\app\container_bindings.php:14
+Stack trace:
+#0 C:\xampp\htdocs\bootstrap.php(10): require_once()
+#1 C:\xampp\htdocs\tests\backend_test.php(10): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\app\container_bindings.php on line 14
+[17-Jul-2025 23:34:43 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[17-Jul-2025 23:34:44 Europe/Berlin] EXCEPTION: Call to a member function get() on int in C:\xampp\htdocs\tests\backend_test.php:41
+[17-Jul-2025 23:34:44 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-17 23:34:44","ip":"unknown"}
+[17-Jul-2025 23:34:45 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:45 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:34:45","ip":"::1"}
+[17-Jul-2025 23:34:45 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
+[17-Jul-2025 23:34:47 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:47 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:48 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:48 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:34:48","ip":"::1"}
+[17-Jul-2025 23:34:48 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[17-Jul-2025 23:34:56 Europe/Berlin] EXCEPTION: Call to a member function get() on int in C:\xampp\htdocs\tests\backend_test.php:41
+[17-Jul-2025 23:34:56 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-17 23:34:56","ip":"unknown"}
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[17-Jul-2025 23:35:21 Europe/Berlin] EXCEPTION: Call to a member function get() on int in C:\xampp\htdocs\tests\backend_test.php:41
+[17-Jul-2025 23:35:21 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-17 23:35:21","ip":"unknown"}
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":18,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
+[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":31,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
+[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":18,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
+[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":31,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
+[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":18,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
+[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":31,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":19,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
+[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":32,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
+[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":19,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
+[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":32,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
+[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":19,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
+[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":32,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
+[17-Jul-2025 23:38:18 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:38:18 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:38:19 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:38:19 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:38:19","ip":"::1"}
+[17-Jul-2025 23:38:19 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
+[17-Jul-2025 23:38:33 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:38:33 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:39:03 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:39:03 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:39:29 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:39:29 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:40:22 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:40:22 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:41:56 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:44:00 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
+[17-Jul-2025 23:44:00 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:44:00","ip":"::1"}
+[17-Jul-2025 23:44:00 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
+[18-Jul-2025 00:03:44 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Expense.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_expense.php on line 3
+[18-Jul-2025 00:03:44 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Expense.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_expense.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 3
+[18-Jul-2025 00:05:24 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Expense.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\postpone_expense.php on line 3
+[18-Jul-2025 00:05:24 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Expense.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\postpone_expense.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\postpone_expense.php on line 3
