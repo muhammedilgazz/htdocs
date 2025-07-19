@@ -185,12 +185,20 @@
     </div>
     
     <div class="header-right">
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-container me-3">
+            <button class="theme-toggle" title="Temayı Değiştir" aria-label="Toggle theme">
+                <i class="theme-toggle-icon sun material-icons-round">light_mode</i>
+                <i class="theme-toggle-icon moon material-icons-round">dark_mode</i>
+            </button>
+        </div>
+        
         <!-- Döviz Kuru Widget -->
-        <div class="exchange-rate-widget me-2" style="display: flex; align-items: center; background: rgba(255,255,255,0.1); padding: 0.4rem 0.6rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); max-width: 80px; min-width:60px;">
+        <div class="exchange-rate-widget me-2" style="display: flex; align-items: center; background: var(--bg-tertiary); padding: 0.4rem 0.6rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light); max-width: 80px; min-width:60px; transition: all var(--duration-200) var(--ease-out);">
             <div style="display: flex; align-items: center; gap: 0.3rem;">
-                <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #12A347; border-radius: 50%;"><i class="material-icons-round" style="font-size: 1rem; color: #fff;">attach_money</i></span>
+                <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--success-500); border-radius: 50%;"><i class="material-icons-round" style="font-size: 1rem; color: #fff;">attach_money</i></span>
                 <div style="text-align: right;">
-                    <div style="font-size: 0.8rem; font-weight: 600; color: #12A347; line-height: 1;">
+                    <div style="font-size: 0.8rem; font-weight: 600; color: var(--success-500); line-height: 1;">
                         <span id="usd-rate">32.50</span>
                     </div>
                 </div>
@@ -198,16 +206,15 @@
         </div>
         
         <!-- Xtreme AI Button -->
-        <a href="/xtremeai" class="btn btn-text ripple me-1" title="Xtreme AI">
-            <i class="material-icons-round" style="color: #6366F1;">smart_toy</i>
-            
+        <a href="/xtremeai" class="btn btn-ghost btn-sm ripple me-1" title="Xtreme AI">
+            <i class="material-icons-round" style="color: var(--primary-500);">smart_toy</i>
         </a>
         
         <!-- Notifications -->
-        <div class="dropdown">
-            <button class="btn btn-text position-relative ripple" data-bs-toggle="dropdown">
+        <div class="dropdown dropdown-enhanced">
+            <button class="btn btn-ghost btn-sm position-relative ripple" data-bs-toggle="dropdown" title="Bildirimler">
                 <i class="material-icons-round">notifications</i>
-                <span class="position-absolute top-0 start-100 translate-middle badge badge-danger">
+                <span class="position-absolute top-0 start-100 translate-middle badge badge-modern badge-error" style="font-size: 0.7rem;">
                     3
                 </span>
             </button>
@@ -218,14 +225,14 @@
                     <a class="dropdown-item" href="#">
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <div class="bg-warning bg-opacity-10 rounded-circle p-2">
-                                    <i class="material-icons-round text-warning">warning</i>
+                                <div class="stat-icon warning" style="width: 32px; height: 32px; font-size: 16px;">
+                                    <i class="material-icons-round">warning</i>
                                 </div>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1">Bütçe Uyarısı</h6>
-                                <p class="mb-1 small">Bu ay harcama limitinizin %80'ine ulaştınız.</p>
-                                <small class="text-muted">2 saat önce</small>
+                                <h6 class="mb-1 text-sm font-semibold">Bütçe Uyarısı</h6>
+                                <p class="mb-1 text-xs text-secondary">Bu ay harcama limitinizin %80'ine ulaştınız.</p>
+                                <small class="text-tertiary text-xs">2 saat önce</small>
                             </div>
                         </div>
                     </a>
@@ -235,14 +242,14 @@
                     <a class="dropdown-item" href="#">
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <div class="bg-success bg-opacity-10 rounded-circle p-2">
-                                    <i class="material-icons-round text-success">check_circle</i>
+                                <div class="stat-icon success" style="width: 32px; height: 32px; font-size: 16px;">
+                                    <i class="material-icons-round">check_circle</i>
                                 </div>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1">Ödeme Tamamlandı</h6>
-                                <p class="mb-1 small">Kredi kartı ödemeniz başarıyla gerçekleşti.</p>
-                                <small class="text-muted">1 gün önce</small>
+                                <h6 class="mb-1 text-sm font-semibold">Ödeme Tamamlandı</h6>
+                                <p class="mb-1 text-xs text-secondary">Kredi kartı ödemeniz başarıyla gerçekleşti.</p>
+                                <small class="text-tertiary text-xs">1 gün önce</small>
                             </div>
                         </div>
                     </a>
@@ -252,14 +259,14 @@
                     <a class="dropdown-item" href="#">
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <div class="bg-info bg-opacity-10 rounded-circle p-2">
-                                    <i class="material-icons-round text-info">info</i>
+                                <div class="stat-icon info" style="width: 32px; height: 32px; font-size: 16px;">
+                                    <i class="material-icons-round">info</i>
                                 </div>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h6 class="mb-1">Yeni Özellik</h6>
-                                <p class="mb-1 small">Bütçe analiz raporları artık mevcut.</p>
-                                <small class="text-muted">3 gün önce</small>
+                                <h6 class="mb-1 text-sm font-semibold">Yeni Özellik</h6>
+                                <p class="mb-1 text-xs text-secondary">Bütçe analiz raporları artık mevcut.</p>
+                                <small class="text-tertiary text-xs">3 gün önce</small>
                             </div>
                         </div>
                     </a>
@@ -270,13 +277,13 @@
         </div>
         
         <!-- User Menu -->
-        <div class="dropdown user-menu">
-            <button class="btn btn-text d-flex align-items-center ripple" data-bs-toggle="dropdown" style="white-space: nowrap;">
-                <div class="user-avatar me-2">
+        <div class="dropdown user-menu dropdown-enhanced">
+            <button class="btn btn-ghost d-flex align-items-center ripple" data-bs-toggle="dropdown" style="white-space: nowrap; gap: var(--space-2);">
+                <div class="user-avatar" style="width: 36px; height: 36px; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--primary-500), var(--primary-600)); color: white; display: flex; align-items: center; justify-content: center; font-weight: var(--font-bold); font-size: var(--text-sm);">
                     <?= strtoupper(substr($_SESSION['full_name'] ?? 'U', 0, 1)) ?>
                 </div>
-                <span class="d-none d-lg-block" style="font-size: 0.875rem;"><?= $_SESSION['full_name'] ?? 'Kullanıcı' ?></span>
-                <i class="material-icons-round ms-1">expand_more</i>
+                <span class="d-none d-lg-block text-sm font-medium"><?= $_SESSION['full_name'] ?? 'Kullanıcı' ?></span>
+                <i class="material-icons-round text-sm">expand_more</i>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><h6 class="dropdown-header">Hesap</h6></li>
