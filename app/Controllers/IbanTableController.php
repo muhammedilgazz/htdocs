@@ -21,6 +21,6 @@ class IbanTableController {
         }
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/iban_table/index.php';
+        require_once ROOT_PATH . '/views/iban_table/index.php';
     }
 }

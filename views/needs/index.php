@@ -22,13 +22,16 @@ $csrf_token = generate_csrf_token();
             <?php require_once __DIR__ . '/../partials/sidebar.php'; ?>
             
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2"><i class="fas fa-shopping-basket me-2"></i>İhtiyaçlar</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                            <i class="fas fa-plus me-1"></i>Yeni İhtiyaç Ekle
-                        </button>
-                    </div>
+                <?php
+                $page_title = 'İhtiyaçlar';
+                $page_description = 'İhtiyaçlarınızı buradan yönetebilirsiniz.';
+                $breadcrumb_active = 'İhtiyaçlar';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                        <i class="fas fa-plus me-1"></i>Yeni İhtiyaç Ekle
+                    </button>
                 </div>
 
                 <!-- Statistics Cards -->
@@ -190,7 +193,7 @@ $csrf_token = generate_csrf_token();
 
     <!-- Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Yeni İhtiyaç Ekle</h5>
@@ -232,7 +235,7 @@ $csrf_token = generate_csrf_token();
 
     <!-- Edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">İhtiyaç Düzenle</h5>

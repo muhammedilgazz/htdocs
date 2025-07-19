@@ -1,115 +1,296 @@
-[17-Jul-2025 16:00:55 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Expense" not found in C:\xampp\htdocs\ajax\get_expense.php:6
+[18-Jul-2025 08:41:47 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:42:22 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:43:18 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:43:41 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:43:45 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:44:03 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:45:29 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:46:21 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:47:09 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:47:22 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:47:31 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:50:40 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:50:49 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:50:57 Europe/Berlin] EXCEPTION: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'total' in 'field list' in C:\xampp\htdocs\app\Models\Database.php:60
+[18-Jul-2025 08:54:23 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:54:50 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":177,"timestamp":"2025-07-18 08:54:50","ip":"::1"}
+[18-Jul-2025 08:54:50 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:177
+[18-Jul-2025 08:54:50 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:54:50","ip":"::1"}
+[18-Jul-2025 08:55:28 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 08:55:28 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 08:55:28 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 08:55:28 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 08:55:28 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 08:55:28 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 08:55:28 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:55:28 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:55:28","ip":"unknown"}
+[18-Jul-2025 08:55:55 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 08:55:55 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 08:55:55 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 08:55:55 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 08:55:55 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 08:55:55 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 08:55:55 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:55:55 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:55:55","ip":"unknown"}
+[18-Jul-2025 08:56:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 08:56:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 08:56:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 08:56:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 08:56:22 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 08:56:22 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 08:56:22 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:56:22 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:56:22","ip":"unknown"}
+[18-Jul-2025 08:57:30 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 08:57:30 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 08:57:30 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 08:57:30 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 08:57:30 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 08:57:30 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 08:57:30 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:57:30 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:57:30","ip":"unknown"}
+[18-Jul-2025 08:58:27 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 08:58:27 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 08:58:27 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 08:58:27 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 08:58:27 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 08:58:27 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 08:58:27 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:58:27 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:58:27","ip":"unknown"}
+[18-Jul-2025 08:59:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 08:59:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 08:59:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 08:59:22 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 08:59:22 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 08:59:22 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 08:59:22 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 08:59:22 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 08:59:22","ip":"unknown"}
+[18-Jul-2025 09:00:07 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 09:00:07 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 09:00:07 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 09:00:07 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 09:00:07 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 09:00:07 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 09:00:07 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 09:00:07 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-18 09:00:07","ip":"unknown"}
+[18-Jul-2025 09:01:05 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 09:01:05 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 09:01:05 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 09:01:05 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 09:01:05 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 09:01:05 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 09:01:05 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
+[18-Jul-2025 09:01:54 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 09:01:54 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 09:01:54 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 09:01:54 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 09:01:54 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 09:01:54 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 09:01:54 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined array key \"amount\"","file":"C:\\xampp\\htdocs\\app\\Models\\Expense.php","line":42,"timestamp":"2025-07-18 09:01:54","ip":"unknown"}
+[18-Jul-2025 09:01:54 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined array key \"category_type\"","file":"C:\\xampp\\htdocs\\app\\Models\\Expense.php","line":43,"timestamp":"2025-07-18 09:01:54","ip":"unknown"}
+[18-Jul-2025 09:03:04 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 09:03:04 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 09:03:04 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 09:03:04 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 09:03:04 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 09:03:04 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[18-Jul-2025 09:03:04 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined array key \"amount\"","file":"C:\\xampp\\htdocs\\app\\Models\\Expense.php","line":42,"timestamp":"2025-07-18 09:03:04","ip":"unknown"}
+[18-Jul-2025 09:03:04 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined array key \"category_type\"","file":"C:\\xampp\\htdocs\\app\\Models\\Expense.php","line":43,"timestamp":"2025-07-18 09:03:04","ip":"unknown"}
+[18-Jul-2025 09:03:04 Europe/Berlin] ERROR: {"severity":2,"message":"Trying to access array offset on value of type bool","file":"C:\\xampp\\htdocs\\tests\\backend_model_test.php","line":84,"timestamp":"2025-07-18 09:03:04","ip":"unknown"}
+[18-Jul-2025 09:06:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
+[18-Jul-2025 09:06:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
+[18-Jul-2025 09:06:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
+[18-Jul-2025 09:06:23 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
+[18-Jul-2025 09:06:23 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
+[18-Jul-2025 09:06:23 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
+[19-Jul-2025 02:28:10 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 02:28:10 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
 Stack trace:
 #0 {main}
-  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6
-[17-Jul-2025 16:06:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Expense" not found in C:\xampp\htdocs\ajax\get_expense.php:6
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 03:29:14 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 03:29:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
 Stack trace:
 #0 {main}
-  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 6
-[17-Jul-2025 23:28:03 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:10
-[17-Jul-2025 23:29:00 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:10
-[17-Jul-2025 23:29:53 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
-[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 11
-[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 12
-[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 13
-[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
-[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
-[17-Jul-2025 23:30:45 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 26
-[17-Jul-2025 23:30:45 Europe/Berlin] EXCEPTION: Call to private App\Models\Database::__construct() from global scope in C:\xampp\htdocs\tests\backend_model_test.php:13
-[17-Jul-2025 23:30:45 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_model_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":69,"timestamp":"2025-07-17 23:30:45","ip":"unknown"}
-[17-Jul-2025 23:33:14 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:33:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Core\Container" not found in C:\xampp\htdocs\app\container_bindings.php:14
-Stack trace:
-#0 C:\xampp\htdocs\bootstrap.php(10): require_once()
-#1 C:\xampp\htdocs\tests\backend_test.php(10): require_once('C:\\xampp\\htdocs...')
-#2 {main}
-  thrown in C:\xampp\htdocs\app\container_bindings.php on line 14
-[17-Jul-2025 23:34:43 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
-[17-Jul-2025 23:34:44 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
-[17-Jul-2025 23:34:44 Europe/Berlin] EXCEPTION: Call to a member function get() on int in C:\xampp\htdocs\tests\backend_test.php:41
-[17-Jul-2025 23:34:44 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-17 23:34:44","ip":"unknown"}
-[17-Jul-2025 23:34:45 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:45 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:34:45","ip":"::1"}
-[17-Jul-2025 23:34:45 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
-[17-Jul-2025 23:34:47 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:47 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:48 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:48 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:34:48","ip":"::1"}
-[17-Jul-2025 23:34:48 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
-[17-Jul-2025 23:34:56 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
-[17-Jul-2025 23:34:56 Europe/Berlin] EXCEPTION: Call to a member function get() on int in C:\xampp\htdocs\tests\backend_test.php:41
-[17-Jul-2025 23:34:56 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-17 23:34:56","ip":"unknown"}
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
-[17-Jul-2025 23:35:21 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
-[17-Jul-2025 23:35:21 Europe/Berlin] EXCEPTION: Call to a member function get() on int in C:\xampp\htdocs\tests\backend_test.php:41
-[17-Jul-2025 23:35:21 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\tests\\backend_test.php:3)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":72,"timestamp":"2025-07-17 23:35:21","ip":"unknown"}
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
-[17-Jul-2025 23:35:41 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
-[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":18,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
-[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":31,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
-[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":18,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
-[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":31,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
-[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":18,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
-[17-Jul-2025 23:35:41 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":31,"timestamp":"2025-07-17 23:35:41","ip":"unknown"}
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 14
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 15
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 16
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 17
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\bootstrap.php on line 18
-[17-Jul-2025 23:38:15 Europe/Berlin] PHP Warning:  Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\bootstrap.php on line 29
-[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":19,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
-[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":32,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
-[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":19,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
-[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":32,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
-[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":19,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
-[17-Jul-2025 23:38:15 Europe/Berlin] ERROR: {"severity":8,"message":"ob_flush(): Failed to flush buffer. No buffer to flush","file":"C:\\xampp\\htdocs\\tests\\backend_test.php","line":32,"timestamp":"2025-07-17 23:38:15","ip":"unknown"}
-[17-Jul-2025 23:38:18 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:38:18 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:38:19 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:38:19 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:38:19","ip":"::1"}
-[17-Jul-2025 23:38:19 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
-[17-Jul-2025 23:38:33 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:38:33 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:39:03 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:39:03 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:39:29 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:39:29 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:40:22 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:40:22 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:41:56 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:44:00 Europe/Berlin] PHP Warning:  The use statement with non-compound name 'PDO' has no effect in C:\xampp\htdocs\app\container_bindings.php on line 11
-[17-Jul-2025 23:44:00 Europe/Berlin] ERROR: {"severity":2,"message":"require_once(C:\\xampp\\htdocs\\app\\Controllers\/..\/views\/dashboard.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\app\\Controllers\\DashboardController.php","line":22,"timestamp":"2025-07-17 23:44:00","ip":"::1"}
-[17-Jul-2025 23:44:00 Europe/Berlin] EXCEPTION: Failed opening required 'C:\xampp\htdocs\app\Controllers/../views/dashboard.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\app\Controllers\DashboardController.php:22
-[18-Jul-2025 00:03:44 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Expense.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_expense.php on line 3
-[18-Jul-2025 00:03:44 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Expense.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_expense.php:3
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 03:29:21 Europe/Berlin] EXCEPTION: Class "PhpOffice\PhpSpreadsheet\Spreadsheet" not found in C:\xampp\htdocs\app\Models\ExcelExporter.php:22
+[19-Jul-2025 03:38:29 Europe/Berlin] EXCEPTION: Class "PhpOffice\PhpSpreadsheet\Spreadsheet" not found in C:\xampp\htdocs\app\Models\ExcelExporter.php:22
+[19-Jul-2025 03:45:29 Europe/Berlin] EXCEPTION: Class "PhpOffice\PhpSpreadsheet\Spreadsheet" not found in C:\xampp\htdocs\app\Models\ExcelExporter.php:22
+[19-Jul-2025 03:45:49 Europe/Berlin] EXCEPTION: Class "PhpOffice\PhpSpreadsheet\Spreadsheet" not found in C:\xampp\htdocs\app\Models\ExcelExporter.php:22
+[19-Jul-2025 03:47:19 Europe/Berlin] EXCEPTION: Class "PhpOffice\PhpSpreadsheet\Spreadsheet" not found in C:\xampp\htdocs\app\Models\ExcelExporter.php:22
+[19-Jul-2025 04:18:34 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":177,"timestamp":"2025-07-19 04:18:34","ip":"::1"}
+[19-Jul-2025 04:18:34 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:177
+[19-Jul-2025 04:18:34 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 04:18:34","ip":"::1"}
+[19-Jul-2025 04:21:22 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":177,"timestamp":"2025-07-19 04:21:22","ip":"::1"}
+[19-Jul-2025 04:21:22 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:177
+[19-Jul-2025 04:21:22 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 04:21:22","ip":"::1"}
+[19-Jul-2025 04:21:39 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":177,"timestamp":"2025-07-19 04:21:39","ip":"::1"}
+[19-Jul-2025 04:21:39 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:177
+[19-Jul-2025 04:21:39 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 04:21:39","ip":"::1"}
+[19-Jul-2025 04:34:32 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Wishlist.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:34:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Wishlist.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_wishlist_item.php:3
 Stack trace:
 #0 {main}
-  thrown in C:\xampp\htdocs\ajax\get_expense.php on line 3
-[18-Jul-2025 00:05:24 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Expense.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\postpone_expense.php on line 3
-[18-Jul-2025 00:05:24 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Expense.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\postpone_expense.php:3
+  thrown in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:34:35 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Wishlist.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:34:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Wishlist.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_wishlist_item.php:3
 Stack trace:
 #0 {main}
-  thrown in C:\xampp\htdocs\ajax\postpone_expense.php on line 3
+  thrown in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:34:47 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/TaxDebt.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_tax_debt.php on line 3
+[19-Jul-2025 04:34:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/TaxDebt.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_tax_debt.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_tax_debt.php on line 3
+[19-Jul-2025 04:37:38 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Wishlist.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:37:38 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Wishlist.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_wishlist_item.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:40:21 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Wishlist.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:40:21 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Wishlist.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_wishlist_item.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:40:26 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Wishlist.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:40:26 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Wishlist.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_wishlist_item.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:40:43 Europe/Berlin] PHP Warning:  require_once(C:/xampp/htdocs/models/Wishlist.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:40:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'C:/xampp/htdocs/models/Wishlist.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_wishlist_item.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_wishlist_item.php on line 3
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:46:16 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:46:16","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:51:55 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:51:55","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:52:59 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:52:59","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:53:02","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:17 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:53:17","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:53:20 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:53:20","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:35 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-19 04:55:35","ip":"::1"}
+[19-Jul-2025 04:55:53 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 04:55:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:04:51 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:04:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:05:47 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:05:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:05 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:08 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:08 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:21 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:21 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:35 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:57 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:06:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:12:03 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:12:03 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:12:18 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:12:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:14:50 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:14:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:15:27 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:15:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:15:29 Europe/Berlin] PHP Warning:  require_once(../models/Database.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:15:29 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required '../models/Database.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\ajax\get_exchange_rate.php:3
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_exchange_rate.php on line 3
+[19-Jul-2025 05:17:30 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-19 05:17:30","ip":"::1"}
+[19-Jul-2025 05:17:30 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[19-Jul-2025 05:17:30 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 05:17:30","ip":"::1"}
+[19-Jul-2025 05:35:12 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-19 05:35:12","ip":"::1"}
+[19-Jul-2025 05:35:12 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[19-Jul-2025 05:35:12 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 05:35:12","ip":"::1"}
+[19-Jul-2025 05:35:14 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-19 05:35:14","ip":"::1"}
+[19-Jul-2025 05:35:14 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[19-Jul-2025 05:35:14 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 05:35:14","ip":"::1"}
+[19-Jul-2025 05:35:26 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-19 05:35:26","ip":"::1"}
+[19-Jul-2025 05:35:26 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[19-Jul-2025 05:35:26 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-19 05:35:26","ip":"::1"}

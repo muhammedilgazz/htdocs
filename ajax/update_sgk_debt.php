@@ -1,6 +1,7 @@
 <?php
-require_once 'C:/xampp/htdocs/config/config.php';
-require_once 'C:/xampp/htdocs/models/SgkDebt.php';
+require_once __DIR__ . '/../bootstrap.php';
+
+use App\Models\SgkDebt;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
     $sgk_debt_model = new SgkDebt();

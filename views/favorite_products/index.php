@@ -1,27 +1,23 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">Favori Ürünler</h2>
-                                <div>Favori ürünlerinizi takip edin.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWishlistItemModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni Favori Ürün Ekle
-                            </button>
-                        </div>
-                    </div>
+                <?php
+                $page_title = 'Favori Ürünler';
+                $page_description = 'Favori ürünlerinizi takip edin.';
+                $breadcrumb_active = 'Favori Ürünler';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWishlistItemModal">
+                        <i class="bi bi-plus-circle me-2"></i>Yeni Favori Ürün Ekle
+                    </button>
                 </div>
 
                 <?php if (empty($rows)): ?>
@@ -99,7 +95,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Add Wishlist Item Modal (Re-using from wishlist/index.php) -->
 <div class="modal fade" id="addWishlistItemModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni Favori Ürün Ekle</h5>
@@ -145,7 +141,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit Wishlist Item Modal (Re-using from wishlist/index.php) -->
 <div class="modal fade" id="editWishlistItemModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Favori Ürünü Düzenle</h5>
@@ -198,7 +194,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {

@@ -6,6 +6,18 @@
 /* ==========================================================================
    ENHANCED NOTIFICATIONS
    ========================================================================== */
+   :root { --primary: #112250;
+   --primary-dark: #2563EB;
+   --primary-light: #E5E9F2;
+   --primary-gradient: #112250;
+   
+   }
+   .notify {
+    position: absolute !important;
+    top: 10px !important;
+    left: 60px !important;
+}
+
 .notification-container {
     position: fixed;
     z-index: 9999;
@@ -306,11 +318,7 @@
     transform: translateX(4px);
 }
 
-.sidebar-nav .nav-link.active {
-    background: var(--primary-gradient);
-    color: white;
-    box-shadow: var(--shadow-md);
-}
+
 
 .sidebar-nav .nav-link.active::before {
     content: '';

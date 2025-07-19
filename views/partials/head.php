@@ -6,22 +6,22 @@
     <title><?= APP_NAME ?> - Bütçe Yönetim Sistemi</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="<?= BASE_URL ?>assets/images/favicon.png">
     
     <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="<?= BASE_URL ?>manifest.json">
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#0d1b2a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Bütçe Yönetimi">
-    <meta name="msapplication-TileImage" content="assets/images/icons/icon-144x144.png">
+    <meta name="msapplication-TileImage" content="<?= BASE_URL ?>assets/images/icons/icon-144x144.png">
     <meta name="msapplication-TileColor" content="#0d1b2a">
     
     <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="assets/images/icons/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/icon-180x180.png">
+    <link rel="apple-touch-icon" href="<?= BASE_URL ?>assets/images/icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>assets/images/icons/icon-180x180.png">
     
     <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,22 +47,21 @@
     
     
     <!-- Ekash Minimal Design CSS -->
-    <link href="assets/css/ekash-minimal.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/ekash-minimal.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Modern Enhanced CSS -->
-    <link href="assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Enhanced Components CSS -->
-    <link href="assets/css/components-enhanced.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/components-enhanced.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Custom Color Palette -->
-    <link href="assets/css/custom-colors.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/custom-colors.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Perfect Scrollbar -->
-    <link href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.css'">
+    <link href="<?= BASE_URL ?>assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.css'">
     
     <!-- Toastr -->
-    <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
-    <link href="assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https.cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
 
 </head>

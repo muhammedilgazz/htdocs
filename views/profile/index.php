@@ -1,22 +1,18 @@
-<?php require_once 'C:/xampp/htdocs/views/partials/head.php'; ?>
+<?php require_once ROOT_PATH . '/views/partials/head.php'; ?>
 
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">Profil</h2>
-                                <div>Kullanıcı profil bilgilerinizi görüntüleyin ve yönetin.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $page_title = 'Profil';
+                $page_description = 'Kullanıcı profil bilgilerinizi görüntüleyin ve yönetin.';
+                $breadcrumb_active = 'Profil';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
 
                 <div class="row">
                     <div class="col-xl-4">
@@ -73,7 +69,7 @@
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 </body>
 </html>

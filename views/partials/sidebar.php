@@ -24,7 +24,7 @@
                     <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
                 </a>
                 <div class="collapse" id="giderlerSubmenu">
-                    <ul class="nav flex-column ms-3">
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="/giderler?filter=month" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'giderler.php' && (!isset($_GET['filter']) || $_GET['filter'] == 'month')) ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-calendar2-week"></i>
@@ -57,7 +57,7 @@
                     <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
                 </a>
                 <div class="collapse" id="harcamalarSubmenu">
-                    <ul class="nav flex-column ms-3">
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="/expense" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'expense.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-list-ul"></i>
@@ -101,7 +101,7 @@
                     <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
                 </a>
                 <div class="collapse" id="alinacaklarSubmenu">
-                    <ul class="nav flex-column ms-3">
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="/wishlist" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-list-check"></i>
@@ -146,7 +146,7 @@
                     <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
                 </a>
                 <div class="collapse" id="borclarSubmenu">
-                    <ul class="nav flex-column ms-3">
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="/tax" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'tax.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-receipt"></i>
@@ -191,7 +191,7 @@
                     <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
                 </a>
                 <div class="collapse" id="yapilacaklarSubmenu">
-                    <ul class="nav flex-column ms-3">
+                    <ul class="nav flex-column">
                         <li class="nav-item">
                             <a href="/project" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'project.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-kanban"></i>

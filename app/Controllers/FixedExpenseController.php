@@ -11,6 +11,6 @@ class FixedExpenseController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/fixed_expenses/index.php';
+        require_once ROOT_PATH . '/views/fixed_expenses/index.php';
     }
 }

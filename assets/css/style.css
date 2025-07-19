@@ -6933,7 +6933,7 @@ fieldset:disabled .btn {
 .modal-dialog {
   position: relative;
   width: auto;
-  margin: var(--bs-modal-margin);
+  margin: auto !important;
   pointer-events: none;
 }
 
@@ -6984,6 +6984,7 @@ fieldset:disabled .btn {
   -ms-flex-align: center;
   align-items: center;
   min-height: calc(100% - var(--bs-modal-margin) * 2);
+  margin: auto;
 }
 
 .modal-content {
@@ -21475,20 +21476,20 @@ figure>img:hover {
   transition: all 0.3s ease;
 }
 
-.sidebar-nav .nav-link[data-bs-toggle=\collapse\] .bi-chevron-down {
+.sidebar-nav .nav-link[data-bs-toggle="collapse"] .bi-chevron-down {
   transition: transform 0.3s ease;
 }
 
-.sidebar-nav .nav-link[data-bs-toggle=\collapse\][aria-expanded=\true\] .bi-chevron-down {
+.sidebar-nav .nav-link[data-bs-toggle="collapse"][aria-expanded="true"] .bi-chevron-down {
   transform: rotate(180deg);
 }
 
 /* Hover efektleri */
-.sidebar-nav .nav-link[data-bs-toggle=\collapse\]:hover {
+.sidebar-nav .nav-link[data-bs-toggle="collapse"]:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.sidebar-nav .nav-link[data-bs-toggle=\collapse\]:hover .bi-chevron-down {
+.sidebar-nav .nav-link[data-bs-toggle="collapse"]:hover .bi-chevron-down {
   color: #fff;
 }
 
@@ -21501,7 +21502,7 @@ figure>img:hover {
 
 /* Aktif menü için özel stil */
 .sidebar-nav .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.15)!important;
   border-left: 3px solid #fff;
 }
 
@@ -21595,4 +21596,25 @@ figure>img:hover {
   100% {
     transform: rotate(360deg);
   }
+}
+/* Custom override to ensure all modals are centered */
+.modal-dialog-centered {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+/* Force center all modals using grid */
+.modal {
+  display: grid !important;
+  place-items: center;
+}
+/* Custom override to ensure all modals are centered */
+.modal {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+/* Force center all modals using grid */
+.modal {
+  display: grid !important;
+  place-items: center;
 }

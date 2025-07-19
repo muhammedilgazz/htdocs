@@ -11,6 +11,6 @@ class AcquiredProductController {
         $rows = $wishlist_model->getAll('alinacak'); // Assuming 'alinacak' is the type for acquired products
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/acquired_products/index.php';
+        require_once ROOT_PATH . '/views/acquired_products/index.php';
     }
 }

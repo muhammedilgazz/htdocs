@@ -1,6 +1,6 @@
 <!-- İhtiyaç Ekle Modal -->
 <div class="modal fade" id="addIhtiyacModal" tabindex="-1" aria-labelledby="addIhtiyacModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addIhtiyacForm">
                 <div class="modal-header">
@@ -54,7 +54,7 @@
 
 <!-- İban Ekle Modal -->
 <div class="modal fade" id="addIbanModal" tabindex="-1" aria-labelledby="addIbanModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addIbanForm">
                 <div class="modal-header">
@@ -90,7 +90,7 @@
 
 <!-- Hesap Ekle Modal -->
 <div class="modal fade" id="addHesapModal" tabindex="-1" aria-labelledby="addHesapModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addHesapForm">
                 <div class="modal-header">
@@ -134,7 +134,7 @@
 
 <!-- Hayal/Hedef Ekle Modal -->
 <div class="modal fade" id="addHayalHedefModal" tabindex="-1" aria-labelledby="addHayalHedefModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addHayalHedefForm">
                 <div class="modal-header">
@@ -181,7 +181,7 @@
 
 <!-- Harcama Ekleme Modal -->
 <div class="modal fade" id="addExpenseModal" tabindex="-1" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addExpenseForm">
                 <div class="modal-header">
@@ -233,7 +233,7 @@
 
 <!-- Not Ekle Modal -->
 <div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addNoteForm">
                 <div class="modal-header">
@@ -279,7 +279,7 @@
 
 <!-- To-Do Ekle Modal -->
 <div class="modal fade" id="addTodoModal" tabindex="-1" aria-labelledby="addTodoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addTodoForm">
                 <div class="modal-header">
@@ -330,7 +330,7 @@
 
 <!-- Gelir Ekle Modal -->
 <div class="modal fade" id="addIncomeModal" tabindex="-1" aria-labelledby="addIncomeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form id="addIncomeForm">
                 <div class="modal-header">

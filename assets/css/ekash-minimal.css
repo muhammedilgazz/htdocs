@@ -1674,9 +1674,13 @@ body {
     color: var(--success-dark);
     border-color: var(--success-dark);
 } 
-ul.nav.flex-column.ms-3 li.nav-item.active a {
+ul.nav.flex-column >li.nav-item.active a {
 background-color: #112e4b!important;
+color: #fff!important;
 }  
+li.nav-item.active a{
+    background: var(--bs-secondary-bg)!important;
+}
 .sidebar-header{
 background: #6386ac!important;   
 }

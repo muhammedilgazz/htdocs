@@ -69,6 +69,10 @@ set_error_handler(function($severity, $message, $file, $line) {
 // Exception handler
 set_exception_handler(function($exception) {
     error_log('EXCEPTION: ' . $exception->getMessage() . ' in ' . $exception->getFile() . ':' . $exception->getLine());
-    header('Location: 500.php');
+    if (php_sapi_name() !== 'cli') {
+        header('Location: 500.php');
+    } else {
+        echo 'EXCEPTION: ' . $exception->getMessage() . ' in ' . $exception->getFile() . ':' . $exception->getLine() . "\n";
+    }
     exit;
 });

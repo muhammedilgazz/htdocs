@@ -16,9 +16,9 @@ class Expense {
      * Yeni bir gider ekler.
      *
      * @param array $data Gider verileri (amount, category_type, description, date).
-     * @return bool Başarı durumu.
+     * @return int|false Eklenen giderin ID'si veya hata durumunda false.
      */
-    public function add(array $data): bool {
+    public function add(array $data) {
         $sql = "INSERT INTO expenses (amount, category_type, description, date) VALUES (?, ?, ?, ?)";
         $params = [
             $data['amount'],
@@ -26,7 +26,10 @@ class Expense {
             $data['description'] ?? null,
             $data['date'] ?? date('Y-m-d')
         ];
-        return $this->db->execute($sql, $params);
+        if ($this->db->execute($sql, $params)) {
+            return $this->db->lastInsertId();
+        }
+        return false;
     }
 
     /**
@@ -37,14 +40,34 @@ class Expense {
      * @return bool Başarı durumu.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE expenses SET amount = ?, category_type = ?, description = ?, date = ? WHERE id = ?";
-        $params = [
-            $data['amount'],
-            $data['category_type'],
-            $data['description'] ?? null,
-            $data['date'] ?? date('Y-m-d'),
-            $id
-        ];
+        // Gelen veriye göre dinamik olarak sorgu oluştur
+        $fields = [];
+        $params = [];
+        
+        if (isset($data['amount'])) {
+            $fields[] = "amount = ?";
+            $params[] = $data['amount'];
+        }
+        if (isset($data['category_type'])) {
+            $fields[] = "category_type = ?";
+            $params[] = $data['category_type'];
+        }
+        if (isset($data['description'])) {
+            $fields[] = "description = ?";
+            $params[] = $data['description'];
+        }
+        if (isset($data['date'])) {
+            $fields[] = "date = ?";
+            $params[] = $data['date'];
+        }
+
+        if (empty($fields)) {
+            return false; // güncellenecek bir şey yok
+        }
+
+        $sql = "UPDATE expenses SET " . implode(", ", $fields) . " WHERE id = ?";
+        $params[] = $id;
+        
         return $this->db->execute($sql, $params);
     }
 

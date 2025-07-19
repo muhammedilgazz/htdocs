@@ -1,27 +1,23 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">SGK Borçları</h2>
-                                <div>Sosyal Güvenlik Kurumu ödemeleri takibi.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSgkDebtModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni SGK Borcu Ekle
-                            </button>
-                        </div>
-                    </div>
+                <?php
+                $page_title = 'SGK Borçları';
+                $page_description = 'Sosyal Güvenlik Kurumu ödemeleri takibi.';
+                $breadcrumb_active = 'SGK Borçları';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSgkDebtModal">
+                        <i class="bi bi-plus-circle me-2"></i>Yeni SGK Borcu Ekle
+                    </button>
                 </div>
 
                 <?php if (empty($rows)): ?>
@@ -35,7 +31,15 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                 <?php else: ?>
                 <div class="card p-0">
                     <div class="card-header bg-white">
-                        <h5 class="mb-0">SGK Borçları Listesi</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">SGK Borçları Listesi</h5>
+                            <div class="d-flex align-items-center">
+                                <?php if (!empty($rows)): ?>
+                                    <h5 class="mb-0 text-end me-3">Toplam: ₺<?= number_format(array_sum(array_column($rows, 'total')), 2, ',', '.') ?></h5>
+                                <?php endif; ?>
+                                <button id="export-excel-sgk" class="btn btn-sm btn-outline-success"><i class="bi bi-file-earmark-excel"></i></button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -93,7 +97,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Add SGK Debt Modal -->
 <div class="modal fade" id="addSgkDebtModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni SGK Borcu Ekle</h5>
@@ -154,7 +158,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit SGK Debt Modal -->
 <div class="modal fade" id="editSgkDebtModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">SGK Borcunu Düzenle</h5>
@@ -214,10 +218,14 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {
+    $('#export-excel-sgk').click(function() {
+        window.location.href = 'ajax/export_sgk.php';
+    });
+
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();

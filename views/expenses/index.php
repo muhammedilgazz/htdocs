@@ -21,6 +21,11 @@ include __DIR__ . '/../partials/head.php'; ?>
         <?php include __DIR__ . '/../partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
+                <?php
+                $breadcrumb_active = 'Harcamalar';
+                $show_title_section = false;
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
                 <div class="card mb-3" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06); margin-top:1rem;">
                     <div class="card-body d-flex align-items-center justify-content-between p-3">
                         <div class="d-flex align-items-center gap-2">
@@ -174,7 +179,7 @@ include __DIR__ . '/../partials/head.php'; ?>
 
 <!-- Add Expense Modal -->
 <div class="modal fade" id="addExpenseModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni Gider Ekle</h5>
@@ -216,7 +221,7 @@ include __DIR__ . '/../partials/head.php'; ?>
 
 <!-- Edit Expense Modal -->
 <div class="modal fade" id="editExpenseModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Gideri Düzenle</h5>

@@ -1,27 +1,23 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">Şahıslara Borçlar</h2>
-                                <div>Şahıslara olan borçlarınızı buradan yönetebilirsiniz.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPersonalDebtModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni Borç Ekle
-                            </button>
-                        </div>
-                    </div>
+                <?php
+                $page_title = 'Şahıslara Borçlar';
+                $page_description = 'Şahıslara olan borçlarınızı buradan yönetebilirsiniz.';
+                $breadcrumb_active = 'Şahıslara Borçlar';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPersonalDebtModal">
+                        <i class="bi bi-plus-circle me-2"></i>Yeni Borç Ekle
+                    </button>
                 </div>
 
                 <?php if (empty($rows)): ?>
@@ -85,7 +81,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Add Personal Debt Modal -->
 <div class="modal fade" id="addPersonalDebtModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni Şahıs Borcu Ekle</h5>
@@ -130,7 +126,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit Personal Debt Modal -->
 <div class="modal fade" id="editPersonalDebtModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Şahıs Borcunu Düzenle</h5>
@@ -174,7 +170,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {

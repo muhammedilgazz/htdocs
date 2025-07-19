@@ -9,6 +9,6 @@ class NeedController {
         $wishlist_model = new Wishlist();
         $rows = $wishlist_model->getNeeds();
 
-        require_once 'C:/xampp/htdocs/views/needs/index.php';
+        require_once ROOT_PATH . '/views/needs/index.php';
     }
 }

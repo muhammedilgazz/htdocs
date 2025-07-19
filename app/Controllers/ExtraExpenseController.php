@@ -11,6 +11,6 @@ class ExtraExpenseController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/extra_expenses/index.php';
+        require_once ROOT_PATH . '/views/extra_expenses/index.php';
     }
 }

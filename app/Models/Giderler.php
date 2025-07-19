@@ -44,84 +44,77 @@ class Giderler {
 
         // Harcamalar
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 description AS description,
                 amount,
                 date AS created_at,
-                'Harcama' AS type,
-                category_type AS category
+                'Harcama' AS type
             FROM expenses
             " . $build_where_clause('date') . "
         ";
 
         // Alınacaklar
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 item_name AS description,
                 price AS amount,
                 created_at,
-                'Alınacak' AS type,
-                wishlist_type AS category
+                'Alınacak' AS type
             FROM wishlist_items
             " . $build_where_clause('created_at', ["wishlist_type IN ('ihtiyac', 'alinacak')", "status = 'active'"]) . "
         ";
 
         // Banka Borçları
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 CONCAT(bank_name, ' - ', loan_type) AS description,
                 total AS amount,
                 planned_payment_date AS created_at,
-                'Banka Borcu' AS type,
-                'Banka' AS category
+                'Banka Borcu' AS type
             FROM bank_debts
             " . $build_where_clause('planned_payment_date') . "
         ";
 
         // İcra Borçları
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 CONCAT(owner, ' - ', execution_office) AS description,
-                this_month_payment AS amount,
+                current_debt AS amount,
                 start_date AS created_at,
-                'İcra Borcu' AS type,
-                'İcra' AS category
+                'İcra Borcu' AS type
             FROM execution_debts
             " . $build_where_clause('start_date') . "
         ";
 
         // Şahıs Borçları
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 to_whom AS description,
-                amount AS amount, 
+                amount AS amount,
                 planned_payment_date AS created_at,
-                'Şahıs Borcu' AS type,
-                'Şahıs' AS category
+                'Şahıs Borcu' AS type
             FROM personal_debts
             " . $build_where_clause('planned_payment_date') . "
         ";
 
         // SGK Borçları
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 CONCAT(owner, ' - ', period) AS description,
-                this_month_payment AS amount,
+                total AS amount,
                 payment_due AS created_at,
-                'SGK Borcu' AS type,
-                'SGK' AS category
+                'SGK Borcu' AS type
             FROM sgk_debts
             " . $build_where_clause('payment_due') . "
         ";
 
         // Vergi Borçları
         $sql_parts[] = "
-            SELECT 
+            SELECT
                 CONCAT(owner, ' - ', period) AS description,
-                this_month_payment AS amount,
+                total AS amount,
                 payment_due AS created_at,
-                'Vergi Borcu' AS type,
-                'Vergi' AS category
+                'Vergi Borcu' AS type
             FROM tax_debts
             " . $build_where_clause('payment_due') . "
         ";

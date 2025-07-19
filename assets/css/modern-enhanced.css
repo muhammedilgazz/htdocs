@@ -7,6 +7,11 @@
    MODERN VARIABLES & THEME SYSTEM
    ========================================================================== */
 :root {
+    --primary: #112250;
+    --primary-dark: #2563EB;
+    --primary-light: #E5E9F2;
+    --primary-gradient: #112250;
+    
     /* Enhanced Color Palette */
     --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -438,10 +443,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(4px);
 }
 
-.sidebar-nav .nav-link.active {
-    background: var(--bs-primary-bg-subtle);
-    color: var(--bs-primary);
-}
+
 
 /* Enhanced Header */
 .app-header {
@@ -698,9 +700,6 @@ h1, h2, h3, h4, h5, h6 {
     .app-header {
         display: none !important;
     }
-}.sidebar-nav .nav-link.active {
-    background: var(--bs-primary-bg-subtle);
-    color: var(--bs-primary);
 }
 
 .sidebar-nav .nav-link.active span {
@@ -726,4 +725,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .sidebar-nav .nav-link {
     font-size: 14px;
+}
+
+/* Excel ikon rengini yeşil yapmak için özel kural */
+.btn-outline-success .bi-file-earmark-excel {
+    color: #198754; /* Bootstrap'in success rengi */
 }

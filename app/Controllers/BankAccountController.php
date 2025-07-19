@@ -16,6 +16,6 @@ class BankAccountController {
         // Şimdilik boş veri ile devam et
         $message = 'Bu sayfa henüz implementasyona hazır değil. Banka hesapları yönetimi için geliştirme devam ediyor.';
         
-        require_once 'C:/xampp/htdocs/views/bank_account/index.php';
+        require_once ROOT_PATH . '/views/bank_account/index.php';
     }
 }

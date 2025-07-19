@@ -1,25 +1,15 @@
-<?php require_once 'C:/xampp/htdocs/views/layouts/layoutTop.php'; ?>
+<?php require_once ROOT_PATH . '/views/layouts/layoutTop.php'; ?>
 
         <div class="content-body">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="page-title">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-xl-4">
-                                    <div class="page-title-content">
-                                        <h3>Privacy</h3>
-                                        <p class="mb-2">Welcome Ekash Finance Management</p>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="breadcrumbs"><a href="/">Home </a>
-                                        <span><i class="fi fi-rr-angle-small-right"></i></span>
-                                        <a href="#">Privacy</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        $page_title = 'Privacy';
+                        $page_description = 'Welcome Ekash Finance Management';
+                        $breadcrumb_active = 'Privacy';
+                        include ROOT_PATH . '/views/partials/page_header.php';
+                        ?>
                     </div>
                 </div>
                 <div class="row">
@@ -166,4 +156,4 @@
             </div>
         </div>
 
-<?php require_once 'C:/xampp/htdocs/views/layouts/layoutBottom.php'; ?>
+<?php require_once ROOT_PATH . '/views/layouts/layoutBottom.php'; ?>

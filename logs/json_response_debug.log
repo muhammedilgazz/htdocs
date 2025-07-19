@@ -129,3 +129,57 @@
 {"success":true,"data":{"id":4,"amount":"150.76","category_type":"ertelenmis","description":"Test Gideri - Servis","date":"2025-08-17"}}
 ---2025-07-18 00:17:26---
 {"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}
+---2025-07-18 05:14:35---
+{"success":true,"data":{"id":4,"owner":"MUHAMMED VEYSEL ILGAZ","period":"4B Ba\u011fkur Vadesi Gelmeyen","principal":null,"interest":null,"total":"9036.91","payment_due":"2025-07-31","planned_payment":null,"paid":null,"remaining":null,"this_month_payment":null}}
+---2025-07-18 05:29:13---
+{"success":true,"data":{"id":4,"owner":"MUHAMMED VEYSEL ILGAZ","period":"4B Ba\u011fkur Vadesi Gelmeyen","principal":null,"interest":null,"total":"9036.91","payment_due":"2025-07-31","planned_payment":null,"paid":null,"remaining":null,"this_month_payment":null}}
+---2025-07-18 06:34:26---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 07:34:03---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 07:35:36---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 07:36:51---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 07:36:59---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 07:38:06---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 07:39:38---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:03:46---
+{"success":true,"message":"Gider ba\u015far\u0131yla ertelendi."}
+---2025-07-18 08:04:04---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:04:19---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:04:49---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:06:53---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:10:25---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:10:44---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 08:11:07---
+{"success":true,"data":{"id":3,"owner":"Muhammed Veysel Ilgaz","creditor":"RECOM ALACAK Y\u00d6NET\u0130M VE DANI\u015eMANLIK H\u0130ZMETLER\u0130 ANON\u0130M \u015e\u0130RKET\u0130 [MAHMUT FIRAT]","execution_office":"\u0130stanbul 28. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"7693.78","principal_debt":"4397.12","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-18 09:50:14---
+{"success":true,"data":{"id":13,"amount":"50.00","category_type":"ani_ekstra","description":"Silinecek Gider","date":"2025-07-18"}}
+---2025-07-19 04:34:51---
+{"success":true,"data":{"id":4,"owner":"MUHAMMED VEYSEL ILGAZ","period":"4B Ba\u011fkur Vadesi Gelmeyen","principal":null,"interest":null,"total":"9036.91","payment_due":"2025-07-31","planned_payment":null,"paid":null,"remaining":null,"this_month_payment":null}}
+---2025-07-19 04:37:30---
+{"success":true,"data":{"id":10,"amount":"50.00","category_type":"ani_ekstra","description":"Silinecek Gider","date":"2025-07-18"}}
+---2025-07-19 04:37:58---
+{"success":true,"data":{"id":4,"amount":"150.76","category_type":"ertelenmis","description":"Test Gideri - Servis","date":"2035-08-17"}}
+---2025-07-19 04:38:04---
+{"success":true,"data":{"id":4,"amount":"150.76","category_type":"ertelenmis","description":"Test Gideri - Servis","date":"2035-08-17"}}
+---2025-07-19 04:38:13---
+{"success":true,"data":{"id":1,"owner":"Muhammed Veysel Ilgaz","creditor":"YUNUS BAK\u0130 [FUNDA \u00d6ZER]","execution_office":"Kar\u015f\u0131yaka 4. \u0130cra Dairesi","start_date":"2025-01-01","current_debt":"201685.58","principal_debt":"168254.36","contact_info":null,"status":"A\u00e7\u0131k","planned_payment":null,"this_month_payment":null}}
+---2025-07-19 04:40:36---
+{"success":true,"data":{"id":74,"owner":"RentAkar","period":"2023\/01-2023\/12","principal":"11800.00","interest":"0.00","total":"11800.00","payment_due":"2024-11-09","planned_payment":null,"paid":null,"remaining":null,"this_month_payment":null}}
+---2025-07-19 04:44:34---
+{"success":true,"data":{"id":2,"item_name":"\u00c7al\u0131\u015fma Masas\u0131","wishlist_type":"ihtiyac","image_url":null,"product_link":null,"price":"2500.00","priority":8,"progress":null,"created_at":"2025-07-16 07:06:03","status":"beklemede","notes":null,"price_range":null,"is_urgent":0,"purchase_date":null,"updated_at":"2025-07-16 07:06:15"}}
+---2025-07-19 04:47:23---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-19 04:47:31---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}

@@ -1,6 +1,6 @@
 <?php
-require_once 'C:/xampp/htdocs/config/config.php';
-require_once 'C:/xampp/htdocs/models/Task.php';
+require_once ROOT_PATH . '/config/config.php';
+require_once ROOT_PATH . '/models/Task.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
     $task_model = new Task();

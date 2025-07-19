@@ -11,6 +11,6 @@ class TaxController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/tax/index.php';
+        require_once ROOT_PATH . '/views/tax/index.php';
     }
 }

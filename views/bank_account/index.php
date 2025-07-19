@@ -1,22 +1,22 @@
-<?php require_once 'C:/xampp/htdocs/views/partials/head.php'; ?>
+<?php require_once ROOT_PATH . '/views/partials/head.php'; ?>
 
 <body>
     <div class="app-container">
-        <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
         
         <div class="app-main">
-            <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+            <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
             
             <div class="app-content">
                 <div class="container-fluid">
                     <div class="row mb-4">
                         <div class="col-12">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h1 class="h3 mb-0">BankAccount</h1>
-                                    <p class="text-muted mb-0">Banka hesapları yönetimi</p>
-                                </div>
-                            </div>
+                            <?php
+                            $page_title = 'Banka Hesapları';
+                            $page_description = 'Banka hesapları yönetimi';
+                            $breadcrumb_active = 'Banka Hesapları';
+                            include ROOT_PATH . '/views/partials/page_header.php';
+                            ?>
                         </div>
                     </div>
 
@@ -41,6 +41,6 @@
         </div>
     </div>
 
-    <?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/script.php'; ?>
 </body>
 </html>

@@ -1,26 +1,18 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <!-- Breadcrumb ve Başlık -->
-        <div class="container-fluid py-1" style="background:#f7f9fb;">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h2 class="mb-1" style="font-weight:700; color:#1f2e4e; font-size:1.5rem;">Referans Programı</h2>
-                    <div style="color:#7b8ab8; font-size:1rem;">Arkadaşlarınızı davet edin ve kazanç elde edin.</div>
-                </div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0" style="background:transparent;">
-                        <li class="breadcrumb-item"><a href="/" style="color:#7b8ab8; text-decoration:none;">Anasayfa</a></li>
-                        <li class="breadcrumb-item active" aria-current="page" style="color:#7b8ab8;">Referans Programı</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+        <?php
+        $page_title = 'Referans Programı';
+        $page_description = 'Arkadaşlarınızı davet edin ve kazanç elde edin.';
+        $breadcrumb_active = 'Referans Programı';
+        include ROOT_PATH . '/views/partials/page_header.php';
+        ?>
         <div class="app-content">
             <div class="container py-3">
                 <!-- İstatistik Kartları -->
@@ -217,6 +209,6 @@ function shareReferralLink() {
 }
 </script>
 
-<?php require_once 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php require_once ROOT_PATH . '/views/partials/script.php'; ?>
 
 </body>

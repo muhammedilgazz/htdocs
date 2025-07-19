@@ -179,10 +179,7 @@ body {
     flex-shrink: 0;
 }
 
-.sidebar-nav .nav-link.active {
-    background: var(--bs-primary-bg-subtle);
-    color: var(--bs-primary);
-}
+
 
 .sidebar-nav .nav-link.active span {
     white-space: nowrap !important;

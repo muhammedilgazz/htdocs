@@ -207,7 +207,7 @@
         <div class="dropdown">
             <button class="btn btn-text position-relative ripple" data-bs-toggle="dropdown">
                 <i class="material-icons-round">notifications</i>
-                <span class="position-absolute top-0 start-100 translate-middle badge badge-danger">
+                <span class="notify position-absolute top-0 start-100 translate-middle badge badge-danger">
                     3
                 </span>
             </button>

@@ -301,9 +301,11 @@
         // Initialize ripple effects
         init: function() {
             document.addEventListener('click', (event) => {
-                const element = event.target.closest('.ripple, .btn');
-                if (element && !element.classList.contains('no-ripple')) {
-                    this.add(element, event);
+                if (event.target instanceof Element) {
+                    const element = event.target.closest('.ripple, .btn');
+                    if (element && !element.classList.contains('no-ripple')) {
+                        this.add(element, event);
+                    }
                 }
             });
         }
@@ -396,16 +398,20 @@
 
             // Add hover effects
             document.addEventListener('mouseenter', (event) => {
-                const button = event.target.closest('.btn');
-                if (button) {
-                    button.classList.add('hover');
+                if (event.target instanceof Element) {
+                    const button = event.target.closest('.btn');
+                    if (button) {
+                        button.classList.add('hover');
+                    }
                 }
             }, true);
 
             document.addEventListener('mouseleave', (event) => {
-                const button = event.target.closest('.btn');
-                if (button) {
-                    button.classList.remove('hover');
+                if (event.target instanceof Element) {
+                    const button = event.target.closest('.btn');
+                    if (button) {
+                        button.classList.remove('hover');
+                    }
                 }
             }, true);
         }
@@ -481,21 +487,25 @@
             let timeout;
             
             document.addEventListener('mouseenter', (event) => {
-                const element = event.target.closest('[data-tooltip]');
-                if (element) {
-                    timeout = setTimeout(() => {
-                        const text = element.getAttribute('data-tooltip');
-                        const placement = element.getAttribute('data-tooltip-placement') || 'top';
-                        this.show(element, text, { placement });
-                    }, config.components.tooltip.delay);
+                if (event.target instanceof Element) {
+                    const element = event.target.closest('[data-tooltip]');
+                    if (element) {
+                        timeout = setTimeout(() => {
+                            const text = element.getAttribute('data-tooltip');
+                            const placement = element.getAttribute('data-tooltip-placement') || 'top';
+                            this.show(element, text, { placement });
+                        }, config.components.tooltip.delay);
+                    }
                 }
             });
 
             document.addEventListener('mouseleave', (event) => {
-                const element = event.target.closest('[data-tooltip]');
-                if (element) {
-                    clearTimeout(timeout);
-                    this.hide(element);
+                if (event.target instanceof Element) {
+                    const element = event.target.closest('[data-tooltip]');
+                    if (element) {
+                        clearTimeout(timeout);
+                        this.hide(element);
+                    }
                 }
             });
         }
@@ -576,14 +586,16 @@
         init: function() {
             // Smooth scroll for anchor links
             document.addEventListener('click', (event) => {
-                const link = event.target.closest('a[href^="#"]');
-                if (link) {
-                    const href = link.getAttribute('href');
-                    if (href !== '#') {
-                        const target = document.querySelector(href);
-                        if (target) {
-                            event.preventDefault();
-                            this.to(target);
+                if (event.target instanceof Element) {
+                    const link = event.target.closest('a[href^="#"]');
+                    if (link) {
+                        const href = link.getAttribute('href');
+                        if (href !== '#') {
+                            const target = document.querySelector(href);
+                            if (target) {
+                                event.preventDefault();
+                                this.to(target);
+                            }
                         }
                     }
                 }

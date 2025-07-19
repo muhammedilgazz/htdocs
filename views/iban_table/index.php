@@ -1,27 +1,23 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">Banka Hesapları</h2>
-                                <div>Banka hesap bilgilerinizi güvenli bir şekilde saklayın.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAccountModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni Hesap Ekle
-                            </button>
-                        </div>
-                    </div>
+                <?php
+                $page_title = 'Banka Hesapları';
+                $page_description = 'Banka hesap bilgilerinizi güvenli bir şekilde saklayın.';
+                $breadcrumb_active = 'Banka Hesapları';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+                        <i class="bi bi-plus-circle me-2"></i>Yeni Hesap Ekle
+                    </button>
                 </div>
 
                 <!-- Kendi Hesaplarım Tablosu -->
@@ -130,7 +126,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Add Account Modal -->
 <div class="modal fade" id="addAccountModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni Banka Hesabı Ekle</h5>
@@ -182,7 +178,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit Account Modal -->
 <div class="modal fade" id="editAccountModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Banka Hesabını Düzenle</h5>
@@ -233,7 +229,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {

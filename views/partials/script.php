@@ -8,22 +8,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
 <!-- Perfect Scrollbar -->
-<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js'"></script>
+<script src="<?= BASE_URL ?>assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https.cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js'"></script>
 
 <!-- Toastr -->
-<script src="assets/vendor/toastr/toastr.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js'"></script>
+<script src="<?= BASE_URL ?>assets/vendor/toastr/toastr.min.js?v=<?= time() ?>" onerror="this.onerror=null;this.src='https.cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js'"></script>
 
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Ekash Modular Scripts - New Architecture -->
-<script src="assets/js/modules/core.js?v=<?= time() ?>"></script>
-<script src="assets/js/modules/ui.js?v=<?= time() ?>"></script>
-<script src="assets/js/modules/forms.js?v=<?= time() ?>"></script>
-<script src="assets/js/modules/navigation.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>assets/js/modules/core.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>assets/js/modules/ui.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>assets/js/modules/forms.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>assets/js/modules/navigation.js?v=<?= time() ?>"></script>
 
 <!-- Main Application Script -->
-<script src="assets/js/scripts.js?v=<?= time() ?>"></script>
+<script src="<?= BASE_URL ?>assets/js/scripts.js?v=<?= time() ?>"></script>
 
 <script>
     // Debug information
@@ -406,7 +406,7 @@
     // PWA Service Worker Registration
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('<?= BASE_URL ?>sw.js')
                 .then((registration) => {
                     console.log('✅ Service Worker registered successfully:', registration.scope);
                     

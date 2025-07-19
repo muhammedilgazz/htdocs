@@ -1,8 +1,9 @@
 <?php
-require_once 'C:/xampp/htdocs/config/config.php';
-require_once 'C:/xampp/htdocs/models/TaxDebt.php';
+require_once '../bootstrap.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
+use App\Models\TaxDebt;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tax_debt_model = new TaxDebt();
     $id = (int)$_POST['id'];
 

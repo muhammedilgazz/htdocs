@@ -1,40 +1,33 @@
-<?php require_once 'C:/xampp/htdocs/views/layouts/layoutTop.php'; ?>
+<?php
+$page = "settings";
+require_once ROOT_PATH . '/views/layouts/layoutTop.php';
+?>
 
     <div class="content-body">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="page-title">
-                        <div class="row align-items-center justify-content-between">
-                            <div class="col-xl-4">
-                                <div class="page-title-content">
-                                    <h3>Settings</h3>
-                                    <p class="mb-2">Welcome Ekash Finance Management</p>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="breadcrumbs"><a href="/">Home </a>
-                                    <span><i class="fi fi-rr-angle-small-right"></i></span>
-                                    <a href="#">Settings</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $page_title = 'Settings';
+                    $page_description = 'Welcome Ekash Finance Management';
+                    $breadcrumb_active = 'Settings';
+                    include ROOT_PATH . '/views/partials/page_header.php';
+                    ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xxl-12 col-xl-12">
                     <div class="settings-menu">
-                        <a href="/settings">Account</a>
-                        <a href="/settings-general">General</a>
-                        <a href="/settings-profile">Profile</a>
-                        <a href="/settings-bank">Add Bank</a>
-                        <a href="/settings-security">Security</a>
-                        <a href="/settings-session">Session</a>
-                        <a href="/settings-categories">Categories</a>
-                        <a href="/settings-currencies">Currencies</a>
-                        <a href="/settings-api">Api</a>
-                        <a href="/support">Support</a>
+                        <a href="settings.php" class="<?= $page === 'settings' ? 'active' : '' ?>">Account</a>
+                        <a href="settings-general.php" class="<?= $page === 'settings-general' ? 'active' : '' ?>">General</a>
+                        <a href="settings-profile.php" class="<?= $page === 'settings-profile' ? 'active' : '' ?>">Profile</a>
+                        <a href="settings-bank.php" class="<?= $page === 'settings-bank' ? 'active' : '' ?>">Add Bank</a>
+                        <a href="settings-security.php" class="<?= $page === 'settings-security' ? 'active' : '' ?>">Security</a>
+                        <a href="settings-session.php" class="<?= $page === 'settings-session' ? 'active' : '' ?>">Session</a>
+                        <a href="settings-categories.php" class="<?= $page === 'settings-categories' ? 'active' : '' ?>">Categories</a>
+                        <a href="settings-currencies.php" class="<?= $page === 'settings-currencies' ? 'active' : '' ?>">Currencies</a>
+                        <a href="settings-api.php" class="<?= $page === 'settings-api' ? 'active' : '' ?>">Api</a>
+                        <a href="support.php" class="<?= $page === 'support' ? 'active' : '' ?>">Support</a>
                     </div>
                     <div class="row">
                         <div class="col-xxl-6 col-xl-6 col-lg-6">
@@ -117,4 +110,4 @@
         </div>
     </div>
 
-<?php require_once 'C:/xampp/htdocs/views/layouts/layoutBottom.php'; ?>
+<?php require_once ROOT_PATH . '/views/layouts/layoutBottom.php'; ?>

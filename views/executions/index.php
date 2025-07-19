@@ -1,27 +1,23 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">İcra Borçları</h2>
-                                <div>İcra takipleri ve borç yönetimi.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExecutionDebtModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni İcra Borcu Ekle
-                            </button>
-                        </div>
-                    </div>
+                <?php
+                $page_title = 'İcra Borçları';
+                $page_description = 'İcra takipleri ve borç yönetimi.';
+                $breadcrumb_active = 'İcra Borçları';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExecutionDebtModal">
+                        <i class="bi bi-plus-circle me-2"></i>Yeni İcra Borcu Ekle
+                    </button>
                 </div>
 
                 <?php if (empty($rows)): ?>
@@ -34,8 +30,12 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                 </div>
                 <?php else: ?>
                 <div class="card p-0">
-                    <div class="card-header bg-white">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">İcra Borçları Listesi</h5>
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0 me-3">Toplam: ₺<?= number_format($total_debt, 2, ',', '.') ?></h5>
+                            <button id="export-excel-execution" class="btn btn-sm btn-outline-success"><i class="bi bi-file-earmark-excel"></i></button>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -45,10 +45,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                                         <th>Sahibi</th>
                                         <th>Alacaklı</th>
                                         <th>İcra Dairesi</th>
-                                        <th>Başlangıç Tarihi</th>
                                         <th>Güncel Borç</th>
-                                        <th>Anapara Borcu</th>
-                                        <th>İletişim Bilgisi</th>
                                         <th>Durum</th>
                                         <th>Planlanan Ödeme</th>
                                         <th>Bu Ay Ödeme</th>
@@ -61,15 +58,15 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
                                         <td><?= htmlspecialchars($row['owner']) ?></td>
                                         <td><?= htmlspecialchars($row['creditor']) ?></td>
                                         <td><?= htmlspecialchars($row['execution_office']) ?></td>
-                                        <td><?= date('d.m.Y', strtotime($row['start_date'])) ?></td>
                                         <td>₺<?= number_format($row['current_debt'], 2, ',', '.') ?></td>
-                                        <td>₺<?= number_format($row['principal_debt'], 2, ',', '.') ?></td>
-                                        <td><?= htmlspecialchars($row['contact_info'] ?? '-') ?></td>
                                         <td><?= htmlspecialchars($row['status']) ?></td>
                                         <td>₺<?= number_format($row['planned_payment'], 2, ',', '.') ?></td>
                                         <td>₺<?= number_format($row['this_month_payment'], 2, ',', '.') ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
+                                                <button class="btn btn-outline-info btn-sm detail-btn" data-id="<?= $row['id'] ?>">
+                                                    <i class="bi bi-info-circle"></i>
+                                                </button>
                                                 <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editExecutionDebtModal">
                                                     <i class="bi bi-pencil"></i>
                                                 </button>
@@ -93,7 +90,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Add Execution Debt Modal -->
 <div class="modal fade" id="addExecutionDebtModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni İcra Borcu Ekle</h5>
@@ -154,7 +151,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit Execution Debt Modal -->
 <div class="modal fade" id="editExecutionDebtModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">İcra Borcunu Düzenle</h5>
@@ -214,10 +211,62 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<!-- Detail Execution Debt Modal -->
+<div class="modal fade" id="detailExecutionDebtModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">İcra Borcu Detayları</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Sahibi</dt>
+                    <dd class="col-sm-8" id="detail_owner"></dd>
+                    
+                    <dt class="col-sm-4">Alacaklı</dt>
+                    <dd class="col-sm-8" id="detail_creditor"></dd>
+
+                    <dt class="col-sm-4">İcra Dairesi</dt>
+                    <dd class="col-sm-8" id="detail_execution_office"></dd>
+
+                    <dt class="col-sm-4">Başlangıç Tarihi</dt>
+                    <dd class="col-sm-8" id="detail_start_date"></dd>
+
+                    <dt class="col-sm-4">Güncel Borç</dt>
+                    <dd class="col-sm-8" id="detail_current_debt"></dd>
+
+                    <dt class="col-sm-4">Anapara Borcu</dt>
+                    <dd class="col-sm-8" id="detail_principal_debt"></dd>
+
+                    <dt class="col-sm-4">İletişim Bilgisi</dt>
+                    <dd class="col-sm-8" id="detail_contact_info"></dd>
+
+                    <dt class="col-sm-4">Durum</dt>
+                    <dd class="col-sm-8" id="detail_status"></dd>
+
+                    <dt class="col-sm-4">Planlanan Ödeme</dt>
+                    <dd class="col-sm-8" id="detail_planned_payment"></dd>
+                    
+                    <dt class="col-sm-4">Bu Ay Ödeme</dt>
+                    <dd class="col-sm-8" id="detail_this_month_payment"></dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {
+    $('#export-excel-execution').click(function() {
+        window.location.href = 'ajax/export_executions.php';
+    });
+
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();
@@ -236,6 +285,46 @@ $(document).ready(function() {
         });
     });
 
+// Detail Button
+    $('.detail-btn').click(function() {
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'ajax/get_execution_debt.php',
+            type: 'POST',
+            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    const debt = response.data;
+                    
+                    const currencyFormatter = new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' });
+                    const formatDate = (dateString) => {
+                        if (!dateString || dateString === '0000-00-00') return '-';
+                        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                        return new Date(dateString).toLocaleDateString('tr-TR', options);
+                    };
+
+                    $('#detail_owner').text(debt.owner || '-');
+                    $('#detail_creditor').text(debt.creditor || '-');
+                    $('#detail_execution_office').text(debt.execution_office || '-');
+                    $('#detail_start_date').text(formatDate(debt.start_date));
+                    $('#detail_current_debt').text(currencyFormatter.format(debt.current_debt || 0));
+                    $('#detail_principal_debt').text(currencyFormatter.format(debt.principal_debt || 0));
+                    $('#detail_contact_info').text(debt.contact_info || '-');
+                    $('#detail_status').text(debt.status || '-');
+                    $('#detail_planned_payment').text(currencyFormatter.format(debt.planned_payment || 0));
+                    $('#detail_this_month_payment').text(currencyFormatter.format(debt.this_month_payment || 0));
+                    
+                    $('#detailExecutionDebtModal').modal('show');
+                } else {
+                    alert(response.message || 'Veri getirilemedi.');
+                }
+            },
+            error: function() {
+                alert('Sunucu ile iletişim kurulurken bir hata oluştu.');
+            }
+        });
+    });
     // Edit Button
     $('.edit-btn').click(function() {
         const id = $(this).data('id');

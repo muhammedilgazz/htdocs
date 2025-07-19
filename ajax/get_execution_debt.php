@@ -1,8 +1,10 @@
 <?php
-require_once 'C:/xampp/htdocs/config/config.php';
-require_once 'C:/xampp/htdocs/models/ExecutionDebt.php';
+require_once ROOT_PATH . '/vendor/autoload.php';
+require_once ROOT_PATH . '/config/config.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
+use App\Models\ExecutionDebt;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['csrf_token']) && validate_csrf_token($_POST['csrf_token'])) {
     $execution_debt_model = new ExecutionDebt();
     $id = (int)$_POST['id'];
 

@@ -9,8 +9,10 @@ class ExecutionController {
         $execution_debt_model = new ExecutionDebt();
         $rows = $execution_debt_model->getAll();
 
+        $total_debt = array_sum(array_column($rows, 'current_debt'));
+
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/executions/index.php';
+        require_once ROOT_PATH . '/views/executions/index.php';
     }
 }

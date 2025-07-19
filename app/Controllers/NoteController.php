@@ -11,6 +11,6 @@ class NoteController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/notes/index.php';
+        require_once ROOT_PATH . '/views/notes/index.php';
     }
 }

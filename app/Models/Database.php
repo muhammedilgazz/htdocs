@@ -14,7 +14,7 @@ class Database {
     private function __construct() {
         // Ensure config.php is loaded to access DB constants
         if (!defined('DB_HOST')) {
-            require_once __DIR__ . '/../config/config.php';
+            require_once __DIR__ . '/../../config/config.php';
         }
 
         $host = DB_HOST;

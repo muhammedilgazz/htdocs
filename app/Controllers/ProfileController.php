@@ -15,6 +15,6 @@ class ProfileController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/profile/index.php';
+        require_once ROOT_PATH . '/views/profile/index.php';
     }
 }

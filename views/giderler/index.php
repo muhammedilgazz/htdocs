@@ -1,35 +1,28 @@
 <?php
-// No direct includes of partials/head.php or partials/script.php here.
-// These are handled by the main layout structure.
-
-// Ensure $rows is defined even if empty
-if (!isset($rows)) $rows = [];
-
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aylık Giderler - Bütçe Yönetimi</title>
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/custom-colors.css" rel="stylesheet">
-    <link href="/assets/css/ekash-minimal.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
 <body>
     <div class="app-container">
-        <?php require_once __DIR__ . '/../partials/sidebar.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
         <div class="app-main">
-            <?php require_once __DIR__ . '/../partials/header.php'; ?>
+            <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
             <div class="app-content">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2"><i class="fas fa-chart-line me-2"></i>Bu Ayın Giderleri</h1>
-                    </div>
+                <div class="container py-3">
+                    <?php
+                    $page_title = isset($_GET['filter']) && $_GET['filter'] == 'all' ? 'Tüm Giderler' : 'Bu Ayın Giderleri';
+                    $page_description = 'Giderlerinizi buradan takip edebilirsiniz.';
+                    $breadcrumb_active = 'Giderler';
+                    include ROOT_PATH . '/views/partials/page_header.php';
+                    ?>
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Gider Özeti</h5>
+                            <div class="d-flex align-items-center">
+                                <?php if (!empty($rows)): ?>
+                                    <h5 class="mb-0 text-end me-3">Güncel Toplam: <?= number_format(array_sum(array_column($rows, 'amount')), 2) ?> ₺</h5>
+                                <?php endif; ?>
+                                <button id="export-excel" class="btn btn-sm btn-outline-success"><i class="bi bi-file-earmark-excel"></i></button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <?php if (empty($rows)): ?>
@@ -43,8 +36,7 @@ if (!isset($rows)) $rows = [];
                                     <thead class="table-dark">
                                         <tr>
                                             <th>Açıklama</th>
-                                            <th>Kategori</th>
-                                            <th>Tip</th>
+                                            <th>Tür</th>
                                             <th>Tutar</th>
                                             <th>Tarih</th>
                                         </tr>
@@ -53,9 +45,8 @@ if (!isset($rows)) $rows = [];
                                         <?php foreach ($rows as $row): ?>
                                         <tr>
                                             <td><?= htmlspecialchars($row['description']) ?></td>
-                                            <td><?= htmlspecialchars($row['category']) ?></td>
                                             <td>
-                                                <?php 
+                                                <?php
                                                 $type = $row['type'];
                                                 $type_class = match($type) {
                                                     'Harcama' => 'primary',
@@ -88,6 +79,11 @@ if (!isset($rows)) $rows = [];
             </div>
         </div>
     </div>
-    <?php require_once __DIR__ . '/../partials/script.php'; ?>
+    <?php include ROOT_PATH . '/views/partials/script.php'; ?>
+    <script>
+        document.getElementById('export-excel').addEventListener('click', function() {
+            window.location.href = '/ajax/export_giderler.php';
+        });
+    </script>
 </body>
 </html>

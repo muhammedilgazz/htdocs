@@ -25,9 +25,8 @@ require_once __DIR__ . '/partials/head.php';
                                         <i class="material-icons-round">refresh</i>
                                         Yenile
                                     </button>
-                                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#quickActionModal">
-                                        <i class="material-icons-round">add</i>
-                                        Hızlı Ekle
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#quickActionModal" style="background:#1f2e4e; border:none; font-size:0.9rem; padding:0.5rem 1rem;">
+                                        <i class="bi bi-plus-circle me-2"></i>Hızlı Ekle
                                     </button>
                                 </div>
                             </div>
@@ -80,7 +79,7 @@ require_once __DIR__ . '/partials/head.php';
                                     <div class="stat-icon info">
                                         <i class="material-icons-round">receipt_long</i>
                                     </div>
-                                    <div class="stat-label">Aylık Borç Ödemeleri</div>
+                                    <div class="stat-label">Borç Ödemeleri</div>
                                 </div>
                                 <div class="stat-value">₺<?= number_format($total_debt_payments, 2, ',', '.') ?></div>
                                 <div class="stat-progress">

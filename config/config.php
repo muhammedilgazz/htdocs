@@ -25,6 +25,7 @@ if (!isset($_SESSION['csrf_token'])) {
 define('APP_NAME', 'Bütçe Yönetim Sistemi');
 define('APP_VERSION', '1.0.0');
 define('BASE_URL', 'http://localhost/');
+define('ROOT_PATH', dirname(__DIR__));
 
 // Load environment variables
 if (file_exists(__DIR__ . '/../.env')) {

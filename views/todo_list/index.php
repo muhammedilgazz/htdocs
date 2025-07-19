@@ -1,27 +1,23 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">To-Do List</h2>
-                                <div>Günlük görevler ve yapılacaklar listesi.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTodoModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni To-Do Ekle
-                            </button>
-                        </div>
-                    </div>
+                <?php
+                $page_title = 'To-Do List';
+                $page_description = 'Günlük görevler ve yapılacaklar listesi.';
+                $breadcrumb_active = 'To-Do List';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTodoModal">
+                        <i class="bi bi-plus-circle me-2"></i>Yeni To-Do Ekle
+                    </button>
                 </div>
 
                 <?php if (empty($rows)): ?>
@@ -81,7 +77,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Add Todo Modal -->
 <div class="modal fade" id="addTodoModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Yeni To-Do Ekle</h5>
@@ -117,7 +113,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit Todo Modal -->
 <div class="modal fade" id="editTodoModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">To-Do Düzenle</h5>
@@ -152,7 +148,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {

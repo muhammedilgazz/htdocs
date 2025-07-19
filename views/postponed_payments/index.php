@@ -1,29 +1,19 @@
 <?php
-require_once 'C:/xampp/htdocs/views/partials/head.php';
+require_once ROOT_PATH . '/views/partials/head.php';
 ?>
 <body>
 <div class="app-container">
-    <?php require_once 'C:/xampp/htdocs/views/partials/sidebar.php'; ?>
+    <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
     <div class="app-main">
-        <?php require_once 'C:/xampp/htdocs/views/partials/header.php'; ?>
+        <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container py-3">
-                <div class="card mb-3">
-                    <div class="card-body d-flex align-items-center justify-content-between p-3">
-                        <div class="d-flex align-items-center gap-2">
-                            <div>
-                                <h2 class="mb-0">Ertelenen Giderler</h2>
-                                <div>Gelecek tarihlere ertelenmiş giderler.</div>
-                            </div>
-                        </div>
-                        <div>
-                            <!-- Ertelenen giderler doğrudan eklenmez, mevcut giderler ertelenir. -->
-                            <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExpenseModal">
-                                <i class="bi bi-plus-circle me-2"></i>Yeni Ertelenen Gider Ekle
-                            </button> -->
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $page_title = 'Ertelenen Giderler';
+                $page_description = 'Gelecek tarihlere ertelenmiş giderler.';
+                $breadcrumb_active = 'Ertelenen Giderler';
+                include ROOT_PATH . '/views/partials/page_header.php';
+                ?>
 
                 <?php if (empty($rows)): ?>
                 <div class="text-center py-5">
@@ -80,7 +70,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
 
 <!-- Edit Expense Modal (Aynı modal kullanılabilir) -->
 <div class="modal fade" id="editExpenseModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Ertelenen Gideri Düzenle</h5>
@@ -113,7 +103,7 @@ require_once 'C:/xampp/htdocs/views/partials/head.php';
     </div>
 </div>
 
-<?php include 'C:/xampp/htdocs/views/partials/script.php'; ?>
+<?php include ROOT_PATH . '/views/partials/script.php'; ?>
 
 <script>
 $(document).ready(function() {

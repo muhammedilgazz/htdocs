@@ -11,6 +11,6 @@ class PostponedPaymentController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/postponed_payments/index.php';
+        require_once ROOT_PATH . '/views/postponed_payments/index.php';
     }
 }

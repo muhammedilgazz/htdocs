@@ -13,6 +13,6 @@ class XtremeAiController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/xtreme_ai/index.php';
+        require_once ROOT_PATH . '/views/xtreme_ai/index.php';
     }
 }

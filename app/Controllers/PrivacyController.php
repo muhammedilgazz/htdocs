@@ -4,6 +4,6 @@ namespace App\Controllers;
 
 class PrivacyController {
     public function index() {
-        require_once 'C:/xampp/htdocs/views/privacy/index.php';
+        require_once ROOT_PATH . '/views/privacy/index.php';
     }
 }

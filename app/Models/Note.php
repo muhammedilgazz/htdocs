@@ -15,9 +15,9 @@ class Note {
      * Yeni bir not ekler.
      *
      * @param array $data Not verileri.
-     * @return bool İşlem başarılıysa true, değilse false.
+     * @return int|false Eklenen notun ID'si veya hata durumunda false.
      */
-    public function add(array $data): bool {
+    public function add(array $data) {
         $sql = "INSERT INTO notes (user_id, title, content, category, priority, status) VALUES (?, ?, ?, ?, ?, ?)";
         $params = [
             $data['user_id'] ?? 1, // Varsayılan kullanıcı ID'si
@@ -27,7 +27,10 @@ class Note {
             $data['priority'] ?? 'medium',
             $data['status'] ?? 'active'
         ];
-        return $this->db->execute($sql, $params);
+        if ($this->db->execute($sql, $params)) {
+            return $this->db->lastInsertId();
+        }
+        return false;
     }
 
     /**

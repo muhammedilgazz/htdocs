@@ -11,6 +11,6 @@ class AccountPasswordController {
         $rows = $account_credential_model->getAll();
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/account_passwords/index.php';
+        require_once ROOT_PATH . '/views/account_passwords/index.php';
     }
 }

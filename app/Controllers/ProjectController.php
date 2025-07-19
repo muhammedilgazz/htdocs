@@ -11,6 +11,6 @@ class ProjectController {
 
         $csrf_token = generate_csrf_token();
 
-        require_once 'C:/xampp/htdocs/views/projects/index.php';
+        require_once ROOT_PATH . '/views/projects/index.php';
     }
 }

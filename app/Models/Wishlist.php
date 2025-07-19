@@ -15,9 +15,9 @@ class Wishlist {
      * Yeni bir istek listesi öğesi ekler.
      *
      * @param array $data İstek listesi verileri.
-     * @return bool Başarı durumu.
+     * @return int|false Eklenen öğenin ID'si veya hata durumunda false.
      */
-    public function add(array $data): bool {
+    public function add(array $data) {
         $sql = "INSERT INTO wishlist_items (item_name, wishlist_type, image_url, product_link, price, priority, progress) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $params = [
             $data['item_name'],
@@ -28,7 +28,10 @@ class Wishlist {
             $data['priority'] ?? null,
             $data['progress'] ?? 0
         ];
-        return $this->db->execute($sql, $params);
+        if ($this->db->execute($sql, $params)) {
+            return $this->db->lastInsertId();
+        }
+        return false;
     }
 
     /**
