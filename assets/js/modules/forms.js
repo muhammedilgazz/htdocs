@@ -366,11 +366,12 @@
                 
                 xhr.ontimeout = function() {
                     if (attempt < options.retries) {
+                        const delay = config.ajax.retryDelay * attempt;
                         setTimeout(() => {
                             this.makeRequest(url, data, options, attempt + 1)
                                 .then(resolve)
                                 .catch(reject);
-                        }, config.ajax.retryDelay * attempt);
+                        }, delay);
                     } else {
                         reject(new Error('Request timeout'));
                     }
@@ -402,7 +403,7 @@
             this.loadSavedData(form, storageKey);
             
             // Setup autosave timer
-            const timer = setInterval(() => {
+            const timer = setTimeout(() => {
                 this.saveFormData(form, storageKey);
             }, config.autosave.interval);
             
