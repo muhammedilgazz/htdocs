@@ -46,13 +46,18 @@
     
     
     
-    <!-- Ekash Minimal Design CSS -->
+    <!-- Modern Design System -->
+    <link href="assets/css/modern-design-system.css?v=<?= time() ?>" rel="stylesheet">
+    
+    <!-- Enhanced Theme System -->
+    <link href="assets/css/enhanced-theme-system.css?v=<?= time() ?>" rel="stylesheet">
+    
+    <!-- Modern Component Library -->
+    <link href="assets/css/modern-component-library.css?v=<?= time() ?>" rel="stylesheet">
+    
+    <!-- Legacy CSS (for compatibility) -->
     <link href="assets/css/ekash-minimal.css?v=<?= time() ?>" rel="stylesheet">
-    
-    <!-- Modern Enhanced CSS -->
     <link href="assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
-    
-    <!-- Enhanced Components CSS -->
     <link href="assets/css/components-enhanced.css?v=<?= time() ?>" rel="stylesheet">
     
     <!-- Custom Color Palette -->
@@ -63,6 +68,5 @@
     
     <!-- Toastr -->
     <link href="assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
-    <link href="assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
 
 </head>
