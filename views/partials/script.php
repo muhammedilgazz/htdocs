@@ -22,6 +22,9 @@
 <script src="<?= BASE_URL ?>assets/js/modules/forms.js?v=<?= time() ?>"></script>
 <script src="<?= BASE_URL ?>assets/js/modules/navigation.js?v=<?= time() ?>"></script>
 
+<!-- Modern UI Enhancement System -->
+<script src="assets/js/modern-ui-enhancer.js?v=<?= time() ?>"></script>
+
 <!-- Main Application Script -->
 <script src="<?= BASE_URL ?>assets/js/scripts.js?v=<?= time() ?>"></script>
 
