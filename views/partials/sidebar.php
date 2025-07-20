@@ -32,6 +32,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/giderler?filter=next_month" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'giderler.php' && isset($_GET['filter']) && $_GET['filter'] == 'next_month') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-calendar-plus"></i>
+                                <span>Gelecek Ay</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/giderler?filter=year" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'giderler.php' && isset($_GET['filter']) && $_GET['filter'] == 'year') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-calendar3"></i>
                                 <span>Bu Yıl</span>
@@ -103,31 +109,31 @@
                 <div class="collapse" id="alinacaklarSubmenu">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a href="/wishlist" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/wishlist-all.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist-all.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-list-check"></i>
                                 <span>Tüm Alınacaklar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/wishlist?type=ihtiyac" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'wishlist.php' && isset($_GET['type']) && $_GET['type'] == 'ihtiyac') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/wishlist-ihtiyac.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist-ihtiyac.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-box-seam"></i>
                                 <span>İhtiyaçlar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/wishlist?type=istek" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'wishlist.php' && isset($_GET['type']) && $_GET['type'] == 'istek') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/wishlist-istek.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist-istek.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-heart"></i>
                                 <span>İstekler</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/wishlist?type=hayal" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'wishlist.php' && isset($_GET['type']) && $_GET['type'] == 'hayal') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/wishlist-hayal.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist-hayal.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-stars"></i>
                                 <span>Hayaller</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/wishlist?type=favori" class="nav-link <?= (basename($_SERVER['PHP_SELF']) == 'wishlist.php' && isset($_GET['type']) && $_GET['type'] == 'favori') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                            <a href="/wishlist-favori.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist-favori.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-star"></i>
                                 <span>Favoriler</span>
                             </a>

@@ -9,9 +9,9 @@ require_once ROOT_PATH . '/views/partials/head.php';
         <div class="app-content">
             <div class="container-fluid">
                 <?php
-                $page_title = 'İstek Listesi';
-                $page_description = 'İstek listesi yönetimi ve takibi.';
-                $breadcrumb_active = 'İstek Listesi';
+                $page_title = 'İstek Listesi - İstekler';
+                $page_description = 'İstek kategorisindeki istek listesi öğelerinin takibi.';
+                $breadcrumb_active = 'İstekler';
                 include ROOT_PATH . '/views/partials/page_header.php';
                 ?>
                 <div class="d-flex justify-content-end mb-3">
@@ -23,25 +23,34 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <?php if (empty($rows)): ?>
                 <div class="text-center py-5">
                     <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
-                        <i class="bi bi-list-check"></i>
+                        <i class="bi bi-cart"></i>
                     </div>
-                    <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz istek listesi kaydı yok</h4>
-                    <p style="color: #a0a8c0; margin-bottom: 2rem;">İstek listenizi ekleyerek takip etmeye başlayın.</p>
+                    <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz bu kategoride istek listesi öğesi yok</h4>
+                    <p style="color: #a0a8c0; margin-bottom: 2rem;">İstek listesi öğelerinizi ekleyerek takip etmeye başlayın.</p>
                 </div>
                 <?php else: ?>
                 <div class="card p-0">
                     <div class="card-header bg-white">
-                        <h5 class="mb-0">İstek Listesi</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">İstekler Listesi</h5>
+                            <div class="d-flex align-items-center">
+                                <?php if (!empty($rows)): ?>
+                                    <h5 class="mb-0 text-end me-3">Toplam: <?= count($rows) ?> öğe</h5>
+                                <?php endif; ?>
+                                <!-- Export button can be added here if needed -->
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0">
+                            <table id="wishlistTable" class="table align-middle mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Ürün Adı</th>
+                                        <th>Öğe Adı</th>
                                         <th>Tip</th>
-                                        <th>Fiyat</th>
+                                        <th>Resim</th>
                                         <th>Link</th>
+                                        <th>Fiyat</th>
                                         <th>Öncelik</th>
                                         <th>İlerleme (%)</th>
                                         <th>İşlemler</th>
@@ -52,15 +61,23 @@ require_once ROOT_PATH . '/views/partials/head.php';
                                     <tr>
                                         <td><?= htmlspecialchars($row['item_name']) ?></td>
                                         <td><?= htmlspecialchars($row['wishlist_type']) ?></td>
-                                        <td>₺<?= number_format($row['price'], 2, ',', '.') ?></td>
                                         <td>
-                                            <?php if (!empty($row['product_link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['product_link']) ?>" target="_blank" class="btn btn-outline-dark btn-sm">Link</a>
-                                            <?php else: ?>-
+                                            <?php if (!empty($row['image_url'])): ?>
+                                                <img src="<?= htmlspecialchars($row['image_url']) ?>" alt="Ürün Resmi" width="50">
+                                            <?php else: ?>
+                                                Resim Yok
                                             <?php endif; ?>
                                         </td>
-                                        <td><?= htmlspecialchars($row['priority'] ?? '-') ?></td>
-                                        <td><?= htmlspecialchars($row['progress'] ?? '0') ?></td>
+                                        <td>
+                                            <?php if (!empty($row['product_link'])): ?>
+                                                <a href="<?= htmlspecialchars($row['product_link']) ?>" target="_blank">Ürün Sayfası</a>
+                                            <?php else: ?>
+                                                Link Yok
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= htmlspecialchars($row['price']) ?></td>
+                                        <td><?= htmlspecialchars($row['priority']) ?></td>
+                                        <td><?= htmlspecialchars($row['progress']) ?></td>
                                         <td>
                                             <div class="d-flex gap-1">
                                                 <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editWishlistItemModal">
@@ -95,34 +112,33 @@ require_once ROOT_PATH . '/views/partials/head.php';
             <form id="addForm">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="item_name" class="form-label">Ürün Adı</label>
+                        <label for="item_name" class="form-label">Öğe Adı</label>
                         <input type="text" class="form-control" id="item_name" name="item_name" required>
                     </div>
                     <div class="mb-3">
                         <label for="wishlist_type" class="form-label">Tip</label>
-                        <select class="form-select" id="wishlist_type" name="wishlist_type">
-                            <option value="istek">İstek</option>
-                            <option value="alinacak">Alınacak</option>
+                        <select class="form-control" id="wishlist_type" name="wishlist_type" required>
                             <option value="ihtiyac">İhtiyaç</option>
                             <option value="hayal">Hayal</option>
                             <option value="favori">Favori</option>
+                            <option value="istek">İstek</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Fiyat</label>
-                        <input type="number" class="form-control" id="price" name="price" step="0.01">
-                    </div>
-                    <div class="mb-3">
-                        <label for="product_link" class="form-label">Ürün Linki</label>
-                        <input type="url" class="form-control" id="product_link" name="product_link">
                     </div>
                     <div class="mb-3">
                         <label for="image_url" class="form-label">Resim URL</label>
                         <input type="url" class="form-control" id="image_url" name="image_url">
                     </div>
                     <div class="mb-3">
+                        <label for="product_link" class="form-label">Ürün Linki</label>
+                        <input type="url" class="form-control" id="product_link" name="product_link">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Fiyat</label>
+                        <input type="number" class="form-control" id="price" name="price" step="0.01">
+                    </div>
+                    <div class="mb-3">
                         <label for="priority" class="form-label">Öncelik</label>
-                        <input type="number" class="form-control" id="priority" name="priority" min="1" max="10">
+                        <input type="number" class="form-control" id="priority" name="priority" min="1" max="5">
                     </div>
                     <div class="mb-3">
                         <label for="progress" class="form-label">İlerleme (%)</label>
@@ -151,34 +167,33 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <input type="hidden" id="edit_id" name="id">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="edit_item_name" class="form-label">Ürün Adı</label>
+                        <label for="edit_item_name" class="form-label">Öğe Adı</label>
                         <input type="text" class="form-control" id="edit_item_name" name="item_name" required>
                     </div>
                     <div class="mb-3">
                         <label for="edit_wishlist_type" class="form-label">Tip</label>
-                        <select class="form-select" id="edit_wishlist_type" name="wishlist_type">
-                            <option value="istek">İstek</option>
-                            <option value="alinacak">Alınacak</option>
+                        <select class="form-control" id="edit_wishlist_type" name="wishlist_type" required>
                             <option value="ihtiyac">İhtiyaç</option>
                             <option value="hayal">Hayal</option>
                             <option value="favori">Favori</option>
+                            <option value="istek">İstek</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_price" class="form-label">Fiyat</label>
-                        <input type="number" class="form-control" id="edit_price" name="price" step="0.01">
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit_product_link" class="form-label">Ürün Linki</label>
-                        <input type="url" class="form-control" id="edit_product_link" name="product_link">
                     </div>
                     <div class="mb-3">
                         <label for="edit_image_url" class="form-label">Resim URL</label>
                         <input type="url" class="form-control" id="edit_image_url" name="image_url">
                     </div>
                     <div class="mb-3">
+                        <label for="edit_product_link" class="form-label">Ürün Linki</label>
+                        <input type="url" class="form-control" id="edit_product_link" name="product_link">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_price" class="form-label">Fiyat</label>
+                        <input type="number" class="form-control" id="edit_price" name="price" step="0.01">
+                    </div>
+                    <div class="mb-3">
                         <label for="edit_priority" class="form-label">Öncelik</label>
-                        <input type="number" class="form-control" id="edit_priority" name="priority" min="1" max="10">
+                        <input type="number" class="form-control" id="edit_priority" name="priority" min="1" max="5">
                     </div>
                     <div class="mb-3">
                         <label for="edit_progress" class="form-label">İlerleme (%)</label>
@@ -199,6 +214,14 @@ require_once ROOT_PATH . '/views/partials/head.php';
 
 <script>
 $(document).ready(function() {
+    $('#wishlistTable').DataTable({
+        language: {
+            "sDecimal": ",", "sEmptyTable": "Tabloda herhangi bir veri mevcut değil", "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor", "sInfoEmpty": "Kayıt yok", "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "Sayfada _MENU_ kayıt göster", "sLoadingRecords": "Yükleniyor...", "sProcessing": "İşleniyor...","sSearch": "Ara:", "sZeroRecords": "Eşleşen kayıt bulunamadı", "oPaginate": { "sFirst": "İlk", "sLast": "Son", "sNext": "Sonraki", "sPrevious": "Önceki" }, "oAria": { "sSortAscending": ": artan sütun sıralamasını aktifleştir", "sSortDescending": ": azalan sütun sıralamasını aktifleştir" }
+        },
+        "order": [[ 5, "asc" ]], // Önceliğe göre sırala
+        columnDefs: [ { orderable: false, targets: 7 } ] // İşlemler sıralanamaz
+    });
+
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();
@@ -231,9 +254,9 @@ $(document).ready(function() {
                     $('#edit_id').val(item.id);
                     $('#edit_item_name').val(item.item_name);
                     $('#edit_wishlist_type').val(item.wishlist_type);
-                    $('#edit_price').val(item.price);
-                    $('#edit_product_link').val(item.product_link);
                     $('#edit_image_url').val(item.image_url);
+                    $('#edit_product_link').val(item.product_link);
+                    $('#edit_price').val(item.price);
                     $('#edit_priority').val(item.priority);
                     $('#edit_progress').val(item.progress);
                     $('#editWishlistItemModal').modal('show');
@@ -264,7 +287,7 @@ $(document).ready(function() {
 
     // Delete Button
     $('.delete-btn').click(function() {
-        if (!confirm('Bu öğeyi silmek istediğinizden emin misiniz?')) return;
+        if (!confirm('Bu istek listesi öğesini silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
             url: 'ajax/delete_wishlist_item.php',

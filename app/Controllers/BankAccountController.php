@@ -2,19 +2,27 @@
 
 namespace App\Controllers;
 
-use App\Models\Database;
+use App\Models\BankAccount;
 
 class BankAccountController {
     public function index() {
-        // Banka hesapları yönetimi için placeholder controller
+        $bank_account_model = new BankAccount();
+        $all_accounts = $bank_account_model->getAll();
         
-        // Örnek veri - gerçek implementasyon için model gerekli
-        $rows = [];
-        $total_count = 0;
+        $own_accounts = [];
+        $other_accounts = [];
+
+        if (is_array($all_accounts)) {
+            foreach ($all_accounts as $account) {
+                if ($account['account_type'] === 'own') {
+                    $own_accounts[] = $account;
+                } else {
+                    $other_accounts[] = $account;
+                }
+            }
+        }
+        
         $csrf_token = generate_csrf_token();
-        
-        // Şimdilik boş veri ile devam et
-        $message = 'Bu sayfa henüz implementasyona hazır değil. Banka hesapları yönetimi için geliştirme devam ediyor.';
         
         require_once ROOT_PATH . '/views/bank_account/index.php';
     }

@@ -1,5 +1,6 @@
 <?php
 http_response_code(500);
+require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/views/partials/head.php';
 ?>
 <!DOCTYPE html>

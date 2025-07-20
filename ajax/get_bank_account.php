@@ -1,6 +1,9 @@
 <?php
+define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/config/config.php';
-require_once ROOT_PATH . '/models/BankAccount.php';
+require_once ROOT_PATH . '/app/Models/BankAccount.php';
+
+use App\Models\BankAccount;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
     $bank_account_model = new BankAccount();

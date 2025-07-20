@@ -100,16 +100,7 @@ class Wishlist {
      *
      * @return array
      */
-    public function getNeeds(): array {
-        return $this->getAll('ihtiyac');
-    }
-
-    /**
-     * 'favori' tipindeki istek listesi öğelerini getirir.
-     *
-     * @return array
-     */
-    public function getFavorites(): array {
-        return $this->getAll('favori');
+    public function getByType(string $type): array {
+        return $this->getAll($type);
     }
 }

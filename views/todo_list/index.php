@@ -35,7 +35,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0">
+                            <table id="todoTable" class="table align-middle mb-0">
                                 <thead>
                                     <tr>
                                         <th>Görev</th>
@@ -87,7 +87,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="task" class="form-label">Görev</label>
-                        <input type="text" class="form-control" id="task" name="task" required>
+                        <textarea class="form-control" id="task" name="task" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="status" class="form-label">Durum</label>
@@ -124,7 +124,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="edit_task" class="form-label">Görev</label>
-                        <input type="text" class="form-control" id="edit_task" name="task" required>
+                        <textarea class="form-control" id="edit_task" name="task" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="edit_status" class="form-label">Durum</label>
@@ -152,7 +152,28 @@ require_once ROOT_PATH . '/views/partials/head.php';
 
 <script>
 $(document).ready(function() {
-    // Add Form
+    $('#task, #edit_task').summernote({
+        placeholder: 'Görevinizi buraya yazın...',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+
+    $('#todoTable').DataTable({
+        language: { "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json" },
+        "order": [[ 3, "desc" ]], // Oluşturulma Tarihine göre sırala
+        columnDefs: [ { orderable: false, targets: 4 } ]
+    });
+
+    // Add Form with SweetAlert
     $('#addForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
@@ -162,9 +183,10 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    $('#addTodoModal').modal('hide');
+                    Swal.fire('Başarılı!', 'Görev başarıyla eklendi.', 'success').then(() => location.reload());
                 } else {
-                    alert(response.message || 'Bir hata oluştu.');
+                    Swal.fire('Hata!', response.message || 'Bir hata oluştu.', 'error');
                 }
             }
         });
@@ -182,18 +204,18 @@ $(document).ready(function() {
                 if (response.success) {
                     const todo = response.data;
                     $('#edit_id').val(todo.id);
-                    $('#edit_task').val(todo.task);
+                    $('#edit_task').summernote('code', todo.task);
                     $('#edit_status').val(todo.status);
                     $('#edit_due_date').val(todo.due_date);
                     $('#editTodoModal').modal('show');
                 } else {
-                    alert(response.message || 'Veri getirilemedi.');
+                    Swal.fire('Hata!', 'Veri getirilemedi.', 'error');
                 }
             }
         });
     });
 
-    // Edit Form
+    // Edit Form with SweetAlert
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
@@ -203,29 +225,45 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    $('#editTodoModal').modal('hide');
+                    Swal.fire('Başarılı!', 'Görev başarıyla güncellendi.', 'success').then(() => location.reload());
                 } else {
-                    alert(response.message || 'Bir hata oluştu.');
+                    Swal.fire('Hata!', response.message || 'Bir hata oluştu.', 'error');
                 }
             }
         });
     });
 
-    // Delete Button
+    // Delete Button with SweetAlert
     $('.delete-btn').click(function() {
-        if (!confirm('Bu görevi silmek istediğinizden emin misiniz?')) return;
-        const id = $(this).data('id');
-        $.ajax({
-            url: 'ajax/delete_todo.php',
-            type: 'POST',
-            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                } else {
-                    alert(response.message || 'Bir hata oluştu.');
-                }
+        const button = $(this);
+        const id = button.data('id');
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu görevi silmek istediğinizden emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: 'ajax/delete_todo.php',
+                    type: 'POST',
+                    data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            var table = $('#todoTable').DataTable();
+                            table.row(button.parents('tr')).remove().draw();
+                            Swal.fire('Silindi!', 'Görev başarıyla silindi.', 'success');
+                        } else {
+                            Swal.fire('Hata!', response.message || 'Bir hata oluştu.', 'error');
+                        }
+                    }
+                });
             }
         });
     });

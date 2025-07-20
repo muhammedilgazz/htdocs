@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once __DIR__ . '/bootstrap.php';
 
 $auth = new \App\Models\Auth();
@@ -29,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message = 'CSRF hatası. Lütfen sayfayı yenileyin ve tekrar deneyin.';
     } elseif (empty($username) || empty($password)) {
         $error_message = 'Lütfen tüm alanları doldurun.';
+        error_log("Login attempt: Empty username or password.");
     } else {
         try {
             if ($auth->login($username, $password)) {
@@ -36,9 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             } else {
                 $error_message = 'Geçersiz kullanıcı adı veya şifre.';
+                error_log("Login attempt failed for username: " . $username . " - Invalid credentials.");
             }
         } catch (Exception $e) {
             $error_message = $e->getMessage();
+            error_log("Login attempt failed for username: " . $username . " - Exception: " . $e->getMessage());
         }
     }
 }
@@ -389,6 +395,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // Form submit
+        // Form submit - Disable button and show spinner
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             const loginBtn = document.getElementById('loginBtn');
             const loginText = document.getElementById('loginText');
@@ -396,7 +403,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             loginText.style.display = 'none';
             loginLoading.style.display = 'inline-block';
-            loginBtn.disabled = true;
+            loginBtn.disabled = true; // Butonu devre dışı bırak
         });
         
         // Enter tuşu ile giriş

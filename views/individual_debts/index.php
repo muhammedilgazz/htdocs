@@ -35,7 +35,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0">
+                            <table id="individualDebtsTable" class="table align-middle mb-0">
                                 <thead>
                                     <tr>
                                         <th>Kime</th>
@@ -174,6 +174,14 @@ require_once ROOT_PATH . '/views/partials/head.php';
 
 <script>
 $(document).ready(function() {
+    $('#individualDebtsTable').DataTable({
+        language: {
+            "sDecimal": ",", "sEmptyTable": "Tabloda herhangi bir veri mevcut değil", "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor", "sInfoEmpty": "Kayıt yok", "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "Sayfada _MENU_ kayıt göster", "sLoadingRecords": "Yükleniyor...", "sProcessing": "İşleniyor...", "sSearch": "Ara:", "sZeroRecords": "Eşleşen kayıt bulunamadı", "oPaginate": { "sFirst": "İlk", "sLast": "Son", "sNext": "Sonraki", "sPrevious": "Önceki" }, "oAria": { "sSortAscending": ": artan sütun sıralamasını aktifleştir", "sSortDescending": ": azalan sütun sıralamasını aktifleştir" }
+        },
+        "order": [[ 2, "asc" ]], // Vade Tarihine göre sırala
+        columnDefs: [ { orderable: false, targets: 6 } ]
+    });
+
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();

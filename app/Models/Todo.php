@@ -63,7 +63,8 @@ class Todo {
      */
     public function getAll(): array {
         $sql = "SELECT * FROM todos ORDER BY created_at DESC";
-        return $this->db->fetchAll($sql);
+        $result = $this->db->fetchAll($sql);
+        return is_array($result) ? $result : [];
     }
 
     /**

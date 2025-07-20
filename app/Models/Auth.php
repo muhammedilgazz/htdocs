@@ -22,6 +22,7 @@ class Auth {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if (!$user) {
+            error_log("Login failed: User not found for username: " . $username);
             return false;
         }
         
@@ -34,6 +35,7 @@ class Auth {
             $this->createSession($user['id'], $user['username'], $user['full_name']);
             return true;
         } else {
+            error_log("Login failed: Incorrect password for user ID: " . $user['id']);
             $this->incrementFailedAttempts($user['id']);
             return false;
         }

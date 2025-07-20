@@ -9,7 +9,13 @@ require_once ROOT_PATH . '/views/partials/head.php';
             <div class="app-content">
                 <div class="container-fluid">
                     <?php
-                    $page_title = isset($_GET['filter']) && $_GET['filter'] == 'all' ? 'Tüm Giderler' : 'Bu Ayın Giderleri';
+                    $filter = $_GET['filter'] ?? 'month';
+                    $page_title = match ($filter) {
+                        'all' => 'Tüm Giderler',
+                        'year' => 'Bu Yılın Giderleri',
+                        'next_month' => 'Gelecek Ayın Giderleri',
+                        default => 'Bu Ayın Giderleri',
+                    };
                     $page_description = 'Giderlerinizi buradan takip edebilirsiniz.';
                     $breadcrumb_active = 'Giderler';
                     include ROOT_PATH . '/views/partials/page_header.php';
@@ -32,7 +38,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                             </div>
                             <?php else: ?>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table id="giderlerTable" class="table table-striped table-hover">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>Açıklama</th>
@@ -81,8 +87,38 @@ require_once ROOT_PATH . '/views/partials/head.php';
     </div>
     <?php include ROOT_PATH . '/views/partials/script.php'; ?>
     <script>
-        document.getElementById('export-excel').addEventListener('click', function() {
-            window.location.href = '/ajax/export_giderler.php';
+        $(document).ready(function() {
+            $('#giderlerTable').DataTable({
+                language: {
+                    "sDecimal": ",",
+                    "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+                    "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                    "sInfoEmpty": "Kayıt yok",
+                    "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                    "sLoadingRecords": "Yükleniyor...",
+                    "sProcessing": "İşleniyor...",
+                    "sSearch": "Ara:",
+                    "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                    "oPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                        "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                    }
+                },
+                "order": [[ 3, "desc" ]] // Tarih sütununa göre tersten sırala
+            });
+
+            document.getElementById('export-excel').addEventListener('click', function() {
+                window.location.href = '/ajax/export_giderler.php';
+            });
         });
     </script>
 </body>

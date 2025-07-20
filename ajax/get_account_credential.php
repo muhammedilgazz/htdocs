@@ -1,18 +1,36 @@
 <?php
-require_once ROOT_PATH . '/config/config.php';
-require_once ROOT_PATH . '/models/AccountCredential.php';
+require_once '../bootstrap.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
-    $account_credential_model = new AccountCredential();
-    $id = (int)$_POST['id'];
+use App\Models\AccountCredential;
 
-    $credential = $account_credential_model->getById($id);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['success' => false, 'message' => 'Geçersiz istek metodu.']);
+    exit;
+}
 
-    if ($credential) {
-        json_response(['success' => true, 'data' => $credential]);
-    } else {
-        json_response(['success' => false, 'message' => 'Hesap bilgisi bulunamadı.'], 404);
-    }
+if (!isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+    http_response_code(403);
+    echo json_encode(['success' => false, 'message' => 'Geçersiz CSRF token.']);
+    exit;
+}
+
+$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+
+if ($id <= 0) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Geçersiz ID.']);
+    exit;
+}
+
+$account_credential_model = new AccountCredential();
+$credential = $account_credential_model->getById($id);
+
+if ($credential) {
+    // Güvenlik için şifre hash'ini frontend'e gönderme
+    unset($credential['password_hash']);
+    echo json_encode(['success' => true, 'data' => $credential]);
 } else {
-    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+    http_response_code(404);
+    echo json_encode(['success' => false, 'message' => 'Hesap bilgisi bulunamadı.']);
 }

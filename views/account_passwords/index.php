@@ -35,7 +35,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0">
+                            <table id="accountPasswordsTable" class="table align-middle mb-0 datatable-feature">
                                 <thead>
                                     <tr>
                                         <th>Platform</th>
@@ -160,8 +160,8 @@ require_once ROOT_PATH . '/views/partials/head.php';
                         <input type="text" class="form-control" id="edit_username" name="username" required>
                     </div>
                     <div class="mb-3">
-                        <label for="edit_password_hash" class="form-label">Şifre</label>
-                        <input type="password" class="form-control" id="edit_password_hash" name="password_hash" required>
+                        <label for="edit_password_hash" class="form-label">Yeni Şifre (Değiştirmek istemiyorsanız boş bırakın)</label>
+                        <input type="password" class="form-control" id="edit_password_hash" name="password_hash">
                     </div>
                     <div class="mb-3">
                         <label for="edit_login_url" class="form-label">Giriş Linki (Opsiyonel)</label>
@@ -193,6 +193,35 @@ require_once ROOT_PATH . '/views/partials/head.php';
 
 <script>
 $(document).ready(function() {
+    $('#accountPasswordsTable').DataTable({
+        language: {
+            "sDecimal": ",",
+            "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+            "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+            "sInfoEmpty": "Kayıt yok",
+            "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+            "sLoadingRecords": "Yükleniyor...",
+            "sProcessing": "İşleniyor...",
+            "sSearch": "Ara:",
+            "sZeroRecords": "Eşleşen kayıt bulunamadı",
+            "oPaginate": {
+                "sFirst": "İlk",
+                "sLast": "Son",
+                "sNext": "Sonraki",
+                "sPrevious": "Önceki"
+            },
+            "oAria": {
+                "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+            }
+        },
+        "order": [[ 5, "desc" ]], // Created at sütununa göre tersten sırala
+        columnDefs: [ { orderable: false, targets: [2, 4, 6] } ] // Şifre, Link ve İşlemler sıralanamaz
+    });
+
     // Şifre göster/gizle toggle
     $('.toggle-password').click(function() {
         const input = $(this).siblings('input');
@@ -207,25 +236,36 @@ $(document).ready(function() {
         }
     });
 
-    // Add Form
+    // Add Form with SweetAlert
     $('#addForm').submit(function(e) {
         e.preventDefault();
+        const form = $(this);
         $.ajax({
             url: 'ajax/add_account_credential.php',
             type: 'POST',
-            data: $(this).serialize(),
+            data: form.serialize(),
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    $('#addAccountCredentialModal').modal('hide');
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: response.message,
+                        icon: 'success'
+                    }).then(() => {
+                        location.reload();
+                    });
                 } else {
-                    alert(response.message || 'Bir hata oluştu.');
+                    Swal.fire('Hata!', response.message || 'Bir hata oluştu.', 'error');
                 }
+            },
+            error: function() {
+                Swal.fire('Hata!', 'Sunucuyla iletişim kurulamadı.', 'error');
             }
         });
     });
 
-    // Edit Button
+    // Edit Button - Fetch data
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
@@ -239,50 +279,84 @@ $(document).ready(function() {
                     $('#edit_id').val(credential.id);
                     $('#edit_platform_name').val(credential.platform_name);
                     $('#edit_username').val(credential.username);
-                    $('#edit_password_hash').val(credential.password_hash);
+                    $('#edit_password_hash').val(''); // Şifre alanını boş bırak
                     $('#edit_login_url').val(credential.login_url);
                     $('#edit_account_type_id').val(credential.account_type_id);
                     $('#editAccountCredentialModal').modal('show');
                 } else {
-                    alert(response.message || 'Veri getirilemedi.');
+                    Swal.fire('Hata!', response.message || 'Veri getirilemedi.', 'error');
                 }
+            },
+            error: function() {
+                Swal.fire('Hata!', 'Sunucuyla iletişim kurulamadı.', 'error');
             }
         });
     });
 
-    // Edit Form
+    // Edit Form - Submit data
     $('#editForm').submit(function(e) {
         e.preventDefault();
+        const form = $(this);
         $.ajax({
             url: 'ajax/update_account_credential.php',
             type: 'POST',
-            data: $(this).serialize(),
+            data: form.serialize(),
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    location.reload();
+                    $('#editAccountCredentialModal').modal('hide');
+                    Swal.fire({
+                        title: 'Başarılı!',
+                        text: response.message,
+                        icon: 'success'
+                    }).then(() => {
+                        location.reload();
+                    });
                 } else {
-                    alert(response.message || 'Bir hata oluştu.');
+                    Swal.fire('Hata!', response.message || 'Bir hata oluştu.', 'error');
                 }
+            },
+            error: function() {
+                Swal.fire('Hata!', 'Sunucuyla iletişim kurulamadı.', 'error');
             }
         });
     });
 
-    // Delete Button
+    // Delete Button with SweetAlert
     $('.delete-btn').click(function() {
-        if (!confirm('Bu hesap bilgisini silmek istediğinizden emin misiniz?')) return;
-        const id = $(this).data('id');
-        $.ajax({
-            url: 'ajax/delete_account_credential.php',
-            type: 'POST',
-            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    location.reload();
-                } else {
-                    alert(response.message || 'Bir hata oluştu.');
-                }
+        const button = $(this);
+        const id = button.data('id');
+
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu hesap bilgisini silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: 'ajax/delete_account_credential.php',
+                    type: 'POST',
+                    data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            button.closest('tr').fadeOut(400, function() {
+                                $(this).remove();
+                            });
+                            Swal.fire('Silindi!', response.message, 'success');
+                        } else {
+                            Swal.fire('Hata!', response.message || 'Bir hata oluştu.', 'error');
+                        }
+                    },
+                    error: function() {
+                        Swal.fire('Hata!', 'Sunucuyla iletişim kurulamadı.', 'error');
+                    }
+                });
             }
         });
     });

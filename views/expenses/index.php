@@ -121,7 +121,7 @@ include __DIR__ . '/../partials/head.php'; ?>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table align-middle mb-0">
+                                <table id="expensesTable" class="table align-middle mb-0">
                                     <thead>
                                         <tr>
                                             <th>Açıklama</th>
@@ -266,6 +266,14 @@ include __DIR__ . '/../partials/head.php'; ?>
 
 <script>
 $(document).ready(function() {
+    $('#expensesTable').DataTable({
+        language: {
+            "sDecimal": ",", "sEmptyTable": "Tabloda herhangi bir veri mevcut değil", "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor", "sInfoEmpty": "Kayıt yok", "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "Sayfada _MENU_ kayıt göster", "sLoadingRecords": "Yükleniyor...", "sProcessing": "İşleniyor...", "sSearch": "Ara:", "sZeroRecords": "Eşleşen kayıt bulunamadı", "oPaginate": { "sFirst": "İlk", "sLast": "Son", "sNext": "Sonraki", "sPrevious": "Önceki" }, "oAria": { "sSortAscending": ": artan sütun sıralamasını aktifleştir", "sSortDescending": ": azalan sütun sıralamasını aktifleştir" }
+        },
+        "order": [[ 3, "desc" ]], // Tarihe göre sırala
+        columnDefs: [ { orderable: false, targets: 4 } ]
+    });
+
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();

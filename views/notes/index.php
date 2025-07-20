@@ -35,7 +35,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0">
+                            <table id="notesTable" class="table align-middle mb-0">
                                 <thead>
                                     <tr>
                                         <th>Başlık</th>
@@ -51,7 +51,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                                 <?php foreach ($rows as $row): ?>
                                     <tr>
                                         <td><?= htmlspecialchars($row['title']) ?></td>
-                                        <td><?= htmlspecialchars($row['content']) ?></td>
+                                        <td><?= $row['content'] ?></td>
                                         <td><?= htmlspecialchars($row['category']) ?></td>
                                         <td><?= htmlspecialchars($row['priority']) ?></td>
                                         <td><?= htmlspecialchars($row['status']) ?></td>
@@ -194,6 +194,29 @@ require_once ROOT_PATH . '/views/partials/head.php';
 
 <script>
 $(document).ready(function() {
+    $('#content, #edit_content').summernote({
+        placeholder: 'Notunuzu buraya yazın...',
+        tabsize: 2,
+        height: 150,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+
+    $('#notesTable').DataTable({
+        language: {
+            "sDecimal": ",", "sEmptyTable": "Tabloda herhangi bir veri mevcut değil", "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor", "sInfoEmpty": "Kayıt yok", "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "Sayfada _MENU_ kayıt göster", "sLoadingRecords": "Yükleniyor...", "sProcessing": "İşleniyor...", "sSearch": "Ara:", "sZeroRecords": "Eşleşen kayıt bulunamadı", "oPaginate": { "sFirst": "İlk", "sLast": "Son", "sNext": "Sonraki", "sPrevious": "Önceki" }, "oAria": { "sSortAscending": ": artan sütun sıralamasını aktifleştir", "sSortDescending": ": azalan sütun sıralamasını aktifleştir" }
+        },
+        "order": [[ 5, "desc" ]], // Oluşturulma Tarihine göre sırala
+        columnDefs: [ { orderable: false, targets: 6 } ]
+    });
+
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();
@@ -225,7 +248,7 @@ $(document).ready(function() {
                     const note = response.data;
                     $('#edit_id').val(note.id);
                     $('#edit_title').val(note.title);
-                    $('#edit_content').val(note.content);
+                    $('#edit_content').summernote('code', note.content);
                     $('#edit_category').val(note.category);
                     $('#edit_priority').val(note.priority);
                     $('#edit_status').val(note.status);

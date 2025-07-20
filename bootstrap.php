@@ -3,6 +3,8 @@
  * Bootstrap dosyası - Tüm sayfalarda yüklenecek
  */
 
+define('ROOT_PATH', __DIR__);
+
 // Composer autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 

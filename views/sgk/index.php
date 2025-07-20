@@ -43,7 +43,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0">
+                            <table id="sgkTable" class="table align-middle mb-0">
                                 <thead>
                                     <tr>
                                         <th>Sahibi</th>
@@ -222,6 +222,14 @@ require_once ROOT_PATH . '/views/partials/head.php';
 
 <script>
 $(document).ready(function() {
+    $('#sgkTable').DataTable({
+        language: {
+            "sDecimal": ",", "sEmptyTable": "Tabloda herhangi bir veri mevcut değil", "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor", "sInfoEmpty": "Kayıt yok", "sInfoFiltered": "(_MAX_ kayıt içerisinden bulundu)", "sInfoPostFix": "", "sInfoThousands": ".", "sLengthMenu": "Sayfada _MENU_ kayıt göster", "sLoadingRecords": "Yükleniyor...", "sProcessing": "İşleniyor...", "sSearch": "Ara:", "sZeroRecords": "Eşleşen kayıt bulunamadı", "oPaginate": { "sFirst": "İlk", "sLast": "Son", "sNext": "Sonraki", "sPrevious": "Önceki" }, "oAria": { "sSortAscending": ": artan sütun sıralamasını aktifleştir", "sSortDescending": ": azalan sütun sıralamasını aktifleştir" }
+        },
+        "order": [[ 5, "asc" ]], // Ödeme vadesine göre sırala
+        columnDefs: [ { orderable: false, targets: 10 } ] // İşlemler sıralanamaz
+    });
+
     $('#export-excel-sgk').click(function() {
         window.location.href = 'ajax/export_sgk.php';
     });

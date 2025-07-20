@@ -7,7 +7,7 @@ if (file_exists(__DIR__ . '/../../bootstrap.php')) {
 }
 ?>
 
-        </div>
+        </div> <!-- Kapanan page-content -->
     </div>
 
     <?php include __DIR__ . '/../partials/footer.php'; ?>

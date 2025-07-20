@@ -185,3 +185,61 @@
 {"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
 ---2025-07-20 18:20:47---
 {"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}
+---2025-07-20 19:37:26---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 19:37:34---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 19:38:10---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"17"}
+---2025-07-20 19:38:20---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 19:38:23---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 19:38:25---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 19:53:12---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}
+---2025-07-20 22:11:45---
+{"success":true,"data":{"id":11,"amount":"150.75","category_type":"degisken_gider","description":"Test Gideri - De\u011fi\u015fken","date":"2025-07-18"}}
+---2025-07-20 22:11:51---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 22:12:00---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-20 22:40:08---
+{"success":true,"data":{"id":7,"item_name":"Sa\u00e7 Spreyi","wishlist_type":"ihtiyac","image_url":"http:\/\/www.ggle.cm","product_link":"http:\/\/www.ggle.cm","price":"0.00","priority":1,"progress":"0.00","created_at":"2025-07-20 20:50:47","status":"beklemede","notes":null,"price_range":null,"is_urgent":0,"purchase_date":null,"updated_at":"2025-07-20 20:50:47"}}
+---2025-07-20 22:57:34---
+{"success":true,"data":{"id":205,"owner":"Timdesigners","period":"2019\/01-2019\/03","principal":"1731.05","interest":"0.00","total":"1731.05","payment_due":"2020-04-01","planned_payment":null,"paid":null,"remaining":null,"this_month_payment":null}}
+---2025-07-20 23:49:04---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}
+---2025-07-20 23:49:13---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":true}
+---2025-07-20 23:49:24---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":true}
+---2025-07-20 23:49:35---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":true}
+---2025-07-20 23:54:03---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":true}
+---2025-07-20 23:54:13---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}
+---2025-07-20 23:54:24---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":true}
+---2025-07-21 00:02:37---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"18"}
+---2025-07-21 00:02:45---
+{"success":true,"message":"Gider ba\u015far\u0131yla silindi."}
+---2025-07-21 00:04:45---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"19"}
+---2025-07-21 00:04:48---
+{"success":true,"data":{"id":17,"amount":"24000.00","category_type":"sabit_gider","description":"Kira","date":"2025-08-08"}}
+---2025-07-21 00:04:53---
+{"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}
+---2025-07-21 00:04:56---
+{"success":true,"data":{"id":19,"amount":"205.00","category_type":"sabit_gider","description":"Google One Aboneli\u011fi","date":"2025-08-08"}}
+---2025-07-21 00:04:59---
+{"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}
+---2025-07-21 00:05:31---
+{"success":true,"data":{"id":18,"amount":"34.56","category_type":"ani_ekstra","description":"Emlak Komisyonu","date":"2025-08-07"}}
+---2025-07-21 00:05:41---
+{"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}
+---2025-07-21 00:31:17---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}

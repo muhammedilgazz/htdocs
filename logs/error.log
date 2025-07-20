@@ -1699,3 +1699,828 @@ Stack trace:
 [20-Jul-2025 19:28:34 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-20 19:28:34","ip":"::1"}
 [20-Jul-2025 19:28:34 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
 [20-Jul-2025 19:28:34 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-20 19:28:34","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:02 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:02","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:07 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:07","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:10 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:10","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 19:53:18 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 19:53:18","ip":"::1"}
+[20-Jul-2025 20:05:20 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 20:06:49 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 20:07:12 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:08 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 21:34:08","ip":"::1"}
+[20-Jul-2025 21:34:46 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 21:36:00 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 21:37:32 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 21:39:33 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 21:39:39 Europe/Berlin] EXCEPTION: App\Models\Todo::getAll(): Return value must be of type array, bool returned in C:\xampp\htdocs\app\Models\Todo.php:66
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:52:13 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 21:52:13","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/head.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/head.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":23,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/preloader.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/preloader.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":27,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/header.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/header.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":33,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(.\/partials\/sidebar.php): Failed to open stream: No such file or directory","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:53:09 Europe/Berlin] ERROR: {"severity":2,"message":"include(): Failed opening '.\/partials\/sidebar.php' for inclusion (include_path='C:\\xampp\\php\\PEAR')","file":"C:\\xampp\\htdocs\\views\\layouts\\layoutTop.php","line":39,"timestamp":"2025-07-20 21:53:09","ip":"::1"}
+[20-Jul-2025 21:55:53 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-20 21:55:53","ip":"::1"}
+[20-Jul-2025 21:55:53 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[20-Jul-2025 21:55:53 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-20 21:55:53","ip":"::1"}
+[20-Jul-2025 22:17:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:17:33 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:17:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:17:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:17:36 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:17:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:17:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:17:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:36:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:36:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:36:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:36:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:37:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:37:33 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:37:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:37:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:38:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:38:39 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:39:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:39:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "BankAccount" not found in C:\xampp\htdocs\ajax\get_bank_account.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\ajax\get_bank_account.php on line 7
+[20-Jul-2025 22:39:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:39:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:39:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:39:33 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:39:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:39:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:02 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:27 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:35 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:49 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:50 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:50 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:50 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:40:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:40:51 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:41:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:41:09 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:12 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:28 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:40 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:42:41 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:43:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:43:26 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:51:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:51:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:51:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:51:22 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 22:58:36 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-20 22:58:36","ip":"::1"}
+[20-Jul-2025 22:58:36 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[20-Jul-2025 22:58:36 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":73,"timestamp":"2025-07-20 22:58:36","ip":"::1"}
+[20-Jul-2025 22:59:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 22:59:09 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 23:15:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:15:33 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Models\Database" not found in C:\xampp\htdocs\app\Models\BankAccount.php:11
+Stack trace:
+#0 C:\xampp\htdocs\ajax\get_bank_account.php(9): App\Models\BankAccount->__construct()
+#1 {main}
+  thrown in C:\xampp\htdocs\app\Models\BankAccount.php on line 11
+[20-Jul-2025 23:54:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:54:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:54:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:54:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:54:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:54:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:21 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:21 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:21 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:23 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:23 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:23 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:23 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:24 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:24 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:55 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:55:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:05 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:36 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:36 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:56:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:57:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:06 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:06 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:55 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:57 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[20-Jul-2025 23:59:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:00 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:00 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:01 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:01 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:04 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:05 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:05 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:06 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:06 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:11 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:24 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:24 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:36 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:36 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:40 Europe/Berlin] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":169,"timestamp":"2025-07-21 00:00:40","ip":"::1"}
+[21-Jul-2025 00:00:40 Europe/Berlin] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:169
+[21-Jul-2025 00:00:40 Europe/Berlin] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":75,"timestamp":"2025-07-21 00:00:40","ip":"::1"}
+[21-Jul-2025 00:00:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:00:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:21 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:01:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:02:50 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:55 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:56 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:04:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:00 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:00 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:00 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:01 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:04 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:11 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:58 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:05:59 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:00 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:06:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:02 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:03 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:04 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:21 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:24 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:24 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:25 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:49 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:08:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:11 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:11 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:22 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:09:23 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:10:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:10:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:10:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:10:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:10:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:10 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:11 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:26 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:27 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:28 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:32 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:11:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:12:40 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:12:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:12:41 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:12:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:12:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:04 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:04 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:05 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:05 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:06 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:07 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:08 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:13:09 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:14:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:14:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:14:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:14:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:14:36 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:15:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:15:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:15:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:15:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:15:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:37 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:38 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:39 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:42 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:43 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:44 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:45 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:50 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:50 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:51 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:52 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:53 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:54 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:23:55 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:29 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:30 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:31 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:33 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:34 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:24:35 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:30:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:30:46 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:30:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:30:47 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:30:48 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:12 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:13 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:14 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:15 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:16 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:17 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:18 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:19 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:20 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28
+[21-Jul-2025 00:31:23 Europe/Berlin] PHP Warning:  Constant ROOT_PATH already defined in C:\xampp\htdocs\config\config.php on line 28

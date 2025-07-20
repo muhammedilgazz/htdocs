@@ -17,6 +17,9 @@ class Giderler {
             case 'month':
                 $current_period = date('Y-m');
                 break;
+            case 'next_month':
+                $current_period = date('Y-m', strtotime('+1 month'));
+                break;
             case 'year':
                 $current_period = date('Y');
                 break;
@@ -32,7 +35,7 @@ class Giderler {
         $build_where_clause = function($date_column, $additional_conditions = []) use ($filter_type, $current_period, &$params) {
             $where_clauses = [];
             if ($filter_type != 'all') {
-                $date_format = ($filter_type == 'month' ? '%Y-%m' : '%Y');
+                $date_format = ($filter_type == 'month' || $filter_type == 'next_month' ? '%Y-%m' : '%Y');
                 $where_clauses[] = "DATE_FORMAT($date_column, '$date_format') = ?";
                 $params[] = $current_period;
             }
