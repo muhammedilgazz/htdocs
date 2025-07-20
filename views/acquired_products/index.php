@@ -12,7 +12,7 @@
         include ROOT_PATH . '/views/partials/page_header.php';
         ?>
         <div class="app-content harcamalar-kucuk-font">
-            <div class="container py-3">
+            <div class="container-fluid">
                 <!-- Boş Durum Kontrolü -->
                 <?php if (empty($rows)): ?>
                 <?php 

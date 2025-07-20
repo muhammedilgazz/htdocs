@@ -135,6 +135,12 @@
                     </ul>
                 </div>
             </li>
+<li class="nav-item">
+                <a href="/market" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'market.php' ? 'active' : '' ?>">
+                    <i class="bi bi-shop"></i>
+                    <span>Market &amp; Gıda</span>
+                </a>
+            </li>
             
             <!-- Tüm Borçlar Ana Menü -->
             <li class="nav-item">

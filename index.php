@@ -64,7 +64,8 @@ $route_mappings = [
     'affiliate' => 'AffiliateController',
     'privacy' => 'PrivacyController',
     'dreamgoal' => 'DreamGoalController',
-    'favoriteproduct' => 'FavoriteProductController'
+    'favoriteproduct' => 'FavoriteProductController',
+    'market' => 'MarketController',
 ];
 
 $controller_name_segment = $segments[0] ?? '';

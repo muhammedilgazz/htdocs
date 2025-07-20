@@ -20,7 +20,7 @@ include __DIR__ . '/../partials/head.php'; ?>
     <div class="app-main">
         <?php include __DIR__ . '/../partials/header.php'; ?>
         <div class="app-content">
-            <div class="container py-3">
+            <div class="container-fluid">
                 <?php
                 $breadcrumb_active = 'Harcamalar';
                 $show_title_section = false;

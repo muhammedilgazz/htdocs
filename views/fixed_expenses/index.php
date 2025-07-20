@@ -7,7 +7,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
     <div class="app-main">
         <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
-            <div class="container py-3">
+            <div class="container-fluid">
                 <?php
                 $page_title = 'Sabit Giderler';
                 $page_description = 'Her ay düzenli olarak yapılan ve tutarı büyük ölçüde değişmeyen harcamalar.';

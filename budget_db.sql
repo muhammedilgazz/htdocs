@@ -431,6 +431,40 @@ ALTER TABLE `users`
 --
 ALTER TABLE `wishlist_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `market_products`
+--
+
+CREATE TABLE `market_products` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT 1,
+  `product_name` varchar(255) NOT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `image_url` text DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `price` decimal(10,2) NOT NULL,
+  `total_amount` decimal(10,2) GENERATED ALWAYS AS (`quantity` * `price`) STORED,
+  `min_stock` int(11) DEFAULT 0,
+  `current_stock` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo için indeksler `market_products`
+--
+ALTER TABLE `market_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Tablo için AUTO_INCREMENT değeri `market_products`
+--
+ALTER TABLE `market_products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

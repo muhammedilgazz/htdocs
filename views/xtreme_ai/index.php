@@ -14,7 +14,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
         include ROOT_PATH . '/views/partials/page_header.php';
         ?>
         <div class="app-content harcamalar-kucuk-font">
-            <div class="container py-3">
+            <div class="container-fluid">
                 <!-- AI Özellikleri Kartları -->
                 <div class="row mb-4">
                     <div class="col-md-4">

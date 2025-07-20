@@ -1,6 +1,5 @@
 <?php
-require_once '../config/config.php';
-require_once '../models/Database.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 header('Content-Type: application/json');
 

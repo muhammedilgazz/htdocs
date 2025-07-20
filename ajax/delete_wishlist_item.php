@@ -1,16 +1,33 @@
 <?php
-require_once ROOT_PATH . '/config/config.php';
-require_once ROOT_PATH . '/models/Wishlist.php';
+require_once '../bootstrap.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
-    $wishlist_model = new Wishlist();
-    $id = (int)$_POST['id'];
+use App\Models\Wishlist;
 
+// Yalnızca POST isteklerine izin ver
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405); // Method Not Allowed
+    echo json_encode(['success' => false, 'message' => 'Geçersiz istek metodu.']);
+    exit;
+}
+
+// CSRF token kontrolü
+if (!isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+    http_response_code(403); // Forbidden
+    echo json_encode(['success' => false, 'message' => 'Geçersiz CSRF token.']);
+    exit;
+}
+
+$wishlist_model = new Wishlist();
+$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+
+if ($id > 0) {
     if ($wishlist_model->delete($id)) {
-        json_response(['success' => true, 'message' => 'İstek listesi öğesi başarıyla silindi.']);
+        echo json_encode(['success' => true, 'message' => 'İstek listesi öğesi başarıyla silindi.']);
     } else {
-        json_response(['success' => false, 'message' => 'İstek listesi öğesi silinirken bir hata oluştu.'], 500);
+        http_response_code(500); // Internal Server Error
+        echo json_encode(['success' => false, 'message' => 'İstek listesi öğesi silinirken bir hata oluştu.']);
     }
 } else {
-    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+    http_response_code(400); // Bad Request
+    echo json_encode(['success' => false, 'message' => 'Geçersiz ID.']);
 }

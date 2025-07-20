@@ -6,7 +6,7 @@
     <div class="app-main">
         <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
-            <div class="container py-3">
+            <div class="container-fluid">
                 <?php
                 $page_title = 'Profil';
                 $page_description = 'Kullanıcı profil bilgilerinizi görüntüleyin ve yönetin.';
