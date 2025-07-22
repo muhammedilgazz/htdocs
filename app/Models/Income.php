@@ -2,80 +2,159 @@
 
 namespace App\Models;
 
-use App\Models\Database;
+use App\Core\DatabaseConnection;
+use PDO;
 
 class Income {
-    private $db;
+    private $pdo;
 
     public function __construct() {
-        $this->db = Database::getInstance();
+        $this->pdo = DatabaseConnection::getPDO();
     }
-
+    
     /**
-     * Yeni bir gelir kaydı ekler.
-     *
-     * @param array $data Gelir verileri.
-     * @return bool İşlem başarılıysa true, değilse false.
+     * Tüm gelirleri getir
      */
-    public function add(array $data): bool {
-        $sql = "INSERT INTO incomes (source, amount, date, description) VALUES (?, ?, ?, ?)";
-        $params = [
-            $data['source'] ?? null,
-            $data['amount'] ?? null,
-            $data['date'] ?? date('Y-m-d'),
-            $data['description'] ?? null
-        ];
-        return $this->db->execute($sql, $params);
+    public function getAllIncomes($userId, $filter = 'all') {
+        try {
+            $sql = "SELECT * FROM incomes WHERE user_id = :user_id";
+            
+            switch ($filter) {
+                case 'fixed':
+                    $sql .= " AND period IN ('monthly', 'yearly')";
+                    break;
+                case 'extra':
+                    $sql .= " AND period IN ('daily', 'weekly', 'one_time')";
+                    break;
+                case 'month':
+                    $sql .= " AND MONTH(receive_date) = MONTH(CURRENT_DATE()) AND YEAR(receive_date) = YEAR(CURRENT_DATE())";
+                    break;
+                case 'next_month':
+                    $sql .= " AND MONTH(receive_date) = MONTH(DATE_ADD(CURRENT_DATE(), INTERVAL 1 MONTH)) AND YEAR(receive_date) = YEAR(DATE_ADD(CURRENT_DATE(), INTERVAL 1 MONTH))";
+                    break;
+                case 'year':
+                    $sql .= " AND YEAR(receive_date) = YEAR(CURRENT_DATE())";
+                    break;
+            }
+            
+            $sql .= " ORDER BY receive_date DESC";
+            
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['user_id' => $userId]);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result ?: [];
+        } catch (\Exception $e) {
+            error_log("Income getAllIncomes error: " . $e->getMessage());
+            return [];
+        }
     }
-
+    
     /**
-     * Bir gelir kaydını ID'sine göre günceller.
-     *
-     * @param int $id Güncellenecek gelir kaydının ID'si.
-     * @param array $data Güncel gelir verileri.
-     * @return bool İşlem başarılıysa true, değilse false.
+     * Gelir ekle
      */
-    public function update(int $id, array $data): bool {
-        $sql = "UPDATE incomes SET source = ?, amount = ?, date = ?, description = ? WHERE id = ?";
-        $params = [
-            $data['source'] ?? null,
-            $data['amount'] ?? null,
-            $data['date'] ?? null,
-            $data['description'] ?? null,
-            $id
-        ];
-        return $this->db->execute($sql, $params);
+    public function createIncome($data) {
+        $sql = "INSERT INTO incomes (user_id, title, currency, amount, period, receive_date, is_debt, description, status) 
+                VALUES (:user_id, :title, :currency, :amount, :period, :receive_date, :is_debt, :description, :status)";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $result = $stmt->execute([
+            'user_id' => $data['user_id'],
+            'title' => $data['title'],
+            'currency' => $data['currency'],
+            'amount' => $data['amount'],
+            'period' => $data['period'],
+            'receive_date' => $data['receive_date'],
+            'is_debt' => $data['is_debt'],
+            'description' => $data['description'] ?? null,
+            'status' => $data['status'] ?? 'active'
+        ]);
+        
+        return $result ? $this->pdo->lastInsertId() : false;
     }
-
+    
     /**
-     * Bir gelir kaydını ID'sine göre siler.
-     *
-     * @param int $id Silinecek gelir kaydının ID'si.
-     * @return bool İşlem başarılıysa true, değilse false.
+     * Gelir güncelle
      */
-    public function delete(int $id): bool {
-        $sql = "DELETE FROM incomes WHERE id = ?";
-        return $this->db->execute($sql, [$id]);
+    public function updateIncome($id, $userId, $data) {
+        $sql = "UPDATE incomes SET 
+                title = :title, 
+                currency = :currency, 
+                amount = :amount, 
+                period = :period, 
+                receive_date = :receive_date, 
+                is_debt = :is_debt, 
+                description = :description, 
+                status = :status 
+                WHERE id = :id AND user_id = :user_id";
+        
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            'id' => $id,
+            'user_id' => $userId,
+            'title' => $data['title'],
+            'currency' => $data['currency'],
+            'amount' => $data['amount'],
+            'period' => $data['period'],
+            'receive_date' => $data['receive_date'],
+            'is_debt' => $data['is_debt'],
+            'description' => $data['description'] ?? null,
+            'status' => $data['status'] ?? 'active'
+        ]);
     }
-
+    
     /**
-     * Tüm gelir kayıtlarını getirir.
-     *
-     * @return array Gelir kayıtları listesi.
+     * Gelir sil
      */
-    public function getAll(): array {
-        $sql = "SELECT * FROM incomes ORDER BY id DESC";
-        return $this->db->fetchAll($sql);
+    public function deleteIncome($id, $userId) {
+        $sql = "DELETE FROM incomes WHERE id = :id AND user_id = :user_id";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute(['id' => $id, 'user_id' => $userId]);
     }
-
+    
     /**
-     * Bir gelir kaydını ID'sine göre getirir.
-     *
-     * @param int $id Getirilecek gelir kaydının ID'si.
-     * @return array|false Gelir kaydı verileri veya bulunamazsa false.
+     * Tek gelir getir
      */
-    public function getById(int $id) {
-        $sql = "SELECT * FROM incomes WHERE id = ?";
-        return $this->db->fetch($sql, [$id]);
+    public function getIncomeById($id, $userId) {
+        $sql = "SELECT * FROM incomes WHERE id = :id AND user_id = :user_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id, 'user_id' => $userId]);
+        return $stmt->fetch();
+    }
+    
+    /**
+     * Gelir istatistikleri
+     */
+    public function getIncomeStats($userId) {
+        $sql = "SELECT 
+                COUNT(*) as total_count,
+                SUM(CASE WHEN period IN ('monthly', 'yearly') THEN amount ELSE 0 END) as fixed_total,
+                SUM(CASE WHEN period IN ('daily', 'weekly', 'one_time') THEN amount ELSE 0 END) as extra_total,
+                SUM(amount) as total_amount
+                FROM incomes 
+                WHERE user_id = :user_id AND status = 'active'";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetch();
+    }
+    
+    /**
+     * Aylık gelir özeti
+     */
+    public function getMonthlyIncomeSummary($userId) {
+        $sql = "SELECT 
+                MONTH(receive_date) as month,
+                YEAR(receive_date) as year,
+                SUM(amount) as total_amount,
+                COUNT(*) as income_count
+                FROM incomes 
+                WHERE user_id = :user_id 
+                AND YEAR(receive_date) = YEAR(CURRENT_DATE())
+                GROUP BY MONTH(receive_date), YEAR(receive_date)
+                ORDER BY year DESC, month DESC";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetchAll();
     }
 }

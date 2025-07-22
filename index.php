@@ -47,6 +47,10 @@ $route_mappings = [
     'extraexpense' => 'ExtraExpenseController',
     'postponedpayment' => 'PostponedPaymentController',
     'giderler' => 'GiderlerController',
+    // Gelirler controller mappingleri:
+    'incomes' => 'IncomeController',
+    'income' => 'IncomeController',
+    'gelirler' => 'IncomeController',
     'tax' => 'TaxController',
     'sgk' => 'SgkController',
     'bank' => 'BankController',

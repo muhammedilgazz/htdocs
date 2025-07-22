@@ -141,11 +141,44 @@
                     </ul>
                 </div>
             </li>
-<li class="nav-item">
+            <li class="nav-item">
                 <a href="/market" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'market.php' ? 'active' : '' ?>">
                     <i class="bi bi-shop"></i>
                     <span>Market &amp; Gıda</span>
                 </a>
+            </li>
+            
+            <!-- Gelirler Ana Menü -->
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#gelirlerSubmenu" aria-expanded="false" aria-controls="gelirlerSubmenu">
+                    <div>
+                        <i class="bi bi-cash-stack"></i>
+                        <span>Gelirler</span>
+                    </div>
+                    <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
+                </a>
+                <div class="collapse" id="gelirlerSubmenu">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="/incomes" class="nav-link <?= strpos($_SERVER['REQUEST_URI'], '/incomes') !== false && !strpos($_SERVER['REQUEST_URI'], '/fixed') && !strpos($_SERVER['REQUEST_URI'], '/extra') ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-list-ul"></i>
+                                <span>Tüm Gelirler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/incomes/fixed" class="nav-link <?= strpos($_SERVER['REQUEST_URI'], '/incomes/fixed') !== false ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-calendar2-week"></i>
+                                <span>Sabit Gelirler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/incomes/extra" class="nav-link <?= strpos($_SERVER['REQUEST_URI'], '/incomes/extra') !== false ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-lightning-charge"></i>
+                                <span>Ekstra Gelirler</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             
             <!-- Tüm Borçlar Ana Menü -->

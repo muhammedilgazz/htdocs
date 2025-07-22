@@ -243,3 +243,25 @@
 {"success":true,"message":"Gider ba\u015far\u0131yla g\u00fcncellendi."}
 ---2025-07-21 00:31:17---
 {"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}
+---2025-07-21 00:48:52---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":false}
+---2025-07-21 00:50:25---
+{"success":true,"rate":40.4,"last_update":"2025-07-20","cached":true}
+---2025-07-21 02:24:36---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"20"}
+---2025-07-21 02:25:19---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"21"}
+---2025-07-21 02:26:24---
+{"success":true,"message":"Gider ba\u015far\u0131yla eklendi.","expense_id":"22"}
+---2025-07-21 02:45:54---
+{"success":true,"message":"Gelir ba\u015far\u0131yla eklendi.","income_id":"2"}
+---2025-07-21 02:46:07---
+{"success":true,"message":"Gelir ba\u015far\u0131yla silindi."}
+---2025-07-21 05:01:07---
+{"success":true,"rate":40.41,"last_update":"2025-07-21","cached":false}
+---2025-07-21 05:06:07---
+{"success":true,"rate":32.5,"last_update":"2025-07-21 05:06:07","cached":false,"note":"API eri\u015filemedi, varsay\u0131lan de\u011fer kullan\u0131ld\u0131"}
+---2025-07-22 01:20:15---
+{"success":true,"rate":40.41,"last_update":"2025-07-21","cached":false}
+---2025-07-22 01:20:38---
+{"success":true,"rate":40.41,"last_update":"2025-07-21","cached":true}

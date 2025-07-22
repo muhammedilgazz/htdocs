@@ -1,29 +1,32 @@
 <?php
-require_once __DIR__ . '/../models/Income.php';
-require_once __DIR__ . '/../models/AjaxHelper.php';
+require_once __DIR__ . '/../bootstrap.php';
 
-handle_ajax_request(function($data) {
-    $income_model = new Income();
+use App\Models\Income;
 
-    $source = $data['source'] ?? '';
-    $amount = filter_var($data['amount'] ?? '', FILTER_VALIDATE_FLOAT);
-    $date = $data['date'] ?? date('Y-m-d');
-    $description = $data['description'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
+    $incomeModel = new Income();
+    
+    $userId = $_SESSION['user_id'] ?? 1; // Geçici olarak 1 kullanıyoruz
+    
+    $data = [
+        'user_id' => $userId,
+        'title' => sanitize_input($_POST['title']),
+        'currency' => sanitize_input($_POST['currency']),
+        'amount' => (float)$_POST['amount'],
+        'period' => sanitize_input($_POST['period']),
+        'receive_date' => sanitize_input($_POST['receive_date']),
+        'is_debt' => sanitize_input($_POST['is_debt']),
+        'description' => sanitize_input($_POST['description'] ?? ''),
+        'status' => 'active'
+    ];
 
-    if (empty($source) || $amount <= 0) {
-        json_response(['success' => false, 'message' => 'Kaynak ve tutar zorunludur.'], 400);
-    }
-
-    $result = $income_model->add([
-        'source' => $source,
-        'amount' => $amount,
-        'date' => $date,
-        'description' => $description
-    ]);
+    $result = $incomeModel->createIncome($data);
 
     if ($result) {
-        json_response(['success' => true, 'message' => 'Gelir başarıyla eklendi']);
+        json_response(['success' => true, 'message' => 'Gelir başarıyla eklendi.', 'income_id' => $result]);
     } else {
-        json_response(['success' => false, 'message' => 'Gelir eklenirken hata oluştu'], 500);
+        json_response(['success' => false, 'message' => 'Gelir eklenirken bir hata oluştu.'], 500);
     }
-});
+} else {
+    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+}

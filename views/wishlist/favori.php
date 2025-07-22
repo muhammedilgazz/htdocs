@@ -46,9 +46,9 @@ require_once ROOT_PATH . '/views/partials/head.php';
                             <table id="wishlistTable" class="table align-middle mb-0">
                                 <thead>
                                     <tr>
+                                        <th>Resim</th>
                                         <th>Öğe Adı</th>
                                         <th>Tip</th>
-                                        <th>Resim</th>
                                         <th>Link</th>
                                         <th>Fiyat</th>
                                         <th>Öncelik</th>
@@ -59,8 +59,6 @@ require_once ROOT_PATH . '/views/partials/head.php';
                                 <tbody>
                                 <?php foreach ($rows as $row): ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($row['item_name']) ?></td>
-                                        <td><?= htmlspecialchars($row['wishlist_type']) ?></td>
                                         <td>
                                             <?php if (!empty($row['image_url'])): ?>
                                                 <img src="<?= htmlspecialchars($row['image_url']) ?>" alt="Ürün Resmi" width="50">
@@ -68,6 +66,8 @@ require_once ROOT_PATH . '/views/partials/head.php';
                                                 Resim Yok
                                             <?php endif; ?>
                                         </td>
+                                        <td><?= htmlspecialchars($row['item_name']) ?></td>
+                                        <td><?= htmlspecialchars($row['wishlist_type']) ?></td>
                                         <td>
                                             <?php if (!empty($row['product_link'])): ?>
                                                 <a href="<?= htmlspecialchars($row['product_link']) ?>" target="_blank">Ürün Sayfası</a>

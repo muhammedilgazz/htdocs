@@ -27,16 +27,18 @@ if (file_exists(__DIR__ . '/../../bootstrap.php')) {
 <?php include ROOT_PATH . '/views/partials/preloader.php'?>
 
     <div id="main-wrapper">
-
-        <?php
-            if (!isset($header)) {
-                include ROOT_PATH . '/views/partials/header.php';
-            }
-        ?>
-
-        <?php
-            if (!isset($sidebar)) {
-                include ROOT_PATH . '/views/partials/sidebar.php';
-            }
-        ?>
-        <div class="page-content">
+        <div class="d-flex">
+            <?php
+                if (!isset($sidebar) || $sidebar === true) {
+                    include ROOT_PATH . '/views/partials/sidebar.php';
+                }
+            ?>
+            
+            <div class="flex-grow-1">
+                <?php
+                    if (!isset($header) || $header === true) {
+                        include ROOT_PATH . '/views/partials/header.php';
+                    }
+                ?>
+                
+                <div class="page-content">

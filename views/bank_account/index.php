@@ -1,4 +1,7 @@
-<?php require_once ROOT_PATH . '/views/partials/head.php'; ?>
+<?php 
+require_once __DIR__ . '/../../config/config.php';
+require_once ROOT_PATH . '/views/partials/head.php'; 
+?>
 <body>
 <div class="app-container">
     <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
@@ -126,7 +129,7 @@
             <form id="accountForm">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
-                    <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
+                    <input type="hidden" name="csrf_token" value="<?= generate_csrf_token() ?>">
                     <div class="mb-3">
                         <label for="account_holder" class="form-label">Hesap Sahibi</label>
                         <input type="text" class="form-control" id="account_holder" name="account_holder" required>
@@ -200,7 +203,7 @@ $(document).ready(function() {
         $.ajax({
             url: 'ajax/get_bank_account.php',
             type: 'POST',
-            data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+            data: { id: id, csrf_token: '<?= generate_csrf_token() ?>' },
             dataType: 'json',
             beforeSend: function() {
                 console.log('AJAX request started for ID:', id);
@@ -271,7 +274,7 @@ $(document).ready(function() {
                 $.ajax({
                     url: 'ajax/delete_bank_account.php',
                     type: 'POST',
-                    data: { id: id, csrf_token: '<?= $csrf_token ?>' },
+                    data: { id: id, csrf_token: '<?= generate_csrf_token() ?>' },
                     dataType: 'json',
                     success: function(response) {
                         if (response.success) {
