@@ -313,12 +313,6 @@
                 </a>
             </li>
             
-            <li class="nav-item">
-                <a href="/affiliate" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'affiliate.php' ? 'active' : '' ?>">
-                    <i class="material-icons-round">share</i>
-                    <span>Referans Programı</span>
-                </a>
-            </li>
             
             <li class="nav-item">
                 <a href="/signin?logout=1" class="nav-link" style="color: var(--md-error);">

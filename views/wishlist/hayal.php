@@ -8,94 +8,204 @@ require_once ROOT_PATH . '/views/partials/head.php';
         <?php require_once ROOT_PATH . '/views/partials/header.php'; ?>
         <div class="app-content">
             <div class="container-fluid">
-                <?php
-                $page_title = 'İstek Listesi - Hayaller';
-                $page_description = 'Hayal kategorisindeki istek listesi öğelerinin takibi.';
-                $breadcrumb_active = 'Hayaller';
-                include ROOT_PATH . '/views/partials/page_header.php';
-                ?>
-                <div class="d-flex justify-content-end mb-3">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWishlistItemModal">
-                        <i class="bi bi-plus-circle me-2"></i>Yeni İstek Ekle
-                    </button>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title mb-4">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-xl-4">
+                                    <div class="page-title-content">
+                                        <h3>Hayaller</h3>
+                                        <p class="mb-2">Hayallerinizi takip edin ve birikimlerinizi yönetin.</p>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="breadcrumbs"><a href="#">Anasayfa </a>
+                                        <span><i class="bi bi-chevron-right"></i></span>
+                                        <a href="#">Hayaller</a>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
-
-                <?php if (empty($rows)): ?>
-                <div class="text-center py-5">
-                    <div style="font-size: 4rem; color: #e3e8ef; margin-bottom: 1rem;">
-                        <i class="bi bi-cart"></i>
                     </div>
-                    <h4 style="color: #7b8ab8; font-weight: 600; margin-bottom: 0.5rem;">Henüz bu kategoride istek listesi öğesi yok</h4>
-                    <p style="color: #a0a8c0; margin-bottom: 2rem;">İstek listesi öğelerinizi ekleyerek takip etmeye başlayın.</p>
                 </div>
-                <?php else: ?>
-                <div class="card p-0">
-                    <div class="card-header bg-white">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">Hayaller Listesi</h5>
+                <div class="row g-0">
+                    <div class="col-xl-3 mb-4 mb-xl-0">
+                        <div class="nav flex-column nav-pills" id="goals-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active goals-nav mb-2" id="goal1-tab" data-bs-toggle="pill" data-bs-target="#goal1" type="button" role="tab" aria-controls="goal1" aria-selected="true">
+                                <div class="d-flex align-items-center">
+                                    <div class="goals-nav-circle me-3">
+                                        <div class="progress-circle" style="--value: 40;"></div>
+                                        <span>40%</span>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Araba</h6>
+                                        <small class="text-muted">₺20.000 / ₺50.000</small>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="nav-link goals-nav mb-2" id="goal2-tab" data-bs-toggle="pill" data-bs-target="#goal2" type="button" role="tab" aria-controls="goal2" aria-selected="false">
+                                <div class="d-flex align-items-center">
+                                    <div class="goals-nav-circle me-3">
+                                        <div class="progress-circle" style="--value: 60;"></div>
+                                        <span>60%</span>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Laptop</h6>
+                                        <small class="text-muted">₺9.000 / ₺15.000</small>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="nav-link goals-nav mb-2" id="goal3-tab" data-bs-toggle="pill" data-bs-target="#goal3" type="button" role="tab" aria-controls="goal3" aria-selected="false">
                             <div class="d-flex align-items-center">
-                                <?php if (!empty($rows)): ?>
-                                    <h5 class="mb-0 text-end me-3">Toplam: <?= count($rows) ?> öğe</h5>
-                                <?php endif; ?>
-                                <!-- Export button can be added here if needed -->
+                                    <div class="goals-nav-circle me-3">
+                                        <div class="progress-circle" style="--value: 25;"></div>
+                                        <span>25%</span>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1">Tatil</h6>
+                                        <small class="text-muted">₺2.500 / ₺10.000</small>
+                                    </div>
+                                </div>
+                            </button>
+                            <div class="add-goals-link mt-4">
+                                <h6 class="mb-2">Yeni hayal ekle</h6>
+                                <button class="btn btn-outline-primary w-100" data-bs-toggle="modal" data-bs-target="#addWishlistItemModal">
+                                    <i class="bi bi-plus-circle me-2"></i>Hayal Ekle
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="col-xl-9">
+                        <div class="tab-content" id="goals-tabContent">
+                            <div class="tab-pane fade show active" id="goal1" role="tabpanel" aria-labelledby="goal1-tab">
+                                <div class="goals-tab-title mb-3">
+                                    <h4>Araba</h4>
+                                </div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-3">
+                                        <div class="card goals-widget text-center">
+                                            <div class="card-body">
+                                                <p class="mb-1">Geçen Ay</p>
+                                                <h5 class="mb-0">₺4.000</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card goals-widget text-center">
+                                            <div class="card-body">
+                                                <p class="mb-1">Harcamalar</p>
+                                                <h5 class="mb-0">₺1.200</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card goals-widget text-center">
+                                            <div class="card-body">
+                                                <p class="mb-1">Vergiler</p>
+                                                <h5 class="mb-0">₺250</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card goals-widget text-center">
+                                            <div class="card-body">
+                                                <p class="mb-1">Borç</p>
+                                                <h5 class="mb-0">₺5.000</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Cüzdanlara Göre Dağılım</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="me-3">
+                                                <span class="badge bg-warning"><i class="bi bi-bank"></i></span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>City Bank</span>
+                                                    <span>₺8.000</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" style="width: 40%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="me-3">
+                                                <span class="badge bg-success"><i class="bi bi-wallet2"></i></span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Nakit</span>
+                                                    <span>₺5.000</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" style="width: 25%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <span class="badge bg-info"><i class="bi bi-credit-card"></i></span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Kredi Kartı</span>
+                                                    <span>₺7.000</span>
+                                                </div>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-info" style="width: 35%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Geçmiş Hareketler</h5>
+                                    </div>
+                                    <div class="card-body">
                         <div class="table-responsive">
-                            <table id="wishlistTable" class="table align-middle mb-0">
+                                            <table class="table table-sm table-hover mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Resim</th>
-                                        <th>Öğe Adı</th>
-                                        <th>Tip</th>
-                                        <th>Link</th>
-                                        <th>Fiyat</th>
-                                        <th>Öncelik</th>
-                                        <th>İlerleme (%)</th>
-                                        <th>İşlemler</th>
+                                                        <th>Tarih</th>
+                                                        <th>Cüzdan</th>
+                                                        <th>Açıklama</th>
+                                                        <th>Tutar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($rows as $row): ?>
-                                    <tr>
-                                        <td>
-                                            <?php if (!empty($row['image_url'])): ?>
-                                                <img src="<?= htmlspecialchars($row['image_url']) ?>" alt="Ürün Resmi" width="50">
-                                            <?php else: ?>
-                                                Resim Yok
-                                            <?php endif; ?>
-                                        </td>
-                                        <td><?= htmlspecialchars($row['item_name']) ?></td>
-                                        <td><?= htmlspecialchars($row['wishlist_type']) ?></td>
-                                        <td>
-                                            <?php if (!empty($row['product_link'])): ?>
-                                                <a href="<?= htmlspecialchars($row['product_link']) ?>" target="_blank">Ürün Sayfası</a>
-                                            <?php else: ?>
-                                                Link Yok
-                                            <?php endif; ?>
-                                        </td>
-                                        <td><?= htmlspecialchars($row['price']) ?></td>
-                                        <td><?= htmlspecialchars($row['priority']) ?></td>
-                                        <td><?= htmlspecialchars($row['progress']) ?></td>
-                                        <td>
-                                            <div class="d-flex gap-1">
-                                                <button class="btn btn-outline-primary btn-sm edit-btn" data-id="<?= $row['id'] ?>" data-bs-toggle="modal" data-bs-target="#editWishlistItemModal">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-outline-danger btn-sm delete-btn" data-id="<?= $row['id'] ?>">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
+                                                    <tr>
+                                                        <td>01.07.2024</td>
+                                                        <td>City Bank</td>
+                                                        <td>Peşinat</td>
+                                                        <td class="text-success">+₺2.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>15.07.2024</td>
+                                                        <td>Kredi Kartı</td>
+                                                        <td>Ek ödeme</td>
+                                                        <td class="text-success">+₺1.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>20.07.2024</td>
+                                                        <td>Nakit</td>
+                                                        <td>Biriktirilen</td>
+                                                        <td class="text-success">+₺500</td>
                                     </tr>
-                                <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <?php endif; ?>
+                            </div>
+                            <!-- Diğer hayal tabları için benzer içerik eklenebilir -->
+                        </div>
             </div>
         </div>
     </div>

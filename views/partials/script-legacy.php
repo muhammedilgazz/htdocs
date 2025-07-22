@@ -1,20 +1,20 @@
 <!-- jQuery -->
-<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="<?= BASE_URL ?>assets/vendor/jquery/jquery.min.js?v=<?= filemtime(ROOT_PATH . '/assets/vendor/jquery/jquery.min.js') ?>"></script>
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js?v=<?= filemtime(ROOT_PATH . '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 
 <!-- Chart.js (CDN version for compatibility) -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js?v=<?= filemtime(ROOT_PATH . '/assets/vendor/chartjs/chartjs.js') ?>"></script>
 
 <!-- Perfect Scrollbar -->
-<script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="<?= BASE_URL ?>assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js?v=<?= filemtime(ROOT_PATH . '/assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
 
 <!-- Toastr -->
-<script src="assets/vendor/toastr/toastr.min.js"></script>
+<script src="<?= BASE_URL ?>assets/vendor/toastr/toastr.min.js?v=<?= filemtime(ROOT_PATH . '/assets/vendor/toastr/toastr.min.js') ?>"></script>
 
 <!-- Custom Scripts -->
-<script src="assets/js/scripts.js"></script>
+<script src="<?= BASE_URL ?>assets/js/scripts.js?v=<?= filemtime(ROOT_PATH . '/assets/js/scripts.js') ?>"></script>
 
 <script>
     // Debug information

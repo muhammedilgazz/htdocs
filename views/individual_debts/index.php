@@ -1,6 +1,18 @@
 <?php
 require_once ROOT_PATH . '/views/partials/head.php';
 ?>
+<style>
+    .row.equal-height > [class^="col-"] > .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+    .row.equal-height > [class^="col-"] {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 <body>
 <div class="app-container">
     <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
@@ -14,6 +26,60 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 $breadcrumb_active = 'Şahıslara Borçlar';
                 include ROOT_PATH . '/views/partials/page_header.php';
                 ?>
+                <div class="row mb-4 equal-height">
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-primary p-3"><i class="bi bi-calendar-event fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Bu Ay Ödenecek</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['this_month'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-info p-3"><i class="bi bi-calendar2-month fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Gelecek Ay Ödenecek</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['next_month'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-danger p-3"><i class="bi bi-cash-coin fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Toplam Borç</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['total'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-warning p-3"><i class="bi bi-arrow-repeat fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Ertelenmiş Borç</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['postponed'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end mb-3">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPersonalDebtModal">
                         <i class="bi bi-plus-circle me-2"></i>Yeni Borç Ekle
@@ -185,17 +251,38 @@ $(document).ready(function() {
     // Add Form
     $('#addForm').submit(function(e) {
         e.preventDefault();
+        
+        // Show loading state
+        const submitBtn = $(this).find('button[type="submit"]');
+        const originalText = submitBtn.text();
+        submitBtn.prop('disabled', true).text('Kaydediliyor...');
+        
         $.ajax({
-            url: 'ajax/add_personal_debt.php',
+            url: '/ajax/add_personal_debt.php',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
             success: function(response) {
+                console.log('Success response:', response);
                 if (response.success) {
+                    $('#addPersonalDebtModal').modal('hide');
                     location.reload();
                 } else {
                     alert(response.message || 'Bir hata oluştu.');
                 }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', {
+                    status: status,
+                    error: error,
+                    responseText: xhr.responseText,
+                    statusCode: xhr.status
+                });
+                alert('Sunucu hatası: ' + (xhr.responseText || error));
+            },
+            complete: function() {
+                // Reset button state
+                submitBtn.prop('disabled', false).text(originalText);
             }
         });
     });

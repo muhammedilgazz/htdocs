@@ -77,6 +77,17 @@ class BankAccount {
     }
 
     /**
+     * Belirli bir kişi/kurum adına kayıtlı banka hesaplarını getirir.
+     *
+     * @param string $account_holder
+     * @return array
+     */
+    public function getByAccountHolder(string $account_holder): array {
+        $sql = "SELECT * FROM bank_accounts WHERE TRIM(account_holder) = TRIM(?) ORDER BY id DESC";
+        return $this->db->fetchAll($sql, [$account_holder]);
+    }
+
+    /**
      * Bir banka hesabı kaydını ID'sine göre getirir.
      *
      * @param int $id Getirilecek banka hesabı kaydının ID'si.

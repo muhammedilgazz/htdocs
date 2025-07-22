@@ -1,21 +1,44 @@
 <?php
+define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/config/config.php';
-require_once ROOT_PATH . '/models/Todo.php';
+use App\Models\Todo;
+use App\Models\Database; // Database sınıfını dahil et
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
-    $todo_model = new Todo();
-    
+require_once ROOT_PATH . '/config/config.php'; // config.php'yi buraya taşıdık, çünkü ROOT_PATH'i kullanıyor
+// require_once ROOT_PATH . '/app/Models/Todo.php'; // Zaten use ile belirtildi
+// require_once ROOT_PATH . '/app/Models/Database.php'; // Zaten use ile belirtildi
+
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['success' => false, 'message' => 'Geçersiz istek!']);
+    exit;
+}
+
+$task = trim($_POST['task'] ?? '');
+$due_date = $_POST['due_date'] ?? null; // due_date'i al
+
+if ($task === '') {
+    echo json_encode(['success' => false, 'message' => 'Görev boş olamaz!']);
+    exit;
+}
+
+try {
+    $db = Database::getInstance(); // Singleton veritabanı bağlantısını kullan
+    $todo_model = new App\Models\Todo($db); // Todo modelini başlat
+
     $data = [
-        'task' => sanitize_input($_POST['task']),
-        'status' => sanitize_input($_POST['status']) ?? 'Beklemede',
-        'due_date' => sanitize_input($_POST['due_date']) ?? null
+        'task' => $task,
+        'status' => 'Beklemede', // Varsayılan durum
+        'due_date' => $due_date // due_date'i ekle
     ];
 
     if ($todo_model->add($data)) {
-        json_response(['success' => true, 'message' => 'To-Do başarıyla eklendi.']);
+        echo json_encode(['success' => true, 'message' => 'Görev başarıyla eklendi.']);
     } else {
-        json_response(['success' => false, 'message' => 'To-Do eklenirken bir hata oluştu.'], 500);
+        echo json_encode(['success' => false, 'message' => 'Görev eklenirken bir hata oluştu.']);
     }
-} else {
-    json_response(['success' => false, 'message' => 'Geçersiz istek.'], 400);
+} catch (Exception $e) {
+    error_log("Add Todo Error: " . $e->getMessage());
+    echo json_encode(['success' => false, 'message' => 'Veritabanı hatası!']);
 }

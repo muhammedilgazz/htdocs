@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Database;
+use PDO;
 
 class Todo {
-    private $db;
+    protected $db;
 
-    public function __construct() {
-        $this->db = Database::getInstance();
+    public function __construct($db) {
+        $this->db = $db;
     }
 
     /**
@@ -18,7 +18,7 @@ class Todo {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function add(array $data): bool {
-        $sql = "INSERT INTO todos (task, status, due_date) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO to_do (task, status, due_date) VALUES (?, ?, ?)";
         $params = [
             $data['task'] ?? null,
             $data['status'] ?? 'Beklemede',
@@ -35,7 +35,7 @@ class Todo {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
-        $sql = "UPDATE todos SET task = ?, status = ?, due_date = ? WHERE id = ?";
+        $sql = "UPDATE to_do SET task = ?, status = ?, due_date = ? WHERE id = ?";
         $params = [
             $data['task'] ?? null,
             $data['status'] ?? null,
@@ -52,7 +52,7 @@ class Todo {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function delete(int $id): bool {
-        $sql = "DELETE FROM todos WHERE id = ?";
+        $sql = "DELETE FROM to_do WHERE id = ?";
         return $this->db->execute($sql, [$id]);
     }
 
@@ -61,10 +61,9 @@ class Todo {
      *
      * @return array To-Do listesi.
      */
-    public function getAll(): array {
-        $sql = "SELECT * FROM todos ORDER BY created_at DESC";
-        $result = $this->db->fetchAll($sql);
-        return is_array($result) ? $result : [];
+    public function getAll() {
+        $stmt = $this->db->query('SELECT * FROM to_do ORDER BY id DESC');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -74,7 +73,7 @@ class Todo {
      * @return array|false To-Do verileri veya bulunamazsa false.
      */
     public function getById(int $id) {
-        $sql = "SELECT * FROM todos WHERE id = ?";
+        $sql = "SELECT * FROM to_do WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
     }
 }

@@ -3,7 +3,8 @@
 // app/container_bindings.php
 
 use App\Core\Container;
-use App\Core\DatabaseConnection;
+// use App\Core\DatabaseConnection; // Bu satırı kaldırdık
+use App\Models\Database; // App\Models\Database sınıfını dahil et
 use App\Interfaces\ExpenseRepositoryInterface;
 use App\Interfaces\ExpenseServiceInterface;
 use App\Repositories\ExpenseRepository;
@@ -16,7 +17,7 @@ $container = Container::getInstance();
 
 // Bind the PDO connection. We create it once and return the same instance.
 $container->bind(PDO::class, function() {
-    return DatabaseConnection::getPDO();
+    return Database::getInstance()->getPdo(); // Database sınıfının getInstance metodunu kullan
 });
 
 // Bind Repositories

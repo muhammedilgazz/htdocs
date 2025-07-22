@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // DataTable initialization
     $('#incomesTable').DataTable({
         language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json'
+            url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json'
         },
         order: [[4, 'desc']] // Alım tarihine göre sırala
     });
@@ -318,8 +318,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            toastr.error('Bir hata oluştu.');
+            console.error('Error updating income:', error);
+            toastr.error('Gelir güncellenirken bir hata oluştu.');
         });
     });
 });
@@ -348,7 +348,7 @@ function editIncome(id) {
             document.getElementById('edit_amount').value = income.amount;
             document.getElementById('edit_period').value = income.period;
             document.getElementById('edit_receive_date').value = income.receive_date;
-            document.getElementById('edit_is_debt').value = income.is_debt;
+            document.getElementById('edit_is_debt').value = income.is_debt == 1 ? 'yes' : 'no';
             document.getElementById('edit_description').value = income.description || '';
             
             // Modal'ı aç
@@ -358,8 +358,8 @@ function editIncome(id) {
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        toastr.error('Bir hata oluştu: ' + error.message);
+        console.error('Error fetching income details:', error);
+        toastr.error('Gelir bilgileri alınırken bir hata oluştu: ' + error.message);
     });
 }
 
@@ -384,8 +384,8 @@ function deleteIncome(id) {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            toastr.error('Bir hata oluştu.');
+            console.error('Error deleting income:', error);
+            toastr.error('Gelir silinirken bir hata oluştu.');
         });
     }
 }

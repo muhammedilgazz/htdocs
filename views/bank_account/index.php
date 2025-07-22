@@ -27,18 +27,18 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 </div>
 
                 <!-- Kendi Hesaplarım -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Kendi Hesaplarım</h5>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Kendi Hesaplarım</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <?php if (empty($own_accounts)): ?>
                         <div class="text-center py-4">
                             <p class="text-muted">Henüz kendinize ait bir banka hesabı eklemediniz.</p>
                         </div>
                         <?php else: ?>
                         <div class="table-responsive">
-                            <table id="ownAccountsTable" class="table table-striped table-hover">
+                            <table id="ownAccountsTable" class="table align-middle mb-0 table-striped">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Hesap Sahibi</th>
@@ -71,18 +71,18 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 </div>
 
                 <!-- Diğer Hesaplar -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Diğer Kayıtlı Hesaplar</h5>
+                <div class="card p-0 mt-4">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Diğer Kayıtlı Hesaplar</h5>
                     </div>
-                    <div class="card-body">
-                         <?php if (empty($other_accounts)): ?>
+                    <div class="card-body p-0">
+                        <?php if (empty($other_accounts)): ?>
                         <div class="text-center py-4">
                             <p class="text-muted">Henüz başkasına ait bir banka hesabı eklemediniz.</p>
                         </div>
                         <?php else: ?>
                         <div class="table-responsive">
-                            <table id="otherAccountsTable" class="table table-striped table-hover">
+                            <table id="otherAccountsTable" class="table align-middle mb-0 table-striped">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Hesap Sahibi</th>
@@ -127,6 +127,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form id="accountForm">
+                <input type="hidden" name="bank_logo" value="">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id">
                     <input type="hidden" name="csrf_token" value="<?= generate_csrf_token() ?>">

@@ -38,13 +38,15 @@ class AccountCredential {
      * @return bool İşlem başarılıysa true, değilse false.
      */
     public function update(int $id, array $data): bool {
+        // Mevcut şifreyi korumak için önce mevcut kaydı al
+        $current = $this->getById($id);
         $sql = "UPDATE account_credentials SET platform_name = ?, username = ?, login_url = ?, account_type_id = ?, password_hash = ? WHERE id = ?";
         $params = [
             $data['platform_name'] ?? null,
             $data['username'] ?? null,
             $data['login_url'] ?? null,
             $data['account_type_id'] ?? 6,
-            $data['password_hash'] ?? null,
+            (isset($data['password_hash']) && !empty($data['password_hash'])) ? $data['password_hash'] : ($current['password_hash'] ?? null),
             $id
         ];
         return $this->db->execute($sql, $params);

@@ -70,6 +70,7 @@ $route_mappings = [
     'dreamgoal' => 'DreamGoalController',
     'favoriteproduct' => 'FavoriteProductController',
     'market' => 'MarketController',
+    'report' => 'ReportController',
 ];
 
 $controller_name_segment = $segments[0] ?? '';

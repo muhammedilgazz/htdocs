@@ -2,6 +2,7 @@
 define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/config/config.php';
 require_once ROOT_PATH . '/app/Models/BankAccount.php';
+require_once ROOT_PATH . '/app/Models/Database.php';
 
 use App\Models\BankAccount;
 

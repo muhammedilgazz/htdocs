@@ -1,3 +1,11 @@
+<?php
+if (!defined('ROOT_PATH')) {
+    define('ROOT_PATH', dirname(__DIR__, 2)); // htdocs dizinine ulaşmak için
+}
+if (!defined('APP_NAME')) { // config.php'nin yüklenip yüklenmediğini kontrol et
+    require_once ROOT_PATH . '/config/config.php';
+}
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -47,26 +55,29 @@
     
     
     <!-- Ekash Minimal Design CSS -->
-    <link href="<?= BASE_URL ?>assets/css/ekash-minimal.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/ekash-minimal.css?v=<?= filemtime(ROOT_PATH . '/assets/css/ekash-minimal.css') ?>" rel="stylesheet">
     
     <!-- Modern Enhanced CSS -->
-    <link href="<?= BASE_URL ?>assets/css/modern-enhanced.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/modern-enhanced.css?v=<?= filemtime(ROOT_PATH . '/assets/css/modern-enhanced.css') ?>" rel="stylesheet">
     
     <!-- Enhanced Components CSS -->
-    <link href="<?= BASE_URL ?>assets/css/components-enhanced.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/components-enhanced.css?v=<?= filemtime(ROOT_PATH . '/assets/css/components-enhanced.css') ?>" rel="stylesheet">
     
     <!-- Custom Color Palette -->
-    <link href="<?= BASE_URL ?>assets/css/custom-colors.css?v=<?= time() ?>" rel="stylesheet">
+    <link href="<?= BASE_URL ?>assets/css/custom-colors.css?v=<?= filemtime(ROOT_PATH . '/assets/css/custom-colors.css') ?>" rel="stylesheet">
     
     <!-- Perfect Scrollbar -->
     <link href="<?= BASE_URL ?>assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/css/perfect-scrollbar.css'">
     
     <!-- Toastr -->
-    <link href="<?= BASE_URL ?>assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https.cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
+    <link href="<?= BASE_URL ?>assets/vendor/toastr/toastr.min.css" rel="stylesheet" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css'">
     
     <!-- DataTables CSS -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <!-- Summernote CSS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+    <!-- Custom To-Do CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/custom-todo.css">
 </head>

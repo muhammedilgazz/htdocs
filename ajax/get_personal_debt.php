@@ -1,9 +1,9 @@
 <?php
 require_once ROOT_PATH . '/config/config.php';
-require_once ROOT_PATH . '/models/PersonalDebt.php';
+require_once ROOT_PATH . '/app/Models/PersonalDebt.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
-    $personal_debt_model = new PersonalDebt();
+    $personal_debt_model = new \App\Models\PersonalDebt();
     $id = (int)$_POST['id'];
 
     $debt = $personal_debt_model->getById($id);

@@ -73,6 +73,18 @@ class PersonalDebt {
     }
 
     /**
+     * Belirli bir ay ve yıla ait şahıs borçlarını getirir.
+     *
+     * @param int $year
+     * @param int $month
+     * @return array
+     */
+    public function getByMonth(int $year, int $month): array {
+        $sql = "SELECT * FROM personal_debts WHERE YEAR(due_date) = ? AND MONTH(due_date) = ? ORDER BY due_date DESC";
+        return $this->db->fetchAll($sql, [$year, $month]);
+    }
+
+    /**
      * Bir şahıs borcu kaydını ID'sine göre getirir.
      *
      * @param int $id Getirilecek şahıs borcu kaydının ID'si.

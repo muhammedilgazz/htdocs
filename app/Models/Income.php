@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Core\DatabaseConnection;
+use App\Models\Database;
 use PDO;
 
 class Income {
     private $pdo;
 
     public function __construct() {
-        $this->pdo = DatabaseConnection::getPDO();
+        $this->pdo = Database::getInstance()->getPdo();
     }
     
     /**
@@ -156,5 +156,29 @@ class Income {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll();
+    }
+
+    public function getTotalForMonth($year, $month) {
+        $sql = "SELECT SUM(amount) as total FROM incomes WHERE YEAR(receive_date) = :year AND MONTH(receive_date) = :month AND status = 'active'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['year' => $year, 'month' => $month]);
+        $row = $stmt->fetch();
+        return $row && isset($row['total']) ? (float)$row['total'] : 0;
+    }
+
+    public function getTotalTLForMonth($year, $month, $exchangeRate) {
+        $sql = "SELECT amount, currency FROM incomes WHERE YEAR(receive_date) = :year AND MONTH(receive_date) = :month AND status = 'active'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['year' => $year, 'month' => $month]);
+        $rows = $stmt->fetchAll();
+        $total = 0;
+        foreach ($rows as $row) {
+            if (strtoupper($row['currency']) === 'TL' || strtoupper($row['currency']) === 'TRY') {
+                $total += (float)$row['amount'];
+            } else {
+                $total += (float)$row['amount'] * $exchangeRate;
+            }
+        }
+        return $total;
     }
 }

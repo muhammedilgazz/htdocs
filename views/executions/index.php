@@ -1,6 +1,18 @@
 <?php
 require_once ROOT_PATH . '/views/partials/head.php';
 ?>
+<style>
+    .row.equal-height > [class^="col-"] > .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+    .row.equal-height > [class^="col-"] {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 <body>
 <div class="app-container">
     <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
@@ -14,6 +26,60 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 $breadcrumb_active = 'İcra Borçları';
                 include ROOT_PATH . '/views/partials/page_header.php';
                 ?>
+                <div class="row mb-4 equal-height">
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-danger p-3"><i class="bi bi-cash-coin fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Toplam Tutar</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['total_amount'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-primary p-3"><i class="bi bi-folder2-open fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Toplam Dosya Sayısı</div>
+                                    <div class="fs-5 fw-bold"><?= $summary['total_files'] ?? 0 ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-info p-3"><i class="bi bi-calendar-event fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Bu Ay Ödenecek</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['this_month'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-success p-3"><i class="bi bi-cash-stack fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Toplam Ödenen</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['total_paid'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end mb-3">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExecutionDebtModal">
                         <i class="bi bi-plus-circle me-2"></i>Yeni İcra Borcu Ekle

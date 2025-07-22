@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         .auth-info {
             flex: 1 1 0;
-            background: linear-gradient(135deg, #4f8cff 0%, #6c2bd7 100%);
+            background: linear-gradient(90deg, #232a3b 0%, #181e2a 100%);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -214,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 1.1rem;
         }
         .btn-primary {
-            background: #3a32e2;
+            background: #181e2a;
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-top: 0.5rem;
         }
         .btn-primary:hover, .btn-primary:focus {
-            background: #2a1dbb;
+            background: #232a3b;
             color: #fff;
         }
         .form-check-input:checked {

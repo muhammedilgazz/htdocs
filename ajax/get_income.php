@@ -1,5 +1,6 @@
 <?php
 require_once '../config/config.php';
+require_once '../app/Models/Database.php';
 require_once '../app/Models/Income.php';
 
 header('Content-Type: application/json');
@@ -25,6 +26,6 @@ try {
     json_response(['success' => true, 'data' => $income]);
     
 } catch (Exception $e) {
-    error_log("Get income error: " . $e->getMessage());
-    json_response(['success' => false, 'message' => 'Gelir bilgileri alınırken hata oluştu.']);
-} 
+    error_log("Get income error: " . $e->getMessage() . " on line " . $e->getLine() . " in file " . $e->getFile());
+    json_response(['success' => false, 'message' => 'Gelir bilgileri alınırken hata oluştu. Lütfen logları kontrol edin.']);
+}

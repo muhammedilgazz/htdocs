@@ -1,0 +1,96 @@
+/* To-Do List Modern Tasarım CSS */
+
+.tab-slide .nav-tabs {
+    border: none;
+    background: #f7f8fa;
+    border-radius: 16px;
+    padding: 4px;
+    display: flex;
+    gap: 8px;
+}
+.tab-slide .nav-link {
+    border: none;
+    background: transparent;
+    color: #b0b7c3;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 10px 24px;
+    transition: background 0.2s, color 0.2s;
+}
+.tab-slide .nav-link.active {
+    background: #fff;
+    color: #3d4a5c;
+    box-shadow: 0 2px 8px 0 rgba(79,140,255,0.06);
+}
+
+.header-task {
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    padding: 18px 24px;
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px 0 rgba(79,140,255,0.06);
+    margin-bottom: 0;
+}
+.accordion-item {
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px 0 rgba(79,140,255,0.06);
+    border: none;
+}
+.title-task h6 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.num-task {
+    background: #f7f8fa;
+    color: #6c63ff;
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 8px;
+}
+.list-task-item {
+    display: flex;
+    align-items: flex-start;
+    background: #f7f8fa;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 16px 20px;
+    gap: 12px;
+    box-shadow: none;
+}
+.list-task-item input[type="checkbox"] {
+    accent-color: #6c63ff;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+}
+.content-task .font-title-btn {
+    font-weight: 700;
+    font-size: 1rem;
+}
+.content-task p {
+    margin: 0;
+    color: #b0b7c3;
+    font-size: 0.95rem;
+}
+.icon-more {
+    font-size: 1.2rem;
+    color: #b0b7c3;
+    cursor: pointer;
+}
+.mt-24 { margin-top: 24px !important; }
+.mt-28 { margin-top: 28px !important; }
+.mt-12 { margin-top: 12px !important; }
+.pb-20 { padding-bottom: 20px !important; }
+.text-black-2 { color: #3d4a5c !important; }
+.text-black-5 { color: #b0b7c3 !important; }
+.fw-5 { font-weight: 500 !important; } 

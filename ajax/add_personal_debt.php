@@ -1,19 +1,21 @@
 <?php
+define('ROOT_PATH', dirname(__DIR__));
 require_once ROOT_PATH . '/config/config.php';
-require_once ROOT_PATH . '/models/PersonalDebt.php';
+require_once ROOT_PATH . '/app/Models/Database.php';
+require_once ROOT_PATH . '/app/Models/PersonalDebt.php';
 
 // Debugging: Log all POST data received
 error_log("add_personal_debt.php received POST data: " . print_r($_POST, true));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_token'])) {
-    $personal_debt_model = new PersonalDebt();
+    $personal_debt_model = new \App\Models\PersonalDebt();
     
     $data = [
         'to_whom' => sanitize_input($_POST['to_whom']),
         'amount' => (float)$_POST['amount'] ?? 0,
         'due_date' => sanitize_input($_POST['due_date']) ?? null,
         'paid' => (float)$_POST['paid'] ?? 0,
-        'remaining' => (float)$_POST['remaining']) ?? 0,
+        'remaining' => (float)$_POST['remaining'] ?? 0,
         'planned_payment_date' => sanitize_input($_POST['planned_payment_date']) ?? null
     ];
 

@@ -145,7 +145,7 @@
                 <li><h6 class="dropdown-header">Rapor Oluştur</h6></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#monthlyPaymentReportModal">
+                    <a class="dropdown-item" href="/report">
                         <i class="material-icons-round me-3">calendar_month</i>
                         <div>
                             <h6 class="mb-1">Aylık Ödeme Raporu</h6>

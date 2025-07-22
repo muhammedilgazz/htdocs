@@ -44,7 +44,7 @@ define('DB_USER', $_ENV['DB_USER'] ?? 'root');
 define('DB_PASS', $_ENV['DB_PASS'] ?? '');
 
 // Cache ayarları
-define('CACHE_ENABLED', true);
+define('CACHE_ENABLED', false); // Kullanıcı isteği üzerine önbellekleme devre dışı bırakıldı
 define('CACHE_DURATION', 300); // 5 dakika
 
 // Güvenlik fonksiyonları

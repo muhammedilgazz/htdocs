@@ -62,14 +62,12 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 </div>
 
                 <!-- AI İstekleri Tablosu -->
-                <div class="card p-0" style="box-shadow:0 2px 12px 0 rgba(79,140,255,0.06);">
-                    <div class="card-header bg-white" style="border-bottom:1px solid #f0f2f7; padding:0.75rem 1rem;">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">AI İstekleri</h5>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
-                                <i class="bi bi-plus-circle me-1"></i>Yeni AI İsteği
-                            </button>
-                        </div>
+                <div class="card p-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0" style="font-weight:600; color:#222; font-size:1rem;">AI İstekleri</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#harcamaEkleModal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem;">
+                            <i class="bi bi-plus-circle me-1"></i>Yeni AI İsteği
+                        </button>
                     </div>
                     <div class="card-body p-0">
                         <?php if (empty($rows)): ?>
@@ -82,7 +80,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                         </div>
                         <?php else: ?>
                         <div class="table-responsive">
-                            <table class="table align-middle mb-0" style="min-width:900px; font-size:0.9rem;">
+                            <table class="table align-middle mb-0 table-striped" style="min-width:900px; font-size:0.9rem;">
                                 <thead style="background:#f5f7fa;">
                                     <tr style="color:#222; font-weight:600; font-size:0.85rem;">
                                         <th style="padding-left:1.5rem;">Sıra No</th>

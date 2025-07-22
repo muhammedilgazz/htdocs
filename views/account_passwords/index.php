@@ -31,11 +31,11 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <?php else: ?>
                 <div class="card p-0">
                     <div class="card-header bg-white">
-                        <h5 class="mb-0">Hesap ve Şifreler Listesi</h5>
+                        <h5 class="mb-0">Hesaplar ve Şifreler</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table id="accountPasswordsTable" class="table align-middle mb-0 datatable-feature">
+                            <table id="accountPasswordsTable" class="table align-middle mb-0 table-striped datatable-feature">
                                 <thead>
                                     <tr>
                                         <th>Platform</th>

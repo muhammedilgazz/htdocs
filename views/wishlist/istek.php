@@ -31,19 +31,11 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 <?php else: ?>
                 <div class="card p-0">
                     <div class="card-header bg-white">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">İstekler Listesi</h5>
-                            <div class="d-flex align-items-center">
-                                <?php if (!empty($rows)): ?>
-                                    <h5 class="mb-0 text-end me-3">Toplam: <?= count($rows) ?> öğe</h5>
-                                <?php endif; ?>
-                                <!-- Export button can be added here if needed -->
-                            </div>
-                        </div>
+                        <h5 class="mb-0">İstek Listesi</h5>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
-                            <table id="wishlistTable" class="table align-middle mb-0">
+                            <table id="wishlistTable" class="table align-middle mb-0 table-striped">
                                 <thead>
                                     <tr>
                                         <th>Resim</th>

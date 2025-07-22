@@ -20,18 +20,18 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>Ürün Listesi</h5>
+                            <div class="card p-0">
+                                <div class="card-header bg-white">
+                                    <h5 class="mb-0">Ürün Listesi</h5>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body p-0">
                                     <div class="table-responsive">
-                                        <table id="marketTable" class="table table-striped">
+                                        <table id="marketTable" class="table align-middle mb-0 table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>Ürün Resmi</th>
                                                     <th>Ürün Adı</th>
-                                                    <th>Firma Adı</th>
+                                                    <th>Kategori</th>
                                                     <th>Link</th>
                                                     <th>Adet</th>
                                                     <th>Birim Fiyatı</th>
@@ -47,7 +47,7 @@
                                                         <tr>
                                                             <td><img src="<?= htmlspecialchars($product['image_url'] ?? '') ?>" alt="<?= htmlspecialchars($product['product_name']) ?>" width="50" style="height: 50px; object-fit: cover;"></td>
                                                             <td><?= htmlspecialchars($product['product_name']) ?></td>
-                                                            <td><?= htmlspecialchars($product['company_name'] ?? '') ?></td>
+                                                            <td><?= htmlspecialchars($product['category'] ?? '') ?></td>
                                                             <td><a href="<?= htmlspecialchars($product['link'] ?? '#') ?>" target="_blank">Ürüne Git</a></td>
                                                             <td><?= htmlspecialchars($product['quantity']) ?></td>
                                                             <td><?= htmlspecialchars($product['price']) ?> ₺</td>
@@ -55,8 +55,10 @@
                                                             <td><?= htmlspecialchars($product['min_stock']) ?></td>
                                                             <td><?= htmlspecialchars($product['current_stock']) ?></td>
                                                             <td>
-                                                                <button class="btn btn-sm btn-warning">Düzenle</button>
-                                                                <button class="btn btn-sm btn-danger">Sil</button>
+                                                                <div class="d-flex gap-1">
+                                                                    <button class="btn btn-sm btn-primary" title="Düzenle"><i class="bi bi-pencil"></i></button>
+                                                                    <button class="btn btn-sm btn-primary" title="Sil"><i class="bi bi-trash"></i></button>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -89,6 +91,10 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="company_name" class="form-label">Firma Adı</label>
                                                 <input type="text" class="form-control" id="company_name" name="company_name">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="category" class="form-label">Kategori</label>
+                                                <input type="text" class="form-control" id="category" name="category" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="link" class="form-label">Ürün Linki</label>

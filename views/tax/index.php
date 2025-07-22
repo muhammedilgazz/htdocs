@@ -1,6 +1,18 @@
 <?php
 require_once ROOT_PATH . '/views/partials/head.php';
 ?>
+<style>
+    .row.equal-height > [class^="col-"] > .card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+    .row.equal-height > [class^="col-"] {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
 <body>
 <div class="app-container">
     <?php require_once ROOT_PATH . '/views/partials/sidebar.php'; ?>
@@ -14,6 +26,60 @@ require_once ROOT_PATH . '/views/partials/head.php';
                 $breadcrumb_active = 'Vergi Borçları';
                 include ROOT_PATH . '/views/partials/page_header.php';
                 ?>
+                <div class="row mb-4 equal-height">
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-primary p-3"><i class="bi bi-person-badge fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Şahsi Vergi (Toplam)</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['personal'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-info p-3"><i class="bi bi-briefcase fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Timdesigners Vergi (Toplam)</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['timdesigners'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3 mb-md-0">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-warning p-3"><i class="bi bi-building fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">RentAkar Vergi (Toplam)</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['rentakar'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3">
+                                    <span class="badge bg-danger p-3"><i class="bi bi-cash-coin fs-4"></i></span>
+                                </div>
+                                <div>
+                                    <div class="text-muted small">Toplam Borç</div>
+                                    <div class="fs-5 fw-bold">₺<?= number_format($summary['total'] ?? 0, 2, ',', '.') ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-end mb-3">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaxDebtModal">
                         <i class="bi bi-plus-circle me-2"></i>Yeni Vergi Borcu Ekle

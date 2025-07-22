@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && validate_csrf_token($_POST['csrf_to
         'amount' => (float)$_POST['amount'],
         'period' => sanitize_input($_POST['period']),
         'receive_date' => sanitize_input($_POST['receive_date']),
-        'is_debt' => sanitize_input($_POST['is_debt']),
+        'is_debt' => isset($_POST['is_debt']) ? (int)sanitize_input($_POST['is_debt']) : 0, // Varsayılan olarak 0 (hayır)
         'description' => sanitize_input($_POST['description'] ?? ''),
         'status' => 'active'
     ];
