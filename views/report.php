@@ -83,7 +83,7 @@ require_once __DIR__ . '/partials/head.php';
 
                     <!-- Sabit Giderler -->
                     <div class="card mb-4">
-                        <div class="card-header bg-sabit-giderler">
+                        <div class="card-header bg-light">
                             <span class="me-2">💸</span> Sabit Giderler
                         </div>
                         <div class="card-body p-0">
@@ -110,7 +110,7 @@ require_once __DIR__ . '/partials/head.php';
 
                     <!-- Harcamalar (Abonelik ve Kişisel İhtiyaçlar) -->
                     <div class="card mb-4">
-                        <div class="card-header bg-diger-harcamalar">
+                        <div class="card-header bg-light">
                             <span class="me-2">🧾</span> Harcamalar (Abonelik ve Kişisel İhtiyaçlar)
                         </div>
                         <div class="card-body p-0">

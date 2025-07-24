@@ -3,15 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\MarketProduct;
-use App\Core\DatabaseConnection;
-
+use App\Models\Database; // Database sınıfını dahil et
+// use App\Core\DatabaseConnection; // Bu satırı kaldırdık
+ 
 class MarketController
 {
     private $marketProductModel;
-
+ 
     public function __construct()
     {
-        $db = DatabaseConnection::getPDO();
+        $db = Database::getInstance()->getPdo(); // Database sınıfının getInstance metodunu kullan
         $this->marketProductModel = new MarketProduct($db);
     }
 

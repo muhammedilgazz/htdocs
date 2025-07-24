@@ -61,6 +61,12 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     </div>
                 </div>
 
+                <!-- AI İstekleri Örnek Sorgu -->
+                <div class="alert alert-info mb-3" style="background:#f8fafc; border:1.5px solid #dbeafe; color:#1e293b; border-radius:0.7rem;">
+                    <strong>Örnek Sorgu:</strong><br>
+                    <span style="font-size:1.05rem;">Ör: Üye olduğum Bahis sitelerini listele</span><br>
+                    <span style="font-size:0.95rem; color:#64748b;">(Hesaplar ve şifrelerden bahis siteleri olanları bulur, numara devamlılığını eler ve listeyi getirir)</span>
+                </div>
                 <!-- AI İstekleri Tablosu -->
                 <div class="card p-0">
                     <div class="card-header bg-white">

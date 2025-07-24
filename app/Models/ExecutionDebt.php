@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Core\DatabaseConnection;
+use App\Models\Database; // Database sınıfını dahil et
 use PDO;
-
+ 
 class ExecutionDebt {
     private PDO $db;
-
+ 
     public function __construct() {
-        $this->db = DatabaseConnection::getPDO();
+        $this->db = Database::getInstance()->getPdo(); // Database sınıfının getInstance metodunu kullan
     }
 
     /**
@@ -95,5 +95,49 @@ class ExecutionDebt {
         $stmt->execute([$id]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ?: null;
+    }
+
+    /**
+     * Tüm icra borçlarının güncel borç miktarını döndürür.
+     *
+     * @return float
+     */
+    public function getTotalCurrentDebtAmount(): float {
+        $sql = "SELECT SUM(current_debt) FROM execution_debts";
+        $stmt = $this->db->query($sql);
+        return (float)$stmt->fetchColumn();
+    }
+
+    /**
+     * Toplam icra borcu kaydı sayısını döndürür.
+     *
+     * @return int
+     */
+    public function getTotalExecutionFilesCount(): int {
+        $sql = "SELECT COUNT(*) FROM execution_debts";
+        $stmt = $this->db->query($sql);
+        return (int)$stmt->fetchColumn();
+    }
+
+    /**
+     * Bu ay ödenecek planlanan ödemelerin toplamını döndürür.
+     *
+     * @return float
+     */
+    public function getThisMonthTotalPlannedPayment(): float {
+        $sql = "SELECT SUM(this_month_payment) FROM execution_debts WHERE MONTH(start_date) = MONTH(CURRENT_DATE()) AND YEAR(start_date) = YEAR(CURRENT_DATE())";
+        $stmt = $this->db->query($sql);
+        return (float)$stmt->fetchColumn();
+    }
+
+    /**
+     * Toplam ödenen miktarı döndürür (anapara borcu - güncel borç).
+     *
+     * @return float
+     */
+    public function getTotalPaidAmount(): float {
+        $sql = "SELECT SUM(principal_debt - current_debt) FROM execution_debts";
+        $stmt = $this->db->query($sql);
+        return (float)$stmt->fetchColumn();
     }
 }

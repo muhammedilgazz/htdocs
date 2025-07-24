@@ -10,7 +10,7 @@
     <nav class="sidebar-nav">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="/" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>">
+                <a href="/" class="nav-link <?= ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php') ? 'active' : '' ?>">
                     <i class="bi bi-house-door"></i>
                     <span>Dashboard</span>
                 </a>
@@ -132,14 +132,15 @@
                                 <span>Hayaller</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/wishlist-favori.php" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'wishlist-favori.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
-                                <i class="bi bi-star"></i>
-                                <span>Favoriler</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
+            </li>
+            <!-- Favori Ürünler Ana Menü -->
+            <li class="nav-item">
+                <a href="/favorite-products" class="nav-link <?= strpos($_SERVER['REQUEST_URI'], '/favorite-products') !== false ? 'active' : '' ?>">
+                    <i class="bi bi-bookmark-star"></i>
+                    <span>Favori Ürünler</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a href="/market" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'market.php' ? 'active' : '' ?>">
@@ -259,6 +260,57 @@
                             <a href="/todolist" class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'todolist.php' ? 'active' : '' ?>" style="font-size: 14px; padding: 8px 16px;">
                                 <i class="bi bi-check2-square"></i>
                                 <span>To-Do List</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            
+            <!-- Kişisel Gelişim Ana Menü -->
+            <li class="nav-item">
+                <a href="#" class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#gelisimSubmenu" aria-expanded="false" aria-controls="gelisimSubmenu">
+                    <div>
+                        <i class="bi bi-person-lines-fill"></i>
+                        <span>Kişisel Gelişim</span>
+                    </div>
+                    <i class="bi bi-chevron-down" style="font-size: 12px;"></i>
+                </a>
+                <div class="collapse" id="gelisimSubmenu">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a href="/ai-dunyasi" class="nav-link" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-cpu"></i>
+                                <span>AI Dünyası</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/youtube" class="nav-link" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-youtube"></i>
+                                <span>Youtube</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/egitimler" class="nav-link" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-journal-richtext"></i>
+                                <span>Eğitimler</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/arastirilacak-konular" class="nav-link" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-search"></i>
+                                <span>Araştırılacak Konular</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/hukuk" class="nav-link" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-balance-scale"></i>
+                                <span>Hukuk</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/universite" class="nav-link" style="font-size: 14px; padding: 8px 16px;">
+                                <i class="bi bi-mortarboard"></i>
+                                <span>Üniversite</span>
                             </a>
                         </li>
                     </ul>

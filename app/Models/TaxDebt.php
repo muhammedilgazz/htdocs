@@ -90,4 +90,25 @@ class TaxDebt {
         $sql = "SELECT * FROM tax_debts WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
     }
+
+    /**
+     * Tüm vergi borçlarının toplam tutarını döndürür.
+     *
+     * @return float
+     */
+    public function getTotalTaxDebtAmount(): float {
+        $sql = "SELECT SUM(total) FROM tax_debts";
+        return (float)$this->db->fetchColumn($sql);
+    }
+
+    /**
+     * Belirli bir sahibe ait vergi borçlarının toplam tutarını döndürür.
+     *
+     * @param string $owner_name Sahip adı.
+     * @return float
+     */
+    public function getTaxDebtAmountByOwner(string $owner_name): float {
+        $sql = "SELECT SUM(total) FROM tax_debts WHERE owner = ?";
+        return (float)$this->db->fetchColumn($sql, [$owner_name]);
+    }
 }

@@ -34,7 +34,7 @@ if (file_exists(__DIR__ . '/../../bootstrap.php')) {
                 }
             ?>
             
-            <div class="flex-grow-1">
+            <div class="flex-grow-1" style="margin-left:280px;">
                 <?php
                     if (!isset($header) || $header === true) {
                         include ROOT_PATH . '/views/partials/header.php';

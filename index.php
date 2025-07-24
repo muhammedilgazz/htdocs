@@ -21,9 +21,8 @@ if (substr($request_uri, 0, strlen($base_path)) == $base_path) {
 } else {
     $request_path = $request_uri;
 }
-// Query string'i ayıkla
-$request_path = explode('?', $request_path, 2)[0];
-$request_path = trim($request_path, '/');
+// Query string'i ayıkla ve yolu temizle
+$request_path = trim(explode('?', $request_path, 2)[0], '/');
 $segments = explode('/', $request_path);
 
 // If the first segment is the script name, treat it as the root
@@ -69,6 +68,7 @@ $route_mappings = [
     'privacy' => 'PrivacyController',
     'dreamgoal' => 'DreamGoalController',
     'favoriteproduct' => 'FavoriteProductController',
+    'favorite-products' => 'FavoriteProductController',
     'market' => 'MarketController',
     'report' => 'ReportController',
 ];
@@ -114,4 +114,8 @@ if (!method_exists($controller, $method_name)) {
     exit;
 }
 
-$controller->$method_name();
+if (isset($segments[2]) && !empty($segments[2])) {
+    $controller->$method_name($segments[2]);
+} else {
+    $controller->$method_name();
+}
