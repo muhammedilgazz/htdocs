@@ -1,3 +1,10 @@
 [24-Jul-2025 12:54:13 Europe/Istanbul] EXCEPTION: Call to undefined method App\Models\SgkDebt::getSgkDebtAmountByOwner() in C:\xampp\htdocs\app\Controllers\SgkController.php:19
 [24-Jul-2025 12:56:10 Europe/Istanbul] EXCEPTION: Call to undefined method App\Models\Expense::getAll() in C:\xampp\htdocs\app\Controllers\ReportController.php:35
 [24-Jul-2025 12:59:10 Europe/Istanbul] EXCEPTION: Call to undefined method App\Services\ExpenseService::getAllExpensesByType() in C:\xampp\htdocs\app\Controllers\ReportController.php:55
+[24-Jul-2025 13:36:58 Europe/Istanbul] EXCEPTION: Call to undefined method App\Services\ExpenseService::getAllExpensesByType() in C:\xampp\htdocs\app\Controllers\ReportController.php:55
+[24-Jul-2025 13:43:34 Europe/Istanbul] EXCEPTION: Call to undefined method App\Services\ExpenseService::getAllExpensesByType() in C:\xampp\htdocs\app\Controllers\ReportController.php:55
+[24-Jul-2025 13:44:46 Europe/Istanbul] EXCEPTION: Call to undefined method App\Services\ExpenseService::getAllExpensesByType() in C:\xampp\htdocs\app\Controllers\ReportController.php:55
+[24-Jul-2025 13:49:53 Europe/Istanbul] ERROR: {"severity":2,"message":"Undefined variable $db","file":"C:\\xampp\\htdocs\\views\\xtreme_ai\\index.php","line":173,"timestamp":"2025-07-24 13:49:53","ip":"::1"}
+[24-Jul-2025 13:49:53 Europe/Istanbul] EXCEPTION: Call to a member function fetchAll() on null in C:\xampp\htdocs\views\xtreme_ai\index.php:173
+[24-Jul-2025 13:49:53 Europe/Istanbul] ERROR: {"severity":2,"message":"Cannot modify header information - headers already sent by (output started at C:\\xampp\\htdocs\\views\\partials\\sidebar.php:13)","file":"C:\\xampp\\htdocs\\bootstrap.php","line":75,"timestamp":"2025-07-24 13:49:53","ip":"::1"}
+[24-Jul-2025 13:52:49 Europe/Istanbul] EXCEPTION: Call to undefined method App\Models\PersonalDebt::getPersonalDebtAmountByOwner() in C:\xampp\htdocs\app\Controllers\IndividualDebtController.php:19

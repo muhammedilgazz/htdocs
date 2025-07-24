@@ -101,4 +101,35 @@ class IncomeController {
             ]
         ]);
     }
+
+    /**
+     * AJAX: Yeni gelir ekleme
+     * POST: title, currency, amount, period, receive_date, is_debt, description, csrf_token
+     */
+    public function ajax_add() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !validate_csrf_token($_POST['csrf_token'] ?? '')) {
+            return ['success' => false, 'message' => 'Geçersiz istek.'];
+        }
+
+        $userId = $_SESSION['user_id'] ?? 1; // Geçici olarak 1 kullanıyoruz
+        $data = [
+            'user_id' => $userId,
+            'title' => sanitize_input($_POST['title'] ?? ''),
+            'currency' => sanitize_input($_POST['currency'] ?? ''),
+            'amount' => (float)($_POST['amount'] ?? 0),
+            'period' => sanitize_input($_POST['period'] ?? ''),
+            'receive_date' => sanitize_input($_POST['receive_date'] ?? ''),
+            'is_debt' => isset($_POST['is_debt']) ? (int)sanitize_input($_POST['is_debt']) : 0,
+            'description' => sanitize_input($_POST['description'] ?? ''),
+            'status' => 'active'
+        ];
+
+        $result = $this->incomeModel->createIncome($data);
+
+        if ($result) {
+            return ['success' => true, 'message' => 'Gelir başarıyla eklendi.', 'income_id' => $result];
+        } else {
+            return ['success' => false, 'message' => 'Gelir eklenirken bir hata oluştu.'];
+        }
+    }
 }

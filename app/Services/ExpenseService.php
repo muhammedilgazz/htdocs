@@ -65,4 +65,13 @@ class ExpenseService implements ExpenseServiceInterface {
             return false;
         }
     }
+
+    /**
+     * Geriye dönük uyumluluk için: Belirli bir kategori tipine göre giderleri döndürür
+     * @param string $category_type
+     * @return array
+     */
+    public function getAllExpensesByType(string $category_type): array {
+        return $this->listAllExpenses($category_type);
+    }
 }

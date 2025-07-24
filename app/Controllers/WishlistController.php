@@ -71,4 +71,56 @@ class WishlistController {
             return ['status' => 'error', 'message' => 'Sunucu hatası: ' . $e->getMessage()];
         }
     }
+
+    /**
+     * AJAX: İstek listesi öğesi ekleme
+     * POST: item_name, wishlist_type, price, product_link, image_url, priority, progress, csrf_token
+     */
+    public function ajax_add() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+            return ['success' => false, 'message' => 'Geçersiz istek veya CSRF token.'];
+        }
+        if (empty($_POST['item_name'])) {
+            return ['success' => false, 'message' => 'Ürün adı boş olamaz.'];
+        }
+        $data = [
+            'item_name' => sanitize_input($_POST['item_name']),
+            'wishlist_type' => isset($_POST['wishlist_type']) ? sanitize_input($_POST['wishlist_type']) : 'istek',
+            'price' => isset($_POST['price']) && is_numeric($_POST['price']) ? (float)$_POST['price'] : 0,
+            'product_link' => isset($_POST['product_link']) ? filter_var($_POST['product_link'], FILTER_SANITIZE_URL) : null,
+            'image_url' => isset($_POST['image_url']) ? filter_var($_POST['image_url'], FILTER_SANITIZE_URL) : null,
+            'priority' => isset($_POST['priority']) && is_numeric($_POST['priority']) ? (int)$_POST['priority'] : null,
+            'progress' => isset($_POST['progress']) && is_numeric($_POST['progress']) ? (int)$_POST['progress'] : 0
+        ];
+        if ($this->wishlist_model->add($data)) {
+            return ['success' => true, 'message' => 'İstek listesi öğesi başarıyla eklendi.'];
+        } else {
+            return ['success' => false, 'message' => 'İstek listesi öğesi eklenirken bir hata oluştu.'];
+        }
+    }
+
+    /**
+     * AJAX: İstek listesi öğesi güncelleme
+     * POST: id, item_name, wishlist_type, price, product_link, image_url, priority, progress, csrf_token
+     */
+    public function ajax_update() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+            return ['success' => false, 'message' => 'Geçersiz istek veya CSRF token.'];
+        }
+        $id = (int)($_POST['id'] ?? 0);
+        $data = [
+            'item_name' => sanitize_input($_POST['item_name'] ?? ''),
+            'wishlist_type' => sanitize_input($_POST['wishlist_type'] ?? ''),
+            'price' => (float)($_POST['price'] ?? 0),
+            'product_link' => sanitize_input($_POST['product_link'] ?? null),
+            'image_url' => sanitize_input($_POST['image_url'] ?? null),
+            'priority' => (int)($_POST['priority'] ?? null),
+            'progress' => (int)($_POST['progress'] ?? 0)
+        ];
+        if ($this->wishlist_model->update($id, $data)) {
+            return ['success' => true, 'message' => 'İstek listesi öğesi başarıyla güncellendi.'];
+        } else {
+            return ['success' => false, 'message' => 'İstek listesi öğesi güncellenirken bir hata oluştu.'];
+        }
+    }
 }

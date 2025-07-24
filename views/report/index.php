@@ -1,12 +1,5 @@
 <?php
 require_once __DIR__ . '/../partials/head.php';
-// Use only $GLOBALS['report_month'] and $GLOBALS['report_year'] for report period
-$report_month = isset($GLOBALS['report_month']) ? (int)$GLOBALS['report_month'] : null;
-$report_year = isset($GLOBALS['report_year']) ? $GLOBALS['report_year'] : null;
-// DEBUG: Show report_month and report_year values
-if (!headers_sent()) {
-    echo '<!-- DEBUG: report_month=' . var_export($report_month ?? null, true) . ', report_year=' . var_export($report_year ?? null, true) . ' -->';
-}
 $month_names = [1=>'Ocak',2=>'Şubat',3=>'Mart',4=>'Nisan',5=>'Mayıs',6=>'Haziran',7=>'Temmuz',8=>'Ağustos',9=>'Eylül',10=>'Ekim',11=>'Kasım',12=>'Aralık'];
 $report_month_name = $report_month ? $month_names[$report_month] : '';
 $report_period_text = ($report_month_name ? $report_month_name : '') . ' ' . ($report_year ?? '');
@@ -247,35 +240,31 @@ $report_period_text = ($report_month_name ? $report_month_name : '') . ' ' . ($r
                     foreach (($other_expenses ?? []) as $row) {
                         $total_other += (float)($row['amount'] ?? 0);
                     }
-                    // Alınacaklar toplamı (eski kod)
+                    // Alınacaklar toplamı (dinamik)
                     $total_receivable = 0;
-                    foreach ([
-                        ['title' => 'Tıraş Bıçağı', 'amount' => 100],
-                        ['title' => 'Tıraş Makinesi Tarağı', 'amount' => 150],
-                        ['title' => 'Saç Spreyi', 'amount' => 80],
-                        ['title' => 'Permatik', 'amount' => 50],
-                        ['title' => 'Signo Uniball Kalem', 'amount' => 60],
-                    ] as $item) {
-                        $total_receivable += $item['amount'];
+                    if (is_array($alinacaklar)) {
+                        foreach ($alinacaklar as $item) {
+                            $total_receivable += (float)($item['price'] ?? 0);
+                        }
                     }
                     ?>
-                    <div class="dashboard-summary-row mb-4" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                        <div class="summary-card expense position-relative" style="flex:1 1 200px; min-width:200px;">
+                    <div class="dashboard-summary-row mb-4">
+                        <div class="summary-card expense position-relative">
                             <span>Kişilere Borçlar</span>
                             <h2>₺<?= number_format($total_debt ?? 0, 2, ',', '.') ?></h2>
                             <i class="bi bi-people summary-icon"></i>
                         </div>
-                        <div class="summary-card payment position-relative" style="flex:1 1 200px; min-width:200px;">
+                        <div class="summary-card payment position-relative">
                             <span>Sabit Giderler</span>
                             <h2>₺<?= number_format($total_fixed ?? 0, 2, ',', '.') ?></h2>
                             <i class="bi bi-credit-card summary-icon"></i>
                         </div>
-                        <div class="summary-card expense position-relative" style="flex:1 1 200px; min-width:200px;">
+                        <div class="summary-card expense position-relative">
                             <span>Diğer Harcamalar</span>
                             <h2>₺<?= number_format($total_other ?? 0, 2, ',', '.') ?></h2>
                             <i class="bi bi-wallet2 summary-icon"></i>
                         </div>
-                        <div class="summary-card receivable position-relative" style="flex:1 1 200px; min-width:200px;">
+                        <div class="summary-card receivable position-relative">
                             <span>Alınacaklar</span>
                             <h2>₺<?= number_format($total_receivable ?? 0, 2, ',', '.') ?></h2>
                             <i class="bi bi-cart summary-icon"></i>

@@ -48,6 +48,7 @@ use App\Models\AccountCredential;
 use App\Controllers\AccountPasswordController;
 use App\Controllers\NeedController;
 use App\Controllers\AcquiredProductController;
+use App\Controllers\AccountCredentialController;
 
 
 // Get the container instance
@@ -257,6 +258,12 @@ $container->bind(BankAccountController::class, function($container) {
 
 $container->bind(AccountPasswordController::class, function($container) {
     return new AccountPasswordController($container->get(AccountCredential::class));
+});
+
+$container->bind(AccountCredentialController::class, function($container) {
+    return new AccountCredentialController(
+        $container->get(AccountCredential::class)
+    );
 });
 
 $container->bind(NeedController::class, function($container) {

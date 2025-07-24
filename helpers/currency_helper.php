@@ -64,3 +64,13 @@ function getTotalInTL($incomes) {
     }
     return $total;
 } 
+
+/**
+ * Render a PHP view file with given data as variables
+ * @param string $view_path
+ * @param array $data
+ */
+function render_view($view_path, $data = []) {
+    extract($data);
+    require $view_path;
+} 

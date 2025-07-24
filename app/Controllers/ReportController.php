@@ -100,8 +100,23 @@ class ReportController {
                 $report_year++;
             }
         }
-        $GLOBALS['report_month'] = $report_month;
-        $GLOBALS['report_year'] = $report_year;
-        require ROOT_PATH . '/views/report/index.php';
+        $view_data = [
+            'report_month' => $report_month,
+            'report_year' => $report_year,
+            'debts' => $debts,
+            'fixed_expenses' => $fixed_expenses,
+            'other_expenses' => $other_expenses,
+            'total_income_tl' => $total_income_tl,
+            'alinacaklar' => $alinacaklar,
+            'total_fixed' => $total_fixed,
+            'total_other' => $total_other,
+            'total_alinacak' => $total_alinacak,
+            'total_debt' => $total_debt,
+            'planlanan_gider' => $planlanan_gider,
+            'aylik_acik' => $aylik_acik,
+            'exchange_rate' => $exchange_rate
+        ];
+        require_once ROOT_PATH . '/helpers/currency_helper.php';
+        render_view(ROOT_PATH . '/views/report/index.php', $view_data);
     }
 }
