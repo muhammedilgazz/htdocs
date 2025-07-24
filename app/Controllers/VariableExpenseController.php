@@ -2,12 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\Expense;
+use App\Services\ExpenseService;
 
 class VariableExpenseController {
+    private $expenseService;
+
+    public function __construct(ExpenseService $expenseService)
+    {
+        $this->expenseService = $expenseService;
+    }
+
     public function index() {
-        $expense_model = new Expense();
-        $rows = $expense_model->getAll('degisken_gider');
+        $rows = $this->expenseService->getAllExpensesByType('degisken_gider');
 
         $csrf_token = generate_csrf_token();
 

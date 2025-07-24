@@ -5,15 +5,21 @@ namespace App\Controllers;
 use App\Models\TaxDebt;
 
 class TaxController {
+    private $taxDebtModel;
+
+    public function __construct(TaxDebt $taxDebtModel)
+    {
+        $this->taxDebtModel = $taxDebtModel;
+    }
+
     public function index() {
-        $tax_debt_model = new TaxDebt();
-        $rows = $tax_debt_model->getAll();
+        $rows = $this->taxDebtModel->getAll();
         
         $summary = [
-            'personal' => $tax_debt_model->getTaxDebtAmountByOwner('Şahsi'),
-            'timdesigners' => $tax_debt_model->getTaxDebtAmountByOwner('Timdesigners'),
-            'rentakar' => $tax_debt_model->getTaxDebtAmountByOwner('RentAkar'),
-            'total' => $tax_debt_model->getTotalTaxDebtAmount()
+            'personal' => $this->taxDebtModel->getTaxDebtAmountByOwner('Şahsi'),
+            'timdesigners' => $this->taxDebtModel->getTaxDebtAmountByOwner('Timdesigners'),
+            'rentakar' => $this->taxDebtModel->getTaxDebtAmountByOwner('RentAkar'),
+            'total' => $this->taxDebtModel->getTotalTaxDebtAmount()
         ];
 
         $csrf_token = generate_csrf_token();

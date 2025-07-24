@@ -2,7 +2,33 @@
 
 namespace App\Controllers;
 
+use App\Models\PersonalDebt;
+use App\Models\BankAccount;
+use App\Services\ExpenseService; // Changed from Expense Model to Expense Service
+use App\Models\Income;
+use App\Models\Wishlist;
+
 class ReportController {
+    private $personalDebtModel;
+    private $bankAccountModel;
+    private $expenseService; // Injected Expense Service
+    private $incomeModel;
+    private $wishlistModel;
+
+    public function __construct(
+        PersonalDebt $personalDebtModel,
+        BankAccount $bankAccountModel,
+        ExpenseService $expenseService,
+        Income $incomeModel,
+        Wishlist $wishlistModel
+    ) {
+        $this->personalDebtModel = $personalDebtModel;
+        $this->bankAccountModel = $bankAccountModel;
+        $this->expenseService = $expenseService;
+        $this->incomeModel = $incomeModel;
+        $this->wishlistModel = $wishlistModel;
+    }
+
     public function index() {
         // Tarih aralığına göre ay/yıl belirle
         $today = (int)date('j');
@@ -18,32 +44,26 @@ class ReportController {
         }
         $month_str = sprintf('%04d-%02d', $year, $month);
 
-        $personal_debt_model = new \App\Models\PersonalDebt();
-        $bank_account_model = new \App\Models\BankAccount();
-        $expense_model = new \App\Models\Expense();
-        $income_model = new \App\Models\Income();
-        $wishlist_model = new \App\Models\Wishlist();
-
-        $debts = $personal_debt_model->getByMonth($year, $month);
+        $debts = $this->personalDebtModel->getByMonth($year, $month);
         foreach ($debts as &$debt) {
-            $ibans = $bank_account_model->getByAccountHolder($debt['to_whom'] ?? '');
+            $ibans = $this->bankAccountModel->getByAccountHolder($debt['to_whom'] ?? '');
             $debt['ibans'] = array_column(array_slice($ibans, 0, 2), 'iban_number');
         }
         unset($debt);
 
         // Sabit giderler
-        $fixed_expenses = array_filter($expense_model->getAll('sabit_gider'), function($row) use ($month_str) {
+        $fixed_expenses = array_filter($this->expenseService->getAllExpensesByType('sabit_gider'), function($row) use ($month_str) {
             return strpos($row['date'], $month_str) === 0;
         });
         // Ani, değişken ve ani_ekstra giderler
         $other_expenses = array_merge(
-            array_filter($expense_model->getAll('ani_harcama'), function($row) use ($month_str) {
+            array_filter($this->expenseService->getAllExpensesByType('ani_harcama'), function($row) use ($month_str) {
                 return strpos($row['date'], $month_str) === 0;
             }),
-            array_filter($expense_model->getAll('degisken_gider'), function($row) use ($month_str) {
+            array_filter($this->expenseService->getAllExpensesByType('degisken_gider'), function($row) use ($month_str) {
                 return strpos($row['date'], $month_str) === 0;
             }),
-            array_filter($expense_model->getAll('ani_ekstra'), function($row) use ($month_str) {
+            array_filter($this->expenseService->getAllExpensesByType('ani_ekstra'), function($row) use ($month_str) {
                 return strpos($row['date'], $month_str) === 0;
             })
         );
@@ -57,9 +77,9 @@ class ReportController {
                 $exchange_rate = (float)$json['rate'];
             }
         }
-        $total_income_tl = $income_model->getTotalTLForMonth($year, $month, $exchange_rate);
+        $total_income_tl = $this->incomeModel->getTotalTLForMonth($year, $month, $exchange_rate);
 
-        $alinacaklar = $wishlist_model->getAll('ihtiyac');
+        $alinacaklar = $this->wishlistModel->getAll('ihtiyac');
 
         // Planlanan Gider ve Açık hesaplama
         $total_fixed = array_sum(array_column($fixed_expenses, 'amount'));
@@ -84,4 +104,4 @@ class ReportController {
         $GLOBALS['report_year'] = $report_year;
         require ROOT_PATH . '/views/report/index.php';
     }
-} 
+}

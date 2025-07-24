@@ -5,15 +5,21 @@ namespace App\Controllers;
 use App\Models\ExecutionDebt;
 
 class ExecutionController {
+    private $executionDebtModel;
+
+    public function __construct(ExecutionDebt $executionDebtModel)
+    {
+        $this->executionDebtModel = $executionDebtModel;
+    }
+
     public function index() {
-        $execution_debt_model = new ExecutionDebt();
-        $rows = $execution_debt_model->getAll();
+        $rows = $this->executionDebtModel->getAll();
         
         $summary = [
-            'total_amount' => $execution_debt_model->getTotalCurrentDebtAmount(),
-            'total_files' => $execution_debt_model->getTotalExecutionFilesCount(),
-            'this_month' => $execution_debt_model->getThisMonthTotalPlannedPayment(),
-            'total_paid' => $execution_debt_model->getTotalPaidAmount()
+            'total_amount' => $this->executionDebtModel->getTotalCurrentDebtAmount(),
+            'total_files' => $this->executionDebtModel->getTotalExecutionFilesCount(),
+            'this_month' => $this->executionDebtModel->getThisMonthTotalPlannedPayment(),
+            'total_paid' => $this->executionDebtModel->getTotalPaidAmount()
         ];
 
         $total_debt = array_sum(array_column($rows, 'current_debt')); // Bu hala kullanılıyorsa kalsın

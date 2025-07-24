@@ -5,9 +5,22 @@ namespace App\Controllers;
 use App\Models\PersonalDebt;
 
 class IndividualDebtController {
+    private $personalDebtModel;
+
+    public function __construct(PersonalDebt $personalDebtModel)
+    {
+        $this->personalDebtModel = $personalDebtModel;
+    }
+
     public function index() {
-        $personal_debt_model = new \App\Models\PersonalDebt();
-        $rows = $personal_debt_model->getAll();
+        $rows = $this->personalDebtModel->getAll();
+
+        $summary = [
+            'personal' => $this->personalDebtModel->getPersonalDebtAmountByOwner('Şahsi'),
+            'timdesigners' => $this->personalDebtModel->getPersonalDebtAmountByOwner('Timdesigners'),
+            'rentakar' => $this->personalDebtModel->getPersonalDebtAmountByOwner('RentAkar'),
+            'total' => $this->personalDebtModel->getTotalPersonalDebtAmount()
+        ];
 
         $csrf_token = generate_csrf_token();
 

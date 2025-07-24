@@ -2,14 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Models\Expense;
+use App\Services\ExpenseService;
 
 class XtremeAiController {
+    private $expenseService;
+
+    public function __construct(ExpenseService $expenseService)
+    {
+        $this->expenseService = $expenseService;
+    }
+
     public function index() {
-        $expense_model = new Expense();
         // Xtreme AI için özel bir kategori tipi olduğunu varsayıyoruz.
         // Eğer veritabanında 'xtreme_ai' diye bir category_type yoksa, bu kısım boş dönecektir.
-        $rows = $expense_model->getAll('xtreme_ai');
+        $rows = $this->expenseService->getAllExpensesByType('xtreme_ai');
 
         $csrf_token = generate_csrf_token();
 

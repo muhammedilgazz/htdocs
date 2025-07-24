@@ -2,12 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\Expense;
+use App\Services\ExpenseService;
 
 class FixedExpenseController {
+    private $expenseService;
+
+    public function __construct(ExpenseService $expenseService)
+    {
+        $this->expenseService = $expenseService;
+    }
+
     public function index() {
-        $expense_model = new Expense();
-        $rows = $expense_model->getAll('sabit_gider');
+        $rows = $this->expenseService->getAllExpensesByType('sabit_gider');
 
         $csrf_token = generate_csrf_token();
 

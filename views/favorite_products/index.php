@@ -46,7 +46,7 @@ require_once __DIR__ . '/../partials/page_header.php';
                             <span class="badge bg-secondary">Kategori: <?php echo htmlspecialchars($product['category_name'] ?? 'Kategorisiz'); ?></span>
                         </div>
                         <div class="favorite-product-actions">
-                            <form action="/favorite-products/product/<?php echo $product['id']; ?>/update-category" method="post" class="d-inline">
+                            <form action="/favorite-products/updateProductCategory/<?php echo $product['id']; ?>" method="post" class="d-inline">
                                 <select name="category_id" class="form-select form-select-sm" onchange="this.form.submit()">
                                     <option value="">Kategori Seç</option>
                                     <?php foreach ($categories as $category): ?>

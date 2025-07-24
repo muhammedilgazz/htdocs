@@ -5,9 +5,15 @@ namespace App\Controllers;
 use App\Models\Project;
 
 class ProjectController {
+    private $projectModel;
+
+    public function __construct(Project $projectModel)
+    {
+        $this->projectModel = $projectModel;
+    }
+
     public function index() {
-        $project_model = new Project();
-        $rows = $project_model->getAll();
+        $rows = $this->projectModel->getAll();
 
         $csrf_token = generate_csrf_token();
 

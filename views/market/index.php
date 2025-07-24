@@ -146,7 +146,8 @@
                 e.preventDefault();
                 const formData = new FormData(this);
 
-                fetch('/ajax/add_market_product.php', {
+                formData.append('action', 'market_add_product');
+                fetch('/ajax.php', {
                     method: 'POST',
                     body: formData
                 })

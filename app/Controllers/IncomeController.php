@@ -7,8 +7,8 @@ use App\Models\Income;
 class IncomeController {
     private $incomeModel;
     
-    public function __construct() {
-        $this->incomeModel = new Income();
+    public function __construct(Income $incomeModel) {
+        $this->incomeModel = $incomeModel;
     }
     
     /**
@@ -101,4 +101,4 @@ class IncomeController {
             ]
         ]);
     }
-} 
+}

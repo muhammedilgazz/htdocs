@@ -5,9 +5,15 @@ namespace App\Controllers;
 use App\Models\BankAccount;
 
 class BankAccountController {
+    private $bankAccountModel;
+
+    public function __construct(BankAccount $bankAccountModel)
+    {
+        $this->bankAccountModel = $bankAccountModel;
+    }
+
     public function index() {
-        $bank_account_model = new BankAccount();
-        $all_accounts = $bank_account_model->getAll();
+        $all_accounts = $this->bankAccountModel->getAll();
         
         $own_accounts = [];
         $other_accounts = [];

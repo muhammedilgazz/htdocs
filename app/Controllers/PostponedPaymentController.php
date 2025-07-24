@@ -2,12 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\Expense;
+use App\Services\ExpenseService;
 
 class PostponedPaymentController {
+    private $expenseService;
+
+    public function __construct(ExpenseService $expenseService)
+    {
+        $this->expenseService = $expenseService;
+    }
+
     public function index() {
-        $expense_model = new Expense();
-        $rows = $expense_model->getAll('ertelenmis');
+        $rows = $this->expenseService->getAllExpensesByType('ertelenmis');
 
         $csrf_token = generate_csrf_token();
 

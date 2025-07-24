@@ -5,13 +5,23 @@ namespace App\Controllers;
 use App\Models\Profile;
 
 class ProfileController {
+    private $profileModel;
+
+    public function __construct(Profile $profileModel)
+    {
+        $this->profileModel = $profileModel;
+    }
+
     public function index() {
-        $profile_model = new Profile();
         $user_id = $_SESSION['user_id'] ?? null; // Assuming user_id is in session
 
-        $user_profile = $profile_model->getUserProfileData($user_id);
-        // Wallet data is no longer directly fetched here as Wallet model is removed
-        // You might need to adjust views/profile/index.php accordingly
+        if ($user_id) {
+            $user_profile = $this->profileModel->getUserProfileData($user_id);
+            // Wallet data is no longer directly fetched here as Wallet model is removed
+            // You might need to adjust views/profile/index.php accordingly
+        } else {
+            $user_profile = null;
+        }
 
         $csrf_token = generate_csrf_token();
 

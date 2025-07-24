@@ -6,9 +6,15 @@ use App\Models\BankAccount;
 use App\Models\UIHelper;
 
 class IbanTableController {
+    private $bankAccountModel;
+
+    public function __construct(BankAccount $bankAccountModel)
+    {
+        $this->bankAccountModel = $bankAccountModel;
+    }
+
     public function index() {
-        $bank_account_model = new BankAccount();
-        $all_accounts = $bank_account_model->getAll();
+        $all_accounts = $this->bankAccountModel->getAll();
         $my_accounts = [];
         $other_accounts = [];
 

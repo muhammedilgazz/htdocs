@@ -5,9 +5,15 @@ namespace App\Controllers;
 use App\Models\Task;
 
 class TaskController {
+    private $taskModel;
+
+    public function __construct(Task $taskModel)
+    {
+        $this->taskModel = $taskModel;
+    }
+
     public function index() {
-        $task_model = new Task();
-        $rows = $task_model->getAll();
+        $rows = $this->taskModel->getAll();
 
         $csrf_token = generate_csrf_token();
 

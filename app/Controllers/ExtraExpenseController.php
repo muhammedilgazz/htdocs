@@ -2,12 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\Expense;
+use App\Services\ExpenseService;
 
 class ExtraExpenseController {
+    private $expenseService;
+
+    public function __construct(ExpenseService $expenseService)
+    {
+        $this->expenseService = $expenseService;
+    }
+
     public function index() {
-        $expense_model = new Expense();
-        $rows = $expense_model->getAll('ani_ekstra');
+        $rows = $this->expenseService->getAllExpensesByType('ani_ekstra');
 
         $csrf_token = generate_csrf_token();
 

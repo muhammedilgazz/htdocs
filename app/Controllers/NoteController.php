@@ -5,9 +5,15 @@ namespace App\Controllers;
 use App\Models\Note;
 
 class NoteController {
+    private $noteModel;
+
+    public function __construct(Note $noteModel)
+    {
+        $this->noteModel = $noteModel;
+    }
+
     public function index() {
-        $note_model = new Note();
-        $rows = $note_model->getAll();
+        $rows = $this->noteModel->getAll();
 
         $csrf_token = generate_csrf_token();
 

@@ -1,105 +1,77 @@
-# API Endpointleri
+# API Mimarisi ve Endpoint'ler
 
-Bu doküman, projenin sunduğu temel API endpoint'lerini, özellikle de `ajax/` dizini altında yönetilen asenkron (AJAX) işlemleri açıklamaktadır. Bu endpoint'ler, istemci tarafının sunucuyla sayfa yenilemeden iletişim kurmasını sağlar.
+Bu doküman, projenin asenkron (AJAX) işlemler için kullandığı merkezi API yapısını açıklamaktadır.
 
-## 1. Genel Yapı
+## 1. Merkezi API Yapısı
 
--   **URL:** Tüm AJAX endpoint'leri `http://localhost/ajax/` altında yer alır.
--   **Metot:** Çoğu işlem `POST` HTTP metodu kullanılarak gerçekleştirilir.
--   **Veri Formatı:** İstekler genellikle `application/x-www-form-urlencoded` veya `multipart/form-data` (dosya yüklemeleri için) formatında gönderilir.
--   **Yanıt Formatı:** Sunucu yanıtları genellikle `JSON` formatındadır. Başarılı işlemlerde `{"status": "success", ...}` gibi bir yanıt dönerken, hatalı işlemlerde `{"status": "error", "message": "Hata açıklaması"}` gibi bir yanıt döner.
+Tüm AJAX işlemleri, tek bir giriş noktası (entry point) olan `ajax.php` dosyası üzerinden yönetilir. Bu yapı, kod tekrarını önler, güvenliği merkezileştirir ve bakımı kolaylaştırır.
 
-## 2. Ana Endpoint'ler
+-   **URL:** Tüm AJAX istekleri `http://localhost/ajax.php` adresine gönderilir.
+-   **Metot:** Genellikle `POST` HTTP metodu kullanılır.
+-   **Veri Formatı:** İstekler `application/x-www-form-urlencoded` formatında gönderilir.
+-   **Temel Parametre:** Hangi işlemin yapılacağını belirtmek için `action` adında bir parametre gönderilmesi **zorunludur**.
+-   **Yanıt Formatı:** Sunucu yanıtları her zaman `JSON` formatındadır. (`{"status": "success", ...}` veya `{"status": "error", ...}`).
 
-Aşağıda, modüllere göre gruplandırılmış bazı önemli endpoint'ler yer almaktadır.
+## 2. Action (Eylem) Parametresi
+
+`action` parametresi, çağrılacak olan Controller ve metodu belirler. Format `controller_metot` şeklindedir.
+
+**Örnek:**
+*   `action=todo_add`: Bu istek, `TodoController` sınıfının içindeki `ajax_add()` metodunu çalıştırır.
+*   `action=expense_delete`: Bu istek, `ExpenseController` sınıfının içindeki `ajax_delete()` metodunu çalıştırır.
+
+## 3. Ana Eylemler (Actions)
+
+Aşağıda, modüllere göre gruplandırılmış bazı önemli eylemler ve bekledikleri parametreler yer almaktadır.
 
 ---
 
 ### Gider (Expense) Yönetimi
 
--   **Endpoint:** `ajax/add_expense.php`
--   **Metot:** `POST`
+-   **Action:** `expense_add`
 -   **Açıklama:** Yeni bir gider ekler.
 -   **Parametreler:**
-    -   `amount`: Gider tutarı (Decimal).
-    -   `category_type`: Gider kategorisi ('sabit_gider', 'degisken_gider', vb.).
-    -   `description`: Açıklama (String).
-    -   `date`: Gider tarihi (Date, 'YYYY-MM-DD').
--   **Örnek Yanıt:** `{"status": "success", "message": "Gider başarıyla eklendi."}`
+    -   `amount`, `category_type`, `description`, `date`
 
--   **Endpoint:** `ajax/delete_expense.php`
--   **Metot:** `POST`
+-   **Action:** `expense_delete`
 -   **Açıklama:** Belirtilen bir gideri siler.
 -   **Parametreler:**
-    -   `id`: Silinecek giderin ID'si (Integer).
--   **Örnek Yanıt:** `{"status": "success", "message": "Gider başarıyla silindi."}`
+    -   `id`: Silinecek giderin ID'si.
 
 ---
 
 ### Gelir (Income) Yönetimi
 
--   **Endpoint:** `ajax/add_income.php`
--   **Metot:** `POST`
+-   **Action:** `income_add`
 -   **Açıklama:** Yeni bir gelir kaydı oluşturur.
--   **Parametreler:**
-    -   (Parametreler `add_expense`'e benzer şekilde, gelirle ilgili alanları içerir.)
--   **Örnek Yanıt:** `{"status": "success"}`
+-   **Parametreler:** (Gelirle ilgili alanlar)
 
--   **Endpoint:** `ajax/get_income.php`
--   **Metot:** `POST`
+-   **Action:** `income_get`
 -   **Açıklama:** Belirli bir gelirin detaylarını getirir.
 -   **Parametreler:**
-    -   `id`: Getirilecek gelirin ID'si (Integer).
--   **Örnek Yanıt:** `{"status": "success", "data": {"id": 1, "amount": 5000, ...}}`
+    -   `id`: Getirilecek gelirin ID'si.
 
 ---
 
 ### Yapılacaklar Listesi (Todo List)
 
--   **Endpoint:** `ajax/add_todo.php`
--   **Metot:** `POST`
+-   **Action:** `todo_add`
 -   **Açıklama:** Yapılacaklar listesine yeni bir görev ekler.
 -   **Parametreler:**
     -   `task`: Görev açıklaması (String).
--   **Örnek Yanıt:** `{"status": "success", "task": {"id": 12, "task": "Yeni görev", "completed": 0}}`
+    -   `due_date` (opsiyonel): Bitiş tarihi (Date, 'YYYY-MM-DD').
+-   **Örnek Yanıt:** `{"status": "success", "message": "Görev başarıyla eklendi."}`
 
--   **Endpoint:** `ajax/update_todo.php`
--   **Metot:** `POST`
--   **Açıklama:** Bir görevin durumunu günceller (tamamlandı/tamamlanmadı).
+-   **Action:** `todo_update`
+-   **Açıklama:** Bir görevin durumunu günceller.
 -   **Parametreler:**
-    -   `id`: Güncellenecek görevin ID'si (Integer).
--   **Örnek Yanıt:** `{"status": "success"}`
+    -   `id`: Güncellenecek görevin ID'si.
 
--   **Endpoint:** `ajax/delete_todo.php`
--   **Metot:** `POST`
+-   **Action:** `todo_delete`
 -   **Açıklama:** Bir görevi listeden siler.
 -   **Parametreler:**
-    -   `id`: Silinecek görevin ID'si (Integer).
--   **Örnek Yanıt:** `{"status": "success"}`
+    -   `id`: Silinecek görevin ID'si.
 
 ---
 
-### Borç Yönetimi (Debts)
-
-Projedeki her borç türü (`tax`, `sgk`, `execution`, `bank`, `personal`) için benzer `add`, `update`, `delete`, `get` endpoint'leri bulunmaktadır.
-
--   **Örnek Endpoint:** `ajax/add_tax_debt.php`
--   **Metot:** `POST`
--   **Açıklama:** Yeni bir vergi borcu ekler.
--   **Parametreler:**
-    -   `owner`: Borçlu (String).
-    -   `period`: Borç dönemi (String).
-    -   `principal`: Anapara (Decimal).
-    -   `total`: Toplam borç (Decimal).
-    -   `payment_due`: Son ödeme tarihi (Date).
-
----
-
-### Diğer Endpoint'ler
-
--   **`ajax/add_account_credential.php`**: Yeni bir hesap bilgisi ekler.
--   **`ajax/add_market_product.php`**: Yeni bir market ürünü ekler.
--   **`ajax/add_note.php`**: Yeni bir not ekler.
--   **`ajax/get_exchange_rate.php`**: Güncel döviz kurunu getirir.
-
-Bu liste, projedeki tüm endpoint'leri kapsamamaktadır ancak en sık kullanılan ve temel işlemleri gerçekleştirenleri özetlemektedir. Yeni bir endpoint eklenmesi veya mevcut olanın değiştirilmesi durumunda bu dokümanın güncellenmesi önemlidir.
+**Not:** Bu liste, projedeki tüm eylemleri kapsamamaktadır. Yeni bir AJAX işlemi eklendiğinde, ilgili Controller'a `ajax_` önekiyle bir metot eklenmeli ve bu doküman güncellenmelidir.
