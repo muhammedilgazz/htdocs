@@ -49,6 +49,7 @@ use App\Controllers\AccountPasswordController;
 use App\Controllers\NeedController;
 use App\Controllers\AcquiredProductController;
 use App\Controllers\AccountCredentialController;
+use App\Controllers\ReportController;
 
 
 // Get the container instance
@@ -83,60 +84,60 @@ $container->bind(MarketProduct::class, function($container) {
     return new MarketProduct($container->get(PDO::class));
 });
 
-$container->bind(TaxDebt::class, function($container) {
-    return new TaxDebt($container->get(PDO::class));
+$container->bind(TaxDebt::class, function() {
+    return new TaxDebt();
 });
 
-$container->bind(Task::class, function($container) {
-    return new Task($container->get(PDO::class));
+$container->bind(Task::class, function() {
+    return new Task();
 });
 
-$container->bind(SgkDebt::class, function($container) {
-    return new SgkDebt($container->get(PDO::class));
+$container->bind(SgkDebt::class, function() {
+    return new SgkDebt();
 });
 
-$container->bind(Project::class, function($container) {
-    return new Project($container->get(PDO::class));
+$container->bind(Project::class, function() {
+    return new Project();
 });
 
-$container->bind(Profile::class, function($container) {
-    return new Profile($container->get(PDO::class));
+$container->bind(Profile::class, function() {
+    return new Profile();
 });
 
-$container->bind(Note::class, function($container) {
-    return new Note($container->get(PDO::class));
+$container->bind(Note::class, function() {
+    return new Note();
 });
 
-$container->bind(PersonalDebt::class, function($container) {
-    return new PersonalDebt($container->get(PDO::class));
+$container->bind(PersonalDebt::class, function() {
+    return new PersonalDebt();
 });
 
-$container->bind(Income::class, function($container) {
-    return new Income($container->get(PDO::class));
+$container->bind(Income::class, function() {
+    return new Income();
 });
 
-$container->bind(BankAccount::class, function($container) {
-    return new BankAccount($container->get(PDO::class));
+$container->bind(BankAccount::class, function() {
+    return new BankAccount();
 });
 
-$container->bind(Giderler::class, function($container) {
-    return new Giderler($container->get(PDO::class));
+$container->bind(Giderler::class, function() {
+    return new Giderler();
 });
 
-$container->bind(ExecutionDebt::class, function($container) {
-    return new ExecutionDebt($container->get(PDO::class));
+$container->bind(ExecutionDebt::class, function() {
+    return new ExecutionDebt();
 });
 
-$container->bind(DreamGoal::class, function($container) {
-    return new DreamGoal($container->get(PDO::class));
+$container->bind(DreamGoal::class, function() {
+    return new DreamGoal();
 });
 
-$container->bind(BankDebt::class, function($container) {
-    return new BankDebt($container->get(PDO::class));
+$container->bind(BankDebt::class, function() {
+    return new BankDebt();
 });
 
-$container->bind(AccountCredential::class, function($container) {
-    return new AccountCredential($container->get(PDO::class));
+$container->bind(AccountCredential::class, function() {
+    return new AccountCredential();
 });
 
 
@@ -167,7 +168,7 @@ $container->bind(DashboardController::class, function($container) {
 
 $container->bind(\App\Controllers\ExpenseController::class, function($container) {
     return new \App\Controllers\ExpenseController(
-        $container->get(\App\Interfaces\ExpenseServiceInterface::class),
+        $container->get(ExpenseServiceInterface::class),
         $container->get(DashboardRepository::class)
     );
 });
@@ -181,23 +182,23 @@ $container->bind(MarketController::class, function($container) {
 });
 
 $container->bind(\App\Controllers\XtremeAiController::class, function($container) {
-    return new \App\Controllers\XtremeAiController($container->get(\App\Services\ExpenseService::class));
+    return new \App\Controllers\XtremeAiController($container->get(ExpenseService::class));
 });
 
 $container->bind(\App\Controllers\VariableExpenseController::class, function($container) {
-    return new \App\Controllers\VariableExpenseController($container->get(\App\Services\ExpenseService::class));
+    return new \App\Controllers\VariableExpenseController($container->get(ExpenseService::class));
 });
 
 $container->bind(\App\Controllers\PostponedPaymentController::class, function($container) {
-    return new \App\Controllers\PostponedPaymentController($container->get(\App\Services\ExpenseService::class));
+    return new \App\Controllers\PostponedPaymentController($container->get(ExpenseService::class));
 });
 
 $container->bind(\App\Controllers\FixedExpenseController::class, function($container) {
-    return new \App\Controllers\FixedExpenseController($container->get(\App\Services\ExpenseService::class));
+    return new \App\Controllers\FixedExpenseController($container->get(ExpenseService::class));
 });
 
 $container->bind(\App\Controllers\ExtraExpenseController::class, function($container) {
-    return new \App\Controllers\ExtraExpenseController($container->get(\App\Services\ExpenseService::class));
+    return new \App\Controllers\ExtraExpenseController($container->get(ExpenseService::class));
 });
 
 $container->bind(TaxController::class, function($container) {

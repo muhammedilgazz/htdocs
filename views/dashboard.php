@@ -25,13 +25,12 @@ require_once __DIR__ . '/partials/head.php';
                                     <p class="text-muted mb-0">Hoş geldin! Finansal durumuna göz at.</p>
                                 </div>
                                 <div class="d-flex gap-2">
-                                    <button class="btn btn-outline-primary btn-sm" onclick="refreshDashboard()">
+                                    <button class="btn btn-secondary btn-sm" onclick="refreshDashboard()">
                                         <i class="material-icons-round">refresh</i>
                                         Yenile
                                     </button>
                                     <button class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#quickActionModal"
-                                        style="background:#1f2e4e; border:none; font-size:0.9rem; padding:0.5rem 1rem;">
+                                        data-bs-target="#quickActionModal">
                                         <i class="bi bi-plus-circle me-2"></i>Hızlı Ekle
                                     </button>
                                 </div>

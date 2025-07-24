@@ -29,7 +29,7 @@ require_once ROOT_PATH . '/views/partials/head.php';
                     <p style="color: #a0a8c0; margin-bottom: 2rem;">SGK borçlarınızı ekleyerek takip etmeye başlayın.</p>
                 </div>
                 <?php else: ?>
-                <div class="card p-0">
+                <div class="card modern-card p-0">
                     <div class="card-header bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">SGK Borçları Listesi</h5>

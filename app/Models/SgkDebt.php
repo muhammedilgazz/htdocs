@@ -90,4 +90,27 @@ class SgkDebt {
         $sql = "SELECT * FROM sgk_debts WHERE id = ?";
         return $this->db->fetch($sql, [$id]);
     }
+
+    /**
+     * Belirli bir owner için toplam SGK borcunu döndürür.
+     *
+     * @param string $owner
+     * @return float
+     */
+    public function getSgkDebtAmountByOwner(string $owner): float {
+        $sql = "SELECT SUM(total) as total FROM sgk_debts WHERE owner = ?";
+        $result = $this->db->fetch($sql, [$owner]);
+        return isset($result['total']) ? (float)$result['total'] : 0.0;
+    }
+
+    /**
+     * Tüm SGK borçlarının toplamını döndürür.
+     *
+     * @return float
+     */
+    public function getTotalSgkDebtAmount(): float {
+        $sql = "SELECT SUM(total) as total FROM sgk_debts";
+        $result = $this->db->fetch($sql);
+        return isset($result['total']) ? (float)$result['total'] : 0.0;
+    }
 }

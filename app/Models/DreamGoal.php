@@ -80,4 +80,27 @@ class DreamGoal {
         $sql = "SELECT id, item_name as goal_name, price as target_amount, product_link, priority, progress, created_at FROM wishlist_items WHERE id = ? AND wishlist_type = 'hayal'";
         return $this->db->fetch($sql, [$id]);
     }
+
+    /**
+     * Belirli bir owner için toplam hayal/hedef tutarını döndürür.
+     *
+     * @param string $owner
+     * @return float
+     */
+    public function getDreamGoalAmountByOwner(string $owner): float {
+        $sql = "SELECT SUM(price) as total FROM wishlist_items WHERE wishlist_type = 'hayal' AND owner = ?";
+        $result = $this->db->fetch($sql, [$owner]);
+        return isset($result['total']) ? (float)$result['total'] : 0.0;
+    }
+
+    /**
+     * Tüm hayal/hedeflerin toplam tutarını döndürür.
+     *
+     * @return float
+     */
+    public function getTotalDreamGoalAmount(): float {
+        $sql = "SELECT SUM(price) as total FROM wishlist_items WHERE wishlist_type = 'hayal'";
+        $result = $this->db->fetch($sql);
+        return isset($result['total']) ? (float)$result['total'] : 0.0;
+    }
 }

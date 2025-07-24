@@ -54,7 +54,7 @@ Arayüze derinlik katmak için `--shadow-sm` (hafif) ile `--shadow-xl` (belirgin
 
 ## 3. Bileşen Standartları
 
-### 3.1. Butonlar (`.btn-modern`)
+### 3.1. Butonlar (`.btn`)
 *   **Birincil Eylem:** `.btn-primary` sınıfını kullanır. Her sayfada genellikle bir adet bulunur.
 *   **İkincil Eylem:** `.btn-secondary` sınıfını kullanır. Daha az önemli eylemler için.
 *   **Hayalet (Ghost):** `.btn-ghost` sınıfını kullanır. En az dikkat çekmesi gereken eylemler için.
@@ -80,3 +80,4 @@ Arayüze derinlik katmak için `--shadow-sm` (hafif) ile `--shadow-xl` (belirgin
 2.  **Mevcutları Dönüştürün:** Mevcut bir sayfada veya bileşende değişiklik yaparken, eski CSS sınıflarını (örn. `style.css` içindekiler) yeni `.card-modern`, `.btn-modern` gibi standartlarla değiştirmek için küçük bir efor sarf edin.
 3.  **Renkleri Anlamıyla Kullanın:** Renk paletindeki renkleri (success, error, warning) sadece amaçlarına uygun durumlarda kullanın.
 4.  **Boşluk Hiyerarşisine Uyun:** Elemanlar arasındaki boşlukları, anlamsal ilişkilerine göre belirleyin. Birbirine ait elemanlar daha yakın (`--space-2`, `--space-4`), farklı gruplar daha uzak (`--space-6`, `--space-8`) olmalıdır.
+- Tablo içeren tüm bölümler `.card modern-card` ile sarmalanmalıdır. Böylece tablo ve veri kartları görsel olarak tutarlı olur.

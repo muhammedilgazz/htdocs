@@ -1,0 +1,2 @@
+[24-Jul-2025 18:27:12 Europe/Istanbul] EXCEPTION: Call to undefined method App\Models\SgkDebt::getSgkDebtAmountByOwner() in C:\xampp\htdocs\app\Controllers\SgkController.php:19
+[24-Jul-2025 18:27:55 Europe/Istanbul] EXCEPTION: Call to undefined method App\Models\SgkDebt::getSgkDebtAmountByOwner() in C:\xampp\htdocs\app\Controllers\SgkController.php:19

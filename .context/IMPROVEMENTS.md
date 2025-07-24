@@ -29,7 +29,7 @@ Bu doküman, projenin mevcut durum analizine dayanarak tespit edilen teknik, mim
 ## 2. UI/UX ve Frontend
 
 ### 2.1. CSS Tutarsızlığı
-*   **Sorun:** Proje, en az üç farklı CSS dosyası (`style.css`, `modern-design-system.css`, `custom-colors.css`) kullanıyor. Bu, stil çakışmalarına, gereksiz kod tekrarına ve tutarsız bir kullanıcı arayüzüne yol açmaktadır. `.btn` ve `.btn-modern` gibi farklı standartlarda bileşenler mevcuttur.
+*   **Sorun:** Proje, en az üç farklı CSS dosyası (`style.css`, `modern-design-system.css`, `custom-colors.css`) kullanıyor. Bu, stil çakışmalarına, gereksiz kod tekrarına ve tutarsız bir kullanıcı arayüzüne yol açmaktadır. `.btn` ve `.btn-primary` gibi Bootstrap standartlarında bileşenler kullanılmalıdır. Eski `.btn-modern` sınıfı artık kullanılmamalıdır.
 *   **Öneri:**
     1.  **Tek Gerçek Kaynak:** `modern-design-system.css` dosyasını tek gerçek kaynak (single source of truth) olarak belirleyin.
     2.  Tüm yeni bileşenler, bu dosyadaki CSS değişkenlerini (tasarım token'ları) ve yardımcı sınıfları kullanmalıdır.
