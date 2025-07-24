@@ -304,7 +304,7 @@ $(document).ready(function() {
     $('#addForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/add_tax_debt.php',
+            url: 'ajax.php?action=taxdebt_add',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -322,7 +322,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_tax_debt.php',
+            url: 'ajax.php?action=taxdebt_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -352,7 +352,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_tax_debt.php',
+            url: 'ajax.php?action=taxdebt_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -371,7 +371,7 @@ $(document).ready(function() {
         if (!confirm('Bu vergi borcunu silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/delete_tax_debt.php',
+            url: 'ajax.php?action=taxdebt_delete',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',

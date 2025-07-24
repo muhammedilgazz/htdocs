@@ -42,7 +42,7 @@
      */
     function debugLog(message, data = null) {
         if (config.debug) {
-            console.log(`🚀 Ekash Scripts: ${message}`, data || '');
+            console.log(`Ekash Scripts: ${message}`, data || '');
         }
     }
 

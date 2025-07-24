@@ -348,7 +348,7 @@ $(document).ready(function() {
     $('#addForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/add_todo.php',
+            url: 'ajax.php?action=todo_add',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -367,7 +367,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_todo.php',
+            url: 'ajax.php?action=todo_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -390,7 +390,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_todo.php',
+            url: 'ajax.php?action=todo_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -421,7 +421,7 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: 'ajax/delete_todo.php',
+                    url: 'ajax.php?action=todo_delete',
                     type: 'POST',
                     data: { id: id, csrf_token: '<?= $csrf_token ?>' },
                     dataType: 'json',
@@ -504,7 +504,7 @@ $(document).ready(function() {
       formData.append('due_date', dueDate);
     }
  
-    fetch('ajax/add_todo.php', {
+    fetch('ajax.php?action=todo_add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formData.toString()

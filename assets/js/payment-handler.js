@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const id = this.getAttribute('data-id');
             const durum = this.value;
             
-            console.log('Sending:', {action: 'update_status', id: id, durum: durum});
-            
             fetch('ajax/update_payment.php', {
                 method: 'POST',
                 headers: {
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Response:', data);
                 if (data.success) {
                     const toplamBorc = document.querySelector('#toplam-borc strong');
                     if (toplamBorc) {
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             })
             .catch(error => {
-                console.log('Fetch Error:', error);
                 alert('Bir hata oluştu: ' + error);
             });
         });

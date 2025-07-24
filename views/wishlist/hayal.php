@@ -336,7 +336,7 @@ $(document).ready(function() {
     $('#addForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/add_wishlist_item.php',
+            url: 'ajax.php?action=wishlist_add',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -354,7 +354,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_wishlist_item.php',
+            url: 'ajax.php?action=wishlist_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -381,7 +381,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_wishlist_item.php',
+            url: 'ajax.php?action=wishlist_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -400,7 +400,7 @@ $(document).ready(function() {
         if (!confirm('Bu istek listesi öğesini silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/delete_wishlist_item.php',
+            url: 'ajax.php?action=wishlist_delete',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',

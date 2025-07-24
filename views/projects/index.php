@@ -158,7 +158,7 @@ $(document).ready(function() {
     $('#addForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/add_project.php',
+            url: 'ajax.php?action=project_add',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -176,7 +176,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_project.php',
+            url: 'ajax.php?action=project_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -199,7 +199,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_project.php',
+            url: 'ajax.php?action=project_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -218,7 +218,7 @@ $(document).ready(function() {
         if (!confirm('Bu projeyi silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/delete_project.php',
+            url: 'ajax.php?action=project_delete',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',

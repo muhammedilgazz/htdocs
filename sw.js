@@ -29,42 +29,34 @@ const CORE_ASSETS = [
 
 // Install event - cache core assets
 self.addEventListener('install', (event) => {
-    console.log('🔧 Service Worker installing...');
-    
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('📦 Caching core assets...');
                 return cache.addAll(CORE_ASSETS);
             })
             .then(() => {
-                console.log('✅ Core assets cached successfully');
                 return self.skipWaiting();
             })
             .catch((error) => {
-                console.error('❌ Failed to cache core assets:', error);
+                console.error('Failed to cache core assets:', error);
             })
     );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-    console.log('🚀 Service Worker activating...');
-    
     event.waitUntil(
         caches.keys()
             .then((cacheNames) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => {
                         if (cacheName !== CACHE_NAME) {
-                            console.log('🗑️ Deleting old cache:', cacheName);
                             return caches.delete(cacheName);
                         }
                     })
                 );
             })
             .then(() => {
-                console.log('✅ Service Worker activated');
                 return self.clients.claim();
             })
     );
@@ -140,8 +132,6 @@ self.addEventListener('fetch', (event) => {
 
 // Background sync for offline actions
 self.addEventListener('sync', (event) => {
-    console.log('🔄 Background sync triggered:', event.tag);
-    
     if (event.tag === 'sync-expenses') {
         event.waitUntil(syncExpenses());
     }
@@ -153,8 +143,6 @@ self.addEventListener('sync', (event) => {
 
 // Push notifications
 self.addEventListener('push', (event) => {
-    console.log('📱 Push notification received');
-    
     const options = {
         body: event.data ? event.data.text() : 'Yeni bildirim',
         icon: '/assets/images/icons/icon-192x192.png',
@@ -185,8 +173,6 @@ self.addEventListener('push', (event) => {
 
 // Notification click handler
 self.addEventListener('notificationclick', (event) => {
-    console.log('🔔 Notification clicked:', event.action);
-    
     event.notification.close();
     
     if (event.action === 'view') {
@@ -212,9 +198,8 @@ async function syncExpenses() {
         }
         
         await clearOfflineData('expenses');
-        console.log('✅ Expenses synced successfully');
     } catch (error) {
-        console.error('❌ Failed to sync expenses:', error);
+        console.error('Failed to sync expenses:', error);
     }
 }
 
@@ -233,9 +218,8 @@ async function syncWishlist() {
         }
         
         await clearOfflineData('wishlist');
-        console.log('✅ Wishlist synced successfully');
     } catch (error) {
-        console.error('❌ Failed to sync wishlist:', error);
+        console.error('Failed to sync wishlist:', error);
     }
 }
 
@@ -258,17 +242,17 @@ async function clearOfflineData(type) {
 // Performance monitoring
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'PERFORMANCE_MEASURE') {
-        console.log('📊 Performance measure:', event.data.data);
+        console.log('Performance measure:', event.data.data);
     }
 });
 
 // Error handling
 self.addEventListener('error', (event) => {
-    console.error('❌ Service Worker error:', event.error);
+    console.error('Service Worker error:', event.error);
 });
 
 self.addEventListener('unhandledrejection', (event) => {
-    console.error('❌ Unhandled promise rejection in SW:', event.reason);
+    console.error('Unhandled promise rejection in SW:', event.reason);
 });
 
-console.log('🚀 Service Worker loaded successfully');
+console.log('Service Worker loaded successfully');

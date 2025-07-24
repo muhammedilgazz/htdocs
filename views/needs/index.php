@@ -293,7 +293,7 @@ $csrf_token = generate_csrf_token();
             e.preventDefault();
             
             $.ajax({
-                url: '/ajax/add_wishlist_item.php',
+                url: 'ajax.php?action=wishlist_add',
                 method: 'POST',
                 data: $(this).serialize(),
                 dataType: 'json',
@@ -316,7 +316,7 @@ $csrf_token = generate_csrf_token();
             const id = $(this).data('id');
             
             $.ajax({
-                url: '/ajax/get_wishlist_item.php',
+                url: 'ajax.php?action=wishlist_get',
                 method: 'POST',
                 data: { id: id, csrf_token: '<?= $csrf_token ?>' },
                 dataType: 'json',
@@ -346,7 +346,7 @@ $csrf_token = generate_csrf_token();
             e.preventDefault();
             
             $.ajax({
-                url: '/ajax/update_wishlist_item.php',
+                url: 'ajax.php?action=wishlist_update',
                 method: 'POST',
                 data: $(this).serialize(),
                 dataType: 'json',
@@ -373,7 +373,7 @@ $csrf_token = generate_csrf_token();
             const id = $(this).data('id');
             
             $.ajax({
-                url: '/ajax/delete_wishlist_item.php',
+                url: 'ajax.php?action=wishlist_delete',
                 method: 'POST',
                 data: { id: id, csrf_token: '<?= $csrf_token ?>' },
                 dataType: 'json',

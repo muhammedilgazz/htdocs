@@ -158,7 +158,7 @@ $(document).ready(function() {
     $('#addForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/add_task.php',
+            url: 'ajax.php?action=task_add',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -176,7 +176,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_task.php',
+            url: 'ajax.php?action=task_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -199,7 +199,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_task.php',
+            url: 'ajax.php?action=task_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -218,7 +218,7 @@ $(document).ready(function() {
         if (!confirm('Bu görevi silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/delete_task.php',
+            url: 'ajax.php?action=task_delete',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',

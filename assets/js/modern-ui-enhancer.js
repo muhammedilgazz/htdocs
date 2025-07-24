@@ -22,7 +22,6 @@ class ModernUIEnhancer {
         this.setupObservers();
         
         this.isInitialized = true;
-        console.log('🎨 Modern UI Enhancement System initialized');
     }
 
     // ====== THEME MANAGEMENT ======
@@ -593,7 +592,6 @@ class ModernUIEnhancer {
         this.animations.clear();
         
         this.isInitialized = false;
-        console.log('🎨 Modern UI Enhancement System destroyed');
     }
 }
 

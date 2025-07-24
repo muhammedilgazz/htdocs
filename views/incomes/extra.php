@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('csrf_token', '<?= generate_csrf_token() ?>');
         formData.append('type', 'extra');
         
-        fetch('/ajax/add_income.php', {
+        fetch('ajax.php?action=income_add', {
             method: 'POST',
             body: formData
         })
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData(this);
         formData.append('csrf_token', '<?= generate_csrf_token() ?>');
         
-        fetch('/ajax/update_income.php', {
+        fetch('ajax.php?action=income_update', {
             method: 'POST',
             body: formData
         })
@@ -329,7 +329,7 @@ function editIncome(id) {
     console.log('Edit income called with ID:', id);
     
     // Gelir verilerini getir
-    fetch(`/ajax/get_income.php?id=${id}&csrf_token=<?= generate_csrf_token() ?>`)
+    fetch(`ajax.php?action=income_get&id=${id}&csrf_token=<?= generate_csrf_token() ?>`)
     .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {
@@ -366,7 +366,7 @@ function editIncome(id) {
 
 function deleteIncome(id) {
     if (confirm('Bu geliri silmek istediğinizden emin misiniz?')) {
-        fetch(`/ajax/delete_income.php`, {
+        fetch(`ajax.php?action=income_delete`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

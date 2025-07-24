@@ -64,4 +64,41 @@ class AccountCredentialController {
             return ['success' => false, 'message' => 'Hesap bilgisi güncellenirken bir hata oluştu.'];
         }
     }
+
+    /**
+     * AJAX: Hesap bilgisi getirme
+     * POST: id, csrf_token
+     */
+    public function ajax_get() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+            return ['success' => false, 'message' => 'Geçersiz istek veya CSRF token.'];
+        }
+        $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+        if ($id <= 0) {
+            return ['success' => false, 'message' => 'Geçersiz ID.'];
+        }
+        $credential = $this->accountCredentialModel->getById($id);
+        if ($credential) {
+            unset($credential['password_hash']);
+            return ['success' => true, 'data' => $credential];
+        } else {
+            return ['success' => false, 'message' => 'Hesap bilgisi bulunamadı.'];
+        }
+    }
+
+    /**
+     * AJAX: Hesap bilgisi silme
+     * POST: id, csrf_token
+     */
+    public function ajax_delete() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+            return ['success' => false, 'message' => 'Geçersiz istek veya CSRF token.'];
+        }
+        $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+        if ($this->accountCredentialModel->delete($id)) {
+            return ['success' => true, 'message' => 'Hesap bilgisi başarıyla silindi.'];
+        } else {
+            return ['success' => false, 'message' => 'Hesap bilgisi silinirken bir hata oluştu.'];
+        }
+    }
 } 

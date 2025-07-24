@@ -258,7 +258,7 @@ $(document).ready(function() {
         submitBtn.prop('disabled', true).text('Kaydediliyor...');
         
         $.ajax({
-            url: '/ajax/add_personal_debt.php',
+            url: 'ajax.php?action=personaldebt_add',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -291,7 +291,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_personal_debt.php',
+            url: 'ajax.php?action=personaldebt_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -317,7 +317,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_personal_debt.php',
+            url: 'ajax.php?action=personaldebt_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -336,7 +336,7 @@ $(document).ready(function() {
         if (!confirm('Bu şahıs borcunu silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/delete_personal_debt.php',
+            url: 'ajax.php?action=personaldebt_delete',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',

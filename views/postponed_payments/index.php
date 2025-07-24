@@ -111,7 +111,7 @@ $(document).ready(function() {
     $('.edit-btn').click(function() {
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/get_expense.php',
+            url: 'ajax.php?action=expense_get',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',
@@ -134,7 +134,7 @@ $(document).ready(function() {
     $('#editForm').submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'ajax/update_expense.php',
+            url: 'ajax.php?action=expense_update',
             type: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
@@ -153,7 +153,7 @@ $(document).ready(function() {
         if (!confirm('Bu gideri silmek istediğinizden emin misiniz?')) return;
         const id = $(this).data('id');
         $.ajax({
-            url: 'ajax/delete_expense.php',
+            url: 'ajax.php?action=expense_delete',
             type: 'POST',
             data: { id: id, csrf_token: '<?= $csrf_token ?>' },
             dataType: 'json',

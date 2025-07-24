@@ -1,5 +1,4 @@
 // Preloader devre dışı bırakıldı
-console.log('Preloader scripts devre dışı bırakıldı');
 
 (function ($) {
     "use strict"
@@ -66,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             sidebar.classList.toggle('show');
-            console.log('Sidebar toggle clicked');
         });
         
         // Close sidebar when clicking outside
