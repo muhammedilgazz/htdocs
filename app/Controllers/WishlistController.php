@@ -123,4 +123,41 @@ class WishlistController {
             return ['success' => false, 'message' => 'İstek listesi öğesi güncellenirken bir hata oluştu.'];
         }
     }
+
+    /**
+     * AJAX: İstek listesi öğesi silme
+     * POST: id, csrf_token
+     */
+    public function ajax_delete() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['csrf_token']) || !validate_csrf_token($_POST['csrf_token'])) {
+            return ['success' => false, 'message' => 'Geçersiz istek veya CSRF token.'];
+        }
+        $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+        if ($id > 0) {
+            if ($this->wishlist_model->delete($id)) {
+                return ['success' => true, 'message' => 'İstek listesi öğesi başarıyla silindi.'];
+            } else {
+                return ['success' => false, 'message' => 'İstek listesi öğesi silinirken bir hata oluştu.'];
+            }
+        } else {
+            return ['success' => false, 'message' => 'Geçersiz ID.'];
+        }
+    }
+
+    /**
+     * AJAX: İstek listesi öğesi getirme
+     * POST: id
+     */
+    public function ajax_get() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return ['success' => false, 'message' => 'Geçersiz istek.'];
+        }
+        $id = (int)($_POST['id'] ?? 0);
+        $item = $this->wishlist_model->getById($id);
+        if ($item) {
+            return ['success' => true, 'data' => $item];
+        } else {
+            return ['success' => false, 'message' => 'İstek listesi öğesi bulunamadı.'];
+        }
+    }
 }
